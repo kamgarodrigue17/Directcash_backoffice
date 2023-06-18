@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -87,9 +88,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap.css",
+              "src/assets/css/bootstrap-icons/bootstrap-icons.min.css",
+              "src/assets/css/mdb.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/bootstrap.js",
+              "src/assets/js/mdb.min.js",
+              "src/assets/js/main.js"
+            ]
           }
         }
       }
