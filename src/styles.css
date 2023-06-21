@@ -1,15 +1,5 @@
-@font-face {
-  font-family: Roboto;
-  src: url(/src/assets/font/Roboto-Regular.ttf);
-}
 
-/* @import url(/src/assets/css/bootstrap.css); */
 @import url(/src/assets/css/bootstrap-icons/bootstrap-icons.min.css);
-/* @import url(/src/assets/css/mdb.min.css); */
-
-body{
-  font-family: Roboto;
-}
 
 /*--------------------------------------------------------------
 # General
@@ -18,8 +8,10 @@ body{
   scroll-behavior: smooth;
   --primary-light-color: #3090AB;
   --secondary-light-color: #003341;
+  --tertiary-light-color: #74acbb;
   --primary-dark-color: #1D1D1D;
   --secondary-dark-color: #49454F;
+  --tertiary-dark-color: #7c7c7c;
   --danger-color: #F60D2B;
 }
 
@@ -39,7 +31,7 @@ button{
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #616263;
+  background: #f6f9ff;
   color: #444444;
 }
 
@@ -76,7 +68,7 @@ h6 {
   padding: 20px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #aab7cf transparent;
+  scrollbar-color: var(--primary-light-color) transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
 }
@@ -88,7 +80,7 @@ h6 {
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: #aab7cf;
+  background-color: var(--primary-light-color);
 }
 
 .sidebar-nav {
@@ -254,7 +246,7 @@ h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: var(--primary-dark-color);
 }
 
 /*--------------------------------------------------------------
@@ -514,25 +506,25 @@ h6 {
 .breadcrumb {
   font-size: 14px;
   font-family: "Nunito", sans-serif;
-  color: #899bbd;
+  /* color: #899bbd; */
   font-weight: 600;
 }
 
 .breadcrumb a {
-  color: #899bbd;
+  color: var(--primary-light-color);
   transition: 0.3s;
 }
 
 .breadcrumb a:hover {
-  color: #51678f;
+  color: var(--tertiary-light-color);
 }
 
 .breadcrumb .breadcrumb-item::before {
-  color: #899bbd;
+  color: var(--tertiary-light-color);
 }
 
 .breadcrumb .active {
-  color: #51678f;
+  color: var(--tertiary-dark-color);
   font-weight: 600;
 }
 
