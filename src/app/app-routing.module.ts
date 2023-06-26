@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConnexionComponent } from './Components/connexion/connexion.component';
-import { BaseComponent } from './Components/base/base.component';
+import { DashboardComponent } from './Components/Pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
-  {path: 'base', component: BaseComponent}
+  {path: 'dashboard', component: DashboardComponent}
 ];
 
 @NgModule({

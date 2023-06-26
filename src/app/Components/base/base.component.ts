@@ -12,5 +12,4 @@ export class BaseComponent {
       body[0].classList.toggle("toggle-sidebar");
     }
 
-
 }

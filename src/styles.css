@@ -13,12 +13,26 @@
   --secondary-dark-color: #49454F;
   --tertiary-dark-color: #7c7c7c;
   --danger-color: #F60D2B;
+  --oragne-color: #FF4D00;
+  --violet-color: #D50DF6;
 }
 
 button{
   height: 50px !important;
 }
 
+.text-secondary{
+  color: var(--secondary-dark-color) !important;
+}
+.text-tertiary{
+  color: var(--tertiary-dark-color) !important;
+}
+.text-orange{
+  color: var(--oragne-color) !important;
+}
+.text-violet{
+  color: var(--violet-color) !important
+}
 .primary-light-button{
   color: white !important;
   background-color: var(--primary-light-color) !important;
@@ -105,6 +119,13 @@ h6 {
   color: #899bbd;
   font-weight: 600;
   margin: 10px 0 5px 15px;
+}
+
+/* Active router link */
+
+.active-router-link{
+  color: #fff !important;
+  background: var(--primary-dark-color) !important;
 }
 
 .sidebar-nav .nav-link {
