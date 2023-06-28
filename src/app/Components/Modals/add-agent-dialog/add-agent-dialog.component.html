@@ -1,0 +1,66 @@
+<!-- Header -->
+<div
+  class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
+>
+  <span class="me-4">Ajouter un Agent</span>
+  <button mat-button mat-dialog-close class="text-center">
+    <mat-icon class="me-0">close</mat-icon>
+  </button>
+</div>
+
+<!-- Content -->
+<mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
+  <form #add_agent_form="ngForm" >
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input required matInput placeholder="Nom" name="nom" ngModel />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Merchant</mat-label>
+          <mat-select name="merchant">
+            <mat-option value="1">Merchant 1</mat-option>
+            <mat-option value="2">Mercahnt 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° IMEI du téléphone</mat-label>
+          <input required matInput placeholder="N° IMEI" name="imei" ngModel />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Agence</mat-label>
+          <mat-select name="agence" value>
+            <mat-option value="1">Agence 1</mat-option>
+            <mat-option value="2">Agence 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+</mat-dialog-content>
+
+<!-- Button action -->
+<mat-dialog-actions align="end" class="p-3 pt-1">
+  <button
+    class="primary-light-button"
+    mat-button
+    [mat-dialog-close]="add_agent_form"
+    cdkFocusInitial
+  >
+    Ajouter
+  </button>
+
+  <button class="primary-dark-button" mat-button [mat-dialog-close]="data">
+    Annuler
+  </button>
+</mat-dialog-actions>

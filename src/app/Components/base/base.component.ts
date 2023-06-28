@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-base',
@@ -10,15 +10,6 @@ export class BaseComponent {
     toggle_side_bar(){
       const body = document.getElementsByTagName("body");
       body[0].classList.toggle("toggle-sidebar");
-    }
-
-    scrollToTop(): void {
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-      });
-
     }
 
 }

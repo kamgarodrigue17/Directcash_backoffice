@@ -16,6 +16,10 @@
   --oragne-color: #FF4D00;
   --violet-color: #D50DF6;
 }
+.action-btn{
+  width: 40px !important;
+  height: 40px !important;
+}
 
 button{
   height: 50px !important;
@@ -126,6 +130,9 @@ h6 {
 .active-router-link{
   color: #fff !important;
   background: var(--primary-dark-color) !important;
+}
+.active-router-link i{
+  color: white !important;
 }
 
 .sidebar-nav .nav-link {
@@ -245,7 +252,7 @@ h6 {
 # Main
 --------------------------------------------------------------*/
 #main {
-  margin-top: 60px;
+  margin-top: 70px;
   padding: 20px 30px;
   transition: all 0.3s;
 }
@@ -260,6 +267,7 @@ h6 {
 # Page Title
 --------------------------------------------------------------*/
 .pagetitle {
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
