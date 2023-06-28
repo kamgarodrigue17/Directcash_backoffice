@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+
 import { ConnexionComponent } from './Components/connexion/connexion.component';
 import { BaseComponent } from './Components/base/base.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
@@ -36,7 +38,7 @@ import { ServiceCardComponent } from './Components/Cards/service-card/service-ca
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule
+    MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
