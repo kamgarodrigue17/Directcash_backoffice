@@ -18,6 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatStepperModule} from '@angular/material/stepper';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 import { ConnexionComponent } from './Components/connexion/connexion.component';
@@ -36,6 +37,7 @@ import { AddSuperAgentStepOneComponent } from './Components/Pages/gestion-agents
 import { ClientMydirectcashComponent } from './Components/Pages/gestion-clients/client-mydirectcash/client-mydirectcash.component';
 import { AddClientDialogComponent } from './Components/Modals/add-client-dialog/add-client-dialog.component';
 import { ShowSuperAgengDialogComponent } from './Components/Modals/show-super-ageng-dialog/show-super-ageng-dialog.component';
+import { BlockAccountDialogComponent } from './Components/Modals/block-account-dialog/block-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { ShowSuperAgengDialogComponent } from './Components/Modals/show-super-ag
     AddSuperAgentStepOneComponent,
     ClientMydirectcashComponent,
     AddClientDialogComponent,
-    ShowSuperAgengDialogComponent
+    ShowSuperAgengDialogComponent,
+    BlockAccountDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { ShowSuperAgengDialogComponent } from './Components/Modals/show-super-ag
     MatSelectModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
 import { AddClientDialogComponent } from 'src/app/Components/Modals/add-client-dialog/add-client-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 
@@ -14,9 +14,10 @@ import { ExportComponent } from 'src/app/Components/Modals/export/export.compone
 })
 export class ClientMydirectcashComponent {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { }
   selected_value: string = "";
   add_agent_form!: NgForm;
+  snackbar_message!: string;
 
   displayedColumns: string[] = ['Nom', 'Matricule', 'Téléphone', 'Statut', 'Adresse', 'Actions'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -43,24 +44,33 @@ export class ClientMydirectcashComponent {
     });
   }
 
-  open_add_client_dialog() {
+  open_add_client_dialog(mode: string) {
     const add_client_dialog = this.dialog.open(AddClientDialogComponent, {
-      data:{
-        nom:'',
-        solde:'',
+      data: {
+        nom: '',
+        solde: '',
         adresse: '',
         statut: '',
         tel: '',
         email: '',
         sexe: '',
         matricule: '',
-        show: false
+        mode: mode
       }
     });
 
     add_client_dialog.afterClosed().subscribe(result => {
       this.add_agent_form = result;
       console.log(this.add_agent_form.value);
+    });
+  }
+
+  open_snackbar(client: string) {
+    this.snackbar_message = "Le mot de passe du client " + client + " a été rénitialisé à 0000";
+    let snackBarRef = this._snackBar.open(this.snackbar_message, 'Ok');
+
+    snackBarRef.onAction().subscribe(() => {
+      snackBarRef.dismiss();
     });
   }
 

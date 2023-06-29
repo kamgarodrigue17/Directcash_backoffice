@@ -18,5 +18,6 @@ export class AddClientDialogComponent {
   adresse = this.data.adresse;
   sexe = this.data.sexe;
   matricule = this.data.matricule;
-  show = this.data.show;
+  mode = this.data.mode;
+  now = new Date();
 }
