@@ -11,5 +11,7 @@ export class ExportComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any){}
   // @Inject(MAT_DIALOG_DATA)
   // public data!: DialogData;
+
+  title: string = this.data.title;
 }
 

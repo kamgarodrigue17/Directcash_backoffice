@@ -16,6 +16,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 import { ConnexionComponent } from './Components/connexion/connexion.component';
@@ -30,6 +32,9 @@ import { AgentsComponent } from './Components/Pages/gestion-agents/agents/agents
 import { ExportComponent } from './Components/Modals/export/export.component';
 import { AddAgentDialogComponent } from './Components/Modals/add-agent-dialog/add-agent-dialog.component';
 import { SuperAgentsComponent } from './Components/Pages/gestion-agents/super-agents/super-agents.component';
+import { AddSuperAgentStepOneComponent } from './Components/Pages/gestion-agents/add-super-agent/add-super-agent-step-one/add-super-agent-step-one.component';
+import { ClientMydirectcashComponent } from './Components/Pages/gestion-clients/client-mydirectcash/client-mydirectcash.component';
+import { AddClientDialogComponent } from './Components/Modals/add-client-dialog/add-client-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +49,10 @@ import { SuperAgentsComponent } from './Components/Pages/gestion-agents/super-ag
     AgentsComponent,
     ExportComponent,
     AddAgentDialogComponent,
-    SuperAgentsComponent
+    SuperAgentsComponent,
+    AddSuperAgentStepOneComponent,
+    ClientMydirectcashComponent,
+    AddClientDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +69,9 @@ import { SuperAgentsComponent } from './Components/Pages/gestion-agents/super-ag
     MatIconModule,
     MatButtonModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

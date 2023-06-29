@@ -34,7 +34,7 @@ export class AgentsComponent {
 
   open_export_dialog() {
     const export_dialog = this.dialog.open(ExportComponent, {
-      data: { selected_value: this.selected_value }
+      data: { selected_value: this.selected_value, title: "des Agents" }
     });
 
     export_dialog.afterClosed().subscribe(result => {
