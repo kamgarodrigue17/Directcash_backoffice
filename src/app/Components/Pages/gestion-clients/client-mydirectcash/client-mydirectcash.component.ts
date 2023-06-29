@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
+import { AddClientDialogComponent } from 'src/app/Components/Modals/add-client-dialog/add-client-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 
 @Component({
@@ -42,10 +43,22 @@ export class ClientMydirectcashComponent {
     });
   }
 
-  open_add_agent_dialog() {
-    const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {});
+  open_add_client_dialog() {
+    const add_client_dialog = this.dialog.open(AddClientDialogComponent, {
+      data:{
+        nom:'',
+        solde:'',
+        adresse: '',
+        statut: '',
+        tel: '',
+        email: '',
+        sexe: '',
+        matricule: '',
+        show: false
+      }
+    });
 
-    add_agent_dialog.afterClosed().subscribe(result => {
+    add_client_dialog.afterClosed().subscribe(result => {
       this.add_agent_form = result;
       console.log(this.add_agent_form.value);
     });

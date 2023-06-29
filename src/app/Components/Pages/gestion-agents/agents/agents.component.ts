@@ -42,8 +42,17 @@ export class AgentsComponent {
     });
   }
 
-  open_add_agent_dialog() {
-    const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {});
+  open_add_agent_dialog(mode: string) {
+    const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {
+      data:{
+        nom:'',
+        merchant:'',
+        imei: '',
+        agence: '',
+        contribuable: '',
+        mode: mode
+      }
+    });
 
     add_agent_dialog.afterClosed().subscribe(result => {
       this.add_agent_form = result;
