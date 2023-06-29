@@ -35,6 +35,7 @@ import { SuperAgentsComponent } from './Components/Pages/gestion-agents/super-ag
 import { AddSuperAgentStepOneComponent } from './Components/Pages/gestion-agents/add-super-agent/add-super-agent-step-one/add-super-agent-step-one.component';
 import { ClientMydirectcashComponent } from './Components/Pages/gestion-clients/client-mydirectcash/client-mydirectcash.component';
 import { AddClientDialogComponent } from './Components/Modals/add-client-dialog/add-client-dialog.component';
+import { ShowSuperAgengDialogComponent } from './Components/Modals/show-super-ageng-dialog/show-super-ageng-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AddClientDialogComponent } from './Components/Modals/add-client-dialog/
     SuperAgentsComponent,
     AddSuperAgentStepOneComponent,
     ClientMydirectcashComponent,
-    AddClientDialogComponent
+    AddClientDialogComponent,
+    ShowSuperAgengDialogComponent
   ],
   imports: [
     BrowserModule,

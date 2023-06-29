@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
+import { ShowSuperAgengDialogComponent } from 'src/app/Components/Modals/show-super-ageng-dialog/show-super-ageng-dialog.component';
 
 @Component({
   selector: 'app-super-agents',
@@ -38,10 +39,14 @@ export class SuperAgentsComponent {
     });
   }
 
-  open_add_agent_dialog() {
-    const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {});
+  open_show_super_agent_dialog(mode: string) {
+    const show_super_agent_dialog = this.dialog.open(ShowSuperAgengDialogComponent, {
+      data:{
+        mode: mode
+      }
+    });
 
-    add_agent_dialog.afterClosed().subscribe(result => {
+    show_super_agent_dialog.afterClosed().subscribe(result => {
 
     });
   }
