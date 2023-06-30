@@ -1,14 +1,12 @@
-import { Component, Inject, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-add-agent-dialog',
-  templateUrl: './add-agent-dialog.component.html',
-  styleUrls: ['./add-agent-dialog.component.css']
+  selector: 'app-show-super-ageng-dialog',
+  templateUrl: './show-super-ageng-dialog.component.html',
+  styleUrls: ['./show-super-ageng-dialog.component.css']
 })
-export class AddAgentDialogComponent {
-
+export class ShowSuperAgengDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any){}
 
   nom: string = this.data.nom;
@@ -18,5 +16,4 @@ export class AddAgentDialogComponent {
   contribuable: string = this.data.contribuable;
   mode = this.data.mode;
   now = new Date();
-
 }

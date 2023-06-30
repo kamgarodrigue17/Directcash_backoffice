@@ -11,15 +11,17 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Gestion des Agents</a>
           </li>
-          <li class="breadcrumb-item active">Agents</li>
+          <li class="breadcrumb-item active">Super - Agents</li>
         </ol>
       </nav>
     </div>
 
     <div>
-      <button (click)="open_add_agent_dialog()" mat-raised-button class="primary-light-button text-center me-2">
-        <mat-icon class="me-0">add</mat-icon>
-      </button>
+      <a routerLink="/gestion-agents/super-agents/add">
+        <button mat-raised-button class="primary-light-button text-center me-2">
+          <mat-icon class="me-0">add</mat-icon>
+        </button>
+      </a>
       <button mat-raised-button (click)="open_export_dialog()" class="primary-dark-button text-center">
         Exporter
       </button>
@@ -53,38 +55,37 @@
         <td mat-cell *matCellDef="let element">{{ element.nom }}</td>
       </ng-container>
 
-      <!-- Solde Column -->
-      <ng-container matColumnDef="Solde (XAF)">
-        <th mat-header-cell *matHeaderCellDef>Solde (XAF)</th>
-        <td mat-cell *matCellDef="let element">{{ element.solde }}</td>
+      <!-- Email Column -->
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
       </ng-container>
 
-      <!-- Agence Column -->
-      <ng-container matColumnDef="Agence">
-        <th mat-header-cell *matHeaderCellDef>Agence</th>
-        <td mat-cell *matCellDef="let element">{{ element.agence }}</td>
+      <!-- Téléphone Column -->
+      <ng-container matColumnDef="Téléphone">
+        <th mat-header-cell *matHeaderCellDef>Téléphone</th>
+        <td mat-cell *matCellDef="let element">{{ element.tel }}</td>
       </ng-container>
 
-      <!-- Merchant Column -->
-      <ng-container matColumnDef="Merchant">
-        <th mat-header-cell *matHeaderCellDef>Merchant</th>
-        <td mat-cell *matCellDef="let element">{{ element.merchant }}</td>
+      <!-- Région Column -->
+      <ng-container matColumnDef="Région">
+        <th mat-header-cell *matHeaderCellDef>Région</th>
+        <td mat-cell *matCellDef="let element">{{ element.region }}</td>
       </ng-container>
 
-      <!-- Imei Column -->
-      <ng-container matColumnDef="N° IMEI">
-        <th mat-header-cell *matHeaderCellDef>N° IMEI</th>
-        <td mat-cell *matCellDef="let element">{{ element.imei }}</td>
+      <!-- Date de création Column -->
+      <ng-container matColumnDef="Date de création">
+        <th mat-header-cell *matHeaderCellDef>Date de création</th>
+        <td mat-cell *matCellDef="let element">{{ element.created_at }}</td>
       </ng-container>
 
       <!-- Actions Column -->
       <ng-container matColumnDef="Actions">
         <th mat-header-cell *matHeaderCellDef style="width: 180px;">Actions</th>
-        <td colspan="3" class=""  mat-cell *matCellDef="let element" style="width: 180px;">
+        <td colspan="2" class=""  mat-cell *matCellDef="let element" style="width: 180px;">
           <ul class="list-group list-group-horizontal" style="max-width: 180px;">
-            <li class="list-group-item border-0 pe-2 ps-0"><button type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #02C29C36;"><mat-icon style="color: #02C29C;">edit</mat-icon></button></li>
-            <li class="list-group-item border-0 pe-2 ps-0"><button type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #F60D2B4D;"><mat-icon style="color: #F60D2B;">person_remove</mat-icon></button></li>
-            <li class="list-group-item border-0 pe-0 ps-0"><button type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #E6E6E6;;"><mat-icon style="color: #5E5E5E;">visibility</mat-icon></button></li>
+            <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_show_super_agent_dialog('edit')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #02C29C36;"><mat-icon style="color: #02C29C;">edit</mat-icon></button></li>
+            <li class="list-group-item border-0 pe-0 ps-0"><button (click)="open_show_super_agent_dialog('show')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #E6E6E6;;"><mat-icon style="color: #5E5E5E;">visibility</mat-icon></button></li>
           </ul>
         </td>
       </ng-container>

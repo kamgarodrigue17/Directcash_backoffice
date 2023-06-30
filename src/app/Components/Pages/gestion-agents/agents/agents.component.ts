@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
+import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 
 @Component({
@@ -34,7 +35,7 @@ export class AgentsComponent {
 
   open_export_dialog() {
     const export_dialog = this.dialog.open(ExportComponent, {
-      data: { selected_value: this.selected_value }
+      data: { selected_value: this.selected_value, title: "des Agents" }
     });
 
     export_dialog.afterClosed().subscribe(result => {
@@ -42,12 +43,33 @@ export class AgentsComponent {
     });
   }
 
-  open_add_agent_dialog() {
-    const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {});
+  open_add_agent_dialog(mode: string) {
+    const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {
+      data:{
+        nom:'',
+        merchant:'',
+        imei: '',
+        agence: '',
+        contribuable: '',
+        mode: mode
+      }
+    });
 
     add_agent_dialog.afterClosed().subscribe(result => {
       this.add_agent_form = result;
       console.log(this.add_agent_form.value);
+    });
+  }
+
+  open_block_agent_dialog(object: string) {
+    const block_agent_dialog = this.dialog.open(BlockAccountDialogComponent, {
+      data:{
+        object: object
+      }
+    });
+
+    block_agent_dialog.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 

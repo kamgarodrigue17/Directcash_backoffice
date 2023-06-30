@@ -1,0 +1,187 @@
+<!-- Header -->
+<div
+  class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
+>
+  <span class="me-4" [hidden]="mode == 'edit' || mode == 'show'"
+    >Ajouter un client</span
+  >
+  <span class="me-4" [hidden]="mode == 'add' || mode == 'show'"
+    >Editer un client</span
+  >
+  <span class="me-4" [hidden]="mode == 'add' || mode == 'edit'"
+    ><strong>Matricule: </strong>46456454</span
+  >
+  <button mat-button [mat-dialog-close]="false" class="text-center">
+    <mat-icon class="me-0">close</mat-icon>
+  </button>
+</div>
+
+<!-- Content -->
+<mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
+  <form #add_client_form="ngForm">
+    <div class="row">
+      <!-- nom -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input
+            [readonly]="mode == 'show'"
+            required
+            matInput
+            placeholder="Nom"
+            name="nom"
+            ngModel
+            [(ngModel)]="nom"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- solde -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Solde (XAF)</mat-label>
+          <input
+            [readonly]="mode == 'show'"
+            [(ngModel)]="solde"
+            required
+            matInput
+            placeholder="0.00"
+            name="solde"
+            ngModel
+            type="number"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- email -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Adresse Email</mat-label>
+          <input
+            [readonly]="mode == 'show'"
+            [(ngModel)]="email"
+            required
+            matInput
+            placeholder="exemple@gmail.com"
+            name="email"
+            ngModel
+            type="email"
+          />
+        </mat-form-field>
+      </div>
+      <!-- statut -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Statut</mat-label>
+          <mat-select
+            name="statut"
+            [(ngModel)]="statut"
+            [disabled]="mode == 'show'"
+          >
+            <mat-option value="1">Statut 1</mat-option>
+            <mat-option value="2">Statut 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- telephone -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Téléphone</mat-label>
+          <input
+            [readonly]="mode == 'show'"
+            [(ngModel)]="tel"
+            required
+            matInput
+            placeholder="(+237) 6..."
+            name="tel"
+            ngModel
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Adresse -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Adresse</mat-label>
+          <input
+            [readonly]="mode == 'show'"
+            [(ngModel)]="adresse"
+            required
+            matInput
+            placeholder="Adresse"
+            name="adresse"
+            ngModel
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Sexe -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Sexe</mat-label>
+          <mat-select name="sexe" [disabled]="mode == 'show'">
+            <mat-option value="1">Masculin</mat-option>
+            <mat-option value="2">Feminin</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Matricule -->
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Matricule</mat-label>
+        <input
+          [disabled]="mode == 'add'"
+          readonly="true"
+          type="text"
+          [(ngModel)]="matricule"
+          required
+          matInput
+          placeholder="Matricule"
+          name="matricule"
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <!-- Date de creation -->
+      <mat-form-field appearance="outline" class="col-md-12">
+        <mat-label>Date de creation</mat-label>
+        <input
+          readonly="true"
+          type="text"
+          [(ngModel)]="now"
+          required
+          matInput
+          placeholder="jj/mm/yyy"
+          name="created_at"
+          ngModel
+        />
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<!-- Button action -->
+<mat-dialog-actions align="end" class="p-3 pt-1">
+  <button
+    class="primary-light-button"
+    mat-button
+    [mat-dialog-close]="add_client_form"
+    cdkFocusInitial
+    [hidden]="mode == 'show'"
+  >
+    Sauvegarder
+  </button>
+
+  <button class="primary-dark-button" mat-button [mat-dialog-close]="false">
+    Annuler
+  </button>
+</mat-dialog-actions>

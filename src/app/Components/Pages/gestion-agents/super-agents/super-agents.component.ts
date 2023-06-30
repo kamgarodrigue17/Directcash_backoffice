@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
+import { ShowSuperAgengDialogComponent } from 'src/app/Components/Modals/show-super-ageng-dialog/show-super-ageng-dialog.component';
 
 @Component({
   selector: 'app-super-agents',
@@ -14,7 +15,7 @@ export class SuperAgentsComponent {
 
   constructor(public dialog: MatDialog) { }
 
-  displayedColumns: string[] = ['Nom', 'Solde (XAF)', 'Agence', 'Merchant', 'N° IMEI', 'Actions'];
+  displayedColumns: string[] = ['Nom', 'Email', 'Téléphone', 'Région', 'Date de création', 'Actions'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -30,7 +31,7 @@ export class SuperAgentsComponent {
 
   open_export_dialog() {
     const export_dialog = this.dialog.open(ExportComponent, {
-      data: { selected_value: "" }
+      data: { selected_value: "", title: "des super - Agents" }
     });
 
     export_dialog.afterClosed().subscribe(result => {
@@ -38,10 +39,14 @@ export class SuperAgentsComponent {
     });
   }
 
-  open_add_agent_dialog() {
-    const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {});
+  open_show_super_agent_dialog(mode: string) {
+    const show_super_agent_dialog = this.dialog.open(ShowSuperAgengDialogComponent, {
+      data:{
+        mode: mode
+      }
+    });
 
-    add_agent_dialog.afterClosed().subscribe(result => {
+    show_super_agent_dialog.afterClosed().subscribe(result => {
 
     });
   }
@@ -50,12 +55,12 @@ export class SuperAgentsComponent {
 
 export interface PeriodicElement {
   nom: string;
-  solde: number;
-  agence: string;
-  merchant: string;
-  imei: string;
+  email: string;
+  tel: string;
+  region: string;
+  created_at: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { nom: "Emmanuel", solde: 10_000_000, agence: 'Agence', merchant: 'Merchant', imei: 'imei' },];
+  { nom: "Emmanuel", email: "exemple@gmail.com", tel: '670630558', region: 'Region', created_at: '10/10/2012 14:30' },];
 

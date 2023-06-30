@@ -213,6 +213,7 @@
     <li class="nav-item">
       <a
         routerLink="/gestion-clients"
+        routerLinkActive="active-router-link"
         class="nav-link nav-link collapsed"
         data-bs-target="#gestion-clients-nav"
         data-bs-toggle="collapse"
@@ -249,6 +250,7 @@
     <li class="nav-item">
       <a
         routerLink="/gestion-monnaie"
+        routerLinkActive="active-router-link"
         class="nav-link nav-link collapsed"
         data-bs-target="#gestion-monnaie-nav"
         data-bs-toggle="collapse"
@@ -263,24 +265,36 @@
         data-bs-parent="#sidebar-nav"
       >
         <li>
-          <a routerLink="/gestion-monnaie/approvisionner-agence"
-          routerLinkActive="active"> <i class="bi bi-circle"></i><span>Appr. une Agence</span> </a>
+          <a
+            routerLink="/gestion-monnaie/approvisionner-agence"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-circle"></i><span>Appr. une Agence</span>
+          </a>
         </li>
         <li>
-          <a routerLink="/gestion-monnaie/crediter-super-agent"
-          routerLinkActive="active">
+          <a
+            routerLink="/gestion-monnaie/crediter-super-agent"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i><span>Créditer un super Agent</span>
           </a>
         </li>
         <li>
-          <a routerLink="/gestion-monnaie/creation-monnaie"
-          routerLinkActive="active">
+          <a
+            routerLink="/gestion-monnaie/creation-monnaie"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i><span>Création de la monnaie</span>
           </a>
         </li>
         <li>
-          <a routerLink="/gestion-monnaie/valider-recharge"
-          routerLinkActive="active"> <i class="bi bi-circle"></i><span>Valider une recharge</span> </a>
+          <a
+            routerLink="/gestion-monnaie/valider-recharge"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-circle"></i><span>Valider une recharge</span>
+          </a>
         </li>
       </ul>
     </li>
@@ -288,7 +302,8 @@
 
     <li class="nav-item">
       <a
-      routerLink="/rapports"
+        routerLink="/rapports"
+        routerLinkActive="active-router-link"
         class="nav-link nav-link collapsed"
         data-bs-target="#rapports-nav"
         data-bs-toggle="collapse"
@@ -303,37 +318,47 @@
         data-bs-parent="#sidebar-nav"
       >
         <li>
-          <a routerLink="/rapports/airtime"
-          routerLinkActive="active"> <i class="bi bi-circle"></i><span>Airtime</span> </a>
+          <a routerLink="/rapports/airtime" routerLinkActive="active">
+            <i class="bi bi-circle"></i><span>Airtime</span>
+          </a>
         </li>
         <li>
-          <a routerLink="/rapports/momo-om"
-          routerLinkActive="active"> <i class="bi bi-circle"></i><span>MOMO / OM</span> </a>
+          <a routerLink="/rapports/momo-om" routerLinkActive="active">
+            <i class="bi bi-circle"></i><span>MOMO / OM</span>
+          </a>
         </li>
         <li>
-          <a routerLink="/rapports/transfert-argent-directcash"
-          routerLinkActive="active">
+          <a
+            routerLink="/rapports/transfert-argent-directcash"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i><span>Trans. d'argent DirectCash</span>
           </a>
         </li>
         <li>
-          <a routerLink="/rapports/paiement-facture"
-          routerLinkActive="active"> <i class="bi bi-circle"></i><span>Paiement facture</span> </a>
+          <a routerLink="/rapports/paiement-facture" routerLinkActive="active">
+            <i class="bi bi-circle"></i><span>Paiement facture</span>
+          </a>
         </li>
         <li>
-          <a routerLink="/rapports/paiement-marchand"
-          routerLinkActive="active"> <i class="bi bi-circle"></i><span>Paiement marchand</span> </a>
+          <a routerLink="/rapports/paiement-marchand" routerLinkActive="active">
+            <i class="bi bi-circle"></i><span>Paiement marchand</span>
+          </a>
         </li>
         <li>
-          <a routerLink="/rapports/recharges-mydirectcash-online"
-          routerLinkActive="active">
+          <a
+            routerLink="/rapports/recharges-mydirectcash-online"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i
             ><span>Recharges MyDirectCash Online</span>
           </a>
         </li>
         <li>
-          <a routerLink="/rapports/recharges-mydirectcash-pos"
-          routerLinkActive="active">
+          <a
+            routerLink="/rapports/recharges-mydirectcash-pos"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i><span>Recharges MyDirectCash POS</span>
           </a>
         </li>
@@ -343,7 +368,8 @@
 
     <li class="nav-item">
       <a
-      routerLink="/tarifaire"
+        routerLink="/tarifaire"
+        routerLinkActive="active-router-link"
         class="nav-link nav-link collapsed"
         data-bs-target="#tarifaire-nav"
         data-bs-toggle="collapse"
@@ -358,35 +384,45 @@
         data-bs-parent="#sidebar-nav"
       >
         <li>
-          <a routerLink="/tarifaire/commission-par-service"
-          routerLinkActive="active">
+          <a
+            routerLink="/tarifaire/commission-par-service"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i><span>Commission par service</span>
           </a>
         </li>
         <li>
-          <a routerLink="/tarifaire/grille-transfert-directcash"
-          routerLinkActive="active">
+          <a
+            routerLink="/tarifaire/grille-transfert-directcash"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i
             ><span>Grille de transfert d'argent DirectCash</span>
           </a>
         </li>
         <li>
-          <a routerLink="/tarifaire/grille-transfert-mydirectcash"
-          routerLinkActive="active">
+          <a
+            routerLink="/tarifaire/grille-transfert-mydirectcash"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i
             ><span>Grille de transfert d'argent MyDirectCash</span>
           </a>
         </li>
         <li>
-          <a routerLink="/tarifaire/grille-tarifaire-paiement-facture"
-          routerLinkActive="active">
+          <a
+            routerLink="/tarifaire/grille-tarifaire-paiement-facture"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i
             ><span>Grille tarifaire de paiement factures</span>
           </a>
         </li>
         <li>
-          <a routerLink="/tarifaire/grille-tarifaire-paiement-marchand"
-          routerLinkActive="active">
+          <a
+            routerLink="/tarifaire/grille-tarifaire-paiement-marchand"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i
             ><span>Grille tarifaire de Paiement marchand</span>
           </a>
@@ -397,7 +433,8 @@
 
     <li class="nav-item">
       <a
-      routerLink="/administration"
+        routerLink="/administration"
+        routerLinkActive="active-router-link"
         class="nav-link nav-link collapsed"
         data-bs-target="#administration-nav"
         data-bs-toggle="collapse"
@@ -412,47 +449,60 @@
         data-bs-parent="#sidebar-nav"
       >
         <li>
-          <a routerLink="/administration/agences"
-          routerLinkActive="active"> <i class="bi bi-circle"></i><span>Les agences</span> </a>
+          <a routerLink="/administration/agences" routerLinkActive="active">
+            <i class="bi bi-circle"></i><span>Les agences</span>
+          </a>
         </li>
         <li>
-          <a routerLink="/administration/admins"
-          routerLinkActive="active">
+          <a routerLink="/administration/admins" routerLinkActive="active">
             <i class="bi bi-circle"></i><span>Admins de la plateforme</span>
           </a>
         </li>
         <li>
-          <a routerLink="/administration/gestion-habilitations"
-          routerLinkActive="active">
+          <a
+            routerLink="/administration/gestion-habilitations"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i><span>Gestion des habilitations</span>
           </a>
         </li>
         <li>
-          <a routerLink="/administration/gestion-fonctionnalites"
-          routerLinkActive="active">
+          <a
+            routerLink="/administration/gestion-fonctionnalites"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i><span>Gestion des fonctionnalités</span>
           </a>
         </li>
         <li>
-          <a routerLink="/administration/etapes-validation"
-          routerLinkActive="active"> <i class="bi bi-circle"></i><span>Etapes de validation</span> </a>
+          <a
+            routerLink="/administration/etapes-validation"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-circle"></i><span>Etapes de validation</span>
+          </a>
         </li>
         <li>
-          <a routerLink="/administration/renitialiser-password-agent"
-          routerLinkActive="active">
+          <a
+            routerLink="/administration/renitialiser-password-agent"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i
             ><span>Rénitialiser le mot de passe agent</span>
           </a>
         </li>
         <li>
-          <a routerLink="/administration/changer-password"
-          routerLinkActive="active">
+          <a
+            routerLink="/administration/changer-password"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i><span>Changer mon mot de passe</span>
           </a>
         </li>
         <li>
-          <a routerLink="/administration/mouchard"
-          routerLinkActive="active"> <i class="bi bi-circle"></i><span>Mouchard</span> </a>
+          <a routerLink="/administration/mouchard" routerLinkActive="active">
+            <i class="bi bi-circle"></i><span>Mouchard</span>
+          </a>
         </li>
       </ul>
     </li>
