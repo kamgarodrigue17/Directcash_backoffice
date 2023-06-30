@@ -9,7 +9,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
           <li class="breadcrumb-item">
-            <a routerLink="#">Gestion des Agents</a>
+            <a routerLink="#">Gestion des clients</a>
           </li>
           <li class="breadcrumb-item active">Clients MyDirectCash</li>
         </ol>
@@ -84,7 +84,7 @@
         <td colspan="4" class=""  mat-cell *matCellDef="let element" style="width: 200px;">
           <ul class="list-group list-group-horizontal" style="max-width: 200px;">
             <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_add_client_dialog('edit')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #02C29C36;"><mat-icon style="color: #02C29C;">edit</mat-icon></button></li>
-            <li class="list-group-item border-0 pe-2 ps-0"><button type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #F60D2B4D;"><mat-icon style="color: #F60D2B;">person_remove</mat-icon></button></li>
+            <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_block_client_dialog('client')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #F60D2B4D;"><mat-icon style="color: #F60D2B;">person_remove</mat-icon></button></li>
             <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_add_client_dialog('show')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #E6E6E6;;"><mat-icon style="color: #5E5E5E;">visibility</mat-icon></button></li>
             <li class="list-group-item border-0 pe-0 ps-0"><button (click)="open_snackbar(element.nom)" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #1d1d1d;;"><mat-icon style="color: #fff;">refresh</mat-icon></button></li>
           </ul>

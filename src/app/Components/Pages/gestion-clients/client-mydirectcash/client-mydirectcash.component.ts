@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddClientDialogComponent } from 'src/app/Components/Modals/add-client-dialog/add-client-dialog.component';
+import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 
 @Component({
@@ -62,6 +63,18 @@ export class ClientMydirectcashComponent {
     add_client_dialog.afterClosed().subscribe(result => {
       this.add_agent_form = result;
       console.log(this.add_agent_form.value);
+    });
+  }
+
+  open_block_client_dialog(object: string) {
+    const block_client_dialog = this.dialog.open(BlockAccountDialogComponent, {
+      data:{
+        object: object
+      }
+    });
+
+    block_client_dialog.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 

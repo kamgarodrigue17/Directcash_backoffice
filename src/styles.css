@@ -41,6 +41,10 @@ button{
   color: white !important;
   background-color: var(--primary-light-color) !important;
 }
+.secondary-light-button{
+  color: white !important;
+  background-color: var(--secondary-light-color) !important;
+}
 
 .primary-dark-button{
   color: white !important;

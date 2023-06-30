@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
+import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 
 @Component({
@@ -57,6 +58,18 @@ export class AgentsComponent {
     add_agent_dialog.afterClosed().subscribe(result => {
       this.add_agent_form = result;
       console.log(this.add_agent_form.value);
+    });
+  }
+
+  open_block_agent_dialog(object: string) {
+    const block_agent_dialog = this.dialog.open(BlockAccountDialogComponent, {
+      data:{
+        object: object
+      }
+    });
+
+    block_agent_dialog.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 
