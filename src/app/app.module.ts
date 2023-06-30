@@ -42,6 +42,7 @@ import { ShowSuperAgengDialogComponent } from './Components/Modals/show-super-ag
 import { BlockAccountDialogComponent } from './Components/Modals/block-account-dialog/block-account-dialog.component';
 import { TransactionMydirectcashComponent } from './Components/Pages/gestion-clients/transaction-mydirectcash/transaction-mydirectcash.component';
 import { ShowTransMydirectcashDialogComponent } from './Components/Modals/show-trans-mydirectcash-dialog/show-trans-mydirectcash-dialog.component';
+import { ApprovisionerAgenceComponent } from './Components/Pages/gestion-monnaie/approvisioner-agence/approvisioner-agence.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ShowTransMydirectcashDialogComponent } from './Components/Modals/show-t
     ShowSuperAgengDialogComponent,
     BlockAccountDialogComponent,
     TransactionMydirectcashComponent,
-    ShowTransMydirectcashDialogComponent
+    ShowTransMydirectcashDialogComponent,
+    ApprovisionerAgenceComponent
   ],
   imports: [
     BrowserModule,

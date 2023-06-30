@@ -7,6 +7,7 @@ import { SuperAgentsComponent } from './Components/Pages/gestion-agents/super-ag
 import { AddSuperAgentStepOneComponent } from './Components/Pages/gestion-agents/add-super-agent/add-super-agent-step-one/add-super-agent-step-one.component';
 import { ClientMydirectcashComponent } from './Components/Pages/gestion-clients/client-mydirectcash/client-mydirectcash.component';
 import { TransactionMydirectcashComponent } from './Components/Pages/gestion-clients/transaction-mydirectcash/transaction-mydirectcash.component';
+import { ApprovisionerAgenceComponent } from './Components/Pages/gestion-monnaie/approvisioner-agence/approvisioner-agence.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'gestion-agents/super-agents', component: SuperAgentsComponent},
   {path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent},
   {path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent},
-  {path: 'gestion-clients/transactions-mydirectcash', component: TransactionMydirectcashComponent}
+  {path: 'gestion-clients/transactions-mydirectcash', component: TransactionMydirectcashComponent},
+  {path: 'gestion-monnaie/approvisionner-agence', component: ApprovisionerAgenceComponent}
 ];
 
 @NgModule({
