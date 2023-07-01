@@ -42,6 +42,11 @@ import { ShowSuperAgengDialogComponent } from './Components/Modals/show-super-ag
 import { BlockAccountDialogComponent } from './Components/Modals/block-account-dialog/block-account-dialog.component';
 import { TransactionMydirectcashComponent } from './Components/Pages/gestion-clients/transaction-mydirectcash/transaction-mydirectcash.component';
 import { ShowTransMydirectcashDialogComponent } from './Components/Modals/show-trans-mydirectcash-dialog/show-trans-mydirectcash-dialog.component';
+import { ApprovisionerAgenceComponent } from './Components/Pages/gestion-monnaie/approvisioner-agence/approvisioner-agence.component';
+import { ValiderApprovisionnementComponent } from './Components/Pages/gestion-monnaie/valider-approvisionnement/valider-approvisionnement.component';
+import { ApprovisionnerAgenceDialogComponent } from './Components/Modals/approvisionner-agence-dialog/approvisionner-agence-dialog.component';
+import { CrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/crediter-super-agent/crediter-super-agent.component';
+import { ValiderCrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/valider-crediter-super-agent/valider-crediter-super-agent.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +68,12 @@ import { ShowTransMydirectcashDialogComponent } from './Components/Modals/show-t
     ShowSuperAgengDialogComponent,
     BlockAccountDialogComponent,
     TransactionMydirectcashComponent,
-    ShowTransMydirectcashDialogComponent
+    ShowTransMydirectcashDialogComponent,
+    ApprovisionerAgenceComponent,
+    ValiderApprovisionnementComponent,
+    ApprovisionnerAgenceDialogComponent,
+    CrediterSuperAgentComponent,
+    ValiderCrediterSuperAgentComponent
   ],
   imports: [
     BrowserModule,
