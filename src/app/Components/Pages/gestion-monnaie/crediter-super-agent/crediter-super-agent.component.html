@@ -11,23 +11,23 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Gestion de la monnaie</a>
           </li>
-          <li class="breadcrumb-item active">Approvisionner une agence</li>
+          <li class="breadcrumb-item active">Créditer un super agent</li>
         </ol>
       </nav>
     </div>
 
     <div>
-      <button (click)="open_appr_agence_dialog()" mat-raised-button class="primary-light-button text-center me-2">
-        Approvisionner une agence
+      <button (click)="open_appr_agence_dialog()" mat-raised-button class="primary-light-button text-center">
+        Créditer un super agent
       </button>
 
-      <button
+      <!-- <button
         mat-raised-button
         (click)="open_export_dialog()"
         class="primary-dark-button text-center"
       >
         Exporter
-      </button>
+      </button> -->
     </div>
   </div>
   <!-- End Page Title -->
@@ -52,9 +52,9 @@
 
     <table mat-table [dataSource]="dataSource">
       <!-- Merchant Column -->
-      <ng-container matColumnDef="Merchant">
-        <th mat-header-cell *matHeaderCellDef>Merchant</th>
-        <td mat-cell *matCellDef="let element">{{ element.merchant }}</td>
+      <ng-container matColumnDef="Super agent">
+        <th mat-header-cell *matHeaderCellDef>Super agent</th>
+        <td mat-cell *matCellDef="let element">{{ element.super_agent }}</td>
       </ng-container>
 
       <!-- Montant (XAF) Column -->
