@@ -16,6 +16,10 @@
   --oragne-color: #FF4D00;
   --violet-color: #D50DF6;
 }
+
+.bg-white{
+  background: #fff;
+}
 .action-btn{
   width: 40px !important;
   height: 40px !important;

@@ -12,6 +12,8 @@ import { ValiderApprovisionnementComponent } from './Components/Pages/gestion-mo
 import { CrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/crediter-super-agent/crediter-super-agent.component';
 import { ValiderCrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/valider-crediter-super-agent/valider-crediter-super-agent.component';
 import { ValiderRechargeComponent } from './Components/Pages/gestion-monnaie/valider-recharge/valider-recharge.component';
+import { CreationMonnaieComponent } from './Components/Pages/gestion-monnaie/creation-monnaie/creation-monnaie.component';
+import { CommisionParServiceComponent } from './Components/Pages/tarifaire/commision-par-service/commision-par-service.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
@@ -25,7 +27,9 @@ const routes: Routes = [
   {path: 'gestion-monnaie/approvisionner-agence/valider', component: ValiderApprovisionnementComponent},
   {path: 'gestion-monnaie/crediter-super-agent', component: CrediterSuperAgentComponent},
   {path: 'gestion-monnaie/crediter-super-agent/valider', component: ValiderCrediterSuperAgentComponent},
-  {path: 'gestion-monnaie/valider-recharge', component: ValiderRechargeComponent}
+  {path: 'gestion-monnaie/valider-recharge', component: ValiderRechargeComponent},
+  {path: 'gestion-monnaie/creation-monnaie', component: CreationMonnaieComponent},
+  {path: 'tarifaire/commission-par-service', component: CommisionParServiceComponent}
 
 ];
 

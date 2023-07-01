@@ -51,6 +51,8 @@ import { ValiderRechargeComponent } from './Components/Pages/gestion-monnaie/val
 import { AlertComponent } from './Components/alert/alert.component';
 import { GestionMonnaieShowInformationDialogComponent } from './Components/Modals/gestion-monnaie-show-information-dialog/gestion-monnaie-show-information-dialog.component';
 import { CreationMonnaieComponent } from './Components/Pages/gestion-monnaie/creation-monnaie/creation-monnaie.component';
+import { NotifierRechargeDialogComponent } from './Components/Modals/notifier-recharge-dialog/notifier-recharge-dialog.component';
+import { CommisionParServiceComponent } from './Components/Pages/tarifaire/commision-par-service/commision-par-service.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { CreationMonnaieComponent } from './Components/Pages/gestion-monnaie/cre
     ValiderRechargeComponent,
     AlertComponent,
     GestionMonnaieShowInformationDialogComponent,
-    CreationMonnaieComponent
+    CreationMonnaieComponent,
+    NotifierRechargeDialogComponent,
+    CommisionParServiceComponent
   ],
   imports: [
     BrowserModule,
