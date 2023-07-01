@@ -47,6 +47,10 @@ import { ValiderApprovisionnementComponent } from './Components/Pages/gestion-mo
 import { ApprovisionnerAgenceDialogComponent } from './Components/Modals/approvisionner-agence-dialog/approvisionner-agence-dialog.component';
 import { CrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/crediter-super-agent/crediter-super-agent.component';
 import { ValiderCrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/valider-crediter-super-agent/valider-crediter-super-agent.component';
+import { ValiderRechargeComponent } from './Components/Pages/gestion-monnaie/valider-recharge/valider-recharge.component';
+import { AlertComponent } from './Components/alert/alert.component';
+import { GestionMonnaieShowInformationDialogComponent } from './Components/Modals/gestion-monnaie-show-information-dialog/gestion-monnaie-show-information-dialog.component';
+import { CreationMonnaieComponent } from './Components/Pages/gestion-monnaie/creation-monnaie/creation-monnaie.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +77,11 @@ import { ValiderCrediterSuperAgentComponent } from './Components/Pages/gestion-m
     ValiderApprovisionnementComponent,
     ApprovisionnerAgenceDialogComponent,
     CrediterSuperAgentComponent,
-    ValiderCrediterSuperAgentComponent
+    ValiderCrediterSuperAgentComponent,
+    ValiderRechargeComponent,
+    AlertComponent,
+    GestionMonnaieShowInformationDialogComponent,
+    CreationMonnaieComponent
   ],
   imports: [
     BrowserModule,

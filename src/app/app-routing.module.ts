@@ -10,6 +10,8 @@ import { TransactionMydirectcashComponent } from './Components/Pages/gestion-cli
 import { ApprovisionerAgenceComponent } from './Components/Pages/gestion-monnaie/approvisioner-agence/approvisioner-agence.component';
 import { ValiderApprovisionnementComponent } from './Components/Pages/gestion-monnaie/valider-approvisionnement/valider-approvisionnement.component';
 import { CrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/crediter-super-agent/crediter-super-agent.component';
+import { ValiderCrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/valider-crediter-super-agent/valider-crediter-super-agent.component';
+import { ValiderRechargeComponent } from './Components/Pages/gestion-monnaie/valider-recharge/valider-recharge.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
@@ -20,8 +22,10 @@ const routes: Routes = [
   {path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent},
   {path: 'gestion-clients/transactions-mydirectcash', component: TransactionMydirectcashComponent},
   {path: 'gestion-monnaie/approvisionner-agence', component: ApprovisionerAgenceComponent},
-  {path: 'gestion-monnaie/approvisionner-agence/valider-approvisionnement', component: ValiderApprovisionnementComponent},
-  {path: 'gestion-monnaie/crediter-super-agent', component: CrediterSuperAgentComponent}
+  {path: 'gestion-monnaie/approvisionner-agence/valider', component: ValiderApprovisionnementComponent},
+  {path: 'gestion-monnaie/crediter-super-agent', component: CrediterSuperAgentComponent},
+  {path: 'gestion-monnaie/crediter-super-agent/valider', component: ValiderCrediterSuperAgentComponent},
+  {path: 'gestion-monnaie/valider-recharge', component: ValiderRechargeComponent}
 
 ];
 

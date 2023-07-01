@@ -41,17 +41,17 @@ export class CrediterSuperAgentComponent {
     });
   }
 
-  open_appr_agence_dialog() {
-    const appr_agence_dialog = this.dialog.open(ApprovisionnerAgenceDialogComponent, {
+  open_crediter_super_agent_dialog() {
+    const crediter_super_agent_dialog = this.dialog.open(ApprovisionnerAgenceDialogComponent, {
       data: {
         object: 'super-agent'
       }
     });
 
-    appr_agence_dialog.afterClosed().subscribe(result => {
+    crediter_super_agent_dialog.afterClosed().subscribe(result => {
 
       if(result==true){
-        this.router.navigateByUrl("gestion-monnaie/approvisionner-agence/valider-approvisionnement");
+        this.router.navigateByUrl("gestion-monnaie/crediter-super-agent/valider");
       }
       console.log(result);
     });
