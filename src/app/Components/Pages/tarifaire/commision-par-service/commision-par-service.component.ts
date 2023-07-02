@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { AddCommissionDialogComponent } from 'src/app/Components/Modals/add-commission-dialog/add-commission-dialog.component';
 
 @Component({
   selector: 'app-commision-par-service',
@@ -12,7 +13,7 @@ export class CommisionParServiceComponent {
 
   constructor(public dialog: MatDialog) { }
 
-  displayedColumns: string[] = ['Type d\'utilisateur', 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
+  displayedColumns: string[] = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -28,21 +29,15 @@ export class CommisionParServiceComponent {
   }
 
   open_add_commission_dialog(mode: string) {
-    // const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {
-    //   data:{
-    //     nom:'',
-    //     merchant:'',
-    //     imei: '',
-    //     agence: '',
-    //     contribuable: '',
-    //     mode: mode
-    //   }
-    // });
+    const commission_dialog = this.dialog.open(AddCommissionDialogComponent, {
+      data:{
+        mode: mode
+      }
+    });
 
-    // add_agent_dialog.afterClosed().subscribe(result => {
-    //   this.add_agent_form = result;
-    //   console.log(this.add_agent_form.value);
-    // });
+    commission_dialog.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
   open_del_commission_dialog() {

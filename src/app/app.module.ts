@@ -53,6 +53,7 @@ import { GestionMonnaieShowInformationDialogComponent } from './Components/Modal
 import { CreationMonnaieComponent } from './Components/Pages/gestion-monnaie/creation-monnaie/creation-monnaie.component';
 import { NotifierRechargeDialogComponent } from './Components/Modals/notifier-recharge-dialog/notifier-recharge-dialog.component';
 import { CommisionParServiceComponent } from './Components/Pages/tarifaire/commision-par-service/commision-par-service.component';
+import { AddCommissionDialogComponent } from './Components/Modals/add-commission-dialog/add-commission-dialog.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { CommisionParServiceComponent } from './Components/Pages/tarifaire/commi
     GestionMonnaieShowInformationDialogComponent,
     CreationMonnaieComponent,
     NotifierRechargeDialogComponent,
-    CommisionParServiceComponent
+    CommisionParServiceComponent,
+    AddCommissionDialogComponent
   ],
   imports: [
     BrowserModule,

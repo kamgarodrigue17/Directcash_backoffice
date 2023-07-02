@@ -2,7 +2,7 @@
 
 <!-- Main -->
 <main id="main" class="main">
-  <div class="pagetitle d-sm-flex justify-content-between align-items-center">
+  <div class="pagetitle d-md-flex justify-content-between align-items-center">
     <div>
       <h1>Tarifaire</h1>
       <nav>
@@ -16,22 +16,30 @@
       </nav>
     </div>
 
-    <div>
-      <button (click)="open_add_commission_dialog('add')" mat-raised-button class="primary-light-button text-center me-2">
+    <div class="d-sm-flex">
+      <button
+        (click)="open_add_commission_dialog('add')"
+        mat-raised-button
+        class="primary-light-button text-center me-2 w-100 mb-3 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0"
+      >
         Nouvelle commission
       </button>
-      <mat-form-field>
-        <mat-label>Intervalle de date</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate placeholder="Start date" />
-          <input matEndDate placeholder="End date" />
-        </mat-date-range-input>
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="picker"
-        ></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
+
+      <div class="input-group">
+        <input
+          type="date"
+          class="form-control h-100"
+          placeholder="Username"
+          aria-label="Username"
+        />
+        <span class="input-group-text h-100">@</span>
+        <input
+          type="date"
+          class="form-control h-100"
+          placeholder="Server"
+          aria-label="Server"
+        />
+      </div>
     </div>
   </div>
   <!-- End Page Title -->
@@ -55,11 +63,12 @@
     </div>
 
     <table mat-table [dataSource]="dataSource">
-
       <!-- Type d'utilsateur Column -->
-      <ng-container matColumnDef="Type d'utilsateur">
+      <ng-container matColumnDef="Type d'utilisateur">
         <th mat-header-cell *matHeaderCellDef>Type d'utilsateur</th>
-        <td mat-cell *matCellDef="let element">{{ element.type_utilisateur }}</td>
+        <td mat-cell *matCellDef="let element">
+          {{ element.type_utilisateur }}
+        </td>
       </ng-container>
 
       <!-- Taux (%) Column -->
@@ -88,12 +97,45 @@
 
       <!-- Actions Column -->
       <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef style="width: 180px;">Actions</th>
-        <td colspan="3" class=""  mat-cell *matCellDef="let element" style="width: 180px;">
-          <ul class="list-group list-group-horizontal" style="max-width: 180px;">
-            <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_add_commission_dialog('edit')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #02C29C36;"><mat-icon style="color: #02C29C;">edit</mat-icon></button></li>
-            <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_del_commission_dialog()" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #F60D2B4D;"><mat-icon style="color: #F60D2B;">cancel</mat-icon></button></li>
-            <li class="list-group-item border-0 pe-0 ps-0"><button (click)="open_add_commission_dialog('show')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #E6E6E6;;"><mat-icon style="color: #5E5E5E;">visibility</mat-icon></button></li>
+        <th mat-header-cell *matHeaderCellDef style="width: 180px">Actions</th>
+        <td
+          colspan="3"
+          class=""
+          mat-cell
+          *matCellDef="let element"
+          style="width: 180px"
+        >
+          <ul class="list-group list-group-horizontal" style="max-width: 180px">
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="open_add_commission_dialog('edit')"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #02c29c36"
+              >
+                <mat-icon style="color: #02c29c">edit</mat-icon>
+              </button>
+            </li>
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="open_del_commission_dialog()"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #f60d2b4d"
+              >
+                <mat-icon style="color: #f60d2b">cancel</mat-icon>
+              </button>
+            </li>
+            <li class="list-group-item border-0 pe-0 ps-0">
+              <button
+                (click)="open_add_commission_dialog('show')"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #e6e6e6"
+              >
+                <mat-icon style="color: #5e5e5e">visibility</mat-icon>
+              </button>
+            </li>
           </ul>
         </td>
       </ng-container>
@@ -102,7 +144,8 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
 
-    <mat-paginator class="pb-2"
+    <mat-paginator
+      class="pb-2"
       [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons
       aria-label="Select page of periodic elements"
