@@ -1,0 +1,112 @@
+<div
+  class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
+>
+  <span class="me-4" [hidden]="mode == 'edit' || mode == 'show'"
+    >Ajouter une grille de transfert</span
+  >
+  <span class="me-4" [hidden]="mode == 'add' || mode == 'show'"
+    >Editer la grille de transfert</span
+  >
+  <span class="me-4" [hidden]="mode == 'edit' || mode == 'add'"
+    >Consulter la grille de transfert</span
+  >
+
+  <button mat-button [mat-dialog-close]="false" class="text-center">
+    <mat-icon class="me-0">close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
+  <form #form="ngForm">
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Tarif (XAF)</mat-label>
+        <input
+          matInput
+          required
+          type="number"
+          placeholder="0.00"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Taxe (XAF)</mat-label>
+        <input
+          matInput
+          required
+          type="number"
+          placeholder="0.00"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>De</mat-label>
+        <input
+          matInput
+          required
+          type="number"
+          placeholder="0.00"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>A</mat-label>
+        <input
+          matInput
+          required
+          type="number"
+          placeholder="0.00"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-md-4">
+        <mat-label>Taux normal (%)</mat-label>
+        <input
+          matInput
+          required
+          type="number"
+          placeholder="0.00"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-md-4">
+        <mat-label>Taux enregistré (%)</mat-label>
+        <input
+          matInput
+          required
+          type="number"
+          placeholder="0.00"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-md-4">
+        <mat-label>Taux D'inversion (%)</mat-label>
+        <input
+          matInput
+          required
+          type="number"
+          placeholder="0.00"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="p-3 pt-1">
+  <button
+    class="primary-light-button me-2"
+    mat-button
+    [mat-dialog-close]="true"
+    [hidden]="mode == 'show'"
+  >
+    Sauvegarder
+  </button>
+  <button class="primary-dark-button" mat-button [mat-dialog-close]="false">
+    Quitter
+  </button>
+</mat-dialog-actions>
