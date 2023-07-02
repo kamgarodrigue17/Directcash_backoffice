@@ -47,6 +47,18 @@ import { ValiderApprovisionnementComponent } from './Components/Pages/gestion-mo
 import { ApprovisionnerAgenceDialogComponent } from './Components/Modals/approvisionner-agence-dialog/approvisionner-agence-dialog.component';
 import { CrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/crediter-super-agent/crediter-super-agent.component';
 import { ValiderCrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/valider-crediter-super-agent/valider-crediter-super-agent.component';
+import { ValiderRechargeComponent } from './Components/Pages/gestion-monnaie/valider-recharge/valider-recharge.component';
+import { GestionMonnaieShowInformationDialogComponent } from './Components/Modals/gestion-monnaie-show-information-dialog/gestion-monnaie-show-information-dialog.component';
+import { CreationMonnaieComponent } from './Components/Pages/gestion-monnaie/creation-monnaie/creation-monnaie.component';
+import { NotifierRechargeDialogComponent } from './Components/Modals/notifier-recharge-dialog/notifier-recharge-dialog.component';
+import { CommisionParServiceComponent } from './Components/Pages/tarifaire/commision-par-service/commision-par-service.component';
+import { AddCommissionDialogComponent } from './Components/Modals/add-commission-dialog/add-commission-dialog.component';
+import { GrilleTransfertArgentDirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-directcash/grille-transfert-argent-directcash.component';
+import { ConfirmationDialogComponent } from './Components/Modals/confirmation-dialog/confirmation-dialog.component';
+import { GrilleTransfertDirectcashDialogComponent } from './Components/Modals/grille-transfert-directcash-dialog/grille-transfert-directcash-dialog.component';
+import { GrilleTransfertArgentMydirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-mydirectcash/grille-transfert-argent-mydirectcash.component';
+import { GrilleTarifairePaiementFactureComponent } from './Components/Pages/tarifaire/grille-tarifaire-paiement-facture/grille-tarifaire-paiement-facture.component';
+import { GrilleTarifairePaiementMarchandComponent } from './Components/Pages/tarifaire/grille-tarifaire-paiement-marchand/grille-tarifaire-paiement-marchand.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +85,19 @@ import { ValiderCrediterSuperAgentComponent } from './Components/Pages/gestion-m
     ValiderApprovisionnementComponent,
     ApprovisionnerAgenceDialogComponent,
     CrediterSuperAgentComponent,
-    ValiderCrediterSuperAgentComponent
+    ValiderCrediterSuperAgentComponent,
+    ValiderRechargeComponent,
+    GestionMonnaieShowInformationDialogComponent,
+    CreationMonnaieComponent,
+    NotifierRechargeDialogComponent,
+    CommisionParServiceComponent,
+    AddCommissionDialogComponent,
+    GrilleTransfertArgentDirectcashComponent,
+    ConfirmationDialogComponent,
+    GrilleTransfertDirectcashDialogComponent,
+    GrilleTransfertArgentMydirectcashComponent,
+    GrilleTarifairePaiementFactureComponent,
+    GrilleTarifairePaiementMarchandComponent
   ],
   imports: [
     BrowserModule,

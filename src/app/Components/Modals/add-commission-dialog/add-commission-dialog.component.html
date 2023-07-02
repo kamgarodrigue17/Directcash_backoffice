@@ -1,0 +1,72 @@
+<div
+  class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
+>
+  <span class="me-4" [hidden]="mode=='edit' || mode=='show' ">Nouvelle commission</span>
+  <span class="me-4" [hidden]="mode=='add' || mode=='show' ">Editer une commission</span>
+  <span class="me-4" [hidden]="mode=='edit' || mode=='add' ">Consulter une commission</span>
+
+  <button mat-button [mat-dialog-close]="false" class="text-center">
+    <mat-icon class="me-0">close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
+  <form #form="ngForm">
+    <div class="row">
+      <mat-form-field class="w-100">
+        <mat-label>Type d'utilisateur</mat-label>
+        <mat-select required [disabled]="mode=='show' ">
+          <mat-option value="1">Type 1</mat-option>
+          <mat-option value="2">Type 2</mat-option>
+          <mat-option value="3">Type 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <mat-label>Type de service</mat-label>
+        <mat-select required [disabled]="mode=='show' ">
+          <mat-option value="1">Service 1</mat-option>
+          <mat-option value="2">Service 2</mat-option>
+          <mat-option value="3">Service 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Taux (%)</mat-label>
+        <input matInput required type="number" placeholder="0.00" [readonly]="mode=='show' "/>
+      </mat-form-field>
+      <mat-form-field appearance="outline" [hidden]="mode=='add' ">
+        <mat-label>Crée par</mat-label>
+        <input matInput required type="text" placeholder="...." readonly/>
+      </mat-form-field>
+    </div>
+    <div class="row" [hidden]="mode=='add' ">
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Crée le</mat-label>
+        <input matInput type="text" placeholder="jj/mm/yyyy h:mm" readonly/>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-md-6">
+        <mat-label>Dernière modification</mat-label>
+        <input matInput type="text" placeholder="jj/mm/yyyy h:mm" readonly/>
+      </mat-form-field>
+    </div>
+  </form>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="p-3 pt-1">
+  <button
+    class="primary-light-button me-2"
+    mat-button
+    [mat-dialog-close]="true"
+    [hidden]="mode=='show' "
+  >
+    Sauvegarder
+  </button>
+  <button
+    class="primary-dark-button"
+    mat-button
+    [mat-dialog-close]="false"
+  >
+    Quitter
+  </button>
+</mat-dialog-actions>

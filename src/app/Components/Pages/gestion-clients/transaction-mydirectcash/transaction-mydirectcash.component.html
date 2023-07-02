@@ -33,7 +33,7 @@
   </div>
   <!-- End Page Title -->
 
-  <div class="mat-elevation-z4">
+  <div class="mat-elevation-z2 rounded">
     <table mat-table [dataSource]="dataSource">
       <!-- ID Transaction Column -->
       <ng-container matColumnDef="ID Transaction">
@@ -73,15 +73,13 @@
 
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <th mat-header-cell *matHeaderCellDef style="width: 200px">Actions</th>
+        <th mat-header-cell *matHeaderCellDef style="width: 100px">Actions</th>
         <td
-          colspan="4"
-          class=""
           mat-cell
           *matCellDef="let element"
-          style="width: 200px"
+          style="width: 100px"
         >
-          <ul class="list-group list-group-horizontal" style="max-width: 200px">
+          <ul class="list-group list-group-horizontal" style="max-width: 100px">
             <li class="list-group-item border-0 pe-2 ps-0">
               <button
                 title="Consulter les details"

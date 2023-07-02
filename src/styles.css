@@ -16,6 +16,10 @@
   --oragne-color: #FF4D00;
   --violet-color: #D50DF6;
 }
+
+.bg-white{
+  background: #fff;
+}
 .action-btn{
   width: 40px !important;
   height: 40px !important;
@@ -453,7 +457,7 @@ h6 {
   margin-bottom: 30px;
   border: none;
   border-radius: 5px;
-  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  /* box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1); */
 }
 
 .card-header,

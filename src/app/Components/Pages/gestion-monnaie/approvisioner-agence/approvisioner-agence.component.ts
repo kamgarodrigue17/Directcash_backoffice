@@ -51,7 +51,7 @@ export class ApprovisionerAgenceComponent {
     appr_agence_dialog.afterClosed().subscribe(result => {
 
       if(result==true){
-        this.router.navigateByUrl("gestion-monnaie/approvisionner-agence/valider-approvisionnement");
+        this.router.navigateByUrl("gestion-monnaie/approvisionner-agence/valider");
       }
       console.log(result);
     });
