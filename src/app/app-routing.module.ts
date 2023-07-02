@@ -10,10 +10,11 @@ import { TransactionMydirectcashComponent } from './Components/Pages/gestion-cli
 import { ApprovisionerAgenceComponent } from './Components/Pages/gestion-monnaie/approvisioner-agence/approvisioner-agence.component';
 import { ValiderApprovisionnementComponent } from './Components/Pages/gestion-monnaie/valider-approvisionnement/valider-approvisionnement.component';
 import { CrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/crediter-super-agent/crediter-super-agent.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent,/*canActivate: [AuthGuard]*/},
   {path: 'gestion-agents/agents', component: AgentsComponent},
   {path: 'gestion-agents/super-agents', component: SuperAgentsComponent},
   {path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent},

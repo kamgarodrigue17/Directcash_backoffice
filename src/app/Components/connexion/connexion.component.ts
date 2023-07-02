@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import {NgIf} from '@angular/common';
 import { Router} from '@angular/router';
-import { NgForm, FormControl, ValidatorFn } from '@angular/forms';
+import { NgForm, FormControl,FormGroup, Validators  } from '@angular/forms';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-connexion',
@@ -11,15 +12,29 @@ import { NgForm, FormControl, ValidatorFn } from '@angular/forms';
 export class ConnexionComponent {
   hide = true;
   passwordFormControl: FormControl = new FormControl;
+  myForm!: FormGroup;
+ 
+ 
+  
 
-  @ViewChild("connexionForm")
-  form!: NgForm;
-
-  constructor(private router: Router){}
+  constructor(private router: Router,private authService:AuthServiceService){
+   this.myForm= new FormGroup({
+    
+    password : new FormControl('', [Validators.required,Validators.min(6)]),
+    username: new FormControl('', Validators.email)
+    });
+  }
 
   onSubmit(){
-    if(this.form.valid){
-      this.router.navigateByUrl('');
+    if(this.myForm.valid){
+     this.authService.Login(this.myForm.value).subscribe(user=>{
+      localStorage.setItem("token",this.myForm.value.username)
+      console.log(this.myForm.value);
+      this.router.navigateByUrl('/dashboard');
+     },error => {
+      console.error('une erreur :', error);
+    })
+   
     }else{
       // validator
     }
