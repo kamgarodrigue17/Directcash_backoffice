@@ -57,6 +57,8 @@ import { GrilleTransfertArgentDirectcashComponent } from './Components/Pages/tar
 import { ConfirmationDialogComponent } from './Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { GrilleTransfertDirectcashDialogComponent } from './Components/Modals/grille-transfert-directcash-dialog/grille-transfert-directcash-dialog.component';
 import { GrilleTransfertArgentMydirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-mydirectcash/grille-transfert-argent-mydirectcash.component';
+import { GrilleTarifairePaiementFactureComponent } from './Components/Pages/tarifaire/grille-tarifaire-paiement-facture/grille-tarifaire-paiement-facture.component';
+import { GrilleTarifairePaiementMarchandComponent } from './Components/Pages/tarifaire/grille-tarifaire-paiement-marchand/grille-tarifaire-paiement-marchand.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,9 @@ import { GrilleTransfertArgentMydirectcashComponent } from './Components/Pages/t
     GrilleTransfertArgentDirectcashComponent,
     ConfirmationDialogComponent,
     GrilleTransfertDirectcashDialogComponent,
-    GrilleTransfertArgentMydirectcashComponent
+    GrilleTransfertArgentMydirectcashComponent,
+    GrilleTarifairePaiementFactureComponent,
+    GrilleTarifairePaiementMarchandComponent
   ],
   imports: [
     BrowserModule,

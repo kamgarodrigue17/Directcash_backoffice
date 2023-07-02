@@ -15,6 +15,9 @@ import { ValiderRechargeComponent } from './Components/Pages/gestion-monnaie/val
 import { CreationMonnaieComponent } from './Components/Pages/gestion-monnaie/creation-monnaie/creation-monnaie.component';
 import { CommisionParServiceComponent } from './Components/Pages/tarifaire/commision-par-service/commision-par-service.component';
 import { GrilleTransfertArgentDirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-directcash/grille-transfert-argent-directcash.component';
+import { GrilleTransfertArgentMydirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-mydirectcash/grille-transfert-argent-mydirectcash.component';
+import { GrilleTarifairePaiementFactureComponent } from './Components/Pages/tarifaire/grille-tarifaire-paiement-facture/grille-tarifaire-paiement-facture.component';
+import { GrilleTarifairePaiementMarchandComponent } from './Components/Pages/tarifaire/grille-tarifaire-paiement-marchand/grille-tarifaire-paiement-marchand.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
@@ -31,7 +34,10 @@ const routes: Routes = [
   {path: 'gestion-monnaie/valider-recharge', component: ValiderRechargeComponent},
   {path: 'gestion-monnaie/creation-monnaie', component: CreationMonnaieComponent},
   {path: 'tarifaire/commission-par-service', component: CommisionParServiceComponent},
-  {path: 'tarifaire/grille-transfert-directcash', component: GrilleTransfertArgentDirectcashComponent}
+  {path: 'tarifaire/grille-transfert-directcash', component: GrilleTransfertArgentDirectcashComponent},
+  {path: 'tarifaire/grille-transfert-mydirectcash', component: GrilleTransfertArgentMydirectcashComponent},
+  {path: 'tarifaire/grille-tarifaire-paiement-facture', component: GrilleTarifairePaiementFactureComponent},
+  {path: 'tarifaire/grille-tarifaire-paiement-marchand', component: GrilleTarifairePaiementMarchandComponent},
 
 ];
 

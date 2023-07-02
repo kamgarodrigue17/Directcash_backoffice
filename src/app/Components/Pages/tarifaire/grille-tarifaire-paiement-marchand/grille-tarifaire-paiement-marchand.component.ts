@@ -7,15 +7,14 @@ import { ExportComponent } from 'src/app/Components/Modals/export/export.compone
 import { GrilleTransfertDirectcashDialogComponent } from 'src/app/Components/Modals/grille-transfert-directcash-dialog/grille-transfert-directcash-dialog.component';
 
 @Component({
-  selector: 'app-grille-transfert-argent-directcash',
-  templateUrl: './grille-transfert-argent-directcash.component.html',
-  styleUrls: ['./grille-transfert-argent-directcash.component.css']
+  selector: 'app-grille-tarifaire-paiement-marchand',
+  templateUrl: './grille-tarifaire-paiement-marchand.component.html',
+  styleUrls: ['./grille-tarifaire-paiement-marchand.component.css']
 })
-export class GrilleTransfertArgentDirectcashComponent {
-
+export class GrilleTarifairePaiementMarchandComponent {
   constructor(public dialog: MatDialog) { }
 
-  displayedColumns: string[] = ['Tarif (XAF)', 'De', 'A', 'Taxe', 'Active', 'Actions'];
+  displayedColumns: string[] = ['Tarif (XAF)', 'De', 'A', 'Taxe', 'Active', 'Code caisse', 'Actions'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -32,7 +31,7 @@ export class GrilleTransfertArgentDirectcashComponent {
 
   open_export_dialog() {
     const export_dialog = this.dialog.open(ExportComponent, {
-      data: { title: "des grilles de transfert DirecCash" }
+      data: { title: "des grilles tarifaire de paiement marchand" }
     });
 
     export_dialog.afterClosed().subscribe(result => {
@@ -44,7 +43,7 @@ export class GrilleTransfertArgentDirectcashComponent {
     const add_grille_dialog = this.dialog.open(GrilleTransfertDirectcashDialogComponent, {
       data:{
         mode: mode,
-        object: 'directcash'
+        object: 'paiement marchand'
       }
     });
 
@@ -74,7 +73,8 @@ export interface PeriodicElement {
   max: number;
   taxe: number;
   active: string;
+  code_caisse: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { tarif: 400, min: 0, max: 500, taxe: 50, active: '...' },];
+  { tarif: 400, min: 0, max: 500, taxe: 50, active: '...', code_caisse: '456FGT' },];

@@ -11,7 +11,7 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Tarifaire</a>
           </li>
-          <li class="breadcrumb-item active">Grille de transfert d'argent MyDirectCash</li>
+          <li class="breadcrumb-item active">Grille tarifaire de paiement facture</li>
         </ol>
       </nav>
     </div>
@@ -81,16 +81,16 @@
         <td mat-cell *matCellDef="let element">{{ element.active }}</td>
       </ng-container>
 
-      <!-- Plan Column -->
-      <ng-container matColumnDef="Plan">
-        <th mat-header-cell *matHeaderCellDef>Plan</th>
-        <td mat-cell *matCellDef="let element">{{ element.plan }}</td>
+      <!-- Type Column -->
+      <ng-container matColumnDef="Type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
       </ng-container>
 
       <!-- Actions Column -->
       <ng-container matColumnDef="Actions">
         <th mat-header-cell *matHeaderCellDef style="width: 180px;">Actions</th>
-        <td colspan="3" class=""  mat-cell *matCellDef="let element" style="width: 180px;">
+        <td colspan="3" mat-cell *matCellDef="let element" style="width: 180px;">
           <ul class="list-group list-group-horizontal" style="max-width: 180px;">
             <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_add_grille_dialog('edit')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #02C29C36;"><mat-icon style="color: #02C29C;">edit</mat-icon></button></li>
             <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_del_grille_dialog()" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #F60D2B4D;"><mat-icon style="color: #F60D2B;">cancel</mat-icon></button></li>

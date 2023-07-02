@@ -40,6 +40,39 @@
       </mat-form-field>
     </div>
 
+    <div class="row" [hidden]="object!='mydirectcash' ">
+      <mat-form-field>
+        <mat-label>Plan</mat-label>
+        <mat-select required [disabled]="mode=='show' ">
+          <mat-option value="1">Internationnal</mat-option>
+          <mat-option value="2">Local</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="row" [hidden]="object!='paiement facture' ">
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select required [disabled]="mode=='show' ">
+          <mat-option value="1">ENEO</mat-option>
+          <mat-option value="2">CANAl +</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="row" [hidden]="object!='paiement marchand' ">
+      <mat-form-field appearance="outline">
+        <mat-label>Code caisse</mat-label>
+        <input
+          matInput
+          required
+          type="text"
+          placeholder="Code caisse"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+    </div>
+
     <div class="row">
       <mat-form-field appearance="outline" class="col-md-6">
         <mat-label>De</mat-label>

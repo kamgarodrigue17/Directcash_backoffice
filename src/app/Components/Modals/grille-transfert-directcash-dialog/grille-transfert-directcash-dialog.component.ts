@@ -10,4 +10,5 @@ export class GrilleTransfertDirectcashDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any){}
 
   mode = this.data.mode;
+  object = this.data.object;
 }
