@@ -48,12 +48,13 @@ import { ApprovisionnerAgenceDialogComponent } from './Components/Modals/approvi
 import { CrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/crediter-super-agent/crediter-super-agent.component';
 import { ValiderCrediterSuperAgentComponent } from './Components/Pages/gestion-monnaie/valider-crediter-super-agent/valider-crediter-super-agent.component';
 import { ValiderRechargeComponent } from './Components/Pages/gestion-monnaie/valider-recharge/valider-recharge.component';
-import { AlertComponent } from './Components/alert/alert.component';
 import { GestionMonnaieShowInformationDialogComponent } from './Components/Modals/gestion-monnaie-show-information-dialog/gestion-monnaie-show-information-dialog.component';
 import { CreationMonnaieComponent } from './Components/Pages/gestion-monnaie/creation-monnaie/creation-monnaie.component';
 import { NotifierRechargeDialogComponent } from './Components/Modals/notifier-recharge-dialog/notifier-recharge-dialog.component';
 import { CommisionParServiceComponent } from './Components/Pages/tarifaire/commision-par-service/commision-par-service.component';
 import { AddCommissionDialogComponent } from './Components/Modals/add-commission-dialog/add-commission-dialog.component';
+import { GrilleTransfertArgentDirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-directcash/grille-transfert-argent-directcash.component';
+import { ConfirmationDialogComponent } from './Components/Modals/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -82,12 +83,13 @@ import { AddCommissionDialogComponent } from './Components/Modals/add-commission
     CrediterSuperAgentComponent,
     ValiderCrediterSuperAgentComponent,
     ValiderRechargeComponent,
-    AlertComponent,
     GestionMonnaieShowInformationDialogComponent,
     CreationMonnaieComponent,
     NotifierRechargeDialogComponent,
     CommisionParServiceComponent,
-    AddCommissionDialogComponent
+    AddCommissionDialogComponent,
+    GrilleTransfertArgentDirectcashComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

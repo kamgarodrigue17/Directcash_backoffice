@@ -3,7 +3,7 @@
 >
   <span class="me-4" [hidden]="mode=='edit' || mode=='show' ">Nouvelle commission</span>
   <span class="me-4" [hidden]="mode=='add' || mode=='show' ">Editer une commission</span>
-  <span class="me-4" [hidden]="mode=='edit' || mode=='edit' ">Consulter une commission</span>
+  <span class="me-4" [hidden]="mode=='edit' || mode=='add' ">Consulter une commission</span>
 
   <button mat-button [mat-dialog-close]="false" class="text-center">
     <mat-icon class="me-0">close</mat-icon>
@@ -32,21 +32,21 @@
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Taux (%)</mat-label>
-        <input matInput required type="number" placeholder="0.00" ngModel [readOnly]="mode=='show' "/>
+        <input matInput required type="number" placeholder="0.00" [readonly]="mode=='show' "/>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" [hidden]="mode=='add' ">
         <mat-label>Crée par</mat-label>
-        <input matInput required type="text" placeholder="...." ngModel readOnly/>
+        <input matInput required type="text" placeholder="...." readonly/>
       </mat-form-field>
     </div>
-    <div class="row">
+    <div class="row" [hidden]="mode=='add' ">
       <mat-form-field appearance="outline" class="col-md-6">
         <mat-label>Crée le</mat-label>
-        <input matInput type="text" placeholder="jj/mm/yyyy h:mm" ngModel readonl [hidden]="mode=='add' || mode=='edit' "/>
+        <input matInput type="text" placeholder="jj/mm/yyyy h:mm" readonly/>
       </mat-form-field>
       <mat-form-field appearance="outline" class="col-md-6">
         <mat-label>Dernière modification</mat-label>
-        <input matInput type="text" placeholder="jj/mm/yyyy h:mm" ngModel readOnly/>
+        <input matInput type="text" placeholder="jj/mm/yyyy h:mm" readonly/>
       </mat-form-field>
     </div>
   </form>

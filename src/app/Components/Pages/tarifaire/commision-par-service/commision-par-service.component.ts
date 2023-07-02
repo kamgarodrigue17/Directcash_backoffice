@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddCommissionDialogComponent } from 'src/app/Components/Modals/add-commission-dialog/add-commission-dialog.component';
+import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-commision-par-service',
@@ -41,15 +42,16 @@ export class CommisionParServiceComponent {
   }
 
   open_del_commission_dialog() {
-    // const block_agent_dialog = this.dialog.open(BlockAccountDialogComponent, {
-    //   data:{
-    //     object: object
-    //   }
-    // });
+    const del_commission_dialog = this.dialog.open(ConfirmationDialogComponent, {
+      data:{
+        title: "Confirmation de suppression",
+        message: "Voulez - vous vraiment supprimer cette commission ?"
+      }
+    });
 
-    // block_agent_dialog.afterClosed().subscribe(result => {
-    //   console.log(result);
-    // });
+    del_commission_dialog.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 
 }
