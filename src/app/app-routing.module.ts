@@ -18,11 +18,14 @@ import { GrilleTransfertArgentDirectcashComponent } from './Components/Pages/tar
 import { GrilleTransfertArgentMydirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-mydirectcash/grille-transfert-argent-mydirectcash.component';
 import { GrilleTarifairePaiementFactureComponent } from './Components/Pages/tarifaire/grille-tarifaire-paiement-facture/grille-tarifaire-paiement-facture.component';
 import { GrilleTarifairePaiementMarchandComponent } from './Components/Pages/tarifaire/grille-tarifaire-paiement-marchand/grille-tarifaire-paiement-marchand.component';
+import { RapportAirtimeComponent } from './Components/Pages/rapport/rapport-airtime/rapport-airtime.component';
+import { AddAgentComponent } from './Components/Pages/gestion-agents/add-agent/add-agent.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'gestion-agents/agents', component: AgentsComponent},
+  {path: 'gestion-agents/agents/ajouter', component: AddAgentComponent},
   {path: 'gestion-agents/super-agents', component: SuperAgentsComponent},
   {path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent},
   {path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent},
@@ -38,6 +41,7 @@ const routes: Routes = [
   {path: 'tarifaire/grille-transfert-mydirectcash', component: GrilleTransfertArgentMydirectcashComponent},
   {path: 'tarifaire/grille-tarifaire-paiement-facture', component: GrilleTarifairePaiementFactureComponent},
   {path: 'tarifaire/grille-tarifaire-paiement-marchand', component: GrilleTarifairePaiementMarchandComponent},
+  {path: 'rapports/airtime', component: RapportAirtimeComponent},
 
 ];
 

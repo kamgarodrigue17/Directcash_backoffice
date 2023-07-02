@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
 import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
@@ -14,7 +15,7 @@ import { ExportComponent } from 'src/app/Components/Modals/export/export.compone
 })
 export class AgentsComponent {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private router: Router) { }
   selected_value: string = "";
   add_agent_form!: NgForm;
 
@@ -41,6 +42,10 @@ export class AgentsComponent {
     export_dialog.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  go_to_add_page(){
+this.router.navigateByUrl("gestion-agents/agents/ajouter");
   }
 
   open_add_agent_dialog(mode: string) {

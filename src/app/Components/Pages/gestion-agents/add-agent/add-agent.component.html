@@ -1,0 +1,183 @@
+<app-base></app-base>
+<main id="main" class="main">
+  <div class="pagetitle d-sm-flex justify-content-between align-items-center">
+    <div>
+      <h1>Gestion des Agents</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
+          <li class="breadcrumb-item">
+            <a routerLink="#">Gestion des Agents</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/gestion-agents/agents">Agents</a>
+          </li>
+          <li class="breadcrumb-item active">Ajouter</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div>
+      <a routerLink="/gestion-agents/agents" title="Annuler">
+        <button mat-raised-button class="primary-light-button text-center me-2">
+          <mat-icon class="me-0">close</mat-icon>
+        </button>
+      </a>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <section class="section dashboard">
+    <mat-stepper [linear]="isLinear" #stepper class="mat-elevation-z2 rounded">
+
+      <!-- step 1 -->
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup" class="mt-4 text-center">
+          <ng-template matStepLabel>INFORMATIONS PERSONNELLES</ng-template>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Nom</mat-label>
+              <input
+                matInput
+                placeholder="Nom"
+                formControlName="firstCtrl"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° CNI</mat-label>
+              <input
+                matInput
+                placeholder="N° CNI"
+                formControlName="firstCtrl"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Téléphone</mat-label>
+              <input
+                matInput
+                placeholder="Téléphone"
+                formControlName="firstCtrl"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>N° IMEI</mat-label>
+              <input
+                matInput
+                placeholder="N° IMEI"
+                formControlName="firstCtrl"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <div>
+            <button mat-button matStepperNext class="primary-light-button">Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- step 2 -->
+      <mat-step [stepControl]="secondFormGroup" label="INFORMATIONS SOCIALES">
+        <form [formGroup]="secondFormGroup" class="mt-4 text-center">
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Nom du contact</mat-label>
+              <input
+                matInput
+                placeholder="Nom du contact"
+                formControlName="secondCtrl"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Opérateur marketing</mat-label>
+              <input
+                matInput
+                placeholder="Opérateur marketing"
+                formControlName="secondCtrl"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Super marchand</mat-label>
+              <input
+                matInput
+                placeholder="Super marchand"
+                formControlName="secondCtrl"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° contribuable</mat-label>
+              <input
+                matInput
+                placeholder="N° contribuable"
+                formControlName="secondCtrl"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <div>
+            <button mat-button matStepperPrevious class="primary-dark-button me-2">Back</button>
+            <button mat-button matStepperNext class="primary-light-button">Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- step 3 -->
+      <mat-step>
+        <form class="mt-4 text-center">
+          <ng-template matStepLabel>LOCALISATION</ng-template>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Catégorie</mat-label>
+              <mat-select name="categorie" placeholder="Selectionner une catégorie">
+                <mat-option value="1">Catégorie 1</mat-option>
+                <mat-option value="2">Catégorie 2</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Centre</mat-label>
+              <mat-select name="centre" placeholder="Selectionner centre">
+                <mat-option value="1">centre 1</mat-option>
+                <mat-option value="2">centre 2</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <div>
+            <button mat-button matStepperPrevious class="primary-dark-button me-2">Back</button>
+            <button mat-button (click)="add_agent()"  class="primary-light-button">Valider</button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </section>
+</main>
