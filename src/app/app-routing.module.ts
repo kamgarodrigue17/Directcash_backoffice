@@ -22,6 +22,10 @@ import { RapportAirtimeComponent } from './Components/Pages/rapport/rapport-airt
 import { AddAgentComponent } from './Components/Pages/gestion-agents/add-agent/add-agent.component';
 import { RapportMomoOmComponent } from './Components/Pages/rapport/rapport-momo-om/rapport-momo-om.component';
 import { RapportTransfertArgentDirectcashComponent } from './Components/Pages/rapport/rapport-transfert-argent-directcash/rapport-transfert-argent-directcash.component';
+import { RapportPaiementFactureComponent } from './Components/Pages/rapport/rapport-paiement-facture/rapport-paiement-facture.component';
+import { RapportPaiementMarchandComponent } from './Components/Pages/rapport/rapport-paiement-marchand/rapport-paiement-marchand.component';
+import { RapportRechargeMydirectcashOnlineComponent } from './Components/Pages/rapport/rapport-recharge-mydirectcash-online/rapport-recharge-mydirectcash-online.component';
+import { RapportRechargeMydirectcashPosComponent } from './Components/Pages/rapport/rapport-recharge-mydirectcash-pos/rapport-recharge-mydirectcash-pos.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
@@ -46,6 +50,11 @@ const routes: Routes = [
   {path: 'rapports/airtime', component: RapportAirtimeComponent},
   {path: 'rapports/momo-om', component: RapportMomoOmComponent},
   {path: 'rapports/transfert-argent-directcash', component: RapportTransfertArgentDirectcashComponent},
+  {path: 'rapports/paiement-facture', component: RapportPaiementFactureComponent},
+  {path: 'rapports/paiement-marchand', component: RapportPaiementMarchandComponent},
+  {path: 'rapports/recharges-mydirectcash-online', component: RapportRechargeMydirectcashOnlineComponent},
+  {path: 'rapports/recharges-mydirectcash-pos', component: RapportRechargeMydirectcashPosComponent},
+
 
 
 
