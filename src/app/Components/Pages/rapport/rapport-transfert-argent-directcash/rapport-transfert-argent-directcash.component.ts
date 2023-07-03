@@ -1,17 +1,17 @@
-import { Component, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-rapport-airtime',
-  templateUrl: './rapport-airtime.component.html',
-  styleUrls: ['./rapport-airtime.component.css']
+  selector: 'app-rapport-transfert-argent-directcash',
+  templateUrl: './rapport-transfert-argent-directcash.component.html',
+  styleUrls: ['./rapport-transfert-argent-directcash.component.css']
 })
-export class RapportAirtimeComponent {
+export class RapportTransfertArgentDirectcashComponent {
 
   constructor() { }
 
-  displayedColumns: string[] = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
+  displayedColumns: string[] = ['Agent', 'Montant (XAF)', 'Expediteur', 'Destinataire', 'Statut', 'Effectuée le', 'Action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild("paginator") paginator!: MatPaginator;
@@ -29,13 +29,13 @@ export class RapportAirtimeComponent {
 
 export interface PeriodicElement {
   agent: string;
+  expediteur: string;
+  destinataire: string;
   montant: number;
   statut: string;
   created_at: string;
-  no_destinataire: string;
-  commission: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { agent: 'Emmanuel', montant: 40, statut: 'En cours', created_at: '14/10/2010 15:30', no_destinataire:'670630558', commission:'....' }
+  { agent: 'agent', expediteur: '670630558', destinataire: '693648795', montant: 40, statut: 'Reussie', created_at: '14/10/2010 15:30'}
 ];

@@ -11,7 +11,7 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Rapports</a>
           </li>
-          <li class="breadcrumb-item active">Airtime</li>
+          <li class="breadcrumb-item active">Transfert d'argent DirectCash</li>
         </ol>
       </nav>
     </div>
@@ -92,6 +92,7 @@
     </div>
 
     <table mat-table [dataSource]="dataSource">
+
       <!-- Agent Column -->
       <ng-container matColumnDef="Agent">
         <th mat-header-cell *matHeaderCellDef>Agent</th>
@@ -102,6 +103,18 @@
       <ng-container matColumnDef="Montant (XAF)">
         <th mat-header-cell *matHeaderCellDef>Montant (XAF)</th>
         <td mat-cell *matCellDef="let element">{{ element.montant }}</td>
+      </ng-container>
+
+      <!-- Expediteur Column -->
+      <ng-container matColumnDef="Expediteur">
+        <th mat-header-cell *matHeaderCellDef>Expediteur</th>
+        <td mat-cell *matCellDef="let element">{{ element.expediteur }}</td>
+      </ng-container>
+
+      <!-- Destinataire Column -->
+      <ng-container matColumnDef="Destinataire">
+        <th mat-header-cell *matHeaderCellDef>Destinataire</th>
+        <td mat-cell *matCellDef="let element">{{ element.destinataire }}</td>
       </ng-container>
 
       <!-- Statut Column -->
@@ -116,16 +129,27 @@
         <td mat-cell *matCellDef="let element">{{ element.created_at }}</td>
       </ng-container>
 
-      <!-- N° Destinataire Column -->
-      <ng-container matColumnDef="N° Destinataire">
-        <th mat-header-cell *matHeaderCellDef>N° Destinataire</th>
-        <td mat-cell *matCellDef="let element">{{ element.no_destinataire }}</td>
-      </ng-container>
-
-      <!-- Commission Column -->
-      <ng-container matColumnDef="Commission">
-        <th mat-header-cell *matHeaderCellDef>Commission</th>
-        <td mat-cell *matCellDef="let element">{{ element.commission }}</td>
+      <!-- Action Column -->
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef style="width: 100px">Actions</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          style="width: 100px"
+        >
+          <ul class="list-group list-group-horizontal" style="max-width: 100px">
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                title="Consulter les details"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #e6e6e6"
+              >
+                <mat-icon style="color: #5e5e5e">visibility</mat-icon>
+              </button>
+            </li>
+          </ul>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

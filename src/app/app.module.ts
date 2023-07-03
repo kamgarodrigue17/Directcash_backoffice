@@ -61,6 +61,8 @@ import { GrilleTarifairePaiementFactureComponent } from './Components/Pages/tari
 import { GrilleTarifairePaiementMarchandComponent } from './Components/Pages/tarifaire/grille-tarifaire-paiement-marchand/grille-tarifaire-paiement-marchand.component';
 import { RapportAirtimeComponent } from './Components/Pages/rapport/rapport-airtime/rapport-airtime.component';
 import { AddAgentComponent } from './Components/Pages/gestion-agents/add-agent/add-agent.component';
+import { RapportMomoOmComponent } from './Components/Pages/rapport/rapport-momo-om/rapport-momo-om.component';
+import { RapportTransfertArgentDirectcashComponent } from './Components/Pages/rapport/rapport-transfert-argent-directcash/rapport-transfert-argent-directcash.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +103,9 @@ import { AddAgentComponent } from './Components/Pages/gestion-agents/add-agent/a
     GrilleTarifairePaiementFactureComponent,
     GrilleTarifairePaiementMarchandComponent,
     RapportAirtimeComponent,
-    AddAgentComponent
+    AddAgentComponent,
+    RapportMomoOmComponent,
+    RapportTransfertArgentDirectcashComponent
   ],
   imports: [
     BrowserModule,
