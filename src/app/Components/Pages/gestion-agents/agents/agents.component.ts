@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
 import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
+import { Agent } from 'src/app/modal/agent';
+import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 
 @Component({
   selector: 'app-agents',
@@ -13,13 +15,18 @@ import { ExportComponent } from 'src/app/Components/Modals/export/export.compone
   styleUrls: ['./agents.component.css']
 })
 export class AgentsComponent {
-
-  constructor(public dialog: MatDialog) { }
+  ELEMENT_DATA: Agent[]=[];
+  constructor(public dialog: MatDialog,AgentService:AgentServiceService) { 
+    AgentService.Agents().subscribe(agents=>{
+      this.ELEMENT_DATA =agents
+    });
+  }
+  
   selected_value: string = "";
   add_agent_form!: NgForm;
 
   displayedColumns: string[] = ['Nom', 'Solde (XAF)', 'Agence', 'Merchant', 'N° IMEI', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -51,6 +58,11 @@ export class AgentsComponent {
         imei: '',
         agence: '',
         contribuable: '',
+        location:'',
+        solde:'',
+        region:'',
+    tel:'',
+    CNI:'',
         mode: mode
       }
     });
@@ -72,16 +84,10 @@ export class AgentsComponent {
       console.log(result);
     });
   }
+  
 
 }
 
-export interface PeriodicElement {
-  nom: string;
-  solde: number;
-  agence: string;
-  merchant: string;
-  imei: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { nom: "Emmanuel", solde: 10_000_000, agence: 'Agence', merchant: 'Merchant', imei: 'imei' },];
+
+

@@ -16,6 +16,13 @@ export class AddAgentDialogComponent {
   imei: string = this.data.imei;
   agence: string = this.data.agence;
   contribuable: string = this.data.contribuable;
+     location:string=this.data.location;
+  solde:string=this.data.solde;
+   
+  region:string=this.data.region;
+  CNI:string=this.data.CNI;
+   tel:string=this.data.telephone
+
   mode = this.data.mode;
   now = new Date();
 

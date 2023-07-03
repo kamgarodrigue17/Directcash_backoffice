@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { ShowSuperAgengDialogComponent } from 'src/app/Components/Modals/show-super-ageng-dialog/show-super-ageng-dialog.component';
+import { Merchant } from 'src/app/modal/merchant';
+import { SuperAgentService } from 'src/app/services/superAgent/super-agent.service';
 
 @Component({
   selector: 'app-super-agents',
@@ -12,11 +14,19 @@ import { ShowSuperAgengDialogComponent } from 'src/app/Components/Modals/show-su
   styleUrls: ['./super-agents.component.css']
 })
 export class SuperAgentsComponent {
+  ELEMENT_DATA:Merchant[]=[];
+  constructor(public dialog: MatDialog,public superA: SuperAgentService) {
+    this.superA.superAgents().subscribe(
+      superA=>{
 
-  constructor(public dialog: MatDialog) { }
+        this.ELEMENT_DATA=superA;
+      }
+    ) 
+    
+  }
 
   displayedColumns: string[] = ['Nom', 'Email', 'Téléphone', 'Région', 'Date de création', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Merchant>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -53,14 +63,6 @@ export class SuperAgentsComponent {
 
 }
 
-export interface PeriodicElement {
-  nom: string;
-  email: string;
-  tel: string;
-  region: string;
-  created_at: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { nom: "Emmanuel", email: "exemple@gmail.com", tel: '670630558', region: 'Region', created_at: '10/10/2012 14:30' },];
 
+  
