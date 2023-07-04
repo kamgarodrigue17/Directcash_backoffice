@@ -26,27 +26,41 @@ import { RapportPaiementFactureComponent } from './Components/Pages/rapport/rapp
 import { RapportPaiementMarchandComponent } from './Components/Pages/rapport/rapport-paiement-marchand/rapport-paiement-marchand.component';
 import { RapportRechargeMydirectcashOnlineComponent } from './Components/Pages/rapport/rapport-recharge-mydirectcash-online/rapport-recharge-mydirectcash-online.component';
 import { RapportRechargeMydirectcashPosComponent } from './Components/Pages/rapport/rapport-recharge-mydirectcash-pos/rapport-recharge-mydirectcash-pos.component';
+import { GestionReclamationsComponent } from './Components/Pages/administration/gestion-reclamations/gestion-reclamations.component';
+import { MouchardComponent } from './Components/Pages/administration/mouchard/mouchard.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
+
+  // DASBOARD ==============================
   {path: 'dashboard', component: DashboardComponent},
+
+  // GESTION DES AGENTS ==============================
   {path: 'gestion-agents/agents', component: AgentsComponent},
   {path: 'gestion-agents/agents/ajouter', component: AddAgentComponent},
   {path: 'gestion-agents/super-agents', component: SuperAgentsComponent},
   {path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent},
+
+  // GESTION DES CLIENTS ==============================
   {path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent},
   {path: 'gestion-clients/transactions-mydirectcash', component: TransactionMydirectcashComponent},
+
+  // GESTION DE LA MONNAIE ==============================
   {path: 'gestion-monnaie/approvisionner-agence', component: ApprovisionerAgenceComponent},
   {path: 'gestion-monnaie/approvisionner-agence/valider', component: ValiderApprovisionnementComponent},
   {path: 'gestion-monnaie/crediter-super-agent', component: CrediterSuperAgentComponent},
   {path: 'gestion-monnaie/crediter-super-agent/valider', component: ValiderCrediterSuperAgentComponent},
   {path: 'gestion-monnaie/valider-recharge', component: ValiderRechargeComponent},
   {path: 'gestion-monnaie/creation-monnaie', component: CreationMonnaieComponent},
+
+  // TARIFAIRE ==============================
   {path: 'tarifaire/commission-par-service', component: CommisionParServiceComponent},
   {path: 'tarifaire/grille-transfert-directcash', component: GrilleTransfertArgentDirectcashComponent},
   {path: 'tarifaire/grille-transfert-mydirectcash', component: GrilleTransfertArgentMydirectcashComponent},
   {path: 'tarifaire/grille-tarifaire-paiement-facture', component: GrilleTarifairePaiementFactureComponent},
   {path: 'tarifaire/grille-tarifaire-paiement-marchand', component: GrilleTarifairePaiementMarchandComponent},
+
+  // RAPPORTS ==============================
   {path: 'rapports/airtime', component: RapportAirtimeComponent},
   {path: 'rapports/momo-om', component: RapportMomoOmComponent},
   {path: 'rapports/transfert-argent-directcash', component: RapportTransfertArgentDirectcashComponent},
@@ -54,6 +68,12 @@ const routes: Routes = [
   {path: 'rapports/paiement-marchand', component: RapportPaiementMarchandComponent},
   {path: 'rapports/recharges-mydirectcash-online', component: RapportRechargeMydirectcashOnlineComponent},
   {path: 'rapports/recharges-mydirectcash-pos', component: RapportRechargeMydirectcashPosComponent},
+
+  // ADMINISTRATION ==============================
+  {path: 'administration/gestion-reclamations', component: GestionReclamationsComponent},
+  {path: 'administration/mouchard', component: MouchardComponent},
+
+
 
 
 

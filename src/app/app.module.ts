@@ -68,6 +68,8 @@ import { RapportPaiementMarchandComponent } from './Components/Pages/rapport/rap
 import { RapportRechargeMydirectcashOnlineComponent } from './Components/Pages/rapport/rapport-recharge-mydirectcash-online/rapport-recharge-mydirectcash-online.component';
 import { RapportRechargeMydirectcashPosComponent } from './Components/Pages/rapport/rapport-recharge-mydirectcash-pos/rapport-recharge-mydirectcash-pos.component';
 import { GestionReclamationsComponent } from './Components/Pages/administration/gestion-reclamations/gestion-reclamations.component';
+import { ShowReclamationDialogComponent } from './Components/Modals/show-reclamation-dialog/show-reclamation-dialog.component';
+import { MouchardComponent } from './Components/Pages/administration/mouchard/mouchard.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +117,9 @@ import { GestionReclamationsComponent } from './Components/Pages/administration/
     RapportPaiementMarchandComponent,
     RapportRechargeMydirectcashOnlineComponent,
     RapportRechargeMydirectcashPosComponent,
-    GestionReclamationsComponent
+    GestionReclamationsComponent,
+    ShowReclamationDialogComponent,
+    MouchardComponent
   ],
   imports: [
     BrowserModule,
