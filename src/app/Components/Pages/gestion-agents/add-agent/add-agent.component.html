@@ -59,7 +59,7 @@
             </mat-form-field>
           </p>
 
-          <p>
+          <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>Téléphone</mat-label>
               <input
@@ -94,18 +94,6 @@
         <form [formGroup]="secondFormGroup" class="mt-4 text-center">
           <p class="mb-0">
             <mat-form-field appearance="outline">
-              <mat-label>Nom du contact</mat-label>
-              <input
-                matInput
-                placeholder="Nom du contact"
-                formControlName="secondCtrl"
-                required
-              />
-            </mat-form-field>
-          </p>
-
-          <p class="mb-0">
-            <mat-form-field appearance="outline">
               <mat-label>Opérateur marketing</mat-label>
               <input
                 matInput
@@ -118,10 +106,10 @@
 
           <p class="mb-0">
             <mat-form-field appearance="outline">
-              <mat-label>Super marchand</mat-label>
+              <mat-label>merchant</mat-label>
               <input
                 matInput
-                placeholder="Super marchand"
+                placeholder="merchant"
                 formControlName="secondCtrl"
                 required
               />
@@ -140,6 +128,44 @@
             </mat-form-field>
           </p>
 
+          <p class="text-primary">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            <span>Qui contacter en cas d'urgence (optionnel)</span>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Nom du contact</mat-label>
+              <input
+                matInput
+                placeholder="Nom du contact"
+                formControlName="secondCtrl"
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° de téléphone du contact</mat-label>
+              <input
+                matInput
+                placeholder="N° de téléphone du contact"
+                formControlName="secondCtrl"
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° CNI / Numéro d'Identification Unique (NIU)</mat-label>
+              <input
+                matInput
+                placeholder="N° CNI / NIU"
+                formControlName="secondCtrl"
+              />
+            </mat-form-field>
+          </p>
+
           <div>
             <button mat-button matStepperPrevious class="primary-dark-button me-2">Back</button>
             <button mat-button matStepperNext class="primary-light-button">Next</button>
@@ -154,21 +180,33 @@
 
           <p class="mb-0">
             <mat-form-field appearance="outline">
-              <mat-label>Catégorie</mat-label>
-              <mat-select name="categorie" placeholder="Selectionner une catégorie">
-                <mat-option value="1">Catégorie 1</mat-option>
-                <mat-option value="2">Catégorie 2</mat-option>
+              <mat-label>Pays</mat-label>
+              <mat-select name="pays" placeholder="Selectionner un pays" required>
+                <mat-option value="1">Pays 1</mat-option>
+                <mat-option value="2">Pays 2</mat-option>
               </mat-select>
             </mat-form-field>
           </p>
 
           <p class="mb-0">
             <mat-form-field appearance="outline">
-              <mat-label>Centre</mat-label>
-              <mat-select name="centre" placeholder="Selectionner centre">
-                <mat-option value="1">centre 1</mat-option>
-                <mat-option value="2">centre 2</mat-option>
+              <mat-label>Ville</mat-label>
+              <mat-select name="ville" placeholder="Selectionner une ville" required>
+                <mat-option value="1">Ville 1</mat-option>
+                <mat-option value="2">Ville 2</mat-option>
               </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Quartier</mat-label>
+              <input
+                matInput
+                placeholder="Quartier"
+                formControlName="secondCtrl"
+                required
+              />
             </mat-form-field>
           </p>
 

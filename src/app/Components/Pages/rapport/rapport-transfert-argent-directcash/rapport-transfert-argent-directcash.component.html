@@ -16,7 +16,7 @@
       </nav>
     </div>
 
-    <div class="d-sm-flex" style="min-height: 60px;">
+    <div class="d-sm-flex" style="min-height: 60px">
       <div class="input-group">
         <input
           type="date"
@@ -41,35 +41,19 @@
       <div class="row">
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Total transaction</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Transactions réussies</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Transactions échouées</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Transactions en attente</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
       </div>
     </div>
@@ -92,7 +76,6 @@
     </div>
 
     <table mat-table [dataSource]="dataSource">
-
       <!-- Agent Column -->
       <ng-container matColumnDef="Agent">
         <th mat-header-cell *matHeaderCellDef>Agent</th>
@@ -132,14 +115,11 @@
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
         <th mat-header-cell *matHeaderCellDef style="width: 100px">Actions</th>
-        <td
-          mat-cell
-          *matCellDef="let element"
-          style="width: 100px"
-        >
+        <td mat-cell *matCellDef="let element" style="width: 100px">
           <ul class="list-group list-group-horizontal" style="max-width: 100px">
             <li class="list-group-item border-0 pe-2 ps-0">
               <button
+                (click)="open_show_information_dialog()"
                 title="Consulter les details"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"

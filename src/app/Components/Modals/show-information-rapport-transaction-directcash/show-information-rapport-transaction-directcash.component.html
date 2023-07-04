@@ -10,12 +10,18 @@
 
 <!-- Content -->
 <mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
-  <form #trans_mydirectcash_form="ngForm" >
+  <form #add_agent_form="ngForm" >
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Client</mat-label>
-          <input matInput placeholder="Client" readonly/>
+          <mat-label>Agent</mat-label>
+          <input matInput placeholder="Nom de l'agent" readonly/>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Direct code</mat-label>
+          <input matInput placeholder="Direct code" readonly/>
         </mat-form-field>
       </div>
     </div>
@@ -29,8 +35,38 @@
       </div>
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Code PIN</mat-label>
+          <input matInput placeholder="Code PIN" readonly/>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Expediteur</mat-label>
+          <input matInput placeholder="Nom de l'expediteur" readonly/>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Payeur</mat-label>
+          <input matInput placeholder="Payeur" readonly/>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
           <mat-label>Commission</mat-label>
           <input matInput placeholder="Commission" readonly/>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Raison de blocage</mat-label>
+          <input matInput placeholder="Raison de blocage" readonly/>
         </mat-form-field>
       </div>
     </div>

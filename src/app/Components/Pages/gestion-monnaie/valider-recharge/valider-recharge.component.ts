@@ -16,7 +16,7 @@ export class ValiderRechargeComponent {
 
   snackbar_message = "";
 
-  displayedColumns: string[] = ['Merchant', 'Montant (XAF)', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Statut', 'Actions'];
+  displayedColumns: string[] = ['Client', 'Montant (XAF)', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Statut', 'Actions'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -31,16 +31,18 @@ export class ValiderRechargeComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  valider_recharge(){
+  valider_recharge() {
     this.snackbar_message = "La recharge a été validée avec succès";
     let snackBarRef = this._snackBar.open(this.snackbar_message, 'Ok');
 
     snackBarRef.onAction().subscribe(() => {
       snackBarRef.dismiss();
     });
+
   }
 
-  rejeter_recharge(){
+
+  rejeter_recharge() {
     this.snackbar_message = "La recharge a été rejetée avec succès";
     let snackBarRef = this._snackBar.open(this.snackbar_message, 'Ok');
 
@@ -49,9 +51,9 @@ export class ValiderRechargeComponent {
     });
   }
 
-  show_information(){
+  show_information() {
     const show_info_dialog = this.dialog.open(GestionMonnaieShowInformationDialogComponent, {
-      data:{}
+      data: {}
     });
 
     show_info_dialog.afterClosed().subscribe(result => {
@@ -59,11 +61,10 @@ export class ValiderRechargeComponent {
     });
   }
 
-
 }
 
 export interface PeriodicElement {
-  merchant: string;
+  client: string;
   montant: number;
   statut: string;
   created_by: string;
@@ -73,5 +74,5 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { merchant: "Emmanuel", montant: 40, statut: 'En cours', created_by: 'Jojo', created_at: '14/10/2010 15:30', treated_by:"Emmanuel leuna", treated_at:'14/01/2023 14:02' },];
+  { client: "Emmanuel", montant: 40, statut: 'En cours', created_by: 'Jojo', created_at: '14/10/2010 15:30', treated_by: "Emmanuel leuna", treated_at: '14/01/2023 14:02' },];
 

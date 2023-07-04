@@ -11,7 +11,7 @@ export class RapportPaiementMarchandComponent {
 
   constructor() { }
 
-  displayedColumns: string[] = ['Agent', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type d\'opération', 'Effectuée le'];
+  displayedColumns: string[] = ['Code caisse', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type d\'opération', 'Effectuée le'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild("paginator") paginator!: MatPaginator;
@@ -28,7 +28,7 @@ export class RapportPaiementMarchandComponent {
 }
 
 export interface PeriodicElement {
-  agent: string;
+  code_caisse: string;
   id_transaction: string;
   ptn: string;
   montant: number;
@@ -38,5 +38,5 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { agent: 'agent', id_transaction: 'THFS465', ptn: '....', montant: 40, frais: 40, type_operation: 'type operation', created_at: '14/10/2010 15:30'}
+  { code_caisse: '46FT64', id_transaction: 'THFS465', ptn: '....', montant: 40, frais: 40, type_operation: 'type operation', created_at: '14/10/2010 15:30'}
 ];

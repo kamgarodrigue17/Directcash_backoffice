@@ -70,6 +70,9 @@ import { RapportRechargeMydirectcashPosComponent } from './Components/Pages/rapp
 import { GestionReclamationsComponent } from './Components/Pages/administration/gestion-reclamations/gestion-reclamations.component';
 import { ShowReclamationDialogComponent } from './Components/Modals/show-reclamation-dialog/show-reclamation-dialog.component';
 import { MouchardComponent } from './Components/Pages/administration/mouchard/mouchard.component';
+import { GestionHabilitationComponent } from './Components/Pages/administration/gestion-habilitation/gestion-habilitation.component';
+import { ShowInformationRapportTransactionDirectcashComponent } from './Components/Modals/show-information-rapport-transaction-directcash/show-information-rapport-transaction-directcash.component';
+import { PasswordDialogComponent } from './Components/Modals/password-dialog/password-dialog.component';
 
 @NgModule({
   declarations: [
@@ -119,7 +122,10 @@ import { MouchardComponent } from './Components/Pages/administration/mouchard/mo
     RapportRechargeMydirectcashPosComponent,
     GestionReclamationsComponent,
     ShowReclamationDialogComponent,
-    MouchardComponent
+    MouchardComponent,
+    GestionHabilitationComponent,
+    ShowInformationRapportTransactionDirectcashComponent,
+    PasswordDialogComponent
   ],
   imports: [
     BrowserModule,
