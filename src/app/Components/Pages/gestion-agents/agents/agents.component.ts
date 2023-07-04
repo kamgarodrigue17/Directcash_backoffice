@@ -17,7 +17,7 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
 })
 export class AgentsComponent {
   ELEMENT_DATA: Agent[]=[];
-  constructor(public dialog: MatDialog,AgentService:AgentServiceService) { 
+  constructor(public dialog: MatDialog,AgentService:AgentServiceService,public router:Router) { 
     AgentService.Agents().subscribe(agents=>{
       this.ELEMENT_DATA =agents
     });
