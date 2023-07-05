@@ -14,7 +14,7 @@ export class TransactionMydirectcashComponent {
   constructor(public dialog: MatDialog) { }
 
 
-  displayedColumns: string[] = ['ID Transaction', 'Expediteur', 'Montant (XAF)', 'Service', 'Date', 'Statut', 'Action'];
+  displayedColumns: string[] = ['ID Transaction', 'Client', 'Montant (XAF)', 'Service', 'Date', 'Statut', 'Action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -35,7 +35,7 @@ export class TransactionMydirectcashComponent {
 
 export interface PeriodicElement {
   id_trans: string;
-  expediteur: string;
+  client: string;
   montant: number;
   service: string;
   date: string;
@@ -43,5 +43,5 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { id_trans: "1464TR", expediteur: "Emmanuel", montant: 30_000_000, service: "OM", date: "12/10/2023", statut: 'Reussie'},
+  { id_trans: "1464TR", client: "Emmanuel", montant: 30_000_000, service: "OM", date: "12/10/2023", statut: 'Reussie'},
 ];

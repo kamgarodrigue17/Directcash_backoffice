@@ -61,6 +61,18 @@ import { GrilleTarifairePaiementFactureComponent } from './Components/Pages/tari
 import { GrilleTarifairePaiementMarchandComponent } from './Components/Pages/tarifaire/grille-tarifaire-paiement-marchand/grille-tarifaire-paiement-marchand.component';
 import { RapportAirtimeComponent } from './Components/Pages/rapport/rapport-airtime/rapport-airtime.component';
 import { AddAgentComponent } from './Components/Pages/gestion-agents/add-agent/add-agent.component';
+import { RapportMomoOmComponent } from './Components/Pages/rapport/rapport-momo-om/rapport-momo-om.component';
+import { RapportTransfertArgentDirectcashComponent } from './Components/Pages/rapport/rapport-transfert-argent-directcash/rapport-transfert-argent-directcash.component';
+import { RapportPaiementFactureComponent } from './Components/Pages/rapport/rapport-paiement-facture/rapport-paiement-facture.component';
+import { RapportPaiementMarchandComponent } from './Components/Pages/rapport/rapport-paiement-marchand/rapport-paiement-marchand.component';
+import { RapportRechargeMydirectcashOnlineComponent } from './Components/Pages/rapport/rapport-recharge-mydirectcash-online/rapport-recharge-mydirectcash-online.component';
+import { RapportRechargeMydirectcashPosComponent } from './Components/Pages/rapport/rapport-recharge-mydirectcash-pos/rapport-recharge-mydirectcash-pos.component';
+import { GestionReclamationsComponent } from './Components/Pages/administration/gestion-reclamations/gestion-reclamations.component';
+import { ShowReclamationDialogComponent } from './Components/Modals/show-reclamation-dialog/show-reclamation-dialog.component';
+import { MouchardComponent } from './Components/Pages/administration/mouchard/mouchard.component';
+import { GestionHabilitationComponent } from './Components/Pages/administration/gestion-habilitation/gestion-habilitation.component';
+import { ShowInformationRapportTransactionDirectcashComponent } from './Components/Modals/show-information-rapport-transaction-directcash/show-information-rapport-transaction-directcash.component';
+import { PasswordDialogComponent } from './Components/Modals/password-dialog/password-dialog.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +113,19 @@ import { AddAgentComponent } from './Components/Pages/gestion-agents/add-agent/a
     GrilleTarifairePaiementFactureComponent,
     GrilleTarifairePaiementMarchandComponent,
     RapportAirtimeComponent,
-    AddAgentComponent
+    AddAgentComponent,
+    RapportMomoOmComponent,
+    RapportTransfertArgentDirectcashComponent,
+    RapportPaiementFactureComponent,
+    RapportPaiementMarchandComponent,
+    RapportRechargeMydirectcashOnlineComponent,
+    RapportRechargeMydirectcashPosComponent,
+    GestionReclamationsComponent,
+    ShowReclamationDialogComponent,
+    MouchardComponent,
+    GestionHabilitationComponent,
+    ShowInformationRapportTransactionDirectcashComponent,
+    PasswordDialogComponent
   ],
   imports: [
     BrowserModule,

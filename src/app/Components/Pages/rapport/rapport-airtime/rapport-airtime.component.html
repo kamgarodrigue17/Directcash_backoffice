@@ -11,28 +11,70 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Rapports</a>
           </li>
-          <li class="breadcrumb-item active">Rapport Airtime</li>
+          <li class="breadcrumb-item active">Airtime</li>
         </ol>
       </nav>
     </div>
 
-    <div>
-      <button mat-raised-button class="primary-light-button text-center me-2">
-        Approvisionner une agence
-      </button>
-
-      <button
-        mat-raised-button
-        class="primary-dark-button text-center"
-      >
-        Exporter
-      </button>
+    <div class="d-sm-flex" style="min-height: 60px;">
+      <div class="input-group">
+        <input
+          type="date"
+          class="form-control h-100"
+          placeholder="Username"
+          aria-label="Username"
+        />
+        <span class="input-group-text h-100">à</span>
+        <input
+          type="date"
+          class="form-control h-100"
+          placeholder="Server"
+          aria-label="Server"
+        />
+      </div>
     </div>
   </div>
   <!-- End Page Title -->
 
   <div class="mat-elevation-z2 rounded">
     <div class="container-fluid pt-3 pb-0 mb-0" style="background: white">
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Total transaction</mat-label>
+          <input
+            matInput
+            placeholder="0"
+            readonly
+            />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Transactions réussies</mat-label>
+          <input
+            matInput
+            placeholder="0"
+            readonly
+            />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Transactions échouées</mat-label>
+          <input
+            matInput
+            placeholder="0"
+            readonly
+            />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-3">
+          <mat-label>Transactions en attente</mat-label>
+          <input
+            matInput
+            placeholder="0"
+            readonly
+            />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="container-fluid pb-0 mb-0" style="background: white">
       <mat-form-field appearance="outline">
         <mat-label>Recherche</mat-label>
         <input
@@ -50,10 +92,10 @@
     </div>
 
     <table mat-table [dataSource]="dataSource">
-      <!-- Merchant Column -->
-      <ng-container matColumnDef="Merchant">
-        <th mat-header-cell *matHeaderCellDef>Merchant</th>
-        <td mat-cell *matCellDef="let element">{{ element.merchant }}</td>
+      <!-- Agent Column -->
+      <ng-container matColumnDef="Agent">
+        <th mat-header-cell *matHeaderCellDef>Agent</th>
+        <td mat-cell *matCellDef="let element">{{ element.agent }}</td>
       </ng-container>
 
       <!-- Montant (XAF) Column -->
@@ -68,28 +110,22 @@
         <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
       </ng-container>
 
-      <!-- Crée par Column -->
-      <ng-container matColumnDef="Crée par">
-        <th mat-header-cell *matHeaderCellDef>Crée par</th>
-        <td mat-cell *matCellDef="let element">{{ element.created_by }}</td>
-      </ng-container>
-
-      <!-- Crée le Column -->
-      <ng-container matColumnDef="Crée le">
-        <th mat-header-cell *matHeaderCellDef>Crée le</th>
+      <!-- Effectuée le Column -->
+      <ng-container matColumnDef="Effectuée le">
+        <th mat-header-cell *matHeaderCellDef>Effectuée le</th>
         <td mat-cell *matCellDef="let element">{{ element.created_at }}</td>
       </ng-container>
 
-      <!-- Traité par Column -->
-      <ng-container matColumnDef="Traité par">
-        <th mat-header-cell *matHeaderCellDef>Traité par</th>
-        <td mat-cell *matCellDef="let element">{{ element.treated_by }}</td>
+      <!-- N° Destinataire Column -->
+      <ng-container matColumnDef="N° Destinataire">
+        <th mat-header-cell *matHeaderCellDef>N° Destinataire</th>
+        <td mat-cell *matCellDef="let element">{{ element.no_destinataire }}</td>
       </ng-container>
 
-      <!-- Traité le Column -->
-      <ng-container matColumnDef="Traité le">
-        <th mat-header-cell *matHeaderCellDef>Traité le</th>
-        <td mat-cell *matCellDef="let element">{{ element.treated_at }}</td>
+      <!-- Commission Column -->
+      <ng-container matColumnDef="Commission">
+        <th mat-header-cell *matHeaderCellDef>Commission</th>
+        <td mat-cell *matCellDef="let element">{{ element.commission }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -97,6 +133,7 @@
     </table>
 
     <mat-paginator
+      #paginator
       class="pb-2"
       [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons

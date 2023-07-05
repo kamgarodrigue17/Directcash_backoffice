@@ -103,6 +103,34 @@
         </mat-form-field>
       </div>
     </div>
+
+    <p class="text-primary">
+      <i class="bi bi-info-circle-fill me-2">
+
+      </i>
+      <span>Qui contacter en cas d'urgence</span>
+    </p>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Nom du contact</mat-label>
+          <input required matInput placeholder="Nom du contact" [readonly]="mode=='show' "/>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° de téléphone du contact</mat-label>
+          <input required matInput placeholder="N° de téléphone du contact" [readonly]="mode=='show' "/>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° CNI / NIU</mat-label>
+          <input required matInput placeholder="N° CNI / NIU" [readonly]="mode=='show' "/>
+        </mat-form-field>
+      </div>
+    </div>
   </form>
 
 </mat-dialog-content>

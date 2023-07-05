@@ -15,7 +15,7 @@ export class GrilleTransfertArgentDirectcashComponent {
 
   constructor(public dialog: MatDialog) { }
 
-  displayedColumns: string[] = ['Tarif (XAF)', 'De', 'A', 'Taxe', 'Active', 'Actions'];
+  displayedColumns: string[] = ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -23,7 +23,6 @@ export class GrilleTransfertArgentDirectcashComponent {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -69,12 +68,11 @@ export class GrilleTransfertArgentDirectcashComponent {
 }
 
 export interface PeriodicElement {
-  tarif: number;
   min: number;
   max: number;
-  taxe: number;
-  active: string;
+  frais_local: number;
+  frais_international: number;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { tarif: 400, min: 0, max: 500, taxe: 50, active: '...' },];
+  { min: 0, max: 500, frais_local: 50, frais_international: 50 },];

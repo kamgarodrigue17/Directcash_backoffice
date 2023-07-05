@@ -14,7 +14,7 @@ import { GrilleTransfertDirectcashDialogComponent } from 'src/app/Components/Mod
 export class GrilleTarifairePaiementFactureComponent {
   constructor(public dialog: MatDialog) { }
 
-  displayedColumns: string[] = ['Tarif (XAF)', 'De', 'A', 'Taxe', 'Active', 'Type', 'Actions'];
+  displayedColumns: string[] = ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Type', 'Actions'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -22,7 +22,6 @@ export class GrilleTarifairePaiementFactureComponent {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -41,7 +40,7 @@ export class GrilleTarifairePaiementFactureComponent {
 
   open_add_grille_dialog(mode: string) {
     const add_grille_dialog = this.dialog.open(GrilleTransfertDirectcashDialogComponent, {
-      data:{
+      data: {
         mode: mode,
         object: 'paiement facture'
       }
@@ -54,7 +53,7 @@ export class GrilleTarifairePaiementFactureComponent {
 
   open_del_grille_dialog() {
     const del_grille_dialog = this.dialog.open(ConfirmationDialogComponent, {
-      data:{
+      data: {
         title: "Confirmation de suppression",
         message: "Voulez - vous vraiment supprimer cette grille de transfert ?"
       }
@@ -68,13 +67,12 @@ export class GrilleTarifairePaiementFactureComponent {
 }
 
 export interface PeriodicElement {
-  tarif: number;
   min: number;
   max: number;
-  taxe: number;
-  active: string;
+  frais_local: number;
+  frais_international: number;
   type: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { tarif: 400, min: 0, max: 500, taxe: 50, active: '...', type: 'ENEO' },];
+  { min: 0, max: 500, frais_local: 50, frais_international: 50, type: 'ENEO' },];

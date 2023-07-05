@@ -14,7 +14,7 @@ import { GrilleTransfertDirectcashDialogComponent } from 'src/app/Components/Mod
 export class GrilleTransfertArgentMydirectcashComponent {
   constructor(public dialog: MatDialog) { }
 
-  displayedColumns: string[] = ['Tarif (XAF)', 'De', 'A', 'Taxe', 'Active', 'Plan', 'Actions'];
+  displayedColumns: string[] = ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -68,13 +68,11 @@ export class GrilleTransfertArgentMydirectcashComponent {
 }
 
 export interface PeriodicElement {
-  tarif: number;
   min: number;
   max: number;
-  taxe: number;
-  active: string;
-  plan: string;
+  frais_local: number;
+  frais_international: number;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { tarif: 400, min: 0, max: 500, taxe: 50, active: '...', plan: 'internationnal' },];
+  { min: 0, max: 500, frais_local: 50, frais_international: 50 },];

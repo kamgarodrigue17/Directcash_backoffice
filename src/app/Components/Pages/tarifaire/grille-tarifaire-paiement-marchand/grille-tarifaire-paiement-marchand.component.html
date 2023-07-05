@@ -51,12 +51,6 @@
 
     <table mat-table [dataSource]="dataSource">
 
-      <!-- Tarif (XAF) Column -->
-      <ng-container matColumnDef="Tarif (XAF)">
-        <th mat-header-cell *matHeaderCellDef>Tarif (XAF)</th>
-        <td mat-cell *matCellDef="let element">{{ element.tarif }}</td>
-      </ng-container>
-
       <!-- De Column -->
       <ng-container matColumnDef="De">
         <th mat-header-cell *matHeaderCellDef>De</th>
@@ -69,22 +63,22 @@
         <td mat-cell *matCellDef="let element">{{ element.max }}</td>
       </ng-container>
 
-      <!-- Taxe Column -->
-      <ng-container matColumnDef="Taxe">
-        <th mat-header-cell *matHeaderCellDef>Taxe</th>
-        <td mat-cell *matCellDef="let element">{{ element.taxe }}</td>
+      <!-- Frais local (XAF) Column -->
+      <ng-container matColumnDef="Frais local (XAF)">
+        <th mat-header-cell *matHeaderCellDef>Frais local (XAF)</th>
+        <td mat-cell *matCellDef="let element">{{ element.frais_local }}</td>
       </ng-container>
 
-      <!-- Active Column -->
-      <ng-container matColumnDef="Active">
-        <th mat-header-cell *matHeaderCellDef>Active</th>
-        <td mat-cell *matCellDef="let element">{{ element.active }}</td>
+      <!-- Frais international (XAF) Column -->
+      <ng-container matColumnDef="Frais international (XAF)">
+        <th mat-header-cell *matHeaderCellDef>Frais international (XAF)</th>
+        <td mat-cell *matCellDef="let element">{{ element.frais_international }}</td>
       </ng-container>
 
-      <!-- Code caisse Column -->
-      <ng-container matColumnDef="Code caisse">
-        <th mat-header-cell *matHeaderCellDef>Code caisse</th>
-        <td mat-cell *matCellDef="let element">{{ element.code_caisse }}</td>
+      <!-- Type Column -->
+      <ng-container matColumnDef="Type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
       </ng-container>
 
       <!-- Actions Column -->

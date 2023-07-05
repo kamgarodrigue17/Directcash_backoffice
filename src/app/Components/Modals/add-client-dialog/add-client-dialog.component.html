@@ -21,8 +21,8 @@
   <form #add_client_form="ngForm">
     <div class="row">
       <!-- nom -->
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
+      <div class="col-md-12">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label>Nom</mat-label>
           <input
             [readonly]="mode == 'show'"
@@ -35,10 +35,29 @@
           />
         </mat-form-field>
       </div>
+    </div>
+
+    <div class="row">
+      <!-- email -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Adresse Email</mat-label>
+          <input
+            [readonly]="mode == 'show'"
+            [(ngModel)]="email"
+            required
+            matInput
+            placeholder="exemple@gmail.com"
+            name="email"
+            ngModel
+            type="email"
+          />
+        </mat-form-field>
+      </div>
 
       <!-- solde -->
       <div class="col-md-6">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label>Solde (XAF)</mat-label>
           <input
             [readonly]="mode == 'show'"
@@ -55,42 +74,9 @@
     </div>
 
     <div class="row">
-      <!-- email -->
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Adresse Email</mat-label>
-          <input
-            [readonly]="mode == 'show'"
-            [(ngModel)]="email"
-            required
-            matInput
-            placeholder="exemple@gmail.com"
-            name="email"
-            ngModel
-            type="email"
-          />
-        </mat-form-field>
-      </div>
-      <!-- statut -->
-      <div class="col-md-6">
-        <mat-form-field appearance="outline">
-          <mat-label>Statut</mat-label>
-          <mat-select
-            name="statut"
-            [(ngModel)]="statut"
-            [disabled]="mode == 'show'"
-          >
-            <mat-option value="1">Statut 1</mat-option>
-            <mat-option value="2">Statut 2</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <div class="row">
       <!-- telephone -->
       <div class="col-md-6">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label>Téléphone</mat-label>
           <input
             [readonly]="mode == 'show'"
@@ -106,7 +92,7 @@
 
       <!-- Adresse -->
       <div class="col-md-6">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label>Adresse</mat-label>
           <input
             [readonly]="mode == 'show'"
@@ -124,30 +110,30 @@
     <div class="row">
       <!-- Sexe -->
       <div class="col-md-6">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label>Sexe</mat-label>
-          <mat-select name="sexe" [disabled]="mode == 'show'">
+          <mat-select name="sexe" [disabled]="mode == 'show'" required>
             <mat-option value="1">Masculin</mat-option>
             <mat-option value="2">Feminin</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
-      <!-- Matricule -->
-      <mat-form-field appearance="outline" class="col-md-6">
-        <mat-label>Matricule</mat-label>
-        <input
-          [disabled]="mode == 'add'"
-          readonly="true"
-          type="text"
-          [(ngModel)]="matricule"
-          required
-          matInput
-          placeholder="Matricule"
-          name="matricule"
-          ngModel
-        />
-      </mat-form-field>
+      <!-- statut -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Statut</mat-label>
+          <mat-select
+            required
+            name="statut"
+            [(ngModel)]="statut"
+            [disabled]="mode == 'show'"
+          >
+            <mat-option value="1">Statut 1</mat-option>
+            <mat-option value="2">Statut 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
 
     <div class="row">
@@ -165,6 +151,47 @@
           ngModel
         />
       </mat-form-field>
+    </div>
+
+    <p class="text-primary">
+      <i class="bi bi-info-circle-fill me-2"> </i>
+      <span>Qui contacter en cas d'urgence</span>
+    </p>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Nom du contact</mat-label>
+          <input
+            required
+            matInput
+            placeholder="Nom du contact"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° de téléphone du contact</mat-label>
+          <input
+            required
+            matInput
+            placeholder="N° de téléphone du contact"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° CNI / NIU</mat-label>
+          <input
+            required
+            matInput
+            placeholder="N° CNI / NIU"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
     </div>
   </form>
 </mat-dialog-content>

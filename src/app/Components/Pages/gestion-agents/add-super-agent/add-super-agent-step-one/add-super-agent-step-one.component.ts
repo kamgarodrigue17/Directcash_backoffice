@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,6 +18,10 @@ export class AddSuperAgentStepOneComponent {
   });
   isLinear = true;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder, private _router: Router) {}
 
+  add_super_agent() {
+    console.log('ajouter agent');
+    this._router.navigateByUrl("/gestion-agents/super-agents");
+  }
 }

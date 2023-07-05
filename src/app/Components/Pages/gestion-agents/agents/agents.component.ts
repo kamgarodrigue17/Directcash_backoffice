@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
@@ -17,14 +18,17 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
 })
 export class AgentsComponent {
   ELEMENT_DATA: Agent[]=[];
-  constructor(public dialog: MatDialog,AgentService:AgentServiceService,public router:Router) { 
+  
+  
+
+  constructor(public dialog: MatDialog, private router: Router,AgentService:AgentServiceService, private _snackBar: MatSnackBar) {
     AgentService.Agents().subscribe(agents=>{
       this.ELEMENT_DATA =agents
     });
-  }
-  
+   }
   selected_value: string = "";
   add_agent_form!: NgForm;
+  snackbar_message!: string;
 
   displayedColumns: string[] = ['Nom', 'Solde (XAF)', 'Agence', 'Merchant', 'N° IMEI', 'Actions'];
   dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
@@ -34,7 +38,6 @@ export class AgentsComponent {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -51,15 +54,15 @@ export class AgentsComponent {
     });
   }
 
-  go_to_add_page(){
-this.router.navigateByUrl("gestion-agents/agents/ajouter");
+  go_to_add_page() {
+    this.router.navigateByUrl("gestion-agents/agents/ajouter");
   }
 
   open_add_agent_dialog(mode: string) {
     const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {
-      data:{
-        nom:'',
-        merchant:'',
+      data: {
+        nom: '',
+        merchant: '',
         imei: '',
         agence: '',
         contribuable: '',
@@ -80,7 +83,7 @@ this.router.navigateByUrl("gestion-agents/agents/ajouter");
 
   open_block_agent_dialog(object: string) {
     const block_agent_dialog = this.dialog.open(BlockAccountDialogComponent, {
-      data:{
+      data: {
         object: object
       }
     });
@@ -90,6 +93,15 @@ this.router.navigateByUrl("gestion-agents/agents/ajouter");
     });
   }
   
+
+  open_snackbar(agent: string) {
+    this.snackbar_message = "Le mot de passe de " + agent + " a été rénitialisé à 0000";
+    let snackBarRef = this._snackBar.open(this.snackbar_message, 'Ok');
+
+    snackBarRef.onAction().subscribe(() => {
+      snackBarRef.dismiss();
+    });
+  }
 
 }
 
