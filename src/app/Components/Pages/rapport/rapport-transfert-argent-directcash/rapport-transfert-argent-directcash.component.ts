@@ -27,6 +27,13 @@ export class RapportTransfertArgentDirectcashComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  filter_date_1!: string;
+  filter_date_2!: string;
+
+  filter_date() {
+    // appliquer le filtre avec les deux dates
+  }
+
   open_show_information_dialog() {
     const show_super_agent_dialog = this.dialog.open(ShowInformationRapportTransactionDirectcashComponent, {
       data: {}

@@ -25,6 +25,13 @@ export class RapportAirtimeComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  filter_date_1!: string;
+  filter_date_2!: string;
+
+  filter_date() {
+    // appliquer le filtre avec les deux dates
+  }
+
 }
 
 export interface PeriodicElement {
@@ -37,5 +44,5 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { agent: 'Emmanuel', montant: 40, statut: 'En cours', created_at: '14/10/2010 15:30', no_destinataire:'670630558', commission:'....' }
+  { agent: 'Emmanuel', montant: 40, statut: 'En cours', created_at: '14/10/2010 15:30', no_destinataire: '670630558', commission: '....' }
 ];
