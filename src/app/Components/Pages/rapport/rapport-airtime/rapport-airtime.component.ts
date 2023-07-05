@@ -1,6 +1,9 @@
 import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Transaction } from 'src/app/modal/transaction';
+import { TransactionService } from 'src/app/service/transaction.service';
+import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
 
 @Component({
   selector: 'app-rapport-airtime',
@@ -8,11 +11,17 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./rapport-airtime.component.css']
 })
 export class RapportAirtimeComponent {
-
-  constructor() { }
+  ELEMENT_DATA:Transaction[]=[];
+day:Date=new Date();
+  constructor(trxService:TransactionService,global:GloabalServiceService) { 
+   console.log(global.formatDate(this.day))
+   trxService.getTransaction(localStorage.getItem('id')!,"airtime","2033-6-1","",this.day.toDateString()).subscribe(trx=>{
+      this.ELEMENT_DATA=trx;
+    })
+  }
 
   displayedColumns: string[] = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   @ViewChild("paginator") paginator!: MatPaginator;
 
@@ -27,15 +36,4 @@ export class RapportAirtimeComponent {
 
 }
 
-export interface PeriodicElement {
-  agent: string;
-  montant: number;
-  statut: string;
-  created_at: string;
-  no_destinataire: string;
-  commission: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { agent: 'Emmanuel', montant: 40, statut: 'En cours', created_at: '14/10/2010 15:30', no_destinataire:'670630558', commission:'....' }
-];

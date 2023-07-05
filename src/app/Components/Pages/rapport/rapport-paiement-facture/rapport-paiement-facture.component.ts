@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Transaction } from 'src/app/modal/transaction';
+import { TransactionService } from 'src/app/service/transaction.service';
+import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
 
 @Component({
   selector: 'app-rapport-paiement-facture',
@@ -9,10 +12,17 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class RapportPaiementFactureComponent {
 
-  constructor() { }
+  ELEMENT_DATA:Transaction[]=[];
+  day:Date=new Date();
+    constructor(trxService:TransactionService,global:GloabalServiceService) { 
+     console.log(global.formatDate(this.day))
+     trxService.getTransaction(localStorage.getItem('id')!,"bills","2033-6-1","",this.day.toDateString()).subscribe(trx=>{
+        this.ELEMENT_DATA=trx;
+      })
+    }
 
   displayedColumns: string[] = ['Agent', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type de facture', 'Type d\'opération', 'Effectuée le'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   @ViewChild("paginator") paginator!: MatPaginator;
 

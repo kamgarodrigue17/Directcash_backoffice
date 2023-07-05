@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ShowInformationRapportTransactionDirectcashComponent } from 'src/app/Components/Modals/show-information-rapport-transaction-directcash/show-information-rapport-transaction-directcash.component';
+import { Transaction } from 'src/app/modal/transaction';
+import { TransactionService } from 'src/app/service/transaction.service';
+import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
 
 @Component({
   selector: 'app-rapport-transfert-argent-directcash',
@@ -10,11 +13,20 @@ import { ShowInformationRapportTransactionDirectcashComponent } from 'src/app/Co
   styleUrls: ['./rapport-transfert-argent-directcash.component.css']
 })
 export class RapportTransfertArgentDirectcashComponent {
+  ELEMENT_DATA:Transaction[]=[];
+  day:Date=new Date();
+    constructor(trxService:TransactionService,global:GloabalServiceService,public dialog: MatDialog) { 
+     console.log(global.formatDate(this.day))
+     trxService.getTransaction(localStorage.getItem('id')!,"xfert","2033-6-1","",this.day.toDateString()).subscribe(trx=>{
+        this.ELEMENT_DATA=trx;
+      })
+    }
 
-  constructor(public dialog: MatDialog) { }
+
+  
 
   displayedColumns: string[] = ['Agent', 'Montant (XAF)', 'Expediteur', 'Destinataire', 'Statut', 'Effectuée le', 'Action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   @ViewChild("paginator") paginator!: MatPaginator;
 

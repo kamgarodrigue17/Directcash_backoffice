@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Transaction } from 'src/app/modal/transaction';
+import { TransactionService } from 'src/app/service/transaction.service';
+import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
 
 @Component({
   selector: 'app-rapport-momo-om',
@@ -9,10 +12,17 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class RapportMomoOmComponent {
 
-  constructor() { }
+  ELEMENT_DATA:Transaction[]=[];
+day:Date=new Date();
+  constructor(trxService:TransactionService,global:GloabalServiceService) { 
+   console.log(global.formatDate(this.day))
+   trxService.getTransaction(localStorage.getItem('id')!,"ommomo","2033-6-1","",this.day.toDateString()).subscribe(trx=>{
+      this.ELEMENT_DATA=trx;
+    })
+  }
 
   displayedColumns: string[] = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   @ViewChild("paginator") paginator!: MatPaginator;
 
@@ -27,15 +37,3 @@ export class RapportMomoOmComponent {
 
 }
 
-export interface PeriodicElement {
-  expediteur: string;
-  destinataire: string;
-  montant: number;
-  statut: string;
-  type_service: string;
-  created_at: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { expediteur: '670630558', destinataire: '693648795', montant: 40, statut: 'Reussie', type_service: 'OM', created_at: '14/10/2010 15:30'}
-];
