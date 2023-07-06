@@ -28,7 +28,9 @@ import { RapportRechargeMydirectcashOnlineComponent } from './Components/Pages/r
 import { RapportRechargeMydirectcashPosComponent } from './Components/Pages/rapport/rapport-recharge-mydirectcash-pos/rapport-recharge-mydirectcash-pos.component';
 import { GestionReclamationsComponent } from './Components/Pages/administration/gestion-reclamations/gestion-reclamations.component';
 import { MouchardComponent } from './Components/Pages/administration/mouchard/mouchard.component';
-import { AuthGuard } from './guard/auth.guard';
+import { GestionHabilitationComponent } from './Components/Pages/administration/gestion-habilitation/gestion-habilitation.component';
+import { AdminPlateformeComponent } from './Components/Pages/administration/admin-plateforme/admin-plateforme.component';
+
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
   {path: 'dashboard', component: DashboardComponent},
@@ -65,15 +67,11 @@ const routes: Routes = [
   {path: 'rapports/recharges-mydirectcash-online', component: RapportRechargeMydirectcashOnlineComponent},
   {path: 'rapports/recharges-mydirectcash-pos', component: RapportRechargeMydirectcashPosComponent},
 
-  // ADMINISTRATION ==============================
+  // ADMINISTRATION ==============================MouchardComponent
   {path: 'administration/gestion-reclamations', component: GestionReclamationsComponent},
   {path: 'administration/mouchard', component: MouchardComponent},
-
-
-
-
-
-
+  {path: 'administration/gestion-habilitations', component: GestionHabilitationComponent},
+  {path: 'administration/admins', component: AdminPlateformeComponent},
 ];
 
 @NgModule({

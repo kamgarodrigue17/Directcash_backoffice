@@ -16,10 +16,11 @@
       </nav>
     </div>
 
-    <div class="d-sm-flex" style="min-height: 60px;">
-      <div class="input-group">
+    <div class="d-sm-flex">
+      <div class="input-group me-2">
         <input
           type="date"
+          [(ngModel)] = 'filter_date_1'
           class="form-control h-100"
           placeholder="Username"
           aria-label="Username"
@@ -27,11 +28,16 @@
         <span class="input-group-text h-100">à</span>
         <input
           type="date"
+          [(ngModel)] = 'filter_date_2'
           class="form-control h-100"
           placeholder="Server"
           aria-label="Server"
         />
       </div>
+
+      <button (click)="filter_date()" mat-raised-button class="primary-light-button text-center me-2">
+        <mat-icon class="me-0">filter_list</mat-icon>
+      </button>
     </div>
   </div>
   <!-- End Page Title -->

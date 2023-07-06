@@ -35,5 +35,12 @@ day:Date=new Date();
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  filter_date_1!: string;
+  filter_date_2!: string;
+
+  filter_date() {
+    // appliquer le filtre avec les deux dates
+  }
+
 }
 

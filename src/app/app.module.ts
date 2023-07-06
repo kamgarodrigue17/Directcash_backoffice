@@ -21,6 +21,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 import { ConnexionComponent } from './Components/connexion/connexion.component';
@@ -73,6 +74,10 @@ import { MouchardComponent } from './Components/Pages/administration/mouchard/mo
 import { GestionHabilitationComponent } from './Components/Pages/administration/gestion-habilitation/gestion-habilitation.component';
 import { ShowInformationRapportTransactionDirectcashComponent } from './Components/Modals/show-information-rapport-transaction-directcash/show-information-rapport-transaction-directcash.component';
 import { PasswordDialogComponent } from './Components/Modals/password-dialog/password-dialog.component';
+import { HabilitationDialogComponent } from './Components/Modals/habilitation-dialog/habilitation-dialog.component';
+import { AdminPlateformeComponent } from './Components/Pages/administration/admin-plateforme/admin-plateforme.component';
+import { AdminDialogComponent } from './Components/Modals/admin-dialog/admin-dialog.component';
+import { GestionFonctionnaliteComponent } from './Components/Pages/administration/gestion-fonctionnalite/gestion-fonctionnalite.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +130,11 @@ import { PasswordDialogComponent } from './Components/Modals/password-dialog/pas
     MouchardComponent,
     GestionHabilitationComponent,
     ShowInformationRapportTransactionDirectcashComponent,
-    PasswordDialogComponent
+    PasswordDialogComponent,
+    HabilitationDialogComponent,
+    AdminPlateformeComponent,
+    AdminDialogComponent,
+    GestionFonctionnaliteComponent
   ],
   imports: [
     BrowserModule,
@@ -147,7 +156,8 @@ import { PasswordDialogComponent } from './Components/Modals/password-dialog/pas
     MatStepperModule,
     MatSnackBarModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
