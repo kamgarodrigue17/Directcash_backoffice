@@ -85,6 +85,8 @@ import { AgenceComponent } from './Components/Pages/administration/agence/agence
 import { AgenceDialogComponent } from './Components/Modals/agence-dialog/agence-dialog.component';
 import { EtapeValidationDialogComponent } from './Components/Modals/etape-validation-dialog/etape-validation-dialog.component';
 import { ChangerMotDePasseComponent } from './Components/Pages/administration/changer-mot-de-passe/changer-mot-de-passe.component';
+import { DistributeurComponent } from './Components/Pages/gestion-agents/distributeur/distributeur.component';
+import { TopAgentsComponent } from './Components/Pages/gestion-agents/top-agents/top-agents.component';
 
 @NgModule({
   declarations: [
@@ -148,7 +150,9 @@ import { ChangerMotDePasseComponent } from './Components/Pages/administration/ch
     AgenceComponent,
     AgenceDialogComponent,
     EtapeValidationDialogComponent,
-    ChangerMotDePasseComponent
+    ChangerMotDePasseComponent,
+    DistributeurComponent,
+    TopAgentsComponent
   ],
   imports: [
     BrowserModule,

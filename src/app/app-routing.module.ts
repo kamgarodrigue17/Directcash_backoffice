@@ -35,6 +35,8 @@ import { DetailFonctionnaliteComponent } from './Components/Pages/administration
 import { AgenceComponent } from './Components/Pages/administration/agence/agence.component';
 import { EtapeValidationComponent } from './Components/Pages/administration/etape-validation/etape-validation.component';
 import { ChangerMotDePasseComponent } from './Components/Pages/administration/changer-mot-de-passe/changer-mot-de-passe.component';
+import { DistributeurComponent } from './Components/Pages/gestion-agents/distributeur/distributeur.component';
+import { TopAgentsComponent } from './Components/Pages/gestion-agents/top-agents/top-agents.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
@@ -47,6 +49,8 @@ const routes: Routes = [
   {path: 'gestion-agents/agents/ajouter', component: AddAgentComponent},
   {path: 'gestion-agents/super-agents', component: SuperAgentsComponent},
   {path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent},
+  {path: 'gestion-agents/distributeurs', component: DistributeurComponent},
+  {path: 'gestion-agents/top-agents', component: TopAgentsComponent},
 
   // GESTION DES CLIENTS ==============================
   {path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent},
