@@ -13,7 +13,6 @@ export class TransactionMydirectcashComponent {
 
   constructor(public dialog: MatDialog) { }
 
-
   displayedColumns: string[] = ['ID Transaction', 'Client', 'Montant (XAF)', 'Service', 'Date', 'Statut', 'Action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
