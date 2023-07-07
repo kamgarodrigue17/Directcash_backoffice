@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GloabalServiceService {
-  public baseUrl: string = 'Valor inicial';
+  public baseUrl: string = 'http://172.107.60.78:806';
   constructor() { }
    formatDate(date: Date): string {
     const year = date.getFullYear();

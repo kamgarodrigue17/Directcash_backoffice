@@ -29,8 +29,8 @@ export class ConnexionComponent implements OnInit {
   }
 
   onSubmit(){
+     
     if(this.myForm.valid){
-
       this.router.navigateByUrl('/dashboard')
      this.authService.Login(this.myForm.value).subscribe(user=>{
       localStorage.setItem("token",this.myForm.value.username)
