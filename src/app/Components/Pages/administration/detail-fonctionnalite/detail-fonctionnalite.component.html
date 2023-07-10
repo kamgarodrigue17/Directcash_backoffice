@@ -1,0 +1,146 @@
+<app-base></app-base>
+
+<!-- Main -->
+<main id="main" class="main">
+  <div class="pagetitle d-sm-flex justify-content-between align-items-center">
+    <div>
+      <h1>Administration</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
+          <li class="breadcrumb-item">
+            <a routerLink="#">Administration</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/administration/gestion-fonctionnalites"
+              >Gestion des fonctionnalités</a
+            >
+          </li>
+          <li class="breadcrumb-item active">Détails</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div>
+      <button
+        title="Retour a la page des fonctionnalités"
+        (click)="go_back()"
+        mat-raised-button
+        class="primary-light-button text-center me-2"
+      >
+        <mat-icon class="me-0">arrow_back</mat-icon>
+      </button>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <div class="bg-white mat-elevation-z2 rounded">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="container-fluid pt-3">
+          <!-- Menus -->
+          <div class="col-md-12">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Menu</mat-label>
+              <input matInput placeholder="Menu" name="menu" ngModel readonly />
+            </mat-form-field>
+          </div>
+          <!-- Sous - menus -->
+          <div class="col-md-12">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Sous - menu</mat-label>
+              <input
+                matInput
+                placeholder="Sous - menu"
+                name="sous-menu"
+                ngModel
+                readonly
+              />
+            </mat-form-field>
+          </div>
+          <!-- Accéssible à -->
+          <div class="col-md-12">
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Accéssible à</mat-label>
+              <input
+                matInput
+                placeholder="Accéssible à"
+                name="accessible_a"
+                ngModel
+                readonly
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div
+          class="container-fluid pt-3 pb-0 mb-0 d-md-flex justify-content-between align-items-start"
+          style="background: white"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Recherche</mat-label>
+            <input
+              (keyup)="filter($event)"
+              required
+              matInput
+              placeholder="Mot clé"
+              name="input-search"
+              ngModel
+              #inputSearch
+              required="false"
+            />
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button
+            (click)="add_profil()"
+            mat-raised-button
+            class="primary-light-button text-center me-2"
+          >
+            <mat-icon class="me-2">add</mat-icon>
+            <span>Ajouter un profil</span>
+          </button>
+        </div>
+        <table mat-table [dataSource]="dataSource">
+          <!-- Profil Column -->
+          <ng-container matColumnDef="Profil">
+            <th mat-header-cell *matHeaderCellDef>Profil</th>
+            <td mat-cell *matCellDef="let element">{{ element.profil }}</td>
+          </ng-container>
+          <!-- Action Column -->
+          <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef style="width: 100px">
+              Action
+            </th>
+            <td mat-cell *matCellDef="let element" style="width: 100px">
+              <ul
+                class="list-group list-group-horizontal"
+                style="max-width: 100px"
+              >
+                <li class="list-group-item border-0 pe-2 ps-0">
+                  <button
+                    (click)="del_profil()"
+                    type="button"
+                    class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                    style="background: #f60d2b4d"
+                  >
+                    <mat-icon style="color: #f60d2b">cancel</mat-icon>
+                  </button>
+                </li>
+              </ul>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator
+          class="pb-2"
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</main>

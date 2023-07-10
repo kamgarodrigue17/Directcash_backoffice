@@ -30,6 +30,13 @@ import { GestionReclamationsComponent } from './Components/Pages/administration/
 import { MouchardComponent } from './Components/Pages/administration/mouchard/mouchard.component';
 import { GestionHabilitationComponent } from './Components/Pages/administration/gestion-habilitation/gestion-habilitation.component';
 import { AdminPlateformeComponent } from './Components/Pages/administration/admin-plateforme/admin-plateforme.component';
+import { GestionFonctionnaliteComponent } from './Components/Pages/administration/gestion-fonctionnalite/gestion-fonctionnalite.component';
+import { DetailFonctionnaliteComponent } from './Components/Pages/administration/detail-fonctionnalite/detail-fonctionnalite.component';
+import { AgenceComponent } from './Components/Pages/administration/agence/agence.component';
+import { EtapeValidationComponent } from './Components/Pages/administration/etape-validation/etape-validation.component';
+import { ChangerMotDePasseComponent } from './Components/Pages/administration/changer-mot-de-passe/changer-mot-de-passe.component';
+import { DistributeurComponent } from './Components/Pages/gestion-agents/distributeur/distributeur.component';
+import { TopAgentsComponent } from './Components/Pages/gestion-agents/top-agents/top-agents.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
@@ -38,6 +45,8 @@ const routes: Routes = [
   {path: 'gestion-agents/agents/ajouter', component: AddAgentComponent},
   {path: 'gestion-agents/super-agents', component: SuperAgentsComponent},
   {path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent},
+  {path: 'gestion-agents/distributeurs', component: DistributeurComponent},
+  {path: 'gestion-agents/top-agents', component: TopAgentsComponent},
 
   // GESTION DES CLIENTS ==============================
   {path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent},
@@ -67,11 +76,17 @@ const routes: Routes = [
   {path: 'rapports/recharges-mydirectcash-online', component: RapportRechargeMydirectcashOnlineComponent},
   {path: 'rapports/recharges-mydirectcash-pos', component: RapportRechargeMydirectcashPosComponent},
 
-  // ADMINISTRATION ==============================MouchardComponent
+  // ADMINISTRATION ==============================
+  {path: 'administration/agences', component: AgenceComponent},
+  {path: 'administration/etapes-validation', component: EtapeValidationComponent},
   {path: 'administration/gestion-reclamations', component: GestionReclamationsComponent},
   {path: 'administration/mouchard', component: MouchardComponent},
   {path: 'administration/gestion-habilitations', component: GestionHabilitationComponent},
   {path: 'administration/admins', component: AdminPlateformeComponent},
+  {path: 'administration/gestion-fonctionnalites', component: GestionFonctionnaliteComponent},
+  {path: 'administration/gestion-fonctionnalites/detail', component: DetailFonctionnaliteComponent},
+  {path: 'administration/changer-mot-de-passe', component: ChangerMotDePasseComponent},
+
 ];
 
 @NgModule({

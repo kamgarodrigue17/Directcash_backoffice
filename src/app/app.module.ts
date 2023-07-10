@@ -78,6 +78,15 @@ import { HabilitationDialogComponent } from './Components/Modals/habilitation-di
 import { AdminPlateformeComponent } from './Components/Pages/administration/admin-plateforme/admin-plateforme.component';
 import { AdminDialogComponent } from './Components/Modals/admin-dialog/admin-dialog.component';
 import { GestionFonctionnaliteComponent } from './Components/Pages/administration/gestion-fonctionnalite/gestion-fonctionnalite.component';
+import { DetailFonctionnaliteComponent } from './Components/Pages/administration/detail-fonctionnalite/detail-fonctionnalite.component';
+import { AddProfilDialogComponent } from './Components/Modals/add-profil-dialog/add-profil-dialog.component';
+import { EtapeValidationComponent } from './Components/Pages/administration/etape-validation/etape-validation.component';
+import { AgenceComponent } from './Components/Pages/administration/agence/agence.component';
+import { AgenceDialogComponent } from './Components/Modals/agence-dialog/agence-dialog.component';
+import { EtapeValidationDialogComponent } from './Components/Modals/etape-validation-dialog/etape-validation-dialog.component';
+import { ChangerMotDePasseComponent } from './Components/Pages/administration/changer-mot-de-passe/changer-mot-de-passe.component';
+import { DistributeurComponent } from './Components/Pages/gestion-agents/distributeur/distributeur.component';
+import { TopAgentsComponent } from './Components/Pages/gestion-agents/top-agents/top-agents.component';
 import { HttpInterceptore } from './interceptor/http.interceptor';
 
 @NgModule({
@@ -135,7 +144,16 @@ import { HttpInterceptore } from './interceptor/http.interceptor';
     HabilitationDialogComponent,
     AdminPlateformeComponent,
     AdminDialogComponent,
-    GestionFonctionnaliteComponent
+    GestionFonctionnaliteComponent,
+    DetailFonctionnaliteComponent,
+    AddProfilDialogComponent,
+    EtapeValidationComponent,
+    AgenceComponent,
+    AgenceDialogComponent,
+    EtapeValidationDialogComponent,
+    ChangerMotDePasseComponent,
+    DistributeurComponent,
+    TopAgentsComponent
   ],
   imports: [
     BrowserModule,
