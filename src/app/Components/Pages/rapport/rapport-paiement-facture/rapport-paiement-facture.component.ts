@@ -12,12 +12,13 @@ import { GloabalServiceService } from 'src/app/services/gloabal-service.service'
 })
 export class RapportPaiementFactureComponent {
 
-  ELEMENT_DATA:Transaction[]=[];
+  ELEMENT_DATA:any[]=[];
   day:Date=new Date();
     constructor(trxService:TransactionService,global:GloabalServiceService) { 
      console.log(global.formatDate(this.day))
-     trxService.getTransaction(localStorage.getItem('id')!,"bills","2033-6-1","",this.day.toDateString()).subscribe(trx=>{
-        this.ELEMENT_DATA=trx;
+     trxService.getTransaction(localStorage.getItem('id')!,"bills","2033-6-1","",global.formatDate(this.day)).subscribe(trx=>{
+      console.log(trx);
+      this.ELEMENT_DATA=trx.data;
       })
     }
 

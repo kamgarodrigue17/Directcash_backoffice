@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -78,6 +78,7 @@ import { HabilitationDialogComponent } from './Components/Modals/habilitation-di
 import { AdminPlateformeComponent } from './Components/Pages/administration/admin-plateforme/admin-plateforme.component';
 import { AdminDialogComponent } from './Components/Modals/admin-dialog/admin-dialog.component';
 import { GestionFonctionnaliteComponent } from './Components/Pages/administration/gestion-fonctionnalite/gestion-fonctionnalite.component';
+import { HttpInterceptore } from './interceptor/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -159,7 +160,13 @@ import { GestionFonctionnaliteComponent } from './Components/Pages/administratio
     MatDatepickerModule,
     MatTabsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptore,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

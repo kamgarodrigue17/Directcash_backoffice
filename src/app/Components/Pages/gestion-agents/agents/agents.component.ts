@@ -1,9 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
 import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
@@ -16,22 +16,24 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
   templateUrl: './agents.component.html',
   styleUrls: ['./agents.component.css']
 })
-export class AgentsComponent {
-  ELEMENT_DATA: Agent[]=[];
+export class AgentsComponent implements OnInit {
+  displayedColumns: string[] =[];
+  ELEMENT_DATA: Agent[] = [
+];
+dataSource!:MatTableDataSource<Agent, MatTableDataSourcePaginator>
+
   
   
 
-  constructor(public dialog: MatDialog, private router: Router,AgentService:AgentServiceService, private _snackBar: MatSnackBar) {
-    AgentService.Agents().subscribe(agents=>{
-      this.ELEMENT_DATA =agents
-    });
+  constructor(public dialog: MatDialog, private router: Router,public AgentService:AgentServiceService, private _snackBar: MatSnackBar) {
+   
    }
   selected_value: string = "";
   add_agent_form!: NgForm;
   snackbar_message!: string;
 
-  displayedColumns: string[] = ['Nom', 'Solde (XAF)', 'Agence', 'Merchant', 'N° IMEI', 'Actions'];
-  dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+  //displayedColumns: string[] =
+ // dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -102,7 +104,30 @@ export class AgentsComponent {
       snackBarRef.dismiss();
     });
   }
-
+ngOnInit(): void {
+  this.AgentService.Agents("agents").subscribe(agents=>{
+    this.ELEMENT_DATA =agents.data((agent:any)=>{
+      return {nom:agent.nom,
+         email:agent.email,
+    
+       merchant:agent.merchant,
+      location:agent.location,
+        imei:agent.imei,
+         id:agent.id,
+         modifiedBy:agent.modifiedBy,
+         solde:agent.solde,
+         agence:agent.agence,
+        contribuable:agent.contribuable,
+         region:agent.region,
+       CNI:agent.CNI,
+        tel:agent.tel,
+        }
+    })
+    
+  });
+  this.displayedColumns= ['Nom', 'Solde (XAF)', 'Agence', 'Merchant', 'N° IMEI', 'Actions'];
+  this.dataSource=new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+}
 }
 
 

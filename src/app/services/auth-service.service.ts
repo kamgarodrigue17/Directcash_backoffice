@@ -14,9 +14,9 @@ export class AuthServiceService {
   ) {
     
    }
-   Login(data:any): Observable<User> {
+   Login(data:any): Observable<any>  {
     console.log(this.globalService.baseUrl);
-    return this.http.post<User>(this.globalService.baseUrl+"/api/Authentication/authenticate",data);
+    return this.http.post<any>(this.globalService.baseUrl+"/api/Authentication/authenticate",data);
   }
   getMenu(): Observable<any[]> {
     return this.http.get<any>(this.globalService.baseUrl+"/api/Authentication/getMenus?id=<string>");

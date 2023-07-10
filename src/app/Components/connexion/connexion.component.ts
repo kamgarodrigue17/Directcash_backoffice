@@ -18,7 +18,7 @@ export class ConnexionComponent implements OnInit {
   this.myForm= new FormGroup({
     
     password : new FormControl('', [Validators.required,Validators.min(6)]),
-    username: new FormControl('', Validators.email)
+    username: new FormControl('', Validators.required)
     });
      
  }
@@ -31,9 +31,15 @@ export class ConnexionComponent implements OnInit {
   onSubmit(){
      
     if(this.myForm.valid){
-      this.router.navigateByUrl('/dashboard')
+     let data={"username":this.myForm.value.username,
+      "password":this.myForm.value.password
+
+    };
+      console.log(data);
      this.authService.Login(this.myForm.value).subscribe(user=>{
-      localStorage.setItem("token",this.myForm.value.username)
+      console.log(user.data.token.token);
+      localStorage.setItem("id",user.data.userName);
+    localStorage.setItem("token",user.data.token.token)
       console.log(this.myForm.value);
       this.router.navigateByUrl('/dashboard');
      },error => {

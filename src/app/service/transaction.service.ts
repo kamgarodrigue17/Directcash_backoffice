@@ -12,8 +12,8 @@ export class TransactionService {
 constructor(private http: HttpClient, private globalService:GloabalServiceService) {
 
 }
-getTransaction(id:string,trxType:string,startDate:string,forWho:string,endDate:string): Observable<Transaction[]> {
-  
-  return this.http.get<Transaction[]>(this.globalService.baseUrl+`/api/Operations/GetTransactions?id=${id}&trxType=${trxType}&forWho=${forWho}&startDate=${startDate}&endDate=${endDate}`);
+getTransaction(id:string,trxType:string,startDate:string,forWho:string,endDate:string): Observable<any> {
+  console.log(this.globalService.baseUrl+`/api/Operations/GetTransactions?id=${id}&trxType=${trxType}&forWho=${forWho}&startDate=${startDate}&endDate=${endDate}`);
+  return this.http.get<any[]>(this.globalService.baseUrl+`/api/Operations/GetTransactions?id=${id}&trxType=${trxType}&forWho=${forWho}&startDate=${startDate}&endDate=${endDate}`);
 }
 }

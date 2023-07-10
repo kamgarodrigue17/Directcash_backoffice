@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Transaction } from 'src/app/modal/transaction';
 import { TransactionService } from 'src/app/service/transaction.service';
 import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
@@ -10,20 +10,19 @@ import { GloabalServiceService } from 'src/app/services/gloabal-service.service'
   templateUrl: './rapport-momo-om.component.html',
   styleUrls: ['./rapport-momo-om.component.css']
 })
-export class RapportMomoOmComponent {
+export class RapportMomoOmComponent implements OnInit  {
+  displayedColumns: string[] =[];
+   ELEMENT_DATA: Transaction[] = [
+ ];
+ dataSource!:MatTableDataSource<Transaction, MatTableDataSourcePaginator>
 
-  ELEMENT_DATA:Transaction[]=[];
 day:Date=new Date();
-  constructor(trxService:TransactionService,global:GloabalServiceService) { 
+  constructor(public trxService:TransactionService,public global:GloabalServiceService) { 
    console.log(global.formatDate(this.day))
-   trxService.getTransaction(localStorage.getItem('id')!,"ommomo","2033-6-1","",this.day.toDateString()).subscribe(trx=>{
-      this.ELEMENT_DATA=trx;
-    })
+  
   }
 
-  displayedColumns: string[] = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
-  dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
-
+  
   @ViewChild("paginator") paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -41,6 +40,36 @@ day:Date=new Date();
   filter_date() {
     // appliquer le filtre avec les deux dates
   }
+ 
+  ngOnInit(): void {
+    this.trxService.getTransaction(localStorage.getItem('id')!,"ommomo","2033-6-1","",this.global.formatDate(this.day)).subscribe(trx=>{
+       
+      console.log(trx);
+      this.ELEMENT_DATA=trx.data.map((element:any)=>{
+        return {
+          a: element.a,
+agentID: element.agentID,
+blockingReason:element.blockingReason,
+commission: element.commission,
+de: element.de,
+directCode:element.directCode ,
+expediteur:element.expediteur ,
+jour: element.jour,
+montant:element.montant,
+payeLe:element.payeLe, 
+payeur:element.payeur, 
+pin: element.pin,
+receiver: element.receiver,
+statut:element.statut ,
+transactionID: element.transactionID,
+        };
+      })    ;//trx.data.;
+      console.log( this.ELEMENT_DATA);
+      this.displayedColumns = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
+  this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
+      })
+  }
+  
 }
 

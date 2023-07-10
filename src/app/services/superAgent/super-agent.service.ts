@@ -11,9 +11,9 @@ export class SuperAgentService {
   constructor( private superAgent:Merchant,private http: HttpClient, private globalService:GloabalServiceService) {
 
    }
-   superAgents(): Observable<Merchant[]> {
+   superAgents(listeId:string): Observable<Merchant[]> {
   
-    return this.http.get<Merchant[]>(this.globalService.baseUrl+"/api/Authentication/authenticate");
+    return this.http.get<Merchant[]>(this.globalService.baseUrl+"/api/Users/GetReportList?id=tabetsing&listeId="+listeId);
   }
   // passer l id
   update(data:Merchant): Observable<String> {

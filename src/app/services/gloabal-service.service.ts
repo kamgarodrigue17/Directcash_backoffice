@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GloabalServiceService {
-  public baseUrl: string = 'http://172.107.60.78:806';
+  public baseUrl: string = 'https://apibackoffice.alliancefinancialsa.com';
   constructor() { }
    formatDate(date: Date): string {
     const year = date.getFullYear();

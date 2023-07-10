@@ -1,21 +1,28 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { AddCommissionDialogComponent } from 'src/app/Components/Modals/add-commission-dialog/add-commission-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
+import { Commission } from 'src/app/modal/commission';
+import { CommissionService } from 'src/app/services/commission/commission.service';
 
 @Component({
   selector: 'app-commision-par-service',
   templateUrl: './commision-par-service.component.html',
   styleUrls: ['./commision-par-service.component.css']
 })
-export class CommisionParServiceComponent {
+export class CommisionParServiceComponent implements OnInit {
+  displayedColumns: string[] =[];
+  ELEMENT_DATA: Commission[] = [
+];
+dataSource!:MatTableDataSource<Commission, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog) { }
 
-  displayedColumns: string[] = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  constructor(public dialog: MatDialog,public commission:CommissionService) { }
+
+ // displayedColumns: string[] = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
+ // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -53,16 +60,18 @@ export class CommisionParServiceComponent {
       console.log(result);
     });
   }
+  ngOnInit(): void {
+    this.commission.commissions().subscribe(com=>{
+    this.ELEMENT_DATA=com.data
+console.log(this.ELEMENT_DATA)
+this.displayedColumns = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
+this.dataSource = new MatTableDataSource<Commission>(this.ELEMENT_DATA);
+
+    })  
+   this.displayedColumns = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
+  this.dataSource = new MatTableDataSource<Commission>(this.ELEMENT_DATA);
+
+  }
 
 }
 
-export interface PeriodicElement {
-  type_utilisateur: string;
-  taux: number;
-  type_service: string;
-  created_at: string;
-  updated_at: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { type_utilisateur: "Super agent", taux: 10, type_service: 'MTN', created_at: '10/10/2003 14:45', updated_at: '10/10/2003 14:45'},];

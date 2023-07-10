@@ -120,13 +120,13 @@
       <!-- Effectuée le Column -->
       <ng-container matColumnDef="Effectuée le">
         <th mat-header-cell *matHeaderCellDef>Effectuée le</th>
-        <td mat-cell *matCellDef="let element">{{ element.created_at }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.jour }}</td>
       </ng-container>
 
       <!-- N° Destinataire Column -->
       <ng-container matColumnDef="N° Destinataire">
         <th mat-header-cell *matHeaderCellDef>N° Destinataire</th>
-        <td mat-cell *matCellDef="let element">{{ element.no_destinataire }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.receiver}}</td>
       </ng-container>
 
       <!-- Commission Column -->

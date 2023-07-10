@@ -1,7 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { ShowInformationRapportTransactionDirectcashComponent } from 'src/app/Components/Modals/show-information-rapport-transaction-directcash/show-information-rapport-transaction-directcash.component';
 import { Transaction } from 'src/app/modal/transaction';
 import { TransactionService } from 'src/app/service/transaction.service';
@@ -12,21 +12,22 @@ import { GloabalServiceService } from 'src/app/services/gloabal-service.service'
   templateUrl: './rapport-transfert-argent-directcash.component.html',
   styleUrls: ['./rapport-transfert-argent-directcash.component.css']
 })
-export class RapportTransfertArgentDirectcashComponent {
-  ELEMENT_DATA:Transaction[]=[];
+export class RapportTransfertArgentDirectcashComponent implements OnInit {
+  
+    displayedColumns: string[] =[];
+    ELEMENT_DATA: Transaction[] = [
+  ];
+  dataSource!:MatTableDataSource<Transaction, MatTableDataSourcePaginator>
+  
   day:Date=new Date();
-    constructor(trxService:TransactionService,global:GloabalServiceService,public dialog: MatDialog) { 
-     console.log(global.formatDate(this.day))
-     trxService.getTransaction(localStorage.getItem('id')!,"xfert","2033-6-1","",this.day.toDateString()).subscribe(trx=>{
-        this.ELEMENT_DATA=trx;
-      })
+    constructor(public trxService:TransactionService,public global:GloabalServiceService,public dialog: MatDialog) { 
+     
     }
 
 
   
 
-  displayedColumns: string[] = ['Agent', 'Montant (XAF)', 'Expediteur', 'Destinataire', 'Statut', 'Effectuée le', 'Action'];
-  dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
+
 
   @ViewChild("paginator") paginator!: MatPaginator;
 
@@ -55,18 +56,36 @@ export class RapportTransfertArgentDirectcashComponent {
 
     });
   }
+  ngOnInit(): void {
+    this.trxService.getTransaction(localStorage.getItem('id')!,"xfert","2033-6-1","",this.global.formatDate(this.day)).subscribe(trx=>{
+       
+      console.log(trx);
+      this.ELEMENT_DATA=trx.data.map((element:any)=>{
+        return {
+          a: element.a,
+agentID: element.agentID,
+blockingReason:element.blockingReason,
+commission: element.commission,
+de: element.de,
+directCode:element.directCode ,
+expediteur:element.expediteur ,
+jour: element.jour,
+montant:element.montant,
+payeLe:element.payeLe, 
+payeur:element.payeur, 
+pin: element.pin,
+receiver: element.receiver,
+statut:element.statut ,
+transactionID: element.transactionID,
+        };
+      })    ;//trx.data.;
+      console.log( this.ELEMENT_DATA);
+      this.displayedColumns =['Agent', 'Montant (XAF)', 'Expediteur', 'Destinataire', 'Statut', 'Effectuée le', 'Action'];
+  this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
+
+      })
+  }
 
 }
 
-export interface PeriodicElement {
-  agent: string;
-  expediteur: string;
-  destinataire: string;
-  montant: number;
-  statut: string;
-  created_at: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { agent: 'agent', expediteur: '670630558', destinataire: '693648795', montant: 40, statut: 'Reussie', created_at: '14/10/2010 15:30' }
-];

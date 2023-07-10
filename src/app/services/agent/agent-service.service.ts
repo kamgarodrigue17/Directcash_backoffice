@@ -11,9 +11,9 @@ export class AgentServiceService {
 
   constructor(private http: HttpClient, private globalService:GloabalServiceService) { }
 
-  Agents(): Observable<Agent[]> {
+  Agents(listid:string): Observable<any> {
   
-    return this.http.get<Agent[]>(this.globalService.baseUrl+"/api/Authentication/authenticate");
+    return this.http.get<any>(this.globalService.baseUrl+"/api/Users/GetReportList?id=tabetsing&listeId="+listid);
   }
   // passer l id
   update(data:Agent): Observable<String> {

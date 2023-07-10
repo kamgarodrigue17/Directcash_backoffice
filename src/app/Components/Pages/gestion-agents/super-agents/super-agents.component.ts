@@ -16,7 +16,7 @@ import { SuperAgentService } from 'src/app/services/superAgent/super-agent.servi
 export class SuperAgentsComponent {
   ELEMENT_DATA:Merchant[]=[];
   constructor(public dialog: MatDialog,public superA: SuperAgentService) {
-    this.superA.superAgents().subscribe(
+    this.superA.superAgents("merchant").subscribe(
       superA=>{
 
         this.ELEMENT_DATA=superA;
