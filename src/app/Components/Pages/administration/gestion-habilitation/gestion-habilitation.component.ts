@@ -1,24 +1,29 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { HabilitationDialogComponent } from 'src/app/Components/Modals/habilitation-dialog/habilitation-dialog.component';
+import { Habilitation } from 'src/app/modal/habilitation';
+import { HabilitationService } from '../../../../services/habilitation/habilitation.service';
 
 @Component({
   selector: 'app-gestion-habilitation',
   templateUrl: './gestion-habilitation.component.html',
   styleUrls: ['./gestion-habilitation.component.css']
 })
-export class GestionHabilitationComponent {
+export class GestionHabilitationComponent implements OnInit  {
+  displayedColumns: string[] =[];
+  ELEMENT_DATA: Habilitation[] = [
+];
+dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog, public habilition:HabilitationService, private _snackBar: MatSnackBar) { }
 
   snackbar_message = "";
 
-  displayedColumns: string[] = ['Intitulé', 'Crée par', 'Crée le', 'Statut', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -67,16 +72,20 @@ export class GestionHabilitationComponent {
     //   console.log(result);
     // });
   }
+  ngOnInit(): void {
+    this.habilition.habilitations().subscribe(habi=>{
+      
+      this.ELEMENT_DATA=habi.data;
+      console.log(this.ELEMENT_DATA);
+      this.displayedColumns= ['Intitulé', 'Crée par', 'Crée le', 'Statut', 'Actions'];
+      this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+    
+    });
+    this.displayedColumns= ['Intitulé', 'Crée par', 'Crée le', 'Statut', 'Actions'];
+    this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+  
+  }
 
 }
 
-export interface PeriodicElement {
-  intitule: string;
-  statut: string;
-  created_at: string;
-  created_by: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { intitule: "Comptable", statut: 'Actif', created_at: '14/10/2010 15:30', created_by: "Emmanuel leuna"},
-];
