@@ -1,11 +1,12 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { ShowSuperAgengDialogComponent } from 'src/app/Components/Modals/show-super-ageng-dialog/show-super-ageng-dialog.component';
 import { Merchant } from 'src/app/modal/merchant';
+import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 import { SuperAgentService } from 'src/app/services/superAgent/super-agent.service';
 
 @Component({
@@ -13,20 +14,19 @@ import { SuperAgentService } from 'src/app/services/superAgent/super-agent.servi
   templateUrl: './super-agents.component.html',
   styleUrls: ['./super-agents.component.css']
 })
-export class SuperAgentsComponent {
-  ELEMENT_DATA:Merchant[]=[];
-  constructor(public dialog: MatDialog,public superA: SuperAgentService) {
-    this.superA.superAgents("merchant").subscribe(
-      superA=>{
+export class SuperAgentsComponent implements OnInit {
+  displayedColumns: string[] =[];
+  ELEMENT_DATA: Merchant[] = [
+];
+dataSource!:MatTableDataSource<Merchant, MatTableDataSourcePaginator>
 
-        this.ELEMENT_DATA=superA;
-      }
-    ) 
+
+  constructor(public dialog: MatDialog,public AgentService: AgentServiceService) {
+  
     
   }
 
-  displayedColumns: string[] = ['Nom', 'Email', 'Téléphone', 'Région', 'Date de création', 'Actions'];
-  dataSource = new MatTableDataSource<Merchant>(this.ELEMENT_DATA);
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -60,8 +60,21 @@ export class SuperAgentsComponent {
 
     });
   }
-
+ngOnInit(): void {
+  this.AgentService.Agents("Agents").subscribe(agents=>{
+    this.ELEMENT_DATA =agents.data;
+    console.log(this.ELEMENT_DATA);
+    this.displayedColumns=  ['Nom', 'Solde', 'Agence', 'MerchantName', 'N° IMEI','Date de création', 'Actions'];
+    this.dataSource=new MatTableDataSource<Merchant>(this.ELEMENT_DATA);
+  
+    
+  });
+  this.displayedColumns= ['Nom', 'Solde', 'Agence', 'MerchantName', 'N° IMEI','Date de création', 'Actions'];
+  this.dataSource=new MatTableDataSource<Merchant>(this.ELEMENT_DATA);
 }
+    
+}
+
 
 
 

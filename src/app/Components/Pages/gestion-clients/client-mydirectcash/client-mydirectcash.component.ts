@@ -1,27 +1,31 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { AddClientDialogComponent } from 'src/app/Components/Modals/add-client-dialog/add-client-dialog.component';
 import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
+import { Agent } from 'src/app/modal/agent';
+import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 
 @Component({
   selector: 'app-client-mydirectcash',
   templateUrl: './client-mydirectcash.component.html',
   styleUrls: ['./client-mydirectcash.component.css']
 })
-export class ClientMydirectcashComponent {
+export class ClientMydirectcashComponent implements OnInit {
+  displayedColumns: string[] =[];
+  ELEMENT_DATA: Agent[] = [
+];
+dataSource!:MatTableDataSource<Agent, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog,public AgentService:AgentServiceService, private _snackBar: MatSnackBar) { }
   selected_value: string = "";
   add_agent_form!: NgForm;
   snackbar_message!: string;
 
-  displayedColumns: string[] = ['Nom', 'Matricule', 'Téléphone', 'Statut', 'Adresse', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -86,16 +90,18 @@ export class ClientMydirectcashComponent {
       snackBarRef.dismiss();
     });
   }
+ngOnInit(): void {
+  this.AgentService.Agents("Clients").subscribe(agents=>{
+    this.ELEMENT_DATA =agents.data;
+    console.log(this.ELEMENT_DATA);
+    this.displayedColumns= ['Nom', 'Matricule', 'Téléphone','Solde', 'Statut', 'Adresse', 'Actions'];
+    this.dataSource=new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+  
+    
+  });
+  this.displayedColumns=['Nom', 'Matricule', 'Téléphone', 'Solde','Statut', 'Adresse', 'Actions'];
+  this.dataSource=new MatTableDataSource<Agent>(this.ELEMENT_DATA);
 
 }
-
-export interface PeriodicElement {
-  nom: string;
-  matricule: string;
-  tel: string;
-  statut: string;
-  adresse: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { nom: "Emmanuel", matricule: "14GDF2", tel: '670630558', statut: 'Actif', adresse: 'Adresse' },];
