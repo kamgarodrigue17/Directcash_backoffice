@@ -37,6 +37,8 @@ import { EtapeValidationComponent } from './Components/Pages/administration/etap
 import { ChangerMotDePasseComponent } from './Components/Pages/administration/changer-mot-de-passe/changer-mot-de-passe.component';
 import { DistributeurComponent } from './Components/Pages/gestion-agents/distributeur/distributeur.component';
 import { TopAgentsComponent } from './Components/Pages/gestion-agents/top-agents/top-agents.component';
+import { AddDistributeurComponent } from './Components/Pages/gestion-agents/add-distributeur/add-distributeur.component';
+import { AddTopAgentComponent } from './Components/Pages/gestion-agents/add-top-agent/add-top-agent.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
@@ -46,7 +48,9 @@ const routes: Routes = [
   {path: 'gestion-agents/super-agents', component: SuperAgentsComponent},
   {path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent},
   {path: 'gestion-agents/distributeurs', component: DistributeurComponent},
+  {path: 'gestion-agents/distributeurs/ajouter', component: AddDistributeurComponent},
   {path: 'gestion-agents/top-agents', component: TopAgentsComponent},
+  {path: 'gestion-agents/top-agents/ajouter', component: AddTopAgentsComponent},
 
   // GESTION DES CLIENTS ==============================
   {path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent},
