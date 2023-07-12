@@ -44,12 +44,12 @@ dataSource!:MatTableDataSource<Plafond, MatTableDataSourcePaginator>
     this.plafond.plafonds().subscribe(plafond=>{
       this.ELEMENT_DATA =plafond.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns= ['Solde courant', 'Service', 'Plafond (XAF)', 'Dernière recharge', 'Statut', 'Action'];
+      this.displayedColumns= ['Solde courant', 'Service', 'Plafond (XAF)','Limite courante (XAF)' ,'Partenaire','Dernière recharge', 'Statut', 'Action'];
       this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
     
       
     });
-    this.displayedColumns= ['Solde courant', 'Service', 'Plafond (XAF)', 'Dernière recharge', 'Statut', 'Action'];
+    this.displayedColumns= ['Solde courant', 'Service', 'Plafond (XAF)','Limite courante (XAF)','Partenaire' ,'Dernière recharge', 'Statut', 'Action'];
     this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
   }
 }

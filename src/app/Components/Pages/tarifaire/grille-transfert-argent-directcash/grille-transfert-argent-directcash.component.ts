@@ -1,22 +1,28 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { GrilleTransfertDirectcashDialogComponent } from 'src/app/Components/Modals/grille-transfert-directcash-dialog/grille-transfert-directcash-dialog.component';
+import { Fees } from 'src/app/modal/fees';
+import { FeesService } from 'src/app/services/fees.service';
 
 @Component({
   selector: 'app-grille-transfert-argent-directcash',
   templateUrl: './grille-transfert-argent-directcash.component.html',
   styleUrls: ['./grille-transfert-argent-directcash.component.css']
 })
-export class GrilleTransfertArgentDirectcashComponent {
+export class GrilleTransfertArgentDirectcashComponent implements OnInit{
 
-  constructor(public dialog: MatDialog) { }
+  displayedColumns: string[] =[];
+  ELEMENT_DATA:Fees[] = [
+];
+dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
 
-  displayedColumns: string[] = ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  constructor(public dialog: MatDialog,public feesService:FeesService) { }
+
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -64,15 +70,19 @@ export class GrilleTransfertArgentDirectcashComponent {
       console.log(result);
     });
   }
+  ngOnInit(): void {
+    this.feesService.getfees("xfert").subscribe(fees=>{
+      this.ELEMENT_DATA =fees.data;
+      console.log(this.ELEMENT_DATA);
+      this.displayedColumns= ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
+      this.dataSource=new MatTableDataSource<Fees>(this.ELEMENT_DATA);
+    
+      
+    });
+    this.displayedColumns=  ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
+    this.dataSource=new MatTableDataSource<Fees>(this.ELEMENT_DATA);
+  }
 
 }
 
-export interface PeriodicElement {
-  min: number;
-  max: number;
-  frais_local: number;
-  frais_international: number;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { min: 0, max: 500, frais_local: 50, frais_international: 50 },];

@@ -11,8 +11,9 @@ export class FeesService {
   constructor(private http: HttpClient, private globalService:GloabalServiceService) { 
 
   }
-  getTransaction(serviceId:string): Observable<Fees[]> {
+  //xfert,xfertintl,eneo,camwater
+  getfees(serviceId:string): Observable<any> {
   
-    return this.http.get<Fees[]>(this.globalService.baseUrl+`/api/Operations/GetServiceFees?serviceId=${serviceId}`);
+    return this.http.get<any>(this.globalService.baseUrl+`/api/Operations/GetServiceFees?serviceId=${serviceId}`);
   }
 }

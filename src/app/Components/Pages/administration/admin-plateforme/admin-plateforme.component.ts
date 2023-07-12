@@ -1,27 +1,34 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AdminDialogComponent } from 'src/app/Components/Modals/admin-dialog/admin-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
+import { User } from 'src/app/modal/user';
+import { Validation } from 'src/app/modal/validation';
+import { ValidationService } from 'src/app/services/validation/validation.service';
 
 @Component({
   selector: 'app-admin-plateforme',
   templateUrl: './admin-plateforme.component.html',
   styleUrls: ['./admin-plateforme.component.css']
 })
-export class AdminPlateformeComponent {
-  constructor(public dialog: MatDialog, private router: Router, private _snackBar: MatSnackBar) { }
+export class AdminPlateformeComponent  implements OnInit{
+  displayedColumns: string[] =[];
+  ELEMENT_DATA:User[] = [
+];
+dataSource!:MatTableDataSource<User, MatTableDataSourcePaginator>
+
+  constructor(public dialog: MatDialog, private router: Router, private _snackBar: MatSnackBar,public userService:ValidationService) { }
   selected_value: string = "";
   add_agent_form!: NgForm;
   snackbar_message!: string;
 
-  displayedColumns: string[] = ['Nom', 'Habilitation', 'Statut', 'Dernière connexion', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -78,16 +85,18 @@ export class AdminPlateformeComponent {
       snackBarRef.dismiss();
     });
   }
-
+  ngOnInit(): void {
+    this.userService.getAdmin().subscribe(user=>{
+      this.ELEMENT_DATA =user.data;
+      console.log(this.ELEMENT_DATA);
+      this.displayedColumns=  ['Nom', 'Habilitation', 'Statut', 'Dernière connexion', 'Actions'];
+      this.dataSource=new MatTableDataSource<User>(this.ELEMENT_DATA);
+    
+      
+    });
+    this.displayedColumns=   ['Nom', 'Habilitation', 'Statut', 'Dernière connexion', 'Actions'];
+    this.dataSource=new MatTableDataSource<User>(this.ELEMENT_DATA);
+  }
 }
 
-export interface PeriodicElement {
-  nom: string;
-  habilitation: string;
-  statut: string;
-  derniere_connexion: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { nom: "Emmanuel", habilitation: 'Comptable', statut: 'Actif', derniere_connexion: '14/10/2023 14:30'},
-];

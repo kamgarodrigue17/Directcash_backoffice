@@ -1,23 +1,29 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { EtapeValidationDialogComponent } from 'src/app/Components/Modals/etape-validation-dialog/etape-validation-dialog.component';
+import { Validation } from 'src/app/modal/validation';
+import { ValidationService } from 'src/app/services/validation/validation.service';
 
 @Component({
   selector: 'app-etape-validation',
   templateUrl: './etape-validation.component.html',
   styleUrls: ['./etape-validation.component.css']
 })
-export class EtapeValidationComponent {
-  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+export class EtapeValidationComponent implements OnInit {
+  displayedColumns: string[] =[];
+  ELEMENT_DATA:Validation[] = [
+];
+dataSource!:MatTableDataSource<Validation, MatTableDataSourcePaginator>
+
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar,public validation:ValidationService) { }
 
   snackbar_message = "";
 
-  displayedColumns: string[] = ['Intitulé', 'Priorité', 'Validateur', 'Service', 'Creé le', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -56,17 +62,19 @@ export class EtapeValidationComponent {
       console.log(result);
     });
   }
+  ngOnInit(): void {
+    this.validation.validations().subscribe(agents=>{
+      this.ELEMENT_DATA =agents.data;
+      console.log(this.ELEMENT_DATA);
+      this.displayedColumns=  ['Intitulé', 'Priorité', 'Validateur', 'Service', 'Creé le', 'Actions'];
+      this.dataSource=new MatTableDataSource<Validation>(this.ELEMENT_DATA);
+    
+      
+    });
+    this.displayedColumns=  ['Intitulé', 'Priorité', 'Validateur', 'Service', 'Creé le', 'Actions'];
+    this.dataSource=new MatTableDataSource<Validation>(this.ELEMENT_DATA);
+  }
 
 }
 
-export interface PeriodicElement {
-  intitule: string;
-  priorite: number;
-  validateur: string;
-  service: string;
-  created_at: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { intitule: "Intitulé", priorite: 4, validateur: 'Validateur', service: 'Service', created_at: '14/10/2010 15:30'},
-];

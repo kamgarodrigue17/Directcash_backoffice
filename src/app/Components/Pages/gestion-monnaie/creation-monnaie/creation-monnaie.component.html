@@ -82,7 +82,7 @@
       <!-- Solde courant Column -->
       <ng-container matColumnDef="Solde courant">
         <th mat-header-cell *matHeaderCellDef>Solde courant</th>
-        <td mat-cell *matCellDef="let element">{{ element.solde_courant }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.soldeCourant}}</td>
       </ng-container>
 
       <!-- Service Column -->
@@ -97,11 +97,22 @@
         <td mat-cell *matCellDef="let element">{{ element.plafond }}</td>
       </ng-container>
 
+      <!-- Limite courante Column -->
+      <ng-container matColumnDef="Limite courante (XAF)">
+        <th mat-header-cell *matHeaderCellDef>Limite courante (XAF)</th>
+        <td mat-cell *matCellDef="let element">{{ element.limiteCourante }}</td>
+      </ng-container>
+      <!-- Column -->
+      <ng-container matColumnDef="Partenaire">
+        <th mat-header-cell *matHeaderCellDef>Partenaire</th>
+        <td mat-cell *matCellDef="let element">{{ element.nomPartenaire }}</td>
+      </ng-container>
+      
       <!-- Dernière recharge Column -->
       <ng-container matColumnDef="Dernière recharge">
         <th mat-header-cell *matHeaderCellDef>Dernière recharge</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.derniere_recharge }}
+          {{ element.dateRecharge }}
         </td>
       </ng-container>
 

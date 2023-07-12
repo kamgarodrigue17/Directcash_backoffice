@@ -47,7 +47,7 @@
       <!-- Nom Column -->
       <ng-container matColumnDef="Nom">
         <th mat-header-cell *matHeaderCellDef>Nom</th>
-        <td mat-cell *matCellDef="let element">{{ element.nom }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
       </ng-container>
 
       <!-- Habilitation Column -->
@@ -59,13 +59,13 @@
       <!-- Statut Column -->
       <ng-container matColumnDef="Statut">
         <th mat-header-cell *matHeaderCellDef>Statut</th>
-        <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.isActive==="True"?"connecté":"deconecté" }}</td>
       </ng-container>
 
       <!-- Dernière connexion Column -->
       <ng-container matColumnDef="Dernière connexion">
         <th mat-header-cell *matHeaderCellDef>Dernière connexion</th>
-        <td mat-cell *matCellDef="let element">{{ element.derniere_connexion }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.lastConnection }}</td>
       </ng-container>
 
       <!-- Actions Column -->

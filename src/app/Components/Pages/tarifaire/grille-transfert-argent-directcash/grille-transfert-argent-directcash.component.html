@@ -54,19 +54,19 @@
       <!-- De Column -->
       <ng-container matColumnDef="De">
         <th mat-header-cell *matHeaderCellDef>De</th>
-        <td mat-cell *matCellDef="let element">{{ element.min }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.amountFrom }}</td>
       </ng-container>
 
       <!-- A Column -->
       <ng-container matColumnDef="A">
         <th mat-header-cell *matHeaderCellDef>A</th>
-        <td mat-cell *matCellDef="let element">{{ element.max }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.amountTo }}</td>
       </ng-container>
 
       <!-- Frais local (XAF) Column -->
       <ng-container matColumnDef="Frais local (XAF)">
         <th mat-header-cell *matHeaderCellDef>Frais local (XAF)</th>
-        <td mat-cell *matCellDef="let element">{{ element.frais_local }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.rate }}</td>
       </ng-container>
 
       <!-- Frais international (XAF) Column -->
@@ -78,7 +78,7 @@
       <!-- Type Column -->
       <ng-container matColumnDef="Type">
         <th mat-header-cell *matHeaderCellDef>Type</th>
-        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.rateType }}</td>
       </ng-container>
 
       <!-- Actions Column -->

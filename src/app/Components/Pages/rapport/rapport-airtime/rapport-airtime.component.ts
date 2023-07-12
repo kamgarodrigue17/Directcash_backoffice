@@ -72,6 +72,8 @@ transactionID: element.transactionID,
 
       })
       ;//trx.data.;
+      this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
+      this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
     
   }
 

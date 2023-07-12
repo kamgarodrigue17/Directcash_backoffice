@@ -13,6 +13,21 @@ export class PlafondService {
   ) { }
   plafonds(): Observable<any> {
   
-    return this.http.get<any>(this.globalService.baseUrl+"api/Monnetique/Stock/ServiceStock");
+    return this.http.get<any>(this.globalService.baseUrl+"/api/Monnetique/Stock/ServiceStock");
+  }
+
+   data= {
+    "id": "85251865",
+    "merchant": "202463001",
+    "amount": "100",
+    "statut": "En attente",
+    "creerPar": "tabetsing",
+    "creerLe": "11/24/2021 11:53:02 AM",
+    "traiterPar": null,
+    "traiterLe": null
+};
+  getDemandeAprov(): Observable<any> {
+  
+    return this.http.get<any>(this.globalService.baseUrl+`/api/Monnetique/Merchant/Supply/Pendingrequest?userId=${localStorage.getItem('id')}&filterStatus=&filterMerchant=&filterTraiterPar=&filterCreerPar=`);
   }
 }
