@@ -50,7 +50,7 @@ const routes: Routes = [
   {path: 'gestion-agents/distributeurs', component: DistributeurComponent},
   {path: 'gestion-agents/distributeurs/ajouter', component: AddDistributeurComponent},
   {path: 'gestion-agents/top-agents', component: TopAgentsComponent},
-  {path: 'gestion-agents/top-agents/ajouter', component: AddTopAgentsComponent},
+  {path: 'gestion-agents/top-agents/ajouter', component: AddTopAgentComponent},
 
   // GESTION DES CLIENTS ==============================
   {path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent},
