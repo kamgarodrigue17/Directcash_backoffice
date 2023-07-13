@@ -61,7 +61,7 @@ dataSource!:MatTableDataSource<Merchant, MatTableDataSourcePaginator>
     });
   }
 ngOnInit(): void {
-  this.AgentService.Agents("Agents").subscribe(agents=>{
+  this.AgentService.Agents("Merchants").subscribe(agents=>{
     this.ELEMENT_DATA =agents.data;
     console.log(this.ELEMENT_DATA);
     this.displayedColumns=  ['Nom', 'Solde', 'Agence', 'MerchantName', 'N° IMEI','Date de création', 'Actions'];

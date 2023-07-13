@@ -11,6 +11,7 @@ export class FeesService {
   constructor(private http: HttpClient, private globalService:GloabalServiceService) { 
 
   }
+  
   //xfert,xfertintl,eneo,camwater
   getfees(serviceId:string): Observable<any> {
   

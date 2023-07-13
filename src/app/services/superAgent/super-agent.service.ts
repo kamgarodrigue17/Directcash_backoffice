@@ -8,7 +8,7 @@ import { Merchant } from 'src/app/modal/merchant';
 })
 export class SuperAgentService {
 
-  constructor( private superAgent:Merchant,private http: HttpClient, private globalService:GloabalServiceService) {
+  constructor(private http: HttpClient, private globalService:GloabalServiceService) {
 
    }
    superAgents(listeId:string): Observable<Merchant[]> {
@@ -18,11 +18,11 @@ export class SuperAgentService {
   // passer l id
   update(data:Merchant): Observable<String> {
     
-    return this.http.post<String>(this.globalService.baseUrl+"/api/Users/AddEditAgent",data);
+    return this.http.post<String>(this.globalService.baseUrl+"/api/Users/AddEditMerchant",data);
   }
   //id=null car l api  est generique
   create(data:any): Observable<String> {
     
-    return this.http.post<String>(this.globalService.baseUrl+"/api/Users/AddEditAgent",data);
+    return this.http.post<String>(this.globalService.baseUrl+"/api/Users/AddEditMerchant",data);
   }
 }

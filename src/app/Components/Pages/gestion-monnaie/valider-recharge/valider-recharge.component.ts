@@ -1,23 +1,29 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,  OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { GestionMonnaieShowInformationDialogComponent } from 'src/app/Components/Modals/gestion-monnaie-show-information-dialog/gestion-monnaie-show-information-dialog.component';
+import { Plafond } from 'src/app/modal/plafond';
+import { PlafondService } from 'src/app/services/plafond/plafond.service';
 
 @Component({
   selector: 'app-valider-recharge',
   templateUrl: './valider-recharge.component.html',
   styleUrls: ['./valider-recharge.component.css']
 })
-export class ValiderRechargeComponent {
+export class ValiderRechargeComponent implements OnInit {
+  displayedColumns: string[] =[];
 
-  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  ELEMENT_DATA: Plafond[] = [
+  ];
+  dataSource!:MatTableDataSource<Plafond, MatTableDataSourcePaginator>
+  
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar,public plafond:PlafondService) { }
 
   snackbar_message = "";
 
-  displayedColumns: string[] = ['Client', 'Montant (XAF)', 'Crée le', 'Traité par', 'Traité le', 'Statut', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -60,18 +66,20 @@ export class ValiderRechargeComponent {
       console.log(result);
     });
   }
-
+  ngOnInit(): void {
+    this.plafond.getDemandeAprov().subscribe(plafond=>{
+     let data:any[]=[];
+     
+     
+      this.ELEMENT_DATA =plafond.data.filter((valid:any)=>valid.statut==="En attente");
+      console.log(this.ELEMENT_DATA);
+      this.displayedColumns=['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le','Actions'];
+      this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+    
+      
+    });
+    this.displayedColumns= ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le','Actions'];
+    this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+  }
 }
-
-export interface PeriodicElement {
-  client: string;
-  montant: number;
-  statut: string;
-  created_at: string;
-  treated_by: string;
-  treated_at: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { client: "Emmanuel", montant: 40, statut: 'En cours', created_at: '14/10/2010 15:30', treated_by: "Emmanuel leuna", treated_at: '14/01/2023 14:02' },];
 

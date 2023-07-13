@@ -31,8 +31,8 @@
     <mat-stepper [linear]="isLinear" #stepper class="mat-elevation-z2 rounded">
 
       <!-- step 1 -->
-      <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup" class="mt-4 text-center">
+      <mat-step [stepControl]="myForm">
+        <form [formGroup]="myForm" class="mt-4 text-center">
           <ng-template matStepLabel>INFORMATIONS PERSONNELLES</ng-template>
 
           <p class="mb-0">
@@ -41,7 +41,7 @@
               <input
                 matInput
                 placeholder="Nom"
-                formControlName="firstCtrl"
+                formControlName="nom"
                 required
               />
             </mat-form-field>
@@ -49,39 +49,19 @@
 
           <p class="mb-0">
             <mat-form-field appearance="outline">
-              <mat-label>N° CNI</mat-label>
+              <mat-label>location</mat-label>
               <input
                 matInput
-                placeholder="N° CNI"
-                formControlName="firstCtrl"
+                placeholder=location
+                formControlName="location"
                 required
               />
             </mat-form-field>
           </p>
 
-          <p class="mb-0">
-            <mat-form-field appearance="outline">
-              <mat-label>Téléphone</mat-label>
-              <input
-                matInput
-                placeholder="Téléphone"
-                formControlName="firstCtrl"
-                required
-              />
-            </mat-form-field>
-          </p>
+          
 
-          <p>
-            <mat-form-field appearance="outline">
-              <mat-label>N° IMEI</mat-label>
-              <input
-                matInput
-                placeholder="N° IMEI"
-                formControlName="firstCtrl"
-                required
-              />
-            </mat-form-field>
-          </p>
+        
 
           <div>
             <button mat-button matStepperNext class="primary-light-button">Next</button>
@@ -90,31 +70,30 @@
       </mat-step>
 
       <!-- step 2 -->
-      <mat-step [stepControl]="secondFormGroup" label="INFORMATIONS SOCIALES">
-        <form [formGroup]="secondFormGroup" class="mt-4 text-center">
-          <p class="mb-0">
+      <mat-step [stepControl]="myForm1" label="INFORMATIONS SOCIALES">
+        <form [formGroup]="myForm1" class="mt-4 text-center">
+          <p>
             <mat-form-field appearance="outline">
-              <mat-label>Opérateur marketing</mat-label>
+              <mat-label>N° IMEI</mat-label>
               <input
                 matInput
-                placeholder="Opérateur marketing"
-                formControlName="secondCtrl"
+                placeholder="N° IMEI"
+                formControlName="imei"
                 required
               />
             </mat-form-field>
           </p>
-
           <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>merchant</mat-label>
-              <input
-                matInput
-                placeholder="merchant"
-                formControlName="secondCtrl"
-                required
-              />
+              <mat-select name="pays" placeholder="Selectionner un merchant" formControlName="merchant" required>
+                <mat-option *ngFor="let merchant of merchants" [value]="merchant.id">{{merchant.nom}}</mat-option>
+                
+              </mat-select>
             </mat-form-field>
           </p>
+
+           <!-- 
 
           <p class="mb-0">
             <mat-form-field appearance="outline">
@@ -164,16 +143,16 @@
                 formControlName="secondCtrl"
               />
             </mat-form-field>
-          </p>
+          </p> -->
 
           <div>
             <button mat-button matStepperPrevious class="primary-dark-button me-2">Back</button>
-            <button mat-button matStepperNext class="primary-light-button">Next</button>
+            <button mat-button (click)="add_agent()"  class="primary-light-button">Valider</button>
           </div>
         </form>
       </mat-step>
 
-      <!-- step 3 -->
+      <!-- step 3 
       <mat-step>
         <form class="mt-4 text-center">
           <ng-template matStepLabel>LOCALISATION</ng-template>
@@ -214,7 +193,7 @@
             <button mat-button (click)="add_agent()"  class="primary-light-button">Valider</button>
           </div>
         </form>
-      </mat-step>
+      </mat-step> -->
     </mat-stepper>
   </section>
 </main>

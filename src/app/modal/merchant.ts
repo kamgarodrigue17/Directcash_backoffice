@@ -1,13 +1,13 @@
 export class Merchant {
     
-        public ID!:String;
-        public Nom!:String;
-        public Balance!:String;
-        public Email!:String;
-        public ContactName!:String;
-        public Phone!:String;
-        public CNI!:String;
-        public Segment!:String;
+        public id!:string;
+        public nom!:string;
+        public Balance!:string;
+        public Email!:string;
+        public ContactName!:string;
+        public Phone!:string;
+        public CNI!:string;
+        public Segment!:string;
         public PayementMedthode!:String;
         public PayementAC!:String;
         public Marketer!:String;
