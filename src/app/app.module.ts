@@ -90,6 +90,9 @@ import { HttpInterceptore } from './interceptor/http.interceptor';
 import { AddDistributeurComponent } from './Components/Pages/gestion-agents/add-distributeur/add-distributeur.component';
 import { AddTopAgentComponent } from './Components/Pages/gestion-agents/add-top-agent/add-top-agent.component';
 
+import { RapportPaiementFactureEneoComponent } from './Components/Pages/rapport/rapport-paiement-facture-eneo/rapport-paiement-facture-eneo.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,6 +136,7 @@ import { AddTopAgentComponent } from './Components/Pages/gestion-agents/add-top-
     RapportMomoOmComponent,
     RapportTransfertArgentDirectcashComponent,
     RapportPaiementFactureComponent,
+    RapportPaiementFactureEneoComponent,
     RapportPaiementMarchandComponent,
     RapportRechargeMydirectcashOnlineComponent,
     RapportRechargeMydirectcashPosComponent,
