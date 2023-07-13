@@ -23,7 +23,6 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTabsModule} from '@angular/material/tabs';
 
-
 import { ConnexionComponent } from './Components/connexion/connexion.component';
 import { BaseComponent } from './Components/base/base.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
@@ -88,6 +87,11 @@ import { ChangerMotDePasseComponent } from './Components/Pages/administration/ch
 import { DistributeurComponent } from './Components/Pages/gestion-agents/distributeur/distributeur.component';
 import { TopAgentsComponent } from './Components/Pages/gestion-agents/top-agents/top-agents.component';
 import { HttpInterceptore } from './interceptor/http.interceptor';
+import { AddDistributeurComponent } from './Components/Pages/gestion-agents/add-distributeur/add-distributeur.component';
+import { AddTopAgentComponent } from './Components/Pages/gestion-agents/add-top-agent/add-top-agent.component';
+
+import { RapportPaiementFactureEneoComponent } from './Components/Pages/rapport/rapport-paiement-facture-eneo/rapport-paiement-facture-eneo.component';
+import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapport/rapport-paiement-facture-camwater/rapport-paiement-facture-camwater.component';
 
 @NgModule({
   declarations: [
@@ -132,6 +136,8 @@ import { HttpInterceptore } from './interceptor/http.interceptor';
     RapportMomoOmComponent,
     RapportTransfertArgentDirectcashComponent,
     RapportPaiementFactureComponent,
+    RapportPaiementFactureEneoComponent,
+    RapportPaiementFactureCamwaterComponent,
     RapportPaiementMarchandComponent,
     RapportRechargeMydirectcashOnlineComponent,
     RapportRechargeMydirectcashPosComponent,
@@ -153,7 +159,9 @@ import { HttpInterceptore } from './interceptor/http.interceptor';
     EtapeValidationDialogComponent,
     ChangerMotDePasseComponent,
     DistributeurComponent,
-    TopAgentsComponent
+    AddDistributeurComponent,
+    TopAgentsComponent,
+    AddTopAgentComponent
   ],
   imports: [
     BrowserModule,
