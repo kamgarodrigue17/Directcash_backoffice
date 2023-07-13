@@ -40,6 +40,7 @@ import { TopAgentsComponent } from './Components/Pages/gestion-agents/top-agents
 import { AddDistributeurComponent } from './Components/Pages/gestion-agents/add-distributeur/add-distributeur.component';
 import { AddTopAgentComponent } from './Components/Pages/gestion-agents/add-top-agent/add-top-agent.component';
 import { RapportPaiementFactureEneoComponent } from './Components/Pages/rapport/rapport-paiement-facture-eneo/rapport-paiement-facture-eneo.component';
+import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapport/rapport-paiement-facture-camwater/rapport-paiement-facture-camwater.component';
 
 
 const routes: Routes = [
@@ -79,6 +80,7 @@ const routes: Routes = [
   {path: 'rapports/transfert-argent-directcash', component: RapportTransfertArgentDirectcashComponent},
   {path: 'rapports/paiement-facture', component: RapportPaiementFactureComponent},
   {path: 'rapports/paiement-facture-eneo', component: RapportPaiementFactureEneoComponent},
+  {path: 'rapports/paiement-facture-camwater', component: RapportPaiementFactureCamwaterComponent},
   {path: 'rapports/paiement-marchand', component: RapportPaiementMarchandComponent},
   {path: 'rapports/recharges-mydirectcash-online', component: RapportRechargeMydirectcashOnlineComponent},
   {path: 'rapports/recharges-mydirectcash-pos', component: RapportRechargeMydirectcashPosComponent},

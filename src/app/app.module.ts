@@ -91,7 +91,7 @@ import { AddDistributeurComponent } from './Components/Pages/gestion-agents/add-
 import { AddTopAgentComponent } from './Components/Pages/gestion-agents/add-top-agent/add-top-agent.component';
 
 import { RapportPaiementFactureEneoComponent } from './Components/Pages/rapport/rapport-paiement-facture-eneo/rapport-paiement-facture-eneo.component';
-
+import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapport/rapport-paiement-facture-camwater/rapport-paiement-facture-camwater.component';
 
 @NgModule({
   declarations: [
@@ -137,6 +137,7 @@ import { RapportPaiementFactureEneoComponent } from './Components/Pages/rapport/
     RapportTransfertArgentDirectcashComponent,
     RapportPaiementFactureComponent,
     RapportPaiementFactureEneoComponent,
+    RapportPaiementFactureCamwaterComponent,
     RapportPaiementMarchandComponent,
     RapportRechargeMydirectcashOnlineComponent,
     RapportRechargeMydirectcashPosComponent,
