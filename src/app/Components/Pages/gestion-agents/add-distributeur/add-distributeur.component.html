@@ -29,7 +29,6 @@
 
   <section class="section dashboard">
     <mat-stepper [linear]="isLinear" #stepper class="mat-elevation-z2 rounded">
-
       <!-- step 1 -->
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup" class="mt-4 text-center">
@@ -84,7 +83,9 @@
           </p>
 
           <div>
-            <button mat-button matStepperNext class="primary-light-button">Next</button>
+            <button mat-button matStepperNext class="primary-light-button">
+              Next
+            </button>
           </div>
         </form>
       </mat-step>
@@ -106,13 +107,15 @@
 
           <p class="mb-0">
             <mat-form-field appearance="outline">
-              <mat-label>merchant</mat-label>
-              <input
-                matInput
-                placeholder="merchant"
-                formControlName="secondCtrl"
+              <mat-label>Merchant</mat-label>
+              <mat-select
+                name="ville"
+                placeholder="Selectionner un merchant"
                 required
-              />
+              >
+                <mat-option value="1">Merchant 1</mat-option>
+                <mat-option value="2">Merchant 2</mat-option>
+              </mat-select>
             </mat-form-field>
           </p>
 
@@ -157,7 +160,9 @@
 
           <p class="mb-0">
             <mat-form-field appearance="outline">
-              <mat-label>N° CNI / Numéro d'Identification Unique (NIU)</mat-label>
+              <mat-label
+                >N° CNI / Numéro d'Identification Unique (NIU)</mat-label
+              >
               <input
                 matInput
                 placeholder="N° CNI / NIU"
@@ -167,8 +172,16 @@
           </p>
 
           <div>
-            <button mat-button matStepperPrevious class="primary-dark-button me-2">Back</button>
-            <button mat-button matStepperNext class="primary-light-button">Next</button>
+            <button
+              mat-button
+              matStepperPrevious
+              class="primary-dark-button me-2"
+            >
+              Back
+            </button>
+            <button mat-button matStepperNext class="primary-light-button">
+              Next
+            </button>
           </div>
         </form>
       </mat-step>
@@ -181,7 +194,11 @@
           <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>Pays</mat-label>
-              <mat-select name="pays" placeholder="Selectionner un pays" required>
+              <mat-select
+                name="pays"
+                placeholder="Selectionner un pays"
+                required
+              >
                 <mat-option value="1">Pays 1</mat-option>
                 <mat-option value="2">Pays 2</mat-option>
               </mat-select>
@@ -191,7 +208,11 @@
           <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>Ville</mat-label>
-              <mat-select name="ville" placeholder="Selectionner une ville" required>
+              <mat-select
+                name="ville"
+                placeholder="Selectionner une ville"
+                required
+              >
                 <mat-option value="1">Ville 1</mat-option>
                 <mat-option value="2">Ville 2</mat-option>
               </mat-select>
@@ -201,17 +222,25 @@
           <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>Quartier</mat-label>
-              <input
-                matInput
-                placeholder="Quartier"
-                required
-              />
+              <input matInput placeholder="Quartier" required />
             </mat-form-field>
           </p>
 
           <div>
-            <button mat-button matStepperPrevious class="primary-dark-button me-2">Back</button>
-            <button mat-button (click)="add_distributeur()"  class="primary-light-button">Valider</button>
+            <button
+              mat-button
+              matStepperPrevious
+              class="primary-dark-button me-2"
+            >
+              Back
+            </button>
+            <button
+              mat-button
+              (click)="add_distributeur()"
+              class="primary-light-button"
+            >
+              Valider
+            </button>
           </div>
         </form>
       </mat-step>
