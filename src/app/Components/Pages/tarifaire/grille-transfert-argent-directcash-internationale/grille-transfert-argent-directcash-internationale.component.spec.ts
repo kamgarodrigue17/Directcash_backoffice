@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GrilleTransfertArgentDirectcashInternationalComponent } from './grille-transfert-argent-directcash-internationale.component';
+import { GrilleTransfertArgentDirectcashInternationaleComponent } from './grille-transfert-argent-directcash-internationale.component';
 
-describe('GrilleTransfertArgentDirectcashComponent', () => {
-  let component: GrilleTransfertArgentDirectcashInternationalComponent;
-  let fixture: ComponentFixture<GrilleTransfertArgentDirectcashInternationalComponent>;
+describe('GrilleTransfertArgentDirectcashInternationaleComponent', () => {
+  let component: GrilleTransfertArgentDirectcashInternationaleComponent;
+  let fixture: ComponentFixture<GrilleTransfertArgentDirectcashInternationaleComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [GrilleTransfertArgentDirectcashInternationalComponent]
+      declarations: [GrilleTransfertArgentDirectcashInternationaleComponent]
     });
-    fixture = TestBed.createComponent(GrilleTransfertArgentDirectcashInternationalComponent);
+    fixture = TestBed.createComponent(GrilleTransfertArgentDirectcashInternationaleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

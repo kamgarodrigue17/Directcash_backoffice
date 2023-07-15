@@ -42,6 +42,7 @@ import { AddTopAgentComponent } from './Components/Pages/gestion-agents/add-top-
 import { RapportPaiementFactureEneoComponent } from './Components/Pages/rapport/rapport-paiement-facture-eneo/rapport-paiement-facture-eneo.component';
 import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapport/rapport-paiement-facture-camwater/rapport-paiement-facture-camwater.component';
 import { GrilleTransfertArgentDirectcashInternationaleComponent } from './Components/Pages/tarifaire/grille-transfert-argent-directcash-internationale/grille-transfert-argent-directcash-internationale.component';
+import { GrilleTransfertArgentPaiementFactureEneoComponent } from './Components/Pages/tarifaire/grille-transfert-argent-paiement-facture-eneo/grille-transfert-argent-paiement-facture-eneo.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent},
@@ -73,6 +74,7 @@ const routes: Routes = [
   {path: 'tarifaire/grille-transfert-directcash-internationale', component: GrilleTransfertArgentDirectcashInternationaleComponent},
   {path: 'tarifaire/grille-transfert-mydirectcash', component: GrilleTransfertArgentMydirectcashComponent},
   {path: 'tarifaire/grille-tarifaire-paiement-facture', component: GrilleTarifairePaiementFactureComponent},
+  {path: 'tarifaire/grille-tarifaire-paiement-facture-eneo', component: GrilleTransfertArgentPaiementFactureEneoComponent},
   {path: 'tarifaire/grille-tarifaire-paiement-marchand', component: GrilleTarifairePaiementMarchandComponent},
 
   // RAPPORTS ==============================

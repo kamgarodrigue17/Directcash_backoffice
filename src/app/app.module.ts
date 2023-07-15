@@ -55,6 +55,7 @@ import { CommisionParServiceComponent } from './Components/Pages/tarifaire/commi
 import { AddCommissionDialogComponent } from './Components/Modals/add-commission-dialog/add-commission-dialog.component';
 import { GrilleTransfertArgentDirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-directcash/grille-transfert-argent-directcash.component';
 import { GrilleTransfertArgentDirectcashInternationaleComponent } from './Components/Pages/tarifaire/grille-transfert-argent-directcash-internationale/grille-transfert-argent-directcash-internationale.component';
+import { GrilleTransfertArgentPaiementFactureEneoComponent } from './Components/Pages/tarifaire/grille-transfert-argent-paiement-facture-eneo/grille-transfert-argent-paiement-facture-eneo.component';
 import { ConfirmationDialogComponent } from './Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { GrilleTransfertDirectcashDialogComponent } from './Components/Modals/grille-transfert-directcash-dialog/grille-transfert-directcash-dialog.component';
 import { GrilleTransfertArgentMydirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-mydirectcash/grille-transfert-argent-mydirectcash.component';
@@ -132,6 +133,7 @@ import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapp
     GrilleTransfertDirectcashDialogComponent,
     GrilleTransfertArgentMydirectcashComponent,
     GrilleTarifairePaiementFactureComponent,
+    GrilleTransfertArgentPaiementFactureEneoComponent,
     GrilleTarifairePaiementMarchandComponent,
     RapportAirtimeComponent,
     AddAgentComponent,

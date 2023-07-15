@@ -9,11 +9,11 @@ import { Fees } from 'src/app/modal/fees';
 import { FeesService } from 'src/app/services/fees.service';
 
 @Component({
-  selector: 'app-grille-transfert-argent-directcash-internationale',
-  templateUrl: './grille-transfert-argent-directcash-internationale.component.html',
-  styleUrls: ['./grille-transfert-argent-directcash-internationale.component.css']
+  selector: 'app-grille-transfert-argent-paiement-facture-eneo',
+  templateUrl: './grille-transfert-argent-paiement-facture-eneo.component.html',
+  styleUrls: ['./grille-transfert-argent-paiement-facture-eneo.component.css']
 })
-export class GrilleTransfertArgentDirectcashInternationaleComponent implements OnInit{
+export class GrilleTransfertArgentPaiementFactureEneoComponent implements OnInit{
 
   displayedColumns: string[] =[];
   ELEMENT_DATA:Fees[] = [
@@ -37,7 +37,7 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
 
   open_export_dialog() {
     const export_dialog = this.dialog.open(ExportComponent, {
-      data: { title: "des grilles de transfert DirecCash Internationale" }
+      data: { title: "des grilles de transfert DirecCash" }
     });
 
     export_dialog.afterClosed().subscribe(result => {
@@ -49,7 +49,7 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
     const add_grille_dialog = this.dialog.open(GrilleTransfertDirectcashDialogComponent, {
       data:{
         mode: mode,
-        object: 'directcash internationale'
+        object: 'paiement facture eneo'
       }
     });
 
@@ -71,7 +71,7 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
     });
   }
   ngOnInit(): void {
-    this.feesService.getfees("xfertintl").subscribe(fees=>{
+    this.feesService.getfees("eneo").subscribe(fees=>{
       this.ELEMENT_DATA =fees.data;
       console.log(this.ELEMENT_DATA);
       this.displayedColumns= ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
