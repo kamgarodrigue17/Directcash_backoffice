@@ -54,6 +54,9 @@ import { NotifierRechargeDialogComponent } from './Components/Modals/notifier-re
 import { CommisionParServiceComponent } from './Components/Pages/tarifaire/commision-par-service/commision-par-service.component';
 import { AddCommissionDialogComponent } from './Components/Modals/add-commission-dialog/add-commission-dialog.component';
 import { GrilleTransfertArgentDirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-directcash/grille-transfert-argent-directcash.component';
+import { GrilleTransfertArgentDirectcashInternationaleComponent } from './Components/Pages/tarifaire/grille-transfert-argent-directcash-internationale/grille-transfert-argent-directcash-internationale.component';
+import { GrilleTransfertArgentPaiementFactureEneoComponent } from './Components/Pages/tarifaire/grille-transfert-argent-paiement-facture-eneo/grille-transfert-argent-paiement-facture-eneo.component';
+import { GrilleTransfertArgentPaiementFactureCamwaterComponent } from './Components/Pages/tarifaire/grille-transfert-argent-paiement-facture-camwater/grille-transfert-argent-paiement-facture-camwater.component';
 import { ConfirmationDialogComponent } from './Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { GrilleTransfertDirectcashDialogComponent } from './Components/Modals/grille-transfert-directcash-dialog/grille-transfert-directcash-dialog.component';
 import { GrilleTransfertArgentMydirectcashComponent } from './Components/Pages/tarifaire/grille-transfert-argent-mydirectcash/grille-transfert-argent-mydirectcash.component';
@@ -126,10 +129,13 @@ import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapp
     CommisionParServiceComponent,
     AddCommissionDialogComponent,
     GrilleTransfertArgentDirectcashComponent,
+    GrilleTransfertArgentDirectcashInternationaleComponent,
     ConfirmationDialogComponent,
     GrilleTransfertDirectcashDialogComponent,
     GrilleTransfertArgentMydirectcashComponent,
     GrilleTarifairePaiementFactureComponent,
+    GrilleTransfertArgentPaiementFactureEneoComponent,
+    GrilleTransfertArgentPaiementFactureCamwaterComponent,
     GrilleTarifairePaiementMarchandComponent,
     RapportAirtimeComponent,
     AddAgentComponent,
