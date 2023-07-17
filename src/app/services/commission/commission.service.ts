@@ -16,4 +16,9 @@ export class CommissionService  {
   
     return this.http.get<any>(this.globalService.baseUrl+"/api/Operations/GetCommissions?id="+localStorage.getItem("id"));
   }
+  editcommissions(data:any): Observable<any> {
+  
+    return this.http.post<any>(this.globalService.baseUrl+"/api/Operations/Commissions/Edit?adminId="+`${localStorage.getItem('id')}`,data);
+  }
+  
 }

@@ -46,7 +46,7 @@
       <!-- Montant (XAF) Column -->
       <ng-container matColumnDef="Montant (XAF)">
         <th mat-header-cell *matHeaderCellDef>Montant (XAF)</th>
-        <td mat-cell *matCellDef="let element">{{ element.montant }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
       </ng-container>
 
       <!-- Statut Column -->
@@ -92,7 +92,7 @@
           <ul class="list-group list-group-horizontal" style="max-width: 180px">
             <li class="list-group-item border-0 pe-2 ps-0">
               <button
-              (click)="valider_recharge()"
+              (click)="valider_recharge(element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #02c29c36"

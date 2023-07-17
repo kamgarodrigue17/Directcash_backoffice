@@ -48,17 +48,17 @@ export class ApprovisionerAgenceComponent implements OnInit {
   open_appr_agence_dialog() {
     const appr_agence_dialog = this.dialog.open(ApprovisionnerAgenceDialogComponent, {
       data: {
-        object: 'agence'
+        object: 'agence',
       }
     });
 
-    appr_agence_dialog.afterClosed().subscribe(result => {
+   /* appr_agence_dialog.afterClosed().subscribe(result => {
 
       if(result==true){
         this.router.navigateByUrl("gestion-monnaie/approvisionner-agence/valider");
       }
       console.log(result);
-    });
+    });*/
   }
   ngOnInit(): void {
     this.plafond.getDemandeAprov().subscribe(plafond=>{

@@ -18,7 +18,7 @@
 
     <div class="d-sm-flex">
       <button
-        (click)="open_add_commission_dialog('add')"
+        (click)="open_add_commission_dialog('add',{})"
         mat-raised-button
         class="primary-light-button text-center me-2 w-100 mb-3 mb-sm-0 mb-md-0 mb-lg-0 mb-xl-0"
       >
@@ -108,7 +108,7 @@
           <ul class="list-group list-group-horizontal" style="max-width: 180px">
             <li class="list-group-item border-0 pe-2 ps-0">
               <button
-                (click)="open_add_commission_dialog('edit')"
+                (click)="open_add_commission_dialog('edit',element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #02c29c36"
@@ -128,7 +128,7 @@
             </li>
             <li class="list-group-item border-0 pe-0 ps-0">
               <button
-                (click)="open_add_commission_dialog('show')"
+                (click)="open_add_commission_dialog('show',element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #e6e6e6"

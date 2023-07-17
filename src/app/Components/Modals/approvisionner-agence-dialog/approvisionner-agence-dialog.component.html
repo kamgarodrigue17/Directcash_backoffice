@@ -11,27 +11,33 @@
 <mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
   <form #form="ngForm">
     <div class="row">
-      <mat-form-field class="w-100" [hidden]="object=='super-agent' ">
+      <mat-form-field class="w-100" appearance="outline">
         <mat-label>Merchant</mat-label>
-        <mat-select required>
-          <mat-option value="1">Merchant 1</mat-option>
-          <mat-option value="2">Merchant 2</mat-option>
-          <mat-option value="3">Merchant 3</mat-option>
+        <mat-select name="merchant" [(ngModel)]="id"  >
+          <mat-option *ngFor="let merchant of merchants" [value]="merchant.id">{{merchant.nom}}</mat-option>
+
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="w-100" [hidden]="object=='agence' ">
+     <!---
+     <mat-form-field class="w-100" [hidden]="object=='agence' ">
         <mat-label>Super agent</mat-label>
         <mat-select required>
           <mat-option value="1">Super agent 1</mat-option>
           <mat-option value="2">Super agent 2</mat-option>
           <mat-option value="3">Super agent 3</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
     </div>
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Montant (XAF)</mat-label>
-        <input matInput required type="number" placeholder="0.00" ngModel/>
+        <input matInput required type="number" ngModel [(ngModel)]="amount" placeholder="0.00" ngModel/>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput required  ngModel [(ngModel)]="password" placeholder="Mot de passe" ngModel/>
       </mat-form-field>
     </div>
   </form>
@@ -42,6 +48,7 @@
   <button
     class="w-100 primary-light-button"
     mat-button
+    (click)="valide()"
     [mat-dialog-close]="true"
   >
     Continuer

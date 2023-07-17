@@ -17,13 +17,13 @@
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Nom</mat-label>
-          <input required matInput placeholder="Nom" name="nom" ngModel [(ngModel)]="nom" [readonly]="mode=='show' " />
+          <input required matInput placeholder="Nom" name="nom" ngModel [(ngModel)]="agent.agentName" [readonly]="mode=='show' " />
         </mat-form-field>
       </div>
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Merchant</mat-label>
-          <mat-select name="merchant" [(ngModel)]="merchant" [disabled]="mode=='show' ">
+          <mat-select name="merchant" [(ngModel)]="agent.merchantName" [disabled]="mode=='show' ">
             <mat-option value="1">Merchant 1</mat-option>
             <mat-option value="2">Mercahnt 2</mat-option>
           </mat-select>
@@ -34,13 +34,13 @@
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>N° IMEI du téléphone</mat-label>
-          <input required matInput placeholder="N° IMEI" name="imei" ngModel [(ngModel)]="imei" [readonly]="mode=='show' "/>
+          <input required matInput placeholder="N° IMEI" name="imei" ngModel [(ngModel)]="agent.imei" [readonly]="mode=='show' "/>
         </mat-form-field>
       </div>
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Agence</mat-label>
-          <mat-select name="agence" [(ngModel)]="agence" [disabled]="mode=='show' ">
+          <mat-select name="agence" [(ngModel)]="agent.agentNo" [disabled]="mode=='show' ">
             <mat-option value="1">Agence 1</mat-option>
             <mat-option value="2">Agence 2</mat-option>
           </mat-select>
@@ -51,14 +51,14 @@
     <div class="row">
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Téléphone</mat-label>
-          <input required matInput placeholder="Téléphone" name="tel" ngModel [readonly]="mode=='show' " />
+          <mat-label>Entreprise</mat-label>
+          <input required matInput placeholder="Entreprise" name="tel" ngModel  [(ngModel)]="agent.entreprise" [readonly]="mode=='show' " />
         </mat-form-field>
       </div>
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Solde (XAF)</mat-label>
-          <input required type="number" matInput placeholder="0.00" name="solde" ngModel [readonly]="mode=='show' " />
+          <input required type="number" matInput placeholder="0.00" name="solde" ngModel [(ngModel)]="agent.balance"  [readonly]="mode=='show' " />
         </mat-form-field>
       </div>
     </div>
@@ -90,7 +90,7 @@
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Date de création</mat-label>
-          <input required matInput placeholder="0.00" name="created_at" ngModel [(ngModel)]="now" readonly/>
+          <input required matInput placeholder="0.00" name="created_at" ngModel [(ngModel)]="agent.creerLe" readonly/>
         </mat-form-field>
       </div>
     </div>

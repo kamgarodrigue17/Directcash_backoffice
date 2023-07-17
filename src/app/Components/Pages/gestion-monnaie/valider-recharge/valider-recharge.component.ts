@@ -6,6 +6,7 @@ import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/materi
 import { GestionMonnaieShowInformationDialogComponent } from 'src/app/Components/Modals/gestion-monnaie-show-information-dialog/gestion-monnaie-show-information-dialog.component';
 import { Plafond } from 'src/app/modal/plafond';
 import { PlafondService } from 'src/app/services/plafond/plafond.service';
+import { ValidationService } from 'src/app/services/validation/validation.service';
 
 @Component({
   selector: 'app-valider-recharge',
@@ -19,7 +20,7 @@ export class ValiderRechargeComponent implements OnInit {
   ];
   dataSource!:MatTableDataSource<Plafond, MatTableDataSourcePaginator>
   
-  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar,public plafond:PlafondService) { }
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar,public plafond:PlafondService,public valideservice:ValidationService) { }
 
   snackbar_message = "";
 
@@ -37,12 +38,23 @@ export class ValiderRechargeComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  valider_recharge() {
+  valider_recharge(valid:any) {
+  let  data:any={
+      "merchantId": `${valid.merchant}`,
+      "amount": valid.amount,
+      "createBy": valid.creerPar,
+        "password": "12345"
+    }
+    console.log(data);
     this.snackbar_message = "La recharge a été validée avec succès";
     let snackBarRef = this._snackBar.open(this.snackbar_message, 'Ok');
 
     snackBarRef.onAction().subscribe(() => {
-      snackBarRef.dismiss();
+      this.valideservice.suplyvalidate(data).subscribe(res=>{
+        console.log(res)
+        snackBarRef.dismiss();
+      });
+      
     });
 
   }
@@ -69,7 +81,7 @@ export class ValiderRechargeComponent implements OnInit {
   ngOnInit(): void {
     this.plafond.getDemandeAprov().subscribe(plafond=>{
      let data:any[]=[];
-     
+//https://cvdesignr.com/p/62debc8614a1f
      
       this.ELEMENT_DATA =plafond.data.filter((valid:any)=>valid.statut==="En attente");
       console.log(this.ELEMENT_DATA);

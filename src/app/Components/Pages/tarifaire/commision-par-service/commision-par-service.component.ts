@@ -36,10 +36,11 @@ dataSource!:MatTableDataSource<Commission, MatTableDataSourcePaginator>
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  open_add_commission_dialog(mode: string) {
+  open_add_commission_dialog(mode: string,commision:any) {
     const commission_dialog = this.dialog.open(AddCommissionDialogComponent, {
       data:{
-        mode: mode
+        mode: mode,
+        element:commision
       }
     });
 
