@@ -22,8 +22,8 @@ export class ValiderRechargeComponent implements OnInit {
   constructor(public dialog: MatDialog, private _snackBar: MatSnackBar,public plafond:PlafondService) { }
 
   snackbar_message = "";
-
-
+  alert_message = "";
+  alert_type = "";
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -31,30 +31,30 @@ export class ValiderRechargeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  closeAlert() {
+    const alert = document.getElementById("alert");
+    alert?.classList.add("d-none");
+  }
+  openAlert() {
+    const alert = document.getElementById("alert");
+    alert?.classList.remove("d-none");
+  }
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+  
   valider_recharge() {
-    this.snackbar_message = "La recharge a été validée avec succès";
-    let snackBarRef = this._snackBar.open(this.snackbar_message, 'Ok');
-
-    snackBarRef.onAction().subscribe(() => {
-      snackBarRef.dismiss();
-    });
-
+    this.alert_type = "success";
+    this.alert_message = "La recharge a été validée avec succès";
+    this.openAlert();
   }
 
-
   rejeter_recharge() {
-    this.snackbar_message = "La recharge a été rejetée avec succès";
-    let snackBarRef = this._snackBar.open(this.snackbar_message, 'Ok');
-
-    snackBarRef.onAction().subscribe(() => {
-      snackBarRef.dismiss();
-    });
+    this.alert_type = "info";
+    this.alert_message = "La recharge a été rejetée avec succès";
+    this.openAlert();
   }
 
   show_information() {
