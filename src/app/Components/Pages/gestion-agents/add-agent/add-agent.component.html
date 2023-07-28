@@ -87,11 +87,50 @@
             <mat-form-field appearance="outline">
               <mat-label>merchant</mat-label>
               <mat-select name="pays" placeholder="Selectionner un merchant" formControlName="merchant" required>
-                <mat-option *ngFor="let merchant of merchants" [value]="merchant.id">{{merchant.nom}}</mat-option>
+                <mat-option *ngFor="let merchant of merchants" [value]="merchant.merchantID">{{merchant.nom}}</mat-option>
                 
               </mat-select>
             </mat-form-field>
           </p>
+          <p class="text-primary">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            <span>Qui contacter en cas d'urgence (optionnel)</span>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Nom du contact</mat-label>
+              <input
+                matInput
+                placeholder="Nom du contact"
+                formControlName="nomContact"
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° de téléphone du contact</mat-label>
+              <input
+                matInput
+                placeholder="N° de téléphone du contact"
+                formControlName="phoneContact"
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° CNI / Numéro d'Identification Unique (NIU)</mat-label>
+              <input
+                matInput
+                placeholder="N° CNI / NIU"
+                formControlName="cniContact"
+              />
+            </mat-form-field>
+          </p>
+
+         
 
            <!-- 
 

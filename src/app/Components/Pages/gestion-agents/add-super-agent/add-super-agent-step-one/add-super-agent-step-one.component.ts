@@ -37,25 +37,18 @@ export class AddSuperAgentStepOneComponent implements OnInit  {
     "cni": this.myForm.value.cni,
     "superMerchant":`${this.myForm1.value.superMerchant}` ,
     "imei":this.myForm.value.imei ,
-    "id":"0",
-    "adminId":localStorage.getItem('id')
+    "id":"",
+    "adminId":localStorage.getItem('id'),
+    "contribuable":this.myForm1.value.contribuable,
+    "OperateurMarketing":this.myForm1.value.OperateurMarketing,
+    "region":this.myForm.value.region,
+    "phoneContact":this.myForm1.value.phoneContact ,
+    "cniContact": this.myForm1.value.cniContact,
+   
     };
-   let dara:any={
-      "cni": "kkk",
-      "contactName": "test",
-      "imei": "test",
-      "nom": "testname",
-      "phone": "681176708",
-      "id": "0",
-      "email": "kam@gmail.com",
-      "adminId":"tabetsing",
-      "superMerchant": "null"
-      
-      
-     
-    }
+  
     console.log(data);
-    console.log(dara);
+    
   this.merchantService.create(data).subscribe(res=>{
       console.log(res);
       this._router.navigateByUrl("/gestion-agents/super-agents");
@@ -75,13 +68,17 @@ export class AddSuperAgentStepOneComponent implements OnInit  {
       cni: new FormControl('', Validators.required),
       
       imei: new FormControl('', Validators.required),
-      
+      region:new FormControl('', Validators.required),
       });
       this.myForm1= new FormGroup({
        
         email: new FormControl('', Validators.required),
         contactName:new FormControl('', Validators.required),
         superMerchant: new FormControl('', Validators.required),
+        contribuable: new FormControl('', Validators.required),
+        OperateurMarketing:new FormControl('', Validators.required),
+        phoneContact:new FormControl('', Validators.required),
+        cniContact:new FormControl('', Validators.required),
         
       
         

@@ -36,10 +36,11 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  editer_habilitation(mode: string) {
+  editer_habilitation(mode: string,data:any) {
    const habilitation_dialog = this.dialog.open(HabilitationDialogComponent, {
       data: {
-        mode: mode
+        mode: mode,
+        element:data
       }
     });
 
@@ -77,11 +78,11 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
       
       this.ELEMENT_DATA=habi.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns= ['Intitulé', 'Crée par', 'Crée le', 'Statut', 'Actions'];
+      this.displayedColumns= ['Intitulé', 'Description','Crée par', 'Crée le', 'Actions'];
       this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
     
     });
-    this.displayedColumns= ['Intitulé', 'Crée par', 'Crée le', 'Statut', 'Actions'];
+    this.displayedColumns= ['Intitulé', 'Description','Crée par', 'Crée le', 'Actions'];
     this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
   
   }

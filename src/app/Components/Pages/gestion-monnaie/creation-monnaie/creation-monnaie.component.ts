@@ -33,8 +33,8 @@ dataSource!:MatTableDataSource<Plafond, MatTableDataSourcePaginator>
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  open_edit_plafond_dialog() {
-    const edit_plafond_dialog = this.dialog.open(NotifierRechargeDialogComponent, {});
+  open_edit_plafond_dialog(element:any) {
+    const edit_plafond_dialog = this.dialog.open(NotifierRechargeDialogComponent, {data:element});
 
     edit_plafond_dialog.afterClosed().subscribe(result => {
       console.log(result);

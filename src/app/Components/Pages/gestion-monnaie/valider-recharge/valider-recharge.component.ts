@@ -51,7 +51,7 @@ export class ValiderRechargeComponent implements OnInit {
 
     snackBarRef.onAction().subscribe(() => {
       this.valideservice.suplyvalidate(data).subscribe(res=>{
-        console.log(res)
+        console.log(res )
         snackBarRef.dismiss();
       });
       
@@ -69,9 +69,9 @@ export class ValiderRechargeComponent implements OnInit {
     });
   }
 
-  show_information() {
+  show_information(data:any) {
     const show_info_dialog = this.dialog.open(GestionMonnaieShowInformationDialogComponent, {
-      data: {}
+      data: data
     });
 
     show_info_dialog.afterClosed().subscribe(result => {

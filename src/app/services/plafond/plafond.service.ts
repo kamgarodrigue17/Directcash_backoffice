@@ -26,6 +26,10 @@ export class PlafondService {
     "traiterPar": null,
     "traiterLe": null
 };
+changeplafond(data:any): Observable<any> {
+  
+  return this.http.post<any>(this.globalService.baseUrl+"/api/Monnetique/Stock/changePlafond",data);
+}
   getDemandeAprov(): Observable<any> {
   
     return this.http.get<any>(this.globalService.baseUrl+`/api/Monnetique/Merchant/Supply/Pendingrequest?userId=${localStorage.getItem('id')}&filterStatus=&filterMerchant=&filterTraiterPar=&filterCreerPar=`);

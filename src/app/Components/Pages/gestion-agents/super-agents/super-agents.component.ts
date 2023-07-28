@@ -49,10 +49,11 @@ dataSource!:MatTableDataSource<Merchant, MatTableDataSourcePaginator>
     });
   }
 
-  open_show_super_agent_dialog(mode: string) {
+  open_show_super_agent_dialog(mode: string,data:any) {
     const show_super_agent_dialog = this.dialog.open(ShowSuperAgengDialogComponent, {
       data:{
-        mode: mode
+        mode: mode,
+        element:data
       }
     });
 

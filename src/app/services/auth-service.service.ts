@@ -18,6 +18,14 @@ export class AuthServiceService {
     console.log(this.globalService.baseUrl);
     return this.http.post<any>(this.globalService.baseUrl+"/api/Authentication/authenticate",data);
   }
+refreshToken(): any  {
+ let  data:any=localStorage.getItem("user")
+    
+    this.http.post<any>(this.globalService.baseUrl+"/api/Authentication/refreshToken?id="+localStorage.getItem("id"),JSON.parse(data)).subscribe(ress=>{
+      localStorage.setItem("token",ress.data.token);
+     
+    });
+  }
   getMenu(): Observable<any[]> {
     return this.http.get<any>(this.globalService.baseUrl+"/api/Authentication/getMenus?id=<string>");
   }

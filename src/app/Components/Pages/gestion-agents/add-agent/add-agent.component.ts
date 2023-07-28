@@ -39,7 +39,15 @@ export class AddAgentComponent implements OnInit {
   "location": this.myForm.value.location,
   "id": "0",
   "modifiedBy": "",
-  "adminId":localStorage.getItem('id')
+  "adminId":localStorage.getItem('id'),
+  "contribuable":"",
+  "phoneContact":"",
+  "nomContact":"",
+  "cniContact":"",
+  "region":"",
+  "email":""
+  
+
     };
     console.log(data);
     this.agentservice.create(data).subscribe(res=>{

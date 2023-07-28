@@ -32,7 +32,7 @@
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Taux (%)</mat-label>
-        <input matInput required type="number" placeholder="0.00" [readonly]="mode=='show' "/>
+        <input matInput required type="number" name="valeur"  [(ngModel)]="this.comissionm.valeur"  placeholder="{{this.comissionm.valeur}}" [readonly]="mode=='show' "/>
       </mat-form-field>
       <mat-form-field appearance="outline" [hidden]="mode=='add' ">
         <mat-label>Crée par</mat-label>
@@ -59,6 +59,7 @@
     mat-button
     [mat-dialog-close]="true"
     [hidden]="mode=='show' "
+    (click)="edit()"
   >
     Sauvegarder
   </button>

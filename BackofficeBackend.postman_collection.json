@@ -1,0 +1,1046 @@
+{
+	"info": {
+		"_postman_id": "6996d56c-4c25-46b7-9a76-07efb976949c",
+		"name": "BackofficeBackend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15626290"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "GetReportList",
+							"item": [
+								{
+									"name": "/api/Users/GetReportList",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Users/GetReportList?id=tabetsing&listeId=Merchants",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Users",
+												"GetReportList"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "tabetsing"
+												},
+												{
+													"key": "listeId",
+													"value": "Merchants"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Users/GetReportList?id=<string>&listeId=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Users",
+														"GetReportList"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														},
+														{
+															"key": "listeId",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "AddEditMerchant",
+							"item": [
+								{
+									"name": "/api/Users/AddEditMerchant",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"cni\": \"kkk\",\n  \"contactName\": \"test\",\n  \"imei\": \"test\",\n  \"nom\": \"testname\",\n  \"phone\": \"681176708\",\n  \"id\": \"0\",\n  \"email\": \"kam@gmail.com\",\n  \"adminId\":\"tabetsing\",\n  \"superMerchant\": \"null\"\n  \n  \n \n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Users/AddEditMerchant",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Users",
+												"AddEditMerchant"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"cni\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"imei\": \"<string>\",\n  \"nom\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"id\": \"<string>\",\n  \"balance\": \"<string>\",\n  \"email\": \"<string>\",\n  \"segment\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"paymentAc\": \"<string>\",\n  \"marketer\": \"<string>\",\n  \"superMerchant\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"department\": \"<string>\",\n  \"district\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Users/AddEditMerchant",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Users",
+														"AddEditMerchant"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "AddEditAgent",
+							"item": [
+								{
+									"name": "/api/Users/AddEditAgent",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"imei\": \"1455666\",\n  \"nom\": \"rodrigue\",\n  \"merchant\": \"202463001\",\n  \"location\": \"yaounde\",\n  \"id\": \"0\",\n  \"modifiedBy\": \"\",\n  \"adminId\":\"tabetsing\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Users/AddEditAgent",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Users",
+												"AddEditAgent"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"imei\": \"<string>\",\n  \"nom\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"modifiedBy\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Users/AddEditAgent",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Users",
+														"AddEditAgent"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Operations",
+					"item": [
+						{
+							"name": "GetTransactions",
+							"item": [
+								{
+									"name": "/api/Operations/GetTransactions",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Operations/GetTransactions?id=tabetsing&trxType=bills&forWho=&startDate=2023-1-8&endDate=2023-6-5",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Operations",
+												"GetTransactions"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "tabetsing"
+												},
+												{
+													"key": "trxType",
+													"value": "bills"
+												},
+												{
+													"key": "forWho",
+													"value": ""
+												},
+												{
+													"key": "startDate",
+													"value": "2023-1-8"
+												},
+												{
+													"key": "endDate",
+													"value": "2023-6-5"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Operations/GetTransactions?id=<string>&trxType=<string>&forWho=<string>&startDate=<string>&endDate=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Operations",
+														"GetTransactions"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														},
+														{
+															"key": "trxType",
+															"value": "<string>"
+														},
+														{
+															"key": "forWho",
+															"value": "<string>"
+														},
+														{
+															"key": "startDate",
+															"value": "<string>"
+														},
+														{
+															"key": "endDate",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "GetServiceFees",
+							"item": [
+								{
+									"name": "/api/Operations/GetServiceFees",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InRhYmV0c2luZyIsInJvbGUiOiJBZG1pbmlzdHJhdG9yIiwibmJmIjoxNjg4OTMwODY3LCJleHAiOjE2ODg5MzE0NjcsImlhdCI6MTY4ODkzMDg2N30.FKU8jSwONL8fROA6z02GFo9Rxm87nkKdYH5Kab-inrA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Operations/GetServiceFees?serviceId=xfert&who=tabetsing",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Operations",
+												"GetServiceFees"
+											],
+											"query": [
+												{
+													"key": "serviceId",
+													"value": "xfert"
+												},
+												{
+													"key": "who",
+													"value": "tabetsing"
+												},
+												{
+													"key": "",
+													"value": "xfert,xfertintl,eneo,camwater",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Operations/GetServiceFees?serviceId=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Operations",
+														"GetServiceFees"
+													],
+													"query": [
+														{
+															"key": "serviceId",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "GetCommissions",
+							"item": [
+								{
+									"name": "/api/Operations/GetCommissions",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Ik9sb21vIiwicm9sZSI6IlJvbGUiLCJuYmYiOjE2ODg5MjU1NTcsImV4cCI6MTY4ODkyNjE1NywiaWF0IjoxNjg4OTI1NTU3fQ.mQNfDx84hTSa3tmWN_W2g0VmCLdKwyDcnpsnpl-ozcY",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Operations/GetCommissions",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Operations",
+												"GetCommissions"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "tabetsing",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Operations/GetCommissions?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Operations",
+														"GetCommissions"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Commissions",
+							"item": [
+								{
+									"name": "Edit",
+									"item": [
+										{
+											"name": "/api/Operations/Commissions/Edit",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"id\": 4,\r\n            \"valeur\": 4,\r\n    \"modifierPar\":\"tabetsing\"\r\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Operations/Commissions/Edit?adminId=tabetsing",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Operations",
+														"Commissions",
+														"Edit"
+													],
+													"query": [
+														{
+															"key": "adminId",
+															"value": "tabetsing"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/Operations/Commissions/Edit?adminId=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Operations",
+																"Commissions",
+																"Edit"
+															],
+															"query": [
+																{
+																	"key": "adminId",
+																	"value": "<string>"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "AddEditServiceFee",
+							"item": [
+								{
+									"name": "/api/Operations/AddEditServiceFee",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"isActive\": \"<boolean>\",\n  \"service\": \"<string>\",\n  \"adminId\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "/api/Operations/AddEditServiceFee",
+											"path": [
+												"api",
+												"Operations",
+												"AddEditServiceFee"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"isActive\": \"<boolean>\",\n  \"service\": \"<string>\",\n  \"adminId\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Operations/AddEditServiceFee",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Operations",
+														"AddEditServiceFee"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "refreshToken",
+							"item": [
+								{
+									"name": "/api/Authentication/refreshToken",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Authentication/refreshToken?id=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Authentication",
+												"refreshToken"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Authentication/refreshToken?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Authentication",
+														"refreshToken"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "logout",
+							"item": [
+								{
+									"name": "/api/Authentication/logout",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Authentication/logout?id=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Authentication",
+												"logout"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Authentication/logout?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Authentication",
+														"logout"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "getMenus",
+							"item": [
+								{
+									"name": "/api/Authentication/getMenus",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InRhYmV0c2luZyIsInJvbGUiOiJBZG1pbmlzdHJhdG9yIiwibmJmIjoxNjg4OTMyODc1LCJleHAiOjE2ODg5MzM0NzUsImlhdCI6MTY4ODkzMjg3NX0.7i5t1ZGnTWTcJmP_1NkcBCwSK59bbUvP7x-z14HDF0Y",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Authentication/getMenus?id=tabetsing",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Authentication",
+												"getMenus"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "tabetsing"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Authentication/getMenus?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Authentication",
+														"getMenus"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "authenticate",
+							"item": [
+								{
+									"name": "/api/Authentication/authenticate",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"password\":\"12345\" ,\n  \"username\": \"tabetsing\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Authentication/authenticate",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Authentication",
+												"authenticate"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Authentication/authenticate",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Authentication",
+														"authenticate"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "GetTransactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://apibackoffice.alliancefinancialsa.com/api/Operations/GetTransactions?id=tabetsing&trxType=ommomo&forWho=&startDate=2023-6-1&endDate=2023-07-09",
+					"protocol": "https",
+					"host": [
+						"apibackoffice",
+						"alliancefinancialsa",
+						"com"
+					],
+					"path": [
+						"api",
+						"Operations",
+						"GetTransactions"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "tabetsing"
+						},
+						{
+							"key": "trxType",
+							"value": "ommomo"
+						},
+						{
+							"key": "forWho",
+							"value": ""
+						},
+						{
+							"key": "startDate",
+							"value": "2023-6-1"
+						},
+						{
+							"key": "endDate",
+							"value": "2023-07-09"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}

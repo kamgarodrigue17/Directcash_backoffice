@@ -37,9 +37,12 @@ export class ConnexionComponent implements OnInit {
     };
       console.log(data);
      this.authService.Login(this.myForm.value).subscribe(user=>{
-      console.log(user.data.token.token);
+      
       localStorage.setItem("id",user.data.userName);
-    localStorage.setItem("token",user.data.token.token)
+     user.data.token.refreshToken="null";
+   localStorage.setItem("token",user.data.token.token)
+      localStorage.setItem("user",JSON.stringify(user.data));
+    
       console.log(this.myForm.value);
       this.router.navigateByUrl('/dashboard');
      },error => {

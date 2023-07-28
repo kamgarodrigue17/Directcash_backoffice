@@ -51,10 +51,11 @@ dataSource!:MatTableDataSource<User, MatTableDataSourcePaginator>
     });
   }
 
-  open_admin_dialog(mode: string) {
+  open_admin_dialog(mode: string,element:any) {
     const add_agent_dialog = this.dialog.open(AdminDialogComponent, {
       data: {
-        mode: mode
+        mode: mode,
+        data:element
       }
     });
 

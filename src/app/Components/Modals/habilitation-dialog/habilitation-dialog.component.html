@@ -13,10 +13,19 @@
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Intitulé</mat-label>
-        <input matInput required type="text" placeholder="Intitulé" ngModel/>
+        <input matInput required type="text" placeholder="Intitulé" ngModel name="label" [(ngModel)]="data.label"  [value]="data.label"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput required type="text" placeholder="Intitulé" ngModel name="description" [(ngModel)]="data.description" [value]="data.description"/>
       </mat-form-field>
     </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput required type="text" placeholder="Mot de passe" ngModel name="pass" [(ngModel)]="data.pass"/>
+    </mat-form-field>
   </form>
+  
 
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="p-3 pt-1">
@@ -24,6 +33,7 @@
     class="w-100 primary-light-button"
     mat-button
     [mat-dialog-close]="true"
+    (click)="valide()"
   >
     Sauvegarder
   </button>

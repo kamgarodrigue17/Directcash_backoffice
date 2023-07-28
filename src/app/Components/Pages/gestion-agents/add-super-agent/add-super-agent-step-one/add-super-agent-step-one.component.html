@@ -82,6 +82,17 @@
               />
             </mat-form-field>
           </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Region</mat-label>
+              <input
+                matInput
+                placeholder="Region"
+                formControlName="region"
+                required
+              />
+            </mat-form-field>
+          </p>
 
           <div>
             <button mat-button matStepperNext class="primary-light-button">Next</button>
@@ -92,12 +103,23 @@
       <!-- step 2 -->
       <mat-step [stepControl]="myForm1" label="INFORMATIONS SOCIALES">
         <form [formGroup]="myForm1" class="mt-4 text-center">
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Opérateur marketing</mat-label>
+              <input
+                matInput
+                placeholder="Opérateur marketing"
+                formControlName="OperateurMarketing"
+                required
+              />
+            </mat-form-field>
+          </p>
           
           <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>merchant</mat-label>
               <mat-select name="pays" placeholder="Selectionner un merchant" formControlName="superMerchant" required>
-                <mat-option *ngFor="let merchant of merchants" [value]="merchant.id">{{merchant.nom}}</mat-option>
+                <mat-option *ngFor="let merchant of merchants" [value]="merchant.merchantID">{{merchant.merchantID}}</mat-option>
                 
               </mat-select>
             </mat-form-field>
@@ -114,24 +136,15 @@
               />
             </mat-form-field>
           </p>
-          <p class="mb-0">
-            <mat-form-field appearance="outline">
-              <mat-label>Nom du contact</mat-label>
-              <input
-                matInput
-                placeholder="Nom du contact"
-                formControlName="contactName"
-              />
-            </mat-form-field>
-          </p>
- <!-- s
+          
+ 
           <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>N° contribuable</mat-label>
               <input
                 matInput
                 placeholder="N° contribuable"
-                formControlName="secondCtrl"
+                formControlName="contribuable"
                 required
               />
             </mat-form-field>
@@ -152,8 +165,29 @@
               />
             </mat-form-field>
           </p>
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° de téléphone du contact</mat-label>
+              <input
+                matInput
+                placeholder="N° de téléphone du contact"
+                formControlName="phoneContact"
+              />
+            </mat-form-field>
+          </p>
 
-        -->
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° CNI / Numéro d'Identification Unique (NIU)</mat-label>
+              <input
+                matInput
+                placeholder="N° CNI / NIU"
+                formControlName="cniContact"
+              />
+            </mat-form-field>
+          </p>
+
+      
 
          
 

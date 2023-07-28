@@ -17,7 +17,7 @@
     </div>
 
     <div>
-      <button (click)="editer_habilitation('add')" mat-raised-button class="primary-light-button text-center me-2">
+      <button (click)="editer_habilitation('add',{})" mat-raised-button class="primary-light-button text-center me-2">
         <mat-icon class="me-0">add</mat-icon>
       </button>
     </div>
@@ -46,9 +46,13 @@
       <!-- Intitulé Column -->
       <ng-container matColumnDef="Intitulé">
         <th mat-header-cell *matHeaderCellDef>Intitulé</th>
-        <td mat-cell *matCellDef="let element">{{ element.habilitation }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.label}}</td>
       </ng-container>
-
+ <!-- Statut Column -->
+ <ng-container matColumnDef="Description">
+  <th mat-header-cell *matHeaderCellDef>Description</th>
+  <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+</ng-container>
        <!-- Crée par Column -->
        <ng-container matColumnDef="Crée par">
         <th mat-header-cell *matHeaderCellDef>Crée par</th>
@@ -61,11 +65,7 @@
         <td mat-cell *matCellDef="let element">{{ element.creerLe }}</td>
       </ng-container>
 
-      <!-- Statut Column -->
-      <ng-container matColumnDef="Statut">
-        <th mat-header-cell *matHeaderCellDef>Statut</th>
-        <td mat-cell *matCellDef="let element">{{ element.isActive }}</td>
-      </ng-container>
+     
 
       <!-- Actions Column -->
       <ng-container matColumnDef="Actions">
@@ -80,7 +80,7 @@
           <ul class="list-group list-group-horizontal" style="max-width: 180px">
             <li class="list-group-item border-0 pe-2 ps-0">
               <button
-              (click)="editer_habilitation('edit')"
+              (click)="editer_habilitation('edit',element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #02c29c36"

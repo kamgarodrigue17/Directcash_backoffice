@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject,ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -8,8 +8,24 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./add-client-dialog.component.css']
 })
 export class AddClientDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any){}
+  client:any={
+    "matricule": "",
+            "phone": "",
+            "email": "",
+            "solde": "",
+            "statut": "",
+            "nom": "",
+            "adresse": "",
+            "sexe": "",
+            "country": ""
+  }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any){
+if (this.data.mode!="add") {
+  this.client=data.element;
+}
 
+  }
+  @ViewChild("form") form!: NgForm;
   nom = this.data.nom;
   solde = this.data.solde;
   email = this.data.email;

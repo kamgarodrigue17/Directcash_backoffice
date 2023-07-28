@@ -89,8 +89,8 @@
         <th mat-header-cell *matHeaderCellDef style="width: 180px;">Actions</th>
         <td colspan="2" class=""  mat-cell *matCellDef="let element" style="width: 180px;">
           <ul class="list-group list-group-horizontal" style="max-width: 180px;">
-            <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_show_super_agent_dialog('edit')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #02C29C36;"><mat-icon style="color: #02C29C;">edit</mat-icon></button></li>
-            <li class="list-group-item border-0 pe-0 ps-0"><button (click)="open_show_super_agent_dialog('show')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #E6E6E6;;"><mat-icon style="color: #5E5E5E;">visibility</mat-icon></button></li>
+            <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_show_super_agent_dialog('edit',element)" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #02C29C36;"><mat-icon style="color: #02C29C;">edit</mat-icon></button></li>
+            <li class="list-group-item border-0 pe-0 ps-0"><button (click)="open_show_super_agent_dialog('show',element)" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #E6E6E6;;"><mat-icon style="color: #5E5E5E;">visibility</mat-icon></button></li>
           </ul>
         </td>
       </ng-container>

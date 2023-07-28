@@ -18,7 +18,7 @@
 
 <!-- Content -->
 <mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
-  <form #add_client_form="ngForm">
+  <form #form="ngForm">
     <div class="row">
       <!-- nom -->
       <div class="col-md-12">
@@ -31,7 +31,7 @@
             placeholder="Nom"
             name="nom"
             ngModel
-            [(ngModel)]="nom"
+            [(ngModel)]="client.nom"
           />
         </mat-form-field>
       </div>
@@ -44,7 +44,7 @@
           <mat-label>Adresse Email</mat-label>
           <input
             [readonly]="mode == 'show'"
-            [(ngModel)]="email"
+            [(ngModel)]="client.email"
             required
             matInput
             placeholder="exemple@gmail.com"
@@ -61,7 +61,7 @@
           <mat-label>Solde (XAF)</mat-label>
           <input
             [readonly]="mode == 'show'"
-            [(ngModel)]="solde"
+            [(ngModel)]="client.solde"
             required
             matInput
             placeholder="0.00"
@@ -80,11 +80,11 @@
           <mat-label>Téléphone</mat-label>
           <input
             [readonly]="mode == 'show'"
-            [(ngModel)]="tel"
+            [(ngModel)]="client.phone"
             required
             matInput
             placeholder="(+237) 6..."
-            name="tel"
+            name="phone"
             ngModel
           />
         </mat-form-field>
@@ -96,7 +96,7 @@
           <mat-label>Adresse</mat-label>
           <input
             [readonly]="mode == 'show'"
-            [(ngModel)]="adresse"
+            [(ngModel)]="client.adresse"
             required
             matInput
             placeholder="Adresse"
@@ -112,7 +112,7 @@
       <div class="col-md-6">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Sexe</mat-label>
-          <mat-select name="sexe" [disabled]="mode == 'show'" required>
+          <mat-select name="sexe" ngModel [(ngModel)]="client.adresse" [disabled]="mode == 'show'" required>
             <mat-option value="1">Masculin</mat-option>
             <mat-option value="2">Feminin</mat-option>
           </mat-select>
@@ -126,7 +126,7 @@
           <mat-select
             required
             name="statut"
-            [(ngModel)]="statut"
+            [(ngModel)]="client.statut"
             [disabled]="mode == 'show'"
           >
             <mat-option value="1">Statut 1</mat-option>
@@ -143,7 +143,7 @@
         <input
           readonly="true"
           type="text"
-          [(ngModel)]="now"
+          [(ngModel)]="client.createdat"
           required
           matInput
           placeholder="jj/mm/yyy"
@@ -201,7 +201,7 @@
   <button
     class="primary-light-button"
     mat-button
-    [mat-dialog-close]="add_client_form"
+    [mat-dialog-close]="true"
     [hidden]="mode == 'show'"
   >
     Sauvegarder

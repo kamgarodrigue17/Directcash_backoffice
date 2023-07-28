@@ -13,8 +13,14 @@ export class AddAgentDialogComponent implements OnInit {
   merchants:Merchant[]=[];
 agent!:any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public agentservice:AgentServiceService){
-    console.log(data.element);
+    console.log(data);
     this.agent=data.element;
+    this.agent.id=data.element.agentNo
+    this.agent.nom="";
+    this.agent.location="";
+    this.agent.modifiedBy=localStorage.getItem("id");
+    this.agent.merchant="";
+    this.agent.adminId=localStorage.getItem("id");
   }
 
   nom: string = this.data.nom;
@@ -31,6 +37,16 @@ agent!:any;
 
   mode = this.data.mode;
   now = new Date();
+  valid(){
+    this.agent.nom=this.agent.agentName;
+   
+    this.agent.modifiedBy=localStorage.getItem("id");
+   
+    console.log(this.agent);
+    this.agentservice.create(this.agent).subscribe(ress=>{
+      console.log(ress)
+    })
+  }
 ngOnInit(): void {
   this.agentservice.Agents("Merchants").subscribe(merchants=>{
     this.merchants=merchants.data;

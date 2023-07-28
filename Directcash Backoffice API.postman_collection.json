@@ -1,0 +1,1943 @@
+{
+	"info": {
+		"_postman_id": "77b39398-c226-4049-83aa-b66bfe66090f",
+		"name": "Directcash Backoffice API",
+		"description": "An ASP.NET Core Web API for Alliance Financial Backoffice\n\nContact Support:\n Name: Alliance Financial SA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15626290"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "GetReportList",
+							"item": [
+								{
+									"name": "/api/Users/GetReportList",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Users/GetReportList?id=<string>&listeId=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Users",
+												"GetReportList"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>"
+												},
+												{
+													"key": "listeId",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Users/GetReportList?id=<string>&listeId=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Users",
+														"GetReportList"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														},
+														{
+															"key": "listeId",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "AddEditMerchant",
+							"item": [
+								{
+									"name": "/api/Users/AddEditMerchant",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \n  \n   \"id\": \"3812470012\",\n            \"balance\": \"null\",\n            \"email\": \"sifnsg\",\n            \"contactName\": \"strsing\",\n            \"phone\": \"stisng\",\n            \"cni\": \"stxng\",\n            \"segment\": \"202463\",\n            \"paymentMethod\": \"a\",\n            \"paymentAc\": \"a\",\n            \"marketer\": \"a\",\n            \"createdOn\": \"7/13/2023 7:39:44 PM\",\n            \"region\": \"SUD\",\n            \"type\": \"Normal\",\n            \"imei\": \"null\",\n            \"nom\": \"null\",\n            \"superMerchant\": \"null\",\n            \"department\": \"null\",\n            \"district\": \"null\",\n            \"operateurMarketing\": \"null\",\n            \"contribuable\": \"null\",\n            \"adminId\":\"tabetsing\"\n}\n",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Users/AddEditMerchant",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Users",
+												"AddEditMerchant"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"cni\": \"<string>\",\n  \"contactName\": \"<string>\",\n  \"imei\": \"<string>\",\n  \"nom\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"id\": \"<string>\",\n  \"balance\": \"<string>\",\n  \"email\": \"<string>\",\n  \"segment\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"paymentAc\": \"<string>\",\n  \"marketer\": \"<string>\",\n  \"superMerchant\": \"<string>\",\n  \"createdOn\": \"<string>\",\n  \"region\": \"<string>\",\n  \"department\": \"<string>\",\n  \"district\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Users/AddEditMerchant",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Users",
+														"AddEditMerchant"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "AddEditAgent",
+							"item": [
+								{
+									"name": "/api/Users/AddEditAgent",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"imei\": \" test\",\n  \"nom\": \"tesrname\",\n  \"merchant\": \"202463001\",\n  \"location\": \"yaoubde\",\n  \"id\": \"\",\n  \"modifiedBy\": \"\",\n  \"adminId\":\"tabetsing\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Users/AddEditAgent",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Users",
+												"AddEditAgent"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"imei\": \"<string>\",\n  \"nom\": \"<string>\",\n  \"merchant\": \"<string>\",\n  \"location\": \"<string>\",\n  \"id\": \"<string>\",\n  \"modifiedBy\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Users/AddEditAgent",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Users",
+														"AddEditAgent"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Operations",
+					"item": [
+						{
+							"name": "GetTransactions",
+							"item": [
+								{
+									"name": "Liste des transactions.",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Operations/GetTransactions?id=<string>&trxType=<string>&forWho=<string>&startDate=<string>&endDate=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Operations",
+												"GetTransactions"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>"
+												},
+												{
+													"key": "trxType",
+													"value": "<string>"
+												},
+												{
+													"key": "forWho",
+													"value": "<string>"
+												},
+												{
+													"key": "startDate",
+													"value": "<string>"
+												},
+												{
+													"key": "endDate",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Operations/GetTransactions?id=<string>&trxType=<string>&forWho=<string>&startDate=<string>&endDate=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Operations",
+														"GetTransactions"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														},
+														{
+															"key": "trxType",
+															"value": "<string>"
+														},
+														{
+															"key": "forWho",
+															"value": "<string>"
+														},
+														{
+															"key": "startDate",
+															"value": "<string>"
+														},
+														{
+															"key": "endDate",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "GetServiceFees",
+							"item": [
+								{
+									"name": "/api/Operations/GetServiceFees",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Operations/GetServiceFees?serviceId=ommomo",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Operations",
+												"GetServiceFees"
+											],
+											"query": [
+												{
+													"key": "serviceId",
+													"value": "ommomo"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Operations/GetServiceFees?serviceId=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Operations",
+														"GetServiceFees"
+													],
+													"query": [
+														{
+															"key": "serviceId",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "GetCommissions",
+							"item": [
+								{
+									"name": "Liste des commissions.",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://apibackoffice.alliancefinancialsa.com/api/Operations/GetCommissions",
+											"protocol": "https",
+											"host": [
+												"apibackoffice",
+												"alliancefinancialsa",
+												"com"
+											],
+											"path": [
+												"api",
+												"Operations",
+												"GetCommissions"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Operations/GetCommissions",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Operations",
+														"GetCommissions"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Commissions",
+							"item": [
+								{
+									"name": "Edit",
+									"item": [
+										{
+											"name": "Modifier une commission.",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"service\": \"<string>\",\n  \"valeur\": \"<string>\",\n  \"beneficiaire\": \"<string>\",\n  \"id\": \"<string>\",\n  \"creerPar\": \"<string>\",\n  \"modifierPar\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Operations/Commissions/Edit",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Operations",
+														"Commissions",
+														"Edit"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"service\": \"<string>\",\n  \"valeur\": \"<string>\",\n  \"beneficiaire\": \"<string>\",\n  \"id\": \"<string>\",\n  \"creerPar\": \"<string>\",\n  \"modifierPar\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/Operations/Commissions/Edit",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Operations",
+																"Commissions",
+																"Edit"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "AddEditServiceFee",
+							"item": [
+								{
+									"name": "/api/Operations/AddEditServiceFee",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"isActive\": \"<boolean>\",\n  \"service\": \"<string>\",\n  \"adminId\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Operations/AddEditServiceFee",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Operations",
+												"AddEditServiceFee"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"isActive\": \"<boolean>\",\n  \"service\": \"<string>\",\n  \"adminId\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Operations/AddEditServiceFee",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Operations",
+														"AddEditServiceFee"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Monnetique",
+					"item": [
+						{
+							"name": "Stock",
+							"item": [
+								{
+									"name": "changePlafond",
+									"item": [
+										{
+											"name": "Changer le plafond d'un service.",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"amount\": \"21111\",\n  \"service\": \"Operation OMDepot\",\n  \"userId\": \"tabetsing\",\n  \"password\": \"12345\",\n  \"isMydirectCash\": \"0\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Monnetique/Stock/changePlafond",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Monnetique",
+														"Stock",
+														"changePlafond"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"amount\": \"<string>\",\n  \"service\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"password\": \"<string>\",\n  \"isMydirectCash\": \"<integer>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/Monnetique/Stock/changePlafond",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Monnetique",
+																"Stock",
+																"changePlafond"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "ServiceStock",
+									"item": [
+										{
+											"name": "Voir le stock pour chaque service.",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Monnetique/Stock/ServiceStock",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Monnetique",
+														"Stock",
+														"ServiceStock"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Monnetique/Stock/ServiceStock",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Monnetique",
+																"Stock",
+																"ServiceStock"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Merchant",
+							"item": [
+								{
+									"name": "Supply",
+									"item": [
+										{
+											"name": "Validate",
+											"item": [
+												{
+													"name": "valider un approvisionnement.",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"merchantId\": \"1012063084\",\n  \"amount\": \"100\",\n  \"createBy\": \"tabetsing\",\n\n  \n  \"password\": \"12345\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "https://apibackoffice.alliancefinancialsa.com/api/Monnetique/Merchant/Supply/Validate",
+															"protocol": "https",
+															"host": [
+																"apibackoffice",
+																"alliancefinancialsa",
+																"com"
+															],
+															"path": [
+																"api",
+																"Monnetique",
+																"Merchant",
+																"Supply",
+																"Validate"
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "Success",
+															"originalRequest": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"value": "application/json"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n  \"merchantId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"createBy\": \"<string>\",\n  \"cautionId\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"password\": \"<string>\"\n}",
+																	"options": {
+																		"raw": {
+																			"headerFamily": "json",
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "{{baseUrl}}/api/Monnetique/Merchant/Supply/Validate",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"Monnetique",
+																		"Merchant",
+																		"Supply",
+																		"Validate"
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "text",
+															"header": [],
+															"cookie": [],
+															"body": ""
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "Pendingrequest",
+											"item": [
+												{
+													"name": "liste des demandes d'approvisionnement.",
+													"request": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "https://apibackoffice.alliancefinancialsa.com/api/Monnetique/Merchant/Supply/Pendingrequest?userId=tabetsing&filterStatus=True&filterMerchant=&filterTraiterPar=&filterCreerPar=",
+															"protocol": "https",
+															"host": [
+																"apibackoffice",
+																"alliancefinancialsa",
+																"com"
+															],
+															"path": [
+																"api",
+																"Monnetique",
+																"Merchant",
+																"Supply",
+																"Pendingrequest"
+															],
+															"query": [
+																{
+																	"key": "userId",
+																	"value": "tabetsing"
+																},
+																{
+																	"key": "filterStatus",
+																	"value": "True"
+																},
+																{
+																	"key": "filterMerchant",
+																	"value": ""
+																},
+																{
+																	"key": "filterTraiterPar",
+																	"value": ""
+																},
+																{
+																	"key": "filterCreerPar",
+																	"value": ""
+																}
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "Success",
+															"originalRequest": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{baseUrl}}/api/Monnetique/Merchant/Supply/Pendingrequest?userId=<string>&filterStatus=<string>&filterMerchant=<string>&filterTraiterPar=<string>&filterCreerPar=<string>",
+																	"host": [
+																		"{{baseUrl}}"
+																	],
+																	"path": [
+																		"api",
+																		"Monnetique",
+																		"Merchant",
+																		"Supply",
+																		"Pendingrequest"
+																	],
+																	"query": [
+																		{
+																			"key": "userId",
+																			"value": "<string>"
+																		},
+																		{
+																			"key": "filterStatus",
+																			"value": "<string>"
+																		},
+																		{
+																			"key": "filterMerchant",
+																			"value": "<string>"
+																		},
+																		{
+																			"key": "filterTraiterPar",
+																			"value": "<string>"
+																		},
+																		{
+																			"key": "filterCreerPar",
+																			"value": "<string>"
+																		}
+																	]
+																}
+															},
+															"status": "OK",
+															"code": 200,
+															"_postman_previewlanguage": "text",
+															"header": [],
+															"cookie": [],
+															"body": ""
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "initier une demande d'approvisionnement d'une agence ou un super agent.",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"merchantId\": \"1012063084\",\n  \"amount\": \"233\",\n  \"createBy\": \"tabetsing\",\n  \n  \"password\": \"12345\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Monnetique/Merchant/Supply",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Monnetique",
+														"Merchant",
+														"Supply"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"merchantId\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"createBy\": \"<string>\",\n  \"cautionId\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"password\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/Monnetique/Merchant/Supply",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Monnetique",
+																"Merchant",
+																"Supply"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "refreshToken",
+							"item": [
+								{
+									"name": "/api/Authentication/refreshToken",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Authentication/refreshToken?id=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Authentication",
+												"refreshToken"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Authentication/refreshToken?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Authentication",
+														"refreshToken"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "logout",
+							"item": [
+								{
+									"name": "/api/Authentication/logout",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Authentication/logout?id=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Authentication",
+												"logout"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Authentication/logout?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Authentication",
+														"logout"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "getMenus",
+							"item": [
+								{
+									"name": "/api/Authentication/getMenus",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Authentication/getMenus?id=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Authentication",
+												"getMenus"
+											],
+											"query": [
+												{
+													"key": "id",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Authentication/getMenus?id=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Authentication",
+														"getMenus"
+													],
+													"query": [
+														{
+															"key": "id",
+															"value": "<string>"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "authenticate",
+							"item": [
+								{
+									"name": "/api/Authentication/authenticate",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Authentication/authenticate",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Authentication",
+												"authenticate"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"password\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Authentication/authenticate",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Authentication",
+														"authenticate"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Administration",
+					"item": [
+						{
+							"name": "Validations",
+							"item": [
+								{
+									"name": "getAll",
+									"item": [
+										{
+											"name": "/api/Administration/Validations/getAll",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Administration/Validations/getAll?adminId=tabetsing",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Administration",
+														"Validations",
+														"getAll"
+													],
+													"query": [
+														{
+															"key": "adminId",
+															"value": "tabetsing"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Administration/Validations/getAll?adminId=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Administration",
+																"Validations",
+																"getAll"
+															],
+															"query": [
+																{
+																	"key": "adminId",
+																	"value": "<string>"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Users",
+							"item": [
+								{
+									"name": "newEdit",
+									"item": [
+										{
+											"name": "Ajouter modifier un admin pour l'ajout mettre modifierPar vide, permet aussi de reinitialiser un mot de passe dans ce cas mettre Reset dans le champ password.",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \n  \"adminId\": \"<string>\",\n  \"defaultPassword\": \"12345\",\n  \"adminPassword\": \"12345\",\n  \"isActive\": \"True\",\n            \"habilitation\": \"test\",\n            \"lastConnection\": \"2023-07-19T11:13:50\",\n            \"fullName\": \"Alliance Financial\",\n            \"role\": \"Administrator\",\n            \"company\": \"Alliance\",\n            \"creerLe\": \"2016-02-09T10:16:58\",\n            \"creerPar\": \"solomon\",\n            \"modifierPar\": null,\n            \"modifierLe\": \"0001-01-01T00:00:00\"\n}\n ",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Administration/Users/newEdit",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Administration",
+														"Users",
+														"newEdit"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"userName\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"company\": \"<string>\",\n  \"role\": \"<string>\",\n  \"adminId\": \"<string>\",\n  \"defaultPassword\": \"<string>\",\n  \"adminPassword\": \"<string>\",\n  \"modifierPar\": \"<string>\",\n  \"habilitation\": \"<string>\",\n  \"isActive\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/Administration/Users/newEdit",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Administration",
+																"Users",
+																"newEdit"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "list",
+									"item": [
+										{
+											"name": "Affiche la lsite des administrateurs",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Administration/Users/list?adminId=tabetsing",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Administration",
+														"Users",
+														"list"
+													],
+													"query": [
+														{
+															"key": "adminId",
+															"value": "tabetsing"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Administration/Users/list?adminId=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Administration",
+																"Users",
+																"list"
+															],
+															"query": [
+																{
+																	"key": "adminId",
+																	"value": "<string>"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "changeResetPassword",
+									"item": [
+										{
+											"name": "/api/Administration/Users/changeResetPassword",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"userId\": \"<string>\",\n  \"password\": \"<string>\",\n  \"newPassword\": \"<string>\",\n  \"whoAsk\": \"<string>\",\n  \"oldPassword\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Administration/Users/changeResetPassword",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Administration",
+														"Users",
+														"changeResetPassword"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"userId\": \"<string>\",\n  \"password\": \"<string>\",\n  \"newPassword\": \"<string>\",\n  \"whoAsk\": \"<string>\",\n  \"oldPassword\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/Administration/Users/changeResetPassword",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Administration",
+																"Users",
+																"changeResetPassword"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Role",
+							"item": [
+								{
+									"name": "getAll",
+									"item": [
+										{
+											"name": "liste des role.",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Administration/Role/getAll",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Administration",
+														"Role",
+														"getAll"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Administration/Role/getAll",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Administration",
+																"Role",
+																"getAll"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Mouchard",
+							"item": [
+								{
+									"name": "read",
+									"item": [
+										{
+											"name": "/api/Administration/Mouchard/read",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Administration/Mouchard/read?adminId=tabetsing&startDate=2023-1-1&endDate=2023-6-1&forWho=   ",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Administration",
+														"Mouchard",
+														"read"
+													],
+													"query": [
+														{
+															"key": "adminId",
+															"value": "tabetsing"
+														},
+														{
+															"key": "startDate",
+															"value": "2023-1-1"
+														},
+														{
+															"key": "endDate",
+															"value": "2023-6-1"
+														},
+														{
+															"key": "forWho",
+															"value": "   "
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Administration/Mouchard/read?adminId=<string>&startDate=<string>&endDate=<string>&forWho=<string>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Administration",
+																"Mouchard",
+																"read"
+															],
+															"query": [
+																{
+																	"key": "adminId",
+																	"value": "<string>"
+																},
+																{
+																	"key": "startDate",
+																	"value": "<string>"
+																},
+																{
+																	"key": "endDate",
+																	"value": "<string>"
+																},
+																{
+																	"key": "forWho",
+																	"value": "<string>"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Habilitations",
+							"item": [
+								{
+									"name": "getAll",
+									"item": [
+										{
+											"name": "Affiche la liste des habilitations",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Administration/Habilitations/getAll",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Administration",
+														"Habilitations",
+														"getAll"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/Administration/Habilitations/getAll",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Administration",
+																"Habilitations",
+																"getAll"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Habilitation",
+							"item": [
+								{
+									"name": "newEdit",
+									"item": [
+										{
+											"name": "Ajouter ou modifier une habilitation, cource est utilisee lorsqu'on veut ajoueter des fonctionnalites a une habilitation a partir d'une autre au moment de sa creation",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"source\": \"10\",\n \"idhabilitation\": 10,\n            \"label\": \"test bonas\",\n            \"description\": \"ceci 5488\",\n            \"creerPar\": \"tabetsing\",\n            \"creerLe\": \"7/19/2023 8:05:28 AM\",\n  \"pass\": \"12345\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://apibackoffice.alliancefinancialsa.com/api/Administration/Habilitation/newEdit",
+													"protocol": "https",
+													"host": [
+														"apibackoffice",
+														"alliancefinancialsa",
+														"com"
+													],
+													"path": [
+														"api",
+														"Administration",
+														"Habilitation",
+														"newEdit"
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"source\": \"<string>\",\n  \"label\": \"<string>\",\n  \"description\": \"<string>\",\n  \"creerPar\": \"<string>\",\n  \"pass\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/Administration/Habilitation/newEdit",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"Administration",
+																"Habilitation",
+																"newEdit"
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}

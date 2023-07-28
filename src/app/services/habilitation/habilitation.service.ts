@@ -14,11 +14,11 @@ export class HabilitationService {
   ) { }
   habilitations(): Observable<any> {
   
-    return this.http.get<any>(this.globalService.baseUrl+"/api/Administration/Users/list?adminId="+localStorage.getItem("id"));
+    return this.http.get<any>(this.globalService.baseUrl+"/api/Administration/Habilitations/getAll");
   }
   newEdit(data:any): Observable<any> {
   
-    return this.http.post<any>(this.globalService.baseUrl+"/api/Administration/Users/newEdit", data);
+    return this.http.post<any>(this.globalService.baseUrl+"/api/Administration/Habilitation/newEdit", data);
   }
  
 }

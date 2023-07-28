@@ -1,6 +1,6 @@
 export class Merchant {
     
-        public id!:string;
+        public merchantID!:string;
         public nom!:string;
         public Balance!:string;
         public Email!:string;
