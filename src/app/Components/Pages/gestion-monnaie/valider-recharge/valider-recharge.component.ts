@@ -49,9 +49,13 @@ export class ValiderRechargeComponent implements OnInit {
   valider_recharge(valid:any) {
   let  data:any={
       "merchantId": `${valid.merchant}`,
-      "amount": valid.amount,
-      "createBy": valid.creerPar,
-        "password": "12345"
+      "amount": `${valid.amount}`,
+      "createBy": `${valid.creerPar}`,
+        "password": "12345",
+        "status":valid.statut!="En attente"?"0":"1",
+        "cautionId":`${valid.id}`
+        
+
     }
     console.log(data);
     this.snackbar_message = "La recharge a été validée avec succès";
@@ -61,7 +65,7 @@ export class ValiderRechargeComponent implements OnInit {
       this.valideservice.suplyvalidate(data).subscribe(res=>{
         console.log(res )
         this.alert_type = "success";
-        this.alert_message = "La recharge a été validée avec succès";
+        this.alert_message =res.data;
         this.openAlert();
         snackBarRef.dismiss();
       });
