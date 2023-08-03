@@ -1,20 +1,25 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
+import { Habilitation } from 'src/app/modal/habilitation';
+import { RoleService } from 'src/app/services/role/role.service';
 
 @Component({
   selector: 'app-mouchard',
   templateUrl: './mouchard.component.html',
   styleUrls: ['./mouchard.component.css']
 })
-export class MouchardComponent {
-  constructor(public dialog: MatDialog) { }
+export class MouchardComponent implements OnInit  {
+  displayedColumns: string[] =[];
+  ELEMENT_DATA: Habilitation[] = [
+];
+dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
+  constructor(public dialog: MatDialog, public mouchardService:RoleService) { }
 
   snackbar_message = "";
 
-  displayedColumns: string[] = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Date & heure', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -60,19 +65,22 @@ export class MouchardComponent {
 
     // reclamation_dialog.afterClosed().subscribe(result => {
     //   console.log(`Dialog result: ${result}`);
+    
     // });
   }
-
+  ngOnInit(): void {
+    this.mouchardService.getMouchard("20230803").subscribe(habi=>{
+      
+      this.ELEMENT_DATA=habi.data;
+      console.log(this.ELEMENT_DATA);
+      this.displayedColumns= ['Utilisateur', 'Profil de l\'utilisateur', 'Activité','Module', 'Date & heure', 'Actions'];
+      this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+    
+    });
+    this.displayedColumns=  ['Utilisateur', 'Profil de l\'utilisateur', 'Activité','Module',  'Date & heure', 'Actions'];
+    this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+  
+  }
 
 }
 
-export interface PeriodicElement {
-  utilisateur: string;
-  profil: string;
-  activite: string;
-  created_at: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { utilisateur: "Emmanuel", profil: "Superviseur", activite: 'Transfert d\'argent DirectCash', created_at: '14/10/2010 15:30'},
-];

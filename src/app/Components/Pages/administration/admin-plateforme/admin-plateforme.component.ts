@@ -59,10 +59,7 @@ dataSource!:MatTableDataSource<User, MatTableDataSourcePaginator>
       }
     });
 
-    add_agent_dialog.afterClosed().subscribe(result => {
-      this.add_agent_form = result;
-      console.log(this.add_agent_form.value);
-    });
+    
   }
 
   open_del_admin_dialog() {

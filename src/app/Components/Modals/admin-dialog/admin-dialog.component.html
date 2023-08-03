@@ -30,6 +30,7 @@
             placeholder="Nom"
             name="nom"
             ngModel
+            [(ngModel)]="admin.userName"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -41,11 +42,11 @@
       <mat-form-field class="w-100" appearance="outline">
         <mat-label>Habilitation</mat-label>
         <mat-select
-          name="habilitation"
+          name="habilitation" ngModel [(ngModel)]="admin.habilitation"
           [disabled]="mode == 'show'"
         >
-          <mat-option value="1">Habilitation 1</mat-option>
-          <mat-option value="2">Habilitation 2</mat-option>
+        <mat-option *ngFor="let habilition of habilitions" [value]="habilition.label">{{habilition.label}}</mat-option>
+
         </mat-select>
       </mat-form-field>
     </div>
@@ -60,7 +61,7 @@
             matInput
             placeholder="exemple@gmail.com"
             name="email"
-            ngModel
+            ngModel [(ngModel)]="admin.email"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -72,18 +73,32 @@
           <mat-label>Statut</mat-label>
           <mat-select
             value="1"
-            name="statut"
+            name="isActive" ngModel [(ngModel)]="admin.isActive"
             [disabled]="mode == 'show'"
           >
-            <mat-option value="1">Statut 1</mat-option>
-            <mat-option value="2">Statut 2</mat-option>
+            <mat-option value="True">Actif</mat-option>
+            <mat-option value="false">Inactif</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
     </div>
 
     <div class="row">
-
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Date de création</mat-label>
+          <input
+            required
+            type="text"
+            matInput
+            placeholder="jj/mm/yyyy"
+            name="creerLe"
+            ngModel [(ngModel)]="admin.creerLe"
+            disabled
+            readonly
+          />
+        </mat-form-field>
+      </div>
       <!-- Telephone -->
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
@@ -93,7 +108,7 @@
             matInput
             placeholder="Téléphone"
             name="tel"
-            ngModel
+            ngModel [(ngModel)]="admin.tel"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -108,8 +123,8 @@
             type="text"
             matInput
             placeholder="Pays (ville, quartier)"
-            name="solde"
-            ngModel
+            name="adresse"
+            ngModel [(ngModel)]="admin.adresse"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -118,36 +133,21 @@
 
     <div class="row">
 
-      <!-- Date de création -->
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Date de création</mat-label>
-          <input
-            required
-            type="text"
-            matInput
-            placeholder="jj/mm/yyyy"
-            name="created_at"
-            [(ngModel)] = "now"
-            disabled
-            readonly
-          />
-        </mat-form-field>
-      </div>
+    
 
       <!-- Sexe -->
       <mat-form-field class="col-md-6" appearance="outline">
         <mat-label>Sexe</mat-label>
-        <mat-select name="sexe" [disabled]="mode == 'show'">
-          <mat-option value="1">Masculin</mat-option>
-          <mat-option value="2">Féminin</mat-option>
+        <mat-select name="sexe" ngModel [(ngModel)]="admin.sexe" [disabled]="mode == 'show'">
+          <mat-option value="Masculin">Masculin</mat-option>
+          <mat-option value="Féminin">Féminin</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
     <div class="row">
       <!-- Nom d'utilisateur -->
-      <div class="col-md-12">
+      <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Nom d'utilisateur</mat-label>
           <input
@@ -155,7 +155,20 @@
             matInput
             placeholder="Nom d'utilisateur"
             name="username"
-            ngModel
+            ngModel [(ngModel)]="admin.userName"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Mot de passe</mat-label>
+          <input
+            required
+            matInput
+            placeholder="Nom"
+            name="defaultPassword"
+            ngModel [(ngModel)]="admin.defaultPassword"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -171,6 +184,7 @@
     mat-button
     [mat-dialog-close]="add_agent_form"
     [hidden]="mode == 'show'"
+    (click)="validate()"
   >
     Sauvegarder
   </button>

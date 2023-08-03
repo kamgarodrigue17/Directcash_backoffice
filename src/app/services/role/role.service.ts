@@ -19,4 +19,9 @@ export class RoleService {
   
     return this.http.post<any>(this.globalService.baseUrl+"/api/Administration/Users/newEdit", data);
   }
+  //20230803
+  getMouchard(endDate:any): Observable<any> {
+    return this.http.get<any>(this.globalService.baseUrl+`/api/Administration/Mouchard/read?adminId=${localStorage.getItem('id')}&startDate=20230731&endDate=${endDate}&forWho=${localStorage.getItem('id')}`);
+
+  }
 }
