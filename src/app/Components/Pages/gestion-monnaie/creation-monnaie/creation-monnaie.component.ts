@@ -46,9 +46,9 @@ dataSource!:MatTableDataSource<Plafond, MatTableDataSourcePaginator>
       console.log(this.ELEMENT_DATA);
       this.displayedColumns= ['Solde courant', 'Service', 'Plafond (XAF)','Limite courante (XAF)' ,'Partenaire','Dernière recharge', 'Statut', 'Action'];
       this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
-    
-      
+      this.dataSource.paginator = this.paginator;
     });
+    
     this.displayedColumns= ['Solde courant', 'Service', 'Plafond (XAF)','Limite courante (XAF)','Partenaire' ,'Dernière recharge', 'Statut', 'Action'];
     this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
   }

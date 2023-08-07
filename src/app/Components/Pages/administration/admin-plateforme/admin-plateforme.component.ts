@@ -90,9 +90,9 @@ dataSource!:MatTableDataSource<User, MatTableDataSourcePaginator>
       console.log(this.ELEMENT_DATA);
       this.displayedColumns=  ['Nom', 'Habilitation', 'Statut', 'Dernière connexion', 'Actions'];
       this.dataSource=new MatTableDataSource<User>(this.ELEMENT_DATA);
-    
-      
+      this.dataSource.paginator = this.paginator;
     });
+
     this.displayedColumns=   ['Nom', 'Habilitation', 'Statut', 'Dernière connexion', 'Actions'];
     this.dataSource=new MatTableDataSource<User>(this.ELEMENT_DATA);
   }

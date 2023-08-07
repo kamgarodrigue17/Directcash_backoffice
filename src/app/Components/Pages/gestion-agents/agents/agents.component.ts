@@ -17,23 +17,20 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
   styleUrls: ['./agents.component.css']
 })
 export class AgentsComponent implements OnInit {
-  displayedColumns: string[] =[];
+  displayedColumns: string[] = [];
   ELEMENT_DATA: Agent[] = [
-];
-dataSource!:MatTableDataSource<Agent, MatTableDataSourcePaginator>
+  ];
+  dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>
 
-  
-  
+  constructor(public dialog: MatDialog, private router: Router, public AgentService: AgentServiceService, private _snackBar: MatSnackBar) {
 
-  constructor(public dialog: MatDialog, private router: Router,public AgentService:AgentServiceService, private _snackBar: MatSnackBar) {
-   
-   }
+  }
   selected_value: string = "";
   add_agent_form!: NgForm;
   snackbar_message!: string;
 
-  //displayedColumns: string[] =
- // dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+  //   displayedColumns: string[] =
+  //  dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -57,21 +54,40 @@ dataSource!:MatTableDataSource<Agent, MatTableDataSourcePaginator>
   }
 
   go_to_add_page() {
-    this.router.navigateByUrl("gestion-agents/agents/ajouter");
+    // this.router.navigateByUrl("gestion-agents/agents/ajouter");
   }
 
-  open_add_agent_dialog(mode: string,element:any) {
-    const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {
-      data: {
-        element:element,
-        mode: mode
-      }
-    });
+  open_add_agent_dialog(mode: string) {
+    // const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {
+    //   data: {
+    //     nom: '',
+    //     merchant: '',
+    //     imei: '',
+    //     agence: '',
+    //     contribuable: '',
+    //     location: '',
+    //     solde: '',
+    //     region: '',
+    //     tel: '',
+    //     CNI: '',
+    //     mode: mode
+    //   }
+    // });
+  }
+  open_add_agent_dialog(mode: string, element: any) {
 
-    add_agent_dialog.afterClosed().subscribe(result => {
-      this.add_agent_form = result;
-      console.log(this.add_agent_form.value);
-    });
+    // const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {
+    //   data: {
+    //     element:element,
+    //     mode: mode
+    //   }
+    // });
+
+
+    // add_agent_dialog.afterClosed().subscribe(result => {
+    //   this.add_agent_form = result;
+    //   console.log(this.add_agent_form.value);
+    // });
   }
 
   open_block_agent_dialog(object: string) {
@@ -85,7 +101,7 @@ dataSource!:MatTableDataSource<Agent, MatTableDataSourcePaginator>
       console.log(result);
     });
   }
-  
+
 
   open_snackbar(agent: string) {
     this.snackbar_message = "Le mot de passe de " + agent + " a été rénitialisé à 0000";
@@ -95,18 +111,19 @@ dataSource!:MatTableDataSource<Agent, MatTableDataSourcePaginator>
       snackBarRef.dismiss();
     });
   }
-ngOnInit(): void {
-  this.AgentService.Agents("Agents").subscribe(agents=>{
-    this.ELEMENT_DATA =agents.data;
-    console.log(this.ELEMENT_DATA);
-    this.displayedColumns= ['Nom', 'Solde (XAF)', 'Agence', 'Merchant', 'N° IMEI', 'Actions'];
-    this.dataSource=new MatTableDataSource<Agent>(this.ELEMENT_DATA);
-  
-    
-  });
-  this.displayedColumns= ['Nom', 'Solde (XAF)', 'Agence', 'Merchant', 'N° IMEI', 'Actions'];
-  this.dataSource=new MatTableDataSource<Agent>(this.ELEMENT_DATA);
-}
+  ngOnInit(): void {
+    this.AgentService.Agents("Agents").subscribe(agents => {
+      this.ELEMENT_DATA = agents.data;
+      console.log(this.ELEMENT_DATA);
+      this.displayedColumns = ['Nom', 'Solde (XAF)', 'Agence', 'Merchant', 'N° IMEI', 'Actions'];
+      this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
+    });
+
+
+    this.displayedColumns = ['Nom', 'Solde (XAF)', 'Agence', 'Merchant', 'N° IMEI', 'Actions'];
+    this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+  }
 }
 
 

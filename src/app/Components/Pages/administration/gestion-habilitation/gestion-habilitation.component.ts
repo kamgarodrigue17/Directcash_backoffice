@@ -80,9 +80,13 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
       console.log(this.ELEMENT_DATA);
       this.displayedColumns= ['Intitulé', 'Description','Crée par', 'Crée le', 'Actions'];
       this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
-    
+      this.dataSource.paginator = this.paginator;
     });
+
+    this.displayedColumns= ['Intitulé', 'Crée par', 'Crée le', 'Statut', 'Actions'];
+
     this.displayedColumns= ['Intitulé', 'Description','Crée par', 'Crée le', 'Actions'];
+
     this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
   
   }

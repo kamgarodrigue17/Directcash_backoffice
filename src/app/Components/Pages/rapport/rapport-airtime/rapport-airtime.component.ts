@@ -10,15 +10,15 @@ import { GloabalServiceService } from 'src/app/services/gloabal-service.service'
   templateUrl: './rapport-airtime.component.html',
   styleUrls: ['./rapport-airtime.component.css']
 })
-export class RapportAirtimeComponent implements OnInit  {
-  displayedColumns: string[] =[];
+export class RapportAirtimeComponent implements OnInit {
+  displayedColumns: string[] = [];
   ELEMENT_DATA: Transaction[] = [
-];
-dataSource!:MatTableDataSource<Transaction, MatTableDataSourcePaginator>
+  ];
+  dataSource!: MatTableDataSource<Transaction, MatTableDataSourcePaginator>
 
-day:Date=new Date();
-  constructor( public trxService:TransactionService, public global:GloabalServiceService) { 
-  
+  day: Date = new Date();
+  constructor(public trxService: TransactionService, public global: GloabalServiceService) {
+
   }
 
 
@@ -39,42 +39,43 @@ day:Date=new Date();
   filter_date() {
     // appliquer le filtre avec les deux dates
   }
-  
+
   ngOnInit(): void {
 
 
 
-    this.trxService.getTransaction(localStorage.getItem('id')!,"airtime","2033-6-1","",this.global.formatDate(this.day)).subscribe(trx=>{
-       
+    this.trxService.getTransaction(localStorage.getItem('id')!, "airtime", "2033-6-1", "", this.global.formatDate(this.day)).subscribe(trx => {
+
       console.log(trx);
-      this.ELEMENT_DATA=trx.data.map((element:any)=>{
+      this.ELEMENT_DATA = trx.data.map((element: any) => {
         return {
           a: element.a,
-agentID: element.agentID,
-blockingReason:element.blockingReason,
-commission: element.commission,
-de: element.de,
-directCode:element.directCode ,
-expediteur:element.expediteur ,
-jour: element.jour,
-montant:element.montant,
-payeLe:element.payeLe, 
-payeur:element.payeur, 
-pin: element.pin,
-receiver: element.receiver,
-statut:element.statut ,
-transactionID: element.transactionID,
+          agentID: element.agentID,
+          blockingReason: element.blockingReason,
+          commission: element.commission,
+          de: element.de,
+          directCode: element.directCode,
+          expediteur: element.expediteur,
+          jour: element.jour,
+          montant: element.montant,
+          payeLe: element.payeLe,
+          payeur: element.payeur,
+          pin: element.pin,
+          receiver: element.receiver,
+          statut: element.statut,
+          transactionID: element.transactionID,
         };
-      })    ;//trx.data.;
-      console.log( this.ELEMENT_DATA);
-      this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
-  this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
-
-      })
-      ;//trx.data.;
+      });//trx.data.;
+      console.log(this.ELEMENT_DATA);
       this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
       this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
-    
+      this.dataSource.paginator = this.paginator;
+
+    })
+      ;//trx.data.;
+    this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
+    this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
+
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, ViewChild,OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -16,12 +16,12 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
   styleUrls: ['./client-mydirectcash.component.css']
 })
 export class ClientMydirectcashComponent implements OnInit {
-  displayedColumns: string[] =[];
+  displayedColumns: string[] = [];
   ELEMENT_DATA: Agent[] = [
-];
-dataSource!:MatTableDataSource<Agent, MatTableDataSourcePaginator>
+  ];
+  dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog,public AgentService:AgentServiceService, private _snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog, public AgentService: AgentServiceService, private _snackBar: MatSnackBar) { }
   selected_value: string = "";
   add_agent_form!: NgForm;
   snackbar_message!: string;
@@ -49,23 +49,39 @@ dataSource!:MatTableDataSource<Agent, MatTableDataSourcePaginator>
     });
   }
 
-  open_add_client_dialog(mode: string,data:any) {
+  // <<<<<<< HEAD
+  open_add_client_dialog(mode: string) {
+    // const add_client_dialog = this.dialog.open(AddClientDialogComponent, {
+    //   data: {
+    //     nom: '',
+    //     solde: '',
+    //     adresse: '',
+    //     statut: '',
+    //     tel: '',
+    //     email: '',
+    //     sexe: '',
+    //     matricule: '',
+    //     mode: mode
+    //   }
+    // });
+  }
+  open_add_client_dialog(mode: string, data: any) {
     const add_client_dialog = this.dialog.open(AddClientDialogComponent, {
       data: {
-        element:data,
-       mode: mode
+        element: data,
+        mode: mode
       }
     });
 
-    add_client_dialog.afterClosed().subscribe(result => {
-      this.add_agent_form = result;
-      console.log(this.add_agent_form.value);
-    });
+    // add_client_dialog.afterClosed().subscribe(result => {
+    //   this.add_agent_form = result;
+    //   console.log(this.add_agent_form.value);
+    // });
   }
 
   open_block_client_dialog(object: string) {
     const block_client_dialog = this.dialog.open(BlockAccountDialogComponent, {
-      data:{
+      data: {
         object: object
       }
     });
@@ -83,18 +99,18 @@ dataSource!:MatTableDataSource<Agent, MatTableDataSourcePaginator>
       snackBarRef.dismiss();
     });
   }
-ngOnInit(): void {
-  this.AgentService.Agents("Clients").subscribe(agents=>{
-    this.ELEMENT_DATA =agents.data;
-    console.log(this.ELEMENT_DATA);
-    this.displayedColumns= ['Nom', 'Matricule', 'Téléphone','Solde', 'Statut', 'Adresse', 'Actions'];
-    this.dataSource=new MatTableDataSource<Agent>(this.ELEMENT_DATA);
-  
-    
-  });
-  this.displayedColumns=['Nom', 'Matricule', 'Téléphone', 'Solde','Statut', 'Adresse', 'Actions'];
-  this.dataSource=new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+  ngOnInit(): void {
+    this.AgentService.Agents("Clients").subscribe(agents => {
+      this.ELEMENT_DATA = agents.data;
+      console.log(this.ELEMENT_DATA);
+      this.displayedColumns = ['Nom', 'Matricule', 'Téléphone', 'Solde', 'Statut', 'Adresse', 'Actions'];
+      this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
 
-}
+    });
+    this.displayedColumns = ['Nom', 'Matricule', 'Téléphone', 'Solde', 'Statut', 'Adresse', 'Actions'];
+    this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+
+  }
 }
 
