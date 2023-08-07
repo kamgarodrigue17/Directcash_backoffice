@@ -57,23 +57,6 @@ export class AgentsComponent implements OnInit {
     // this.router.navigateByUrl("gestion-agents/agents/ajouter");
   }
 
-  open_add_agent_dialog(mode: string) {
-    // const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {
-    //   data: {
-    //     nom: '',
-    //     merchant: '',
-    //     imei: '',
-    //     agence: '',
-    //     contribuable: '',
-    //     location: '',
-    //     solde: '',
-    //     region: '',
-    //     tel: '',
-    //     CNI: '',
-    //     mode: mode
-    //   }
-    // });
-  }
   open_add_agent_dialog(mode: string, element: any) {
 
     // const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {

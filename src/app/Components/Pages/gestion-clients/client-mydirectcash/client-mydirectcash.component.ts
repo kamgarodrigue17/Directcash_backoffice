@@ -49,22 +49,6 @@ export class ClientMydirectcashComponent implements OnInit {
     });
   }
 
-  // <<<<<<< HEAD
-  open_add_client_dialog(mode: string) {
-    // const add_client_dialog = this.dialog.open(AddClientDialogComponent, {
-    //   data: {
-    //     nom: '',
-    //     solde: '',
-    //     adresse: '',
-    //     statut: '',
-    //     tel: '',
-    //     email: '',
-    //     sexe: '',
-    //     matricule: '',
-    //     mode: mode
-    //   }
-    // });
-  }
   open_add_client_dialog(mode: string, data: any) {
     const add_client_dialog = this.dialog.open(AddClientDialogComponent, {
       data: {
