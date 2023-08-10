@@ -1,0 +1,56 @@
+<div class="card info-card sales-card pb-0 mat-elevation-z2">
+  <div class="card-body">
+
+    <h5 class="card-title fs-6 mb-0 text-secondary d-flex justify-content-between align-items-center small">{{card_title}}<div class="p-1 rounded bg-icon"><mat-icon class="icon-color">pentagon</mat-icon></div></h5>
+
+    <div class="row">
+      <!-- Left side -->
+      <div class="col-6 bg-left-side-block ps-0 pe-0 rounded">
+        <mat-form-field class="w-100 rounded small">
+          <mat-select value="1">
+            <mat-option value="1">Cette semaine</mat-option>
+            <mat-option value="2">Ce mois</mat-option>
+            <mat-option value="3">Cette année</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Frais -->
+        <div class="text-center mb-3">
+          <span>Frais (XAF)</span>
+          <h5 class="fw-bold">{{left_side_frais}}</h5>
+        </div>
+
+        <!-- <hr> -->
+
+        <!-- Nbr. Operations -->
+        <div class="text-center mb-3">
+          <span>Nbr. Opérations</span>
+          <h5 class="fw-bold">{{left_side_operation}}</h5>
+        </div>
+      </div>
+
+      <!-- Right side -->
+      <div class="col-6 bg-right-side-block ps-0 pe-0 rounded">
+        <mat-form-field class="w-100 rounded small">
+          <mat-select value="1" disabled="true">
+            <mat-option value="1">Aujourd'hui</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Frais -->
+        <div class="text-center mb-3">
+          <span>Frais (XAF)</span>
+          <h5 class="fw-bold">{{right_side_frais}}</h5>
+        </div>
+
+        <!-- <hr> -->
+
+        <!-- Nbr. Operations -->
+        <div class="text-center mb-3">
+          <span>Nbr. Opérations</span>
+          <h5 class="fw-bold">{{right_side_operation}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

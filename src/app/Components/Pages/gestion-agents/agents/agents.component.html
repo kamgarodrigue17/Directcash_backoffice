@@ -1,0 +1,107 @@
+<app-base></app-base>
+
+<!-- Main -->
+<main id="main" class="main">
+  <div class="pagetitle d-sm-flex justify-content-between align-items-center">
+    <div>
+      <h1>Gestion des Agents</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
+          <li class="breadcrumb-item">
+            <a routerLink="#">Gestion des Agents</a>
+          </li>
+          <li class="breadcrumb-item active">Agents</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div>
+      <button (click)="go_to_add_page()" mat-raised-button class="primary-light-button text-center me-2 d-none">
+        <mat-icon class="me-0">add</mat-icon>
+      </button>
+      <button mat-raised-button (click)="open_export_dialog()" class="primary-dark-button text-center">
+        Exporter
+      </button>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <div class="mat-elevation-z2 rounded">
+    <div class="container-fluid pt-3 pb-0 mb-0" style="background: white">
+      <mat-form-field appearance="outline">
+        <mat-label>Recherche</mat-label>
+        <input
+          (keyup)="filter($event)"
+          required
+          matInput
+          placeholder="Mot clé"
+          name="input-search"
+          ngModel
+          #inputSearch
+          required="false"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Nom Column -->
+      <ng-container matColumnDef="Nom">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let element">{{ element.agentName }}</td>
+      </ng-container>
+
+      <!-- Solde Column -->
+      <ng-container matColumnDef="Solde (XAF)">
+        <th mat-header-cell *matHeaderCellDef>Solde (XAF)</th>
+        <td mat-cell *matCellDef="let element">{{ element.balance }}</td>
+      </ng-container>
+
+      <!-- Agence Column -->
+      <ng-container matColumnDef="Agence">
+        <th mat-header-cell *matHeaderCellDef>Agence</th>
+        <td mat-cell *matCellDef="let element">{{ element.agence }}</td>
+      </ng-container>
+
+      <!-- Merchant Column -->
+      <ng-container matColumnDef="Merchant">
+        <th mat-header-cell *matHeaderCellDef>Merchant</th>
+        <td mat-cell *matCellDef="let element">{{ element.merchantName }}</td>
+      </ng-container>
+
+      <!-- Imei Column -->
+      <ng-container matColumnDef="N° IMEI">
+        <th mat-header-cell *matHeaderCellDef>N° IMEI</th>
+        <td mat-cell *matCellDef="let element">{{ element.imei }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef style="width: 200px;">Actions</th>
+        <td colspan="3" class=""  mat-cell *matCellDef="let element" style="width: 200px;">
+          <ul class="list-group list-group-horizontal" style="max-width: 200px;">
+
+            <li class="list-group-item border-0 pe-2 ps-0 d-none"><button (click)="open_add_agent_dialog('edit', element)" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #02C29C36;"><mat-icon style="color: #02C29C;">edit</mat-icon></button></li>
+            <li class="list-group-item border-0 pe-2 ps-0 d-none"><button (click)="open_add_agent_dialog('edit', element)" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #02C29C36;"><mat-icon style="color: #02C29C;">edit</mat-icon></button></li>
+            <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_block_agent_dialog('agent')" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #F60D2B4D;"><mat-icon style="color: #F60D2B;">person_remove</mat-icon></button></li>
+            <li class="list-group-item border-0 pe-2 ps-0"><button (click)="open_add_agent_dialog('show',element)" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #E6E6E6;;"><mat-icon style="color: #5E5E5E;">visibility</mat-icon></button></li>
+            <li class="list-group-item border-0 pe-0 ps-0"><button (click)="open_snackbar(element.nom)" type="button" class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center" style="background: #1d1d1d;;"><mat-icon style="color: #fff;">refresh</mat-icon></button></li>
+          </ul>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator class="pb-2"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+  </div>
+</main>
