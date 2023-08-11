@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 export class AddCommissionDialogComponent {
   comissionm:any={};
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public commissionService:CommissionService){
-    this.comissionm=this.data.element
+    this.comissionm={...this.data.element}
     this.comissionm.modifierPar=localStorage.getItem("id");
   }
   @ViewChild("form") form!: NgForm;

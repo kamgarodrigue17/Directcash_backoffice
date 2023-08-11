@@ -21,7 +21,7 @@ export class AddClientDialogComponent {
   }
   constructor(@Inject(MAT_DIALOG_DATA) public data: any){
 if (this.data.mode!="add") {
-  this.client=data.element;
+  this.client={...data.element};
 }
 
   }

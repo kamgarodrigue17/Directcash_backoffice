@@ -1,21 +1,27 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { AgenceDialogComponent } from 'src/app/Components/Modals/agence-dialog/agence-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
+import { Habilitation } from 'src/app/modal/habilitation';
+import { SuperAgentService } from 'src/app/services/superAgent/super-agent.service';
 
 @Component({
   selector: 'app-agence',
   templateUrl: './agence.component.html',
   styleUrls: ['./agence.component.css']
 })
-export class AgenceComponent {
-  constructor(public dialog: MatDialog) { }
+export class AgenceComponent  implements OnInit {
+    displayedColumns: string[] =['Nom de l\'agence', 'Adresse', 'Merchant', 'Ajoutée par', 'Ajoutée le', 'Actions'];
+  ELEMENT_DATA: Habilitation[] = [
+];
+dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
+ 
+  constructor(public dialog: MatDialog, public agenceService:SuperAgentService) { }
 
 
-  displayedColumns: string[] = ['Nom de l\'agence', 'Adresse', 'Merchant', 'Ajoutée par', 'Ajoutée le', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -29,13 +35,14 @@ export class AgenceComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  open_agence_dialog(mode: string) {
+  open_agence_dialog(mode: string,agence:any) {
     const agence_dialog = this.dialog.open(AgenceDialogComponent, {
       data: {
-        mode: mode
+        mode: mode,
+        agence:agence
       }
     });
-
+console.log(agence);
     agence_dialog.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
@@ -53,17 +60,18 @@ export class AgenceComponent {
       console.log(result);
     });
   }
+  ngOnInit(): void {
+    this.agenceService.Agences().subscribe(habi=>{
+      
+      this.ELEMENT_DATA=habi.data;
+      console.log(this.ELEMENT_DATA);
+      this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+    
+    });
+    this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+  
+  }
 }
 
-export interface PeriodicElement {
-  nom: string;
-  adresse: string;
-  merchant: string;
-  inserted_by: string;
-  inserted_at: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { nom: "Agence A", adresse: "Pays (ville, quartier)", merchant: "Merchant", inserted_by: 'Createur', inserted_at: '14/10/2010 15:30' },
-];
 

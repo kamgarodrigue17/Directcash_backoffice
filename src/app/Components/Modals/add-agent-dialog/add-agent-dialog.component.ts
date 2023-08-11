@@ -14,7 +14,7 @@ export class AddAgentDialogComponent implements OnInit {
 agent!:any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public agentservice:AgentServiceService){
     console.log(data);
-    this.agent=data.element;
+    this.agent={...data.element};
     this.agent.id=data.element.agentNo
     this.agent.nom="";
     this.agent.location="";

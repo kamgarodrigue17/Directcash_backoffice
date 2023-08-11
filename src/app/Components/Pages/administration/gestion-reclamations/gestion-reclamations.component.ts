@@ -1,24 +1,42 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { ShowReclamationDialogComponent } from 'src/app/Components/Modals/show-reclamation-dialog/show-reclamation-dialog.component';
+import { Habilitation } from 'src/app/modal/habilitation';
+import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
+import { HabilitationService } from 'src/app/services/habilitation/habilitation.service';
 
 @Component({
   selector: 'app-gestion-reclamations',
   templateUrl: './gestion-reclamations.component.html',
   styleUrls: ['./gestion-reclamations.component.css']
 })
-export class GestionReclamationsComponent {
+export class GestionReclamationsComponent implements OnInit {
+  displayedColumns: string[] =[];
+  ELEMENT_DATA: Habilitation[] = [
+];
+dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
+data:any={
+  "idreclamations":0,
+  "titre":"test",
+  "description":"test",
+  "application":"test",
+  "agent":"test",
+  "creerPar":"tabetsing",
+  "modifierPar":"",
+  "creerLe":"test",
+  "modifierLe":"test",
+  "statut":"0"
+};
 
- constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) { }
+ constructor(public dialog: MatDialog, private _snackBar: MatSnackBar,public reclamationservice:HabilitationService,public globalService:GloabalServiceService) { }
 
-  snackbar_message = "";
+ 
 
-  displayedColumns: string[] = ['Réclamant', 'Email', 'Effectuée le', 'Traité par', 'Traité le', 'Statut', 'Actions'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+ 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -31,14 +49,14 @@ export class GestionReclamationsComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  marquer_comme_resolue(){
+  marquer_comme_resolue(element:any){
     const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
       data:{
         title: "Confirmation",
         message: "Marquer la (les) réclamation(s) sélectionnée(s) comme resolue(s) ?"
       }
     });
-
+console.log(element)
     confirmation_dialog.afterClosed().subscribe(result => {
       console.log(result);
     });
@@ -66,19 +84,18 @@ export class GestionReclamationsComponent {
       console.log(`Dialog result: ${result}`);
     });
   }
-
+  ngOnInit(): void {
+    this.reclamationservice.reclamations(this.globalService.getTomorrowDate()).subscribe(habi=>{
+      
+      this.ELEMENT_DATA=habi.data;
+      console.log(this.ELEMENT_DATA);
+      this.displayedColumns=  ['Réclamant', "Application",'Description', 'Effectuée le', 'Traité par', 'Traité le', 'Statut', 'Actions'];
+      this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+    
+    });
+    this.displayedColumns=  ['Réclamant',"Application", 'Description', 'Effectuée le', 'Traité par', 'Traité le', 'Statut', 'Actions'];
+    this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+  
+  }
 
 }
-
-export interface PeriodicElement {
-  reclamant: string;
-  email: string;
-  statut: string;
-  created_at: string;
-  treated_by: string;
-  treated_at: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { reclamant: "Emmanuel", email: "emmanuelleuna758@gmail.com", created_at: '14/10/2010 15:30', treated_by:"Emmanuel leuna", treated_at:'14/01/2023 14:02', statut: 'Lue' },]
-  ;
