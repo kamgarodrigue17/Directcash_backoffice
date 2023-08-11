@@ -15,14 +15,14 @@ import { CommissionService } from 'src/app/services/commission/commission.servic
 export class CommisionParServiceComponent implements OnInit {
   displayedColumns: string[] =[];
   ELEMENT_DATA: Commission[] = [
-];
-dataSource!:MatTableDataSource<Commission, MatTableDataSourcePaginator>
+  ];
+  dataSource!:MatTableDataSource<Commission, MatTableDataSourcePaginator>
 
 
   constructor(public dialog: MatDialog,public commission:CommissionService) { }
 
- // displayedColumns: string[] = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
- // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  // displayedColumns: string[] = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
+  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -63,14 +63,15 @@ dataSource!:MatTableDataSource<Commission, MatTableDataSourcePaginator>
   }
   ngOnInit(): void {
     this.commission.commissions().subscribe(com=>{
-    this.ELEMENT_DATA=com.data
-console.log(this.ELEMENT_DATA)
-this.displayedColumns = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
-this.dataSource = new MatTableDataSource<Commission>(this.ELEMENT_DATA);
+      this.ELEMENT_DATA=com.data
+      console.log(this.ELEMENT_DATA)
+      this.displayedColumns = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
+      this.dataSource = new MatTableDataSource<Commission>(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
 
-    })  
-   this.displayedColumns = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
-  this.dataSource = new MatTableDataSource<Commission>(this.ELEMENT_DATA);
+    })
+    this.displayedColumns = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
+    this.dataSource = new MatTableDataSource<Commission>(this.ELEMENT_DATA);
 
   }
 

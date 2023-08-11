@@ -36,6 +36,7 @@ export class ValiderRechargeComponent implements OnInit {
     const alert = document.getElementById("alert");
     alert?.classList.add("d-none");
   }
+  
   openAlert() {
     const alert = document.getElementById("alert");
     alert?.classList.remove("d-none");
@@ -98,7 +99,7 @@ export class ValiderRechargeComponent implements OnInit {
       console.log(this.ELEMENT_DATA);
       this.displayedColumns=['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le','Actions'];
       this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
-    
+      this.dataSource.paginator = this.paginator;
       
     });
     this.displayedColumns= ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le','Actions'];

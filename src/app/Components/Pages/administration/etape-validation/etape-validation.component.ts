@@ -68,9 +68,9 @@ dataSource!:MatTableDataSource<Validation, MatTableDataSourcePaginator>
       console.log(this.ELEMENT_DATA);
       this.displayedColumns=  ['Intitulé', 'Priorité', 'Validateur', 'Service', 'Creé le', 'Actions'];
       this.dataSource=new MatTableDataSource<Validation>(this.ELEMENT_DATA);
-    
-      
+      this.dataSource.paginator = this.paginator;
     });
+    
     this.displayedColumns=  ['Intitulé', 'Priorité', 'Validateur', 'Service', 'Creé le', 'Actions'];
     this.dataSource=new MatTableDataSource<Validation>(this.ELEMENT_DATA);
   }

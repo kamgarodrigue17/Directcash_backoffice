@@ -1,4 +1,4 @@
-import { Component, ViewChild,OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
@@ -13,14 +13,14 @@ import { FeesService } from 'src/app/services/fees.service';
   templateUrl: './grille-transfert-argent-paiement-facture-camwater.component.html',
   styleUrls: ['./grille-transfert-argent-paiement-facture-camwater.component.css']
 })
-export class GrilleTransfertArgentPaiementFactureCamwaterComponent implements OnInit{
+export class GrilleTransfertArgentPaiementFactureCamwaterComponent implements OnInit {
 
-  displayedColumns: string[] =[];
-  ELEMENT_DATA:Fees[] = [
-];
-dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
+  displayedColumns: string[] = [];
+  ELEMENT_DATA: Fees[] = [
+  ];
+  dataSource!: MatTableDataSource<Fees, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog,public feesService:FeesService) { }
+  constructor(public dialog: MatDialog, public feesService: FeesService) { }
 
 
 
@@ -47,7 +47,7 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
 
   open_add_grille_dialog(mode: string) {
     const add_grille_dialog = this.dialog.open(GrilleTransfertDirectcashDialogComponent, {
-      data:{
+      data: {
         mode: mode,
         object: 'paiement facture camwater'
       }
@@ -60,7 +60,7 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
 
   open_del_grille_dialog() {
     const del_grille_dialog = this.dialog.open(ConfirmationDialogComponent, {
-      data:{
+      data: {
         title: "Confirmation de suppression",
         message: "Voulez - vous vraiment supprimer cette grille de transfert ?"
       }
@@ -71,16 +71,16 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
     });
   }
   ngOnInit(): void {
-    this.feesService.getfees("camwater").subscribe(fees=>{
-      this.ELEMENT_DATA =fees.data;
+    this.feesService.getfees("camwater").subscribe(fees => {
+      this.ELEMENT_DATA = fees.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns= ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
-      this.dataSource=new MatTableDataSource<Fees>(this.ELEMENT_DATA);
-    
-      
+      this.displayedColumns = ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
+      this.dataSource = new MatTableDataSource<Fees>(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
+
     });
-    this.displayedColumns=  ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
-    this.dataSource=new MatTableDataSource<Fees>(this.ELEMENT_DATA);
+    this.displayedColumns = ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
+    this.dataSource = new MatTableDataSource<Fees>(this.ELEMENT_DATA);
   }
 
 }

@@ -76,9 +76,9 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
       console.log(this.ELEMENT_DATA);
       this.displayedColumns= ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
       this.dataSource=new MatTableDataSource<Fees>(this.ELEMENT_DATA);
-    
-      
+      this.dataSource.paginator = this.paginator;  
     });
+
     this.displayedColumns=  ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
     this.dataSource=new MatTableDataSource<Fees>(this.ELEMENT_DATA);
   }
