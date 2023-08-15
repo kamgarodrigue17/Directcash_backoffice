@@ -8,10 +8,11 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-commission-dialog.component.css']
 })
 export class AddCommissionDialogComponent {
-  comissionm: any = {};
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public commissionService: CommissionService) {
-    this.comissionm = this.data.element
-    this.comissionm.modifierPar = localStorage.getItem("id");
+
+  comissionm:any={};
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public commissionService:CommissionService){
+    this.comissionm={...this.data.element}
+    this.comissionm.modifierPar=localStorage.getItem("id");
   }
 
   @ViewChild("form") form!: NgForm;

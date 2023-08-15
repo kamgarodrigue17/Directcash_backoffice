@@ -24,7 +24,7 @@ export class AdminDialogComponent implements OnInit{
   };
   habilitions:any[]=[];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public habilition:HabilitationService,public userService:ValidationService){
-    this.admin=data.data;
+    this.admin={...data.data};
     this.admin.adminId=localStorage.getItem("id");
     this.admin.defaultPassword= "",
     this.admin.adminPassword= "",

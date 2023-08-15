@@ -11,6 +11,7 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
 })
 export class AddAgentDialogComponent implements OnInit {
 
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public agentservice: AgentServiceService) {
     this.agent.modifiedBy = localStorage.getItem("id");
     this.agent.adminId = localStorage.getItem("id");

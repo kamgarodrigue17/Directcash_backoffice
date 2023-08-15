@@ -16,9 +16,13 @@ export class HabilitationService {
   
     return this.http.get<any>(this.globalService.baseUrl+"/api/Administration/Habilitations/getAll");
   }
+  reclamations(endate:string): Observable<any> {
+  console.log(this.globalService.baseUrl+`/api/Administration/Reclamation/all?adminId=${localStorage.getItem('id')}&startDate=20230731&endDate=${endate}`)
+    return this.http.get<any>(this.globalService.baseUrl+`/api/Administration/Reclamation/all?adminId=${localStorage.getItem('id')}&startDate=20230731&endDate=${endate}`);
+  }
   newEdit(data:any): Observable<any> {
   
-    return this.http.post<any>(this.globalService.baseUrl+"/api/Administration/Habilitation/newEdit", data);
+    return this.http.post<any>(this.globalService.baseUrl+"/api/Administration/Reclamation/newEdit", data);
   }
  
 }

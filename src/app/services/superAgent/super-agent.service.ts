@@ -25,4 +25,12 @@ export class SuperAgentService {
     
     return this.http.post<String>(this.globalService.baseUrl+"/api/Users/AddEditMerchant",data);
   }
+  Agences(): Observable<any> {
+  
+    return this.http.get<any>(this.globalService.baseUrl+"/api/Administration/Agence/all?adminId="+localStorage.getItem("id"));
+  }
+  newEditAgence(data:any): Observable<any> {
+    
+    return this.http.post<any>(this.globalService.baseUrl+"/api/Administration/Agence/newEdit",data);
+  }
 }
