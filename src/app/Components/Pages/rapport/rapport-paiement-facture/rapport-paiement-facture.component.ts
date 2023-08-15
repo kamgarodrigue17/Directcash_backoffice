@@ -14,7 +14,7 @@ export class RapportPaiementFactureComponent {
 
   ELEMENT_DATA:any[]=[];
   day:Date=new Date();
-    constructor(trxService:TransactionService,global:GloabalServiceService) { 
+    constructor(trxService:TransactionService,global:GloabalServiceService) {
      console.log(global.formatDate(this.day))
      trxService.getTransaction(localStorage.getItem('id')!,"bills","2033-6-1","",global.formatDate(this.day)).subscribe(trx=>{
       console.log(trx);
@@ -55,7 +55,3 @@ export interface PeriodicElement {
   type_operation: string;
   created_at: string;
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { agent: 'agent', id_transaction: 'THFS465', ptn: '....', montant: 40, frais: 40, type_facture: 'CANAL +', type_operation: 'type operation', created_at: '14/10/2010 15:30'}
-];

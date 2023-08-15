@@ -1,4 +1,4 @@
-import { Component, ViewChild,OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
@@ -14,20 +14,23 @@ import { PlafondService } from 'src/app/services/plafond/plafond.service';
   styleUrls: ['./approvisioner-agence.component.css']
 })
 export class ApprovisionerAgenceComponent implements OnInit {
-  displayedColumns: string[] =[];
+  displayedColumns: string[] = [];
 
   ELEMENT_DATA: Plafond[] = [
   ];
-  dataSource!:MatTableDataSource<Plafond, MatTableDataSourcePaginator>
-  
-    constructor(public dialog: MatDialog, private router: Router,public plafond:PlafondService) { 
-  
-    }
+  dataSource!: MatTableDataSource<Plafond, MatTableDataSourcePaginator>
+
+  constructor(public dialog: MatDialog, private router: Router, public plafond: PlafondService) {
+
+  }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
 
 
   filter(event: Event) {
@@ -52,25 +55,26 @@ export class ApprovisionerAgenceComponent implements OnInit {
       }
     });
 
-   /* appr_agence_dialog.afterClosed().subscribe(result => {
+    /* appr_agence_dialog.afterClosed().subscribe(result => {
 
-      if(result==true){
-        this.router.navigateByUrl("gestion-monnaie/approvisionner-agence/valider");
-      }
-      console.log(result);
-    });*/
+       if(result==true){
+         this.router.navigateByUrl("gestion-monnaie/approvisionner-agence/valider");
+       }
+       console.log(result);
+     });*/
   }
   ngOnInit(): void {
-    this.plafond.getDemandeAprov().subscribe(plafond=>{
-      this.ELEMENT_DATA =plafond.data;
+    this.plafond.getDemandeAprov().subscribe(plafond => {
+      this.ELEMENT_DATA = plafond.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns=['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
-      this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+      this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
+      this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
+      this.display = 'none';
     });
-    
-    this.displayedColumns= ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
-    this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+
+    this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
+    this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
   }
 }
 

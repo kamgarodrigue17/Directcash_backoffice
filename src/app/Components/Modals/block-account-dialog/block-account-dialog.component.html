@@ -11,7 +11,13 @@
     <mat-form-field appearance="outline">
       <mat-label [hidden]="object == 'agent'">Nom du client</mat-label>
       <mat-label [hidden]="object == 'client'">Nom de l'agent</mat-label>
-      <input matInput placeholder="Nom" name="nom" ngModel readonly/>
+      <input
+        matInput
+        placeholder="Nom"
+        name="nom"
+        [(ngModel)]="object == 'agent' ? agent.agentName: agent.nom"
+        readonly
+      />
     </mat-form-field>
   </div>
 
@@ -19,7 +25,7 @@
     <mat-form-field appearance="outline">
       <mat-label [hidden]="object == 'agent'">Matricule</mat-label>
       <mat-label [hidden]="object == 'client'">ID de l'agent</mat-label>
-      <input matInput placeholder="..." ngModel readonly/>
+      <input matInput placeholder="..." [(ngModel)]="object == 'agent' ? agent.agentNo : agent.matricule" readonly />
     </mat-form-field>
   </div>
 
@@ -30,7 +36,8 @@
 
     <li>
       <p>
-        Le propriétaire du compte pourra <br>se connecter mais ne pourra effectuer <br>aucun service.
+        Le propriétaire du compte pourra <br />se connecter mais ne pourra
+        effectuer <br />aucun service.
       </p>
     </li>
   </ul>
@@ -43,6 +50,6 @@
     mat-button
     [mat-dialog-close]="true"
   >
-    Bloquer
+    <span>Bloquer</span>
   </button>
 </mat-dialog-actions>

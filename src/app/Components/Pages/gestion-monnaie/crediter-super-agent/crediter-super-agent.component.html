@@ -17,7 +17,11 @@
     </div>
 
     <div>
-      <button (click)="open_crediter_super_agent_dialog()" mat-raised-button class="primary-light-button text-center">
+      <button
+        (click)="open_crediter_super_agent_dialog()"
+        mat-raised-button
+        class="primary-light-button text-center"
+      >
         Créditer un super agent
       </button>
 
@@ -48,6 +52,14 @@
         />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
+
+      <!-- Loader de chargement du contenu du tableau -->
+      <div
+        class="d-{{ display }} align-items-center justify-content-center pb-3"
+      >
+        <mat-spinner diameter="25" class="me-3"></mat-spinner>
+        Chargement...
+      </div>
     </div>
 
     <table mat-table [dataSource]="dataSource">

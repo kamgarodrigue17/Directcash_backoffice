@@ -17,16 +17,16 @@ export class RapportAirtimeComponent implements OnInit {
   dataSource!: MatTableDataSource<Transaction, MatTableDataSourcePaginator>
 
   day: Date = new Date();
-  constructor(public trxService: TransactionService, public global: GloabalServiceService) {
-
-  }
-
+  constructor(public trxService: TransactionService, public global: GloabalServiceService) { }
 
   @ViewChild("paginator") paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -41,8 +41,6 @@ export class RapportAirtimeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
 
     this.trxService.getTransaction(localStorage.getItem('id')!, "airtime", "2033-6-1", "", this.global.formatDate(this.day)).subscribe(trx => {
 
@@ -70,7 +68,7 @@ export class RapportAirtimeComponent implements OnInit {
       this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
       this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
-
+      this.display = 'none';
     })
       ;//trx.data.;
     this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];

@@ -8,19 +8,21 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-commission-dialog.component.css']
 })
 export class AddCommissionDialogComponent {
-  comissionm:any={};
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public commissionService:CommissionService){
-    this.comissionm=this.data.element
-    this.comissionm.modifierPar=localStorage.getItem("id");
+  comissionm: any = {};
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public commissionService: CommissionService) {
+    this.comissionm = this.data.element
+    this.comissionm.modifierPar = localStorage.getItem("id");
   }
+
   @ViewChild("form") form!: NgForm;
   mode = this.data.mode;
-  edit(){
-console.log(this.form.value.valeur);
+
+  edit() {
+    console.log(this.form.value.valeur);
     //this.comissionm.valeur=6;
 
     console.log(this.comissionm)
-    this.commissionService.editcommissions(this.comissionm).subscribe(res=>{
+    this.commissionService.editcommissions(this.comissionm).subscribe(res => {
       console.log(res);
     })
   }

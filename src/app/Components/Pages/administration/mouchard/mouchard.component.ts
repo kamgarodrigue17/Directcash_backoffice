@@ -10,16 +10,14 @@ import { RoleService } from 'src/app/services/role/role.service';
   templateUrl: './mouchard.component.html',
   styleUrls: ['./mouchard.component.css']
 })
-export class MouchardComponent implements OnInit  {
-  displayedColumns: string[] =[];
+export class MouchardComponent implements OnInit {
+  displayedColumns: string[] = [];
   ELEMENT_DATA: Habilitation[] = [
-];
-dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
-  constructor(public dialog: MatDialog, public mouchardService:RoleService) { }
+  ];
+  dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
+  constructor(public dialog: MatDialog, public mouchardService: RoleService) { }
 
   snackbar_message = "";
-
-
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -27,12 +25,19 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
     this.dataSource.paginator = this.paginator;
   }
 
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
+
+  // message et type de l'alerte de la page
+  alert_message = "";
+  alert_type = "";
+
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  marquer_comme_resolue(){
+  marquer_comme_resolue() {
     // const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
     //   data:{
     //     title: "Confirmation",
@@ -45,7 +50,7 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
     // });
   }
 
-  supprimer_reclamation(){
+  supprimer_reclamation() {
     // const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
     //   data:{
     //     title: "Confirmation",
@@ -58,28 +63,30 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
     // });
   }
 
-  show_information(){
+  show_information() {
     // const reclamation_dialog = this.dialog.open(ShowReclamationDialogComponent, {
     //   data: { }
     // });
 
     // reclamation_dialog.afterClosed().subscribe(result => {
     //   console.log(`Dialog result: ${result}`);
-    
+
     // });
   }
   ngOnInit(): void {
-    this.mouchardService.getMouchard("20230803").subscribe(habi=>{
-      
-      this.ELEMENT_DATA=habi.data;
+    this.mouchardService.getMouchard("20230803").subscribe(habi => {
+
+      this.ELEMENT_DATA = habi.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns= ['Utilisateur', 'Profil de l\'utilisateur', 'Activité','Module', 'Date & heure', 'Actions'];
-      this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
-    
+      this.displayedColumns = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date & heure', 'Actions'];
+      this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
+      this.display = 'none';
     });
-    this.displayedColumns=  ['Utilisateur', 'Profil de l\'utilisateur', 'Activité','Module',  'Date & heure', 'Actions'];
-    this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
-  
+
+    this.displayedColumns = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date & heure', 'Actions'];
+    this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+
   }
 
 }
