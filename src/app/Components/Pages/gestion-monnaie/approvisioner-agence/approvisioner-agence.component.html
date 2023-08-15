@@ -17,7 +17,11 @@
     </div>
 
     <div>
-      <button (click)="open_appr_agence_dialog()" mat-raised-button class="primary-light-button text-center me-2">
+      <button
+        (click)="open_appr_agence_dialog()"
+        mat-raised-button
+        class="primary-light-button text-center me-2"
+      >
         Approvisionner une agence
       </button>
 
@@ -48,6 +52,14 @@
         />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
+
+      <!-- Loader de chargement du contenu du tableau -->
+      <div
+        class="d-{{ display }} align-items-center justify-content-center pb-3"
+      >
+        <mat-spinner diameter="25" class="me-3"></mat-spinner>
+        Chargement...
+      </div>
     </div>
 
     <table mat-table [dataSource]="dataSource">
@@ -96,7 +108,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-
 
     <mat-paginator
       class="pb-2"

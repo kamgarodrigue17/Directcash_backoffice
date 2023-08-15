@@ -1,4 +1,4 @@
-import { Component, ViewChild,OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,17 +13,15 @@ import { HabilitationService } from '../../../../services/habilitation/habilitat
   templateUrl: './gestion-habilitation.component.html',
   styleUrls: ['./gestion-habilitation.component.css']
 })
-export class GestionHabilitationComponent implements OnInit  {
-  displayedColumns: string[] =[];
+export class GestionHabilitationComponent implements OnInit {
+  displayedColumns: string[] = [];
   ELEMENT_DATA: Habilitation[] = [
-];
-dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
+  ];
+  dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, public habilition:HabilitationService, private _snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog, public habilition: HabilitationService, private _snackBar: MatSnackBar) { }
 
   snackbar_message = "";
-
-  
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -31,16 +29,43 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
     this.dataSource.paginator = this.paginator;
   }
 
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
+
+  // loader pour l'execution des requetes
+  isProgressHidden = true;
+
+  // message et type de l'alerte de la page
+  alert_message = "";
+  alert_type = "";
+
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  editer_habilitation(mode: string,data:any) {
-   const habilitation_dialog = this.dialog.open(HabilitationDialogComponent, {
+  /**
+ * Fermeture de l'alerte
+ */
+  closeAlert() {
+    const alert = document.getElementById("alert");
+    alert?.classList.add("d-none");
+  }
+
+  /**
+   * Ouverture de l'alerte
+   */
+  openAlert() {
+    this.closeAlert();
+    const alert = document.getElementById("alert");
+    alert?.classList.remove("d-none");
+  }
+
+  editer_habilitation(mode: string, data: any) {
+    const habilitation_dialog = this.dialog.open(HabilitationDialogComponent, {
       data: {
         mode: mode,
-        element:data
+        element: data
       }
     });
 
@@ -53,8 +78,8 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
   supprimer_habilitation(intitule: string) {
     const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
-      data:{
-        title: "Habilitation : "+ intitule,
+      data: {
+        title: "Habilitation : " + intitule,
         message: "Voulez - vous vraiment supprimer cette habilitation ? \nLes comptes conernés n'auront plus d'habilitation"
       }
     });
@@ -74,21 +99,22 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
     // });
   }
   ngOnInit(): void {
-    this.habilition.habilitations().subscribe(habi=>{
-      
-      this.ELEMENT_DATA=habi.data;
+    this.habilition.habilitations().subscribe(habi => {
+
+      this.ELEMENT_DATA = habi.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns= ['Intitulé', 'Description','Crée par', 'Crée le', 'Actions'];
-      this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+      this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
+      this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
+      this.display = 'none';
     });
 
-    this.displayedColumns= ['Intitulé', 'Crée par', 'Crée le', 'Statut', 'Actions'];
+    this.displayedColumns = ['Intitulé', 'Crée par', 'Crée le', 'Statut', 'Actions'];
 
-    this.displayedColumns= ['Intitulé', 'Description','Crée par', 'Crée le', 'Actions'];
+    this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
 
-    this.dataSource=new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
-  
+    this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+
   }
 
 }

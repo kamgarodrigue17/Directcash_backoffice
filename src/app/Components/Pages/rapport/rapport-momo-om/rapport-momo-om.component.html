@@ -20,7 +20,7 @@
       <div class="input-group me-2">
         <input
           type="date"
-          [(ngModel)] = 'filter_date_1'
+          [(ngModel)]="filter_date_1"
           class="form-control h-100"
           placeholder="Username"
           aria-label="Username"
@@ -28,14 +28,18 @@
         <span class="input-group-text h-100">à</span>
         <input
           type="date"
-          [(ngModel)] = 'filter_date_2'
+          [(ngModel)]="filter_date_2"
           class="form-control h-100"
           placeholder="Server"
           aria-label="Server"
         />
       </div>
 
-      <button (click)="filter_date()" mat-raised-button class="primary-light-button text-center me-2">
+      <button
+        (click)="filter_date()"
+        mat-raised-button
+        class="primary-light-button text-center me-2"
+      >
         <mat-icon class="me-0">filter_list</mat-icon>
       </button>
     </div>
@@ -47,35 +51,19 @@
       <div class="row">
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Total transaction</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Transactions réussies</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Transactions échouées</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Transactions en attente</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
       </div>
     </div>
@@ -95,6 +83,14 @@
         />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
+
+      <!-- Loader de chargement du contenu du tableau -->
+      <div
+        class="d-{{ display }} align-items-center justify-content-center pb-3"
+      >
+        <mat-spinner diameter="25" class="me-3"></mat-spinner>
+        Chargement...
+      </div>
     </div>
 
     <table mat-table [dataSource]="dataSource">
@@ -122,8 +118,8 @@
         <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
       </ng-container>
 
-       <!-- Type de service Column -->
-       <ng-container matColumnDef="Type de service">
+      <!-- Type de service Column -->
+      <ng-container matColumnDef="Type de service">
         <th mat-header-cell *matHeaderCellDef>Type de service</th>
         <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
       </ng-container>

@@ -1,4 +1,4 @@
-import { Component, ViewChild,OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
@@ -14,18 +14,18 @@ import { PlafondService } from 'src/app/services/plafond/plafond.service';
   templateUrl: './crediter-super-agent.component.html',
   styleUrls: ['./crediter-super-agent.component.css']
 })
-export class CrediterSuperAgentComponent implements OnInit{
-  displayedColumns: string[] =[];
+export class CrediterSuperAgentComponent implements OnInit {
+  displayedColumns: string[] = [];
   ELEMENT_DATA: Plafond[] = [
-];
-dataSource!:MatTableDataSource<Plafond, MatTableDataSourcePaginator>
+  ];
+  dataSource!: MatTableDataSource<Plafond, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, private router: Router,public plafond:PlafondService) { 
+  constructor(public dialog: MatDialog, private router: Router, public plafond: PlafondService) {
 
   }
 
 
- 
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -33,6 +33,8 @@ dataSource!:MatTableDataSource<Plafond, MatTableDataSourcePaginator>
     this.dataSource.paginator = this.paginator;
   }
 
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -58,23 +60,24 @@ dataSource!:MatTableDataSource<Plafond, MatTableDataSourcePaginator>
 
     crediter_super_agent_dialog.afterClosed().subscribe(result => {
 
-      if(result==true){
+      if (result == true) {
         this.router.navigateByUrl("gestion-monnaie/crediter-super-agent/valider");
       }
       console.log(result);
     });
   }
   ngOnInit(): void {
-    this.plafond.getDemandeAprov().subscribe(plafond=>{
-      this.ELEMENT_DATA =plafond.data;
+    this.plafond.getDemandeAprov().subscribe(plafond => {
+      this.ELEMENT_DATA = plafond.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns=['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
-      this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+      this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
+      this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
+      this.display = 'none';
     });
-    
-    this.displayedColumns= ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
-    this.dataSource=new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+
+    this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
+    this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
   }
 }
 

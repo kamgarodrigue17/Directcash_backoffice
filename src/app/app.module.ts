@@ -22,6 +22,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { ConnexionComponent } from './Components/connexion/connexion.component';
 import { BaseComponent } from './Components/base/base.component';
@@ -190,7 +192,9 @@ import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapp
     MatSnackBarModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [
     {

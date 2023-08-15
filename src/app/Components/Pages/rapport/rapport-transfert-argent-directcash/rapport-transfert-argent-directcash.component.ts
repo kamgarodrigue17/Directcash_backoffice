@@ -20,20 +20,16 @@ export class RapportTransfertArgentDirectcashComponent implements OnInit {
   dataSource!: MatTableDataSource<Transaction, MatTableDataSourcePaginator>
 
   day: Date = new Date();
-  constructor(public trxService: TransactionService, public global: GloabalServiceService, public dialog: MatDialog) {
-
-  }
-
-
-
-
-
+  constructor(public trxService: TransactionService, public global: GloabalServiceService, public dialog: MatDialog) { }
 
   @ViewChild("paginator") paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -83,10 +79,11 @@ export class RapportTransfertArgentDirectcashComponent implements OnInit {
       this.displayedColumns = ['Agent', 'Montant (XAF)', 'Expediteur', 'Destinataire', 'Statut', 'Effectuée le', 'Action'];
       this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
-
+      this.display = 'none';
     });
-    this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
-    this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
+
+    // this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
+    // this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   }
 

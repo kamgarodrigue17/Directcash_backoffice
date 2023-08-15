@@ -1,7 +1,4 @@
-<div
-  class=""
-  style="background-color: #f2f4f5;"
->
+<div class="" style="background-color: #f2f4f5">
   <section
     class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4"
   >
@@ -11,7 +8,7 @@
           class="col-lg-8 col-sm-12 d-flex flex-column align-items-center justify-content-center"
         >
           <div
-            class="card mb-3 col-md-12 flex-md-row border-0 shadow-lg h-100 pt-4 pb-4"
+            class="card mb-0 col-md-12 flex-md-row border-0 shadow-lg h-100"
           >
             <!-- Section 1 -->
             <div class="col-md-6 custom-bg-primary rounded text-center">
@@ -47,7 +44,6 @@
                 <form
                   (ngSubmit)="onSubmit()"
                   [formGroup]="myForm"
-                 
                   novalidate
                   class="needs-validation fs-6 mt-4 mb-3 ps-3 pe-3"
                   action="/"
@@ -61,7 +57,6 @@
                         matInput
                         placeholder="ID"
                         formControlName="username"
-                       
                       />
                       <mat-icon matPrefix>account_circle</mat-icon>
                     </mat-form-field>
@@ -73,7 +68,6 @@
                       <input
                         required
                         formControlName="password"
-                        
                         matInput
                         [type]="hide ? 'password' : 'text'"
                         placeholder="Password"
@@ -91,16 +85,38 @@
                           hide ? "visibility_off" : "visibility"
                         }}</mat-icon>
                       </button>
-                      <mat-error class="small" *ngIf="passwordFormControl.hasError('required')">
-                        {{passwordFormControl.getError("required")}}
+                      <mat-error
+                        class="small"
+                        *ngIf="passwordFormControl.hasError('required')"
+                      >
+                        {{ passwordFormControl.getError("required") }}
                       </mat-error>
                     </mat-form-field>
                   </p>
 
                   <div class="col-md-12 text-center mt-3">
-                    <button mat-raised-button class="w-100 primary-light-button">
+                    <button
+                      mat-raised-button
+                      class="w-100 {{connexion_class}}"
+                      [disabled]="isLoading"
+                    >
                       Se connecter
                     </button>
+
+                    <!-- Loader de connexion -->
+                    <div
+                      class="d-{{
+                        display
+                      }} align-items-center justify-content-center pt-4"
+                    >
+                      <mat-spinner diameter="25" class="me-3"></mat-spinner>
+                      Chargement...
+                    </div>
+
+                    <!-- Message du timeout -->
+                    <div class="small pt-3 text-danger d-{{displayTimeout}}">
+                      {{timeoutMessage}}
+                    </div>
                   </div>
                 </form>
               </div>

@@ -19,15 +19,16 @@ export class RapportMomoOmComponent implements OnInit {
   day: Date = new Date();
   constructor(public trxService: TransactionService, public global: GloabalServiceService) {
     console.log(global.formatDate(this.day))
-
   }
-
 
   @ViewChild("paginator") paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -68,7 +69,7 @@ export class RapportMomoOmComponent implements OnInit {
       this.displayedColumns = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
       this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
-
+      this.display = 'none';
     });
     this.displayedColumns = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
     this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);

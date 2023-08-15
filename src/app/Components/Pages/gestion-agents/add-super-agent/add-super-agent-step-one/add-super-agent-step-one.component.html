@@ -114,13 +114,13 @@
               />
             </mat-form-field>
           </p>
-          
+
           <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>merchant</mat-label>
               <mat-select name="pays" placeholder="Selectionner un merchant" formControlName="superMerchant" required>
                 <mat-option *ngFor="let merchant of merchants" [value]="merchant.merchantID">{{merchant.merchantID}}</mat-option>
-                
+
               </mat-select>
             </mat-form-field>
           </p>
@@ -136,8 +136,8 @@
               />
             </mat-form-field>
           </p>
-          
- 
+
+
           <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>N° contribuable</mat-label>
@@ -150,7 +150,7 @@
             </mat-form-field>
           </p>
 
-          <p class="text-primary">
+          <p class="text-primary" title="hello bonjour">
             <i class="bi bi-info-circle-fill me-2"></i>
             <span>Qui contacter en cas d'urgence (optionnel)</span>
           </p>
@@ -187,9 +187,9 @@
             </mat-form-field>
           </p>
 
-      
 
-         
+
+
 
           <div>
             <button mat-button matStepperPrevious class="primary-dark-button me-2">Back</button>
@@ -197,7 +197,7 @@
         </form>
       </mat-step>
 
-      <!-- step 3 
+      <!-- step 3
       <mat-step>
         <form class="mt-4 text-center">
           <ng-template matStepLabel>LOCALISATION</ng-template>
