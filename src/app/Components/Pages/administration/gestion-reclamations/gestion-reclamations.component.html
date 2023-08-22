@@ -18,6 +18,39 @@
   </div>
   <!-- End Page Title -->
 
+  <!-- Loader pour les requetes -->
+  <mat-progress-bar
+    mode="indeterminate"
+    [hidden]="isProgressHidden"
+  ></mat-progress-bar>
+
+  <!-- Alert section -->
+  <div
+    id="alert"
+    class="d-none alert alert-{{
+      alert_type
+    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-3 ps-3 pe-3"
+    role="alert"
+  >
+    <span>
+      <strong
+        ><i class="bi bi-info-circle-fill me-2 text-capitalize"></i>
+        {{ alert_type }} !</strong
+      >
+      {{ alert_message }}
+    </span>
+    <button
+      (click)="closeAlert()"
+      mat-icon-button
+      type="button"
+      class="m-0"
+      data-bs-dismiss="aler"
+      aria-label="Close"
+    >
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+
   <div class="mat-elevation-z2 rounded">
     <div class="container-fluid pt-3 pb-0 mb-0" style="background: white">
       <mat-form-field appearance="outline">
@@ -34,6 +67,14 @@
         />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
+
+      <!-- Loader de chargement du contenu du tableau -->
+      <div
+        class="d-{{ display }} align-items-center justify-content-center pb-3"
+      >
+        <mat-spinner diameter="25" class="me-3"></mat-spinner>
+        Chargement...
+      </div>
     </div>
 
     <table mat-table [dataSource]="dataSource">
@@ -91,7 +132,7 @@
           <ul class="list-group list-group-horizontal" style="max-width: 180px">
             <li class="list-group-item border-0 pe-2 ps-0">
               <button
-              (click)="marquer_comme_resolue(element)"
+                (click)="marquer_comme_resolue(element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #02c29c36"
@@ -101,7 +142,7 @@
             </li>
             <li class="list-group-item border-0 pe-2 ps-0">
               <button
-              (click)="supprimer_reclamation()"
+                (click)="supprimer_reclamation()"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #f60d2b4d"
@@ -111,7 +152,7 @@
             </li>
             <li class="list-group-item border-0 pe-0 ps-0">
               <button
-              (click)="show_information()"
+                (click)="show_information()"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #e6e6e6"

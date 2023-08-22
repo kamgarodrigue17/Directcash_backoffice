@@ -12,37 +12,33 @@ import { ValidationService } from 'src/app/services/validation/validation.servic
   styleUrls: ['./approvisionner-agence-dialog.component.css']
 })
 export class ApprovisionnerAgenceDialogComponent implements OnInit {
-  merchants:Merchant[]=[];
-  
+  merchants: Merchant[] = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public agentservice:AgentServiceService,public valideservice:ValidationService){}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public agentservice: AgentServiceService, public valideservice: ValidationService) { }
 
   object = this.data.object;
-   id:string="";
-   amount:string="";
-   password:string="";
+  id: string = "";
+  amount: string = "";
+  password: string = "";
   @ViewChild("form") form!: NgForm;
-  valide(){
-    let data:any={
+  valide() {
+    let data: any = {
       "merchantId": `${this.id}`,
       "amount": this.amount,
       "createBy": localStorage.getItem("id"),
-      
+
       "password": this.password
     };
-    
-    if(data.merchantId!=null){
-      this.valideservice.initdemandeAprovisionenm(data).subscribe(res=>{
-        console.log(res);
-      })
-    }
+
+    return data;
+    // if (data.merchantId != null) {
+    //   this.valideservice.initdemandeAprovisionenm(data).subscribe(res => {
+    //     console.log(res);
+    //   })
+    // }
   }
 
   ngOnInit(): void {
-    this.agentservice.Agents("Merchants").subscribe(merchants=>{
-     
-      this.merchants=merchants.data;
-      console.log( this.merchants);
-    }); 
+    this.merchants = this.data.merchants;
   }
 }

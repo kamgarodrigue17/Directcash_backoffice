@@ -76,17 +76,17 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
   ngOnInit(): void {
 
     this.mouchardService.getMouchard(this.globalService.getTomorrowDate()).subscribe(habi=>{
-      
+
       this.ELEMENT_DATA=habi.data;
 
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date & heure', 'Actions'];
+      this.displayedColumns = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date et heure', 'Actions'];
       this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
 
-    this.displayedColumns = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date & heure', 'Actions'];
+    this.displayedColumns = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date et heure', 'Actions'];
     this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
 
   }

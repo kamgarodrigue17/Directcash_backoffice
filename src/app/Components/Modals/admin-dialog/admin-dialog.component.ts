@@ -1,6 +1,5 @@
-import { Component, Inject ,OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HabilitationService } from 'src/app/services/habilitation/habilitation.service';
 import { ValidationService } from 'src/app/services/validation/validation.service';
 
 @Component({
@@ -8,8 +7,9 @@ import { ValidationService } from 'src/app/services/validation/validation.servic
   templateUrl: './admin-dialog.component.html',
   styleUrls: ['./admin-dialog.component.css']
 })
-export class AdminDialogComponent implements OnInit{
-  admin:any={
+
+export class AdminDialogComponent {
+  admin: any = {
     "userName": "",
     "isActive": "",
     "habilitation": "",
@@ -22,31 +22,26 @@ export class AdminDialogComponent implements OnInit{
     "modifierPar": "",
     "modifierLe": ""
   };
-  habilitions:any[]=[];
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public habilition:HabilitationService,public userService:ValidationService){
-    this.admin={...data.data};
-    this.admin.adminId=localStorage.getItem("id");
-    this.admin.defaultPassword= "",
-    this.admin.adminPassword= "",
-    console.log(this.admin);
 
+  habilitations: any[] = [];
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public userService: ValidationService) {
+    this.admin = data.data;
+    this.admin.adminId = localStorage.getItem("id");
+    this.admin.defaultPassword = "";
+    this.admin.adminPassword = "";
+    this.habilitations = data.habilitations;
   }
-  validate(){
-    console.log( this.admin)
-    this.admin.adminPassword=`${this.admin.defaultPassword}`;
-    this.admin.modifierPar=localStorage.getItem("id");
-    this.userService.Edit(this.admin).subscribe(user=>{
-      console.log(user);
-    },err=>{
-      console.log(err);
-    });
+
+  /**
+   * Valider les donner du formulaire
+   * @returns
+   */
+  validate() {
+    this.admin.adminPassword = `${this.admin.defaultPassword}`;
+    this.admin.modifierPar = localStorage.getItem("id");
+    return this.admin;
   }
+
   mode = this.data.mode;
   now = new Date();
-  ngOnInit(): void {
-    this.habilition.habilitations().subscribe(habil=>{
-      this.habilitions=habil.data;
-      console.log( this.habilitions);
-    }); 
-  }
 }

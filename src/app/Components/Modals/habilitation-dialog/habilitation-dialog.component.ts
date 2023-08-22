@@ -9,34 +9,33 @@ import { HabilitationService } from 'src/app/services/habilitation/habilitation.
   styleUrls: ['./habilitation-dialog.component.css']
 })
 export class HabilitationDialogComponent {
-   data:any={
+  data: any = {
     "source": "0",
-   "idhabilitation": 0,
-              "label": "",
-              "description": "",
-              "creerPar": localStorage.getItem('id'),
-              "creerLe": "",
+    "idhabilitation": 0,
+    "label": "",
+    "description": "",
+    "creerPar": localStorage.getItem('id'),
+    "creerLe": "",
     "pass": ""
   }
   @ViewChild("form") form!: NgForm;
-  constructor(@Inject(MAT_DIALOG_DATA) public datas: any,public habilitationService:HabilitationService){
+  constructor(@Inject(MAT_DIALOG_DATA) public datas: any, public habilitationService: HabilitationService) {
     console.log(datas.mode);
-    if (datas.mode==='edit') {
-      this.data={...datas.element}
-      this.data.source= `${datas.element.idhabilitation}`;
-    this.data.idhabilitation=datas.element.idhabilitation;
-    this.data.description=datas.element.description
-    this.data.label=datas.element.label;
-    this.data.creerPar=datas.element.creerPar;
-    this.data.creerLe=datas.element.creerLe;
+    if (datas.mode === 'edit') {
+      this.data = { ...datas.element }
+      this.data.source = `${datas.element.idhabilitation}`;
+      this.data.idhabilitation = datas.element.idhabilitation;
+      this.data.description = datas.element.description
+      this.data.label = datas.element.label;
+      this.data.creerPar = datas.element.creerPar;
+      this.data.creerLe = datas.element.creerLe;
     }
-    
-
   }
+
   mode = this.datas.mode;
-  valide(){
+  valide() {
     console.log(this.data);
-    this.habilitationService.newEdit(this.data).subscribe(res=>{
+    this.habilitationService.newEdit(this.data).subscribe(res => {
       console.log(res);
     })
   }

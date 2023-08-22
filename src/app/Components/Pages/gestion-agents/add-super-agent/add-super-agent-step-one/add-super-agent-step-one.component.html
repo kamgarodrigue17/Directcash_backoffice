@@ -10,7 +10,7 @@
             <a routerLink="#">Gestion des Agents</a>
           </li>
           <li class="breadcrumb-item">
-            <a routerLink="/gestion-agents/super-agents">Super - Agents</a>
+            <a routerLink="/gestion-agents/super-agents">Super Agents</a>
           </li>
           <li class="breadcrumb-item active">Ajouter</li>
         </ol>
@@ -29,7 +29,6 @@
 
   <section class="section dashboard">
     <mat-stepper [linear]="isLinear" #stepper class="mat-elevation-z2 rounded">
-
       <!-- step 1 -->
       <mat-step [stepControl]="myForm">
         <form [formGroup]="myForm" class="mt-4 text-center">
@@ -71,7 +70,7 @@
             </mat-form-field>
           </p>
 
-          <p>
+          <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>N° IMEI</mat-label>
               <input
@@ -95,7 +94,9 @@
           </p>
 
           <div>
-            <button mat-button matStepperNext class="primary-light-button">Next</button>
+            <button mat-button matStepperNext class="primary-light-button">
+              Next
+            </button>
           </div>
         </form>
       </mat-step>
@@ -117,10 +118,18 @@
 
           <p class="mb-0">
             <mat-form-field appearance="outline">
-              <mat-label>merchant</mat-label>
-              <mat-select name="pays" placeholder="Selectionner un merchant" formControlName="superMerchant" required>
-                <mat-option *ngFor="let merchant of merchants" [value]="merchant.merchantID">{{merchant.merchantID}}</mat-option>
-
+              <mat-label>Merchant</mat-label>
+              <mat-select
+                name="pays"
+                placeholder="Selectionner un merchant"
+                formControlName="superMerchant"
+                required
+              >
+                <mat-option
+                  *ngFor="let merchant of merchants"
+                  [value]="merchant.merchantID"
+                  >{{ merchant.merchantID }}</mat-option
+                >
               </mat-select>
             </mat-form-field>
           </p>
@@ -137,7 +146,6 @@
             </mat-form-field>
           </p>
 
-
           <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>N° contribuable</mat-label>
@@ -150,15 +158,19 @@
             </mat-form-field>
           </p>
 
-          <p class="text-primary" title="hello bonjour">
+          <p
+            class="text-primary"
+            title="Personne à contacter en cas de décès, d’invalidité du propriétaire du compte"
+          >
             <i class="bi bi-info-circle-fill me-2"></i>
-            <span>Qui contacter en cas d'urgence (optionnel)</span>
+            <span>Qui contacter en cas d'urgence (Obligatoire)</span>
           </p>
 
           <p class="mb-0">
             <mat-form-field appearance="outline">
               <mat-label>Nom du contact</mat-label>
               <input
+                required
                 matInput
                 placeholder="Nom du contact"
                 formControlName="contactName"
@@ -169,6 +181,7 @@
             <mat-form-field appearance="outline">
               <mat-label>N° de téléphone du contact</mat-label>
               <input
+                required
                 matInput
                 placeholder="N° de téléphone du contact"
                 formControlName="phoneContact"
@@ -178,22 +191,33 @@
 
           <p class="mb-0">
             <mat-form-field appearance="outline">
-              <mat-label>N° CNI / Numéro d'Identification Unique (NIU)</mat-label>
+              <mat-label
+                >N° CNI / Numéro d'Identification Unique (NIU)</mat-label
+              >
               <input
+                required
                 matInput
                 placeholder="N° CNI / NIU"
                 formControlName="cniContact"
               />
             </mat-form-field>
           </p>
-
-
-
-
-
           <div>
-            <button mat-button matStepperPrevious class="primary-dark-button me-2">Back</button>
-            <button mat-button (click)="add_super_agent()"  class="primary-light-button">Valider</button>          </div>
+            <button
+              mat-button
+              matStepperPrevious
+              class="primary-dark-button me-2"
+            >
+              Back
+            </button>
+            <button
+              mat-button
+              (click)="add_super_agent()"
+              class="primary-light-button"
+            >
+              Valider
+            </button>
+          </div>
         </form>
       </mat-step>
 

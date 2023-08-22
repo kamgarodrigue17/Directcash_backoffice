@@ -155,12 +155,12 @@ export class ClientMydirectcashComponent implements OnInit {
     this.AgentService.Agents("Clients").subscribe(agents => {
       this.ELEMENT_DATA = agents.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Nom', 'Matricule', 'Téléphone', 'Solde', 'Statut', 'Adresse', 'Actions'];
+      this.displayedColumns = ['Noms', 'Matricule', 'Téléphone', 'Solde (XAF)', 'Statut', 'Adresse', 'Actions'];
       this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
-    this.displayedColumns = ['Nom', 'Matricule', 'Téléphone', 'Solde', 'Statut', 'Adresse', 'Actions'];
+    this.displayedColumns = ['Noms', 'Matricule', 'Téléphone', 'Solde (XAF)', 'Statut', 'Adresse', 'Actions'];
     this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
 
   }
