@@ -1,0 +1,268 @@
+<app-base></app-base>
+<main id="main" class="main">
+  <div class="pagetitle d-sm-flex justify-content-between align-items-center">
+    <div>
+      <h1>Gestion des Agents</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
+          <li class="breadcrumb-item">
+            <a routerLink="#">Gestion des Agents</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a routerLink="/gestion-agents/super-agents">Super Agents</a>
+          </li>
+          <li class="breadcrumb-item active">Ajouter</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div>
+      <a routerLink="/gestion-agents/super-agents" title="Annuler">
+        <button mat-raised-button class="primary-light-button text-center me-2">
+          <mat-icon class="me-0">close</mat-icon>
+        </button>
+      </a>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <section class="section dashboard">
+    <mat-stepper [linear]="isLinear" #stepper class="mat-elevation-z2 rounded">
+      <!-- step 1 -->
+      <mat-step [stepControl]="myForm">
+        <form [formGroup]="myForm" class="mt-4 text-center">
+          <ng-template matStepLabel>INFORMATIONS PERSONNELLES</ng-template>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Nom</mat-label>
+              <input
+                matInput
+                placeholder="Nom"
+                formControlName="nom"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° CNI</mat-label>
+              <input
+                matInput
+                placeholder="N° CNI"
+                formControlName="cni"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Téléphone</mat-label>
+              <input
+                matInput
+                placeholder="Téléphone"
+                formControlName="phone"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° IMEI</mat-label>
+              <input
+                matInput
+                placeholder="N° IMEI"
+                formControlName="imei"
+                required
+              />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Region</mat-label>
+              <input
+                matInput
+                placeholder="Region"
+                formControlName="region"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <div>
+            <button mat-button matStepperNext class="primary-light-button">
+              Next
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- step 2 -->
+      <mat-step [stepControl]="myForm1" label="INFORMATIONS SOCIALES">
+        <form [formGroup]="myForm1" class="mt-4 text-center">
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Opérateur marketing</mat-label>
+              <input
+                matInput
+                placeholder="Opérateur marketing"
+                formControlName="OperateurMarketing"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Merchant</mat-label>
+              <mat-select
+                name="pays"
+                placeholder="Selectionner un merchant"
+                formControlName="superMerchant"
+                required
+              >
+                <mat-option
+                  *ngFor="let merchant of merchants"
+                  [value]="merchant.merchantID"
+                  >{{ merchant.merchantID }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="Email"
+                formControlName="email"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° contribuable</mat-label>
+              <input
+                matInput
+                placeholder="N° contribuable"
+                formControlName="contribuable"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p
+            class="text-primary"
+            title="Personne à contacter en cas de décès, d’invalidité du propriétaire du compte"
+          >
+            <i class="bi bi-info-circle-fill me-2"></i>
+            <span>Qui contacter en cas d'urgence (Obligatoire)</span>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Nom du contact</mat-label>
+              <input
+                required
+                matInput
+                placeholder="Nom du contact"
+                formControlName="contactName"
+              />
+            </mat-form-field>
+          </p>
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>N° de téléphone du contact</mat-label>
+              <input
+                required
+                matInput
+                placeholder="N° de téléphone du contact"
+                formControlName="phoneContact"
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label
+                >N° CNI / Numéro d'Identification Unique (NIU)</mat-label
+              >
+              <input
+                required
+                matInput
+                placeholder="N° CNI / NIU"
+                formControlName="cniContact"
+              />
+            </mat-form-field>
+          </p>
+          <div>
+            <button
+              mat-button
+              matStepperPrevious
+              class="primary-dark-button me-2"
+            >
+              Back
+            </button>
+            <button
+              mat-button
+              (click)="add_super_agent()"
+              class="primary-light-button"
+            >
+              Valider
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- step 3
+      <mat-step>
+        <form class="mt-4 text-center">
+          <ng-template matStepLabel>LOCALISATION</ng-template>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Pays</mat-label>
+              <mat-select name="pays" placeholder="Selectionner un pays" required>
+                <mat-option value="1">Pays 1</mat-option>
+                <mat-option value="2">Pays 2</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Ville</mat-label>
+              <mat-select name="ville" placeholder="Selectionner une ville" required>
+                <mat-option value="1">Ville 1</mat-option>
+                <mat-option value="2">Ville 2</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline">
+              <mat-label>Quartier</mat-label>
+              <input
+                matInput
+                placeholder="Quartier"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <div>
+            <button mat-button matStepperPrevious class="primary-dark-button me-2">Back</button>
+            <button mat-button (click)="add_super_agent()"  class="primary-light-button">Valider</button>
+          </div>
+        </form>
+      </mat-step> -->
+    </mat-stepper>
+  </section>
+</main>

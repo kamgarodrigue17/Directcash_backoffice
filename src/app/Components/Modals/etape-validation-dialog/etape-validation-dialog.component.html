@@ -1,0 +1,118 @@
+<!-- Header -->
+<div
+  class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
+>
+  <span class="me-4" [hidden]="mode == 'edit' || mode == 'show'"
+    >Ajouter une étape de validation</span
+  >
+  <span class="me-4" [hidden]="mode == 'add' || mode == 'show'"
+    >Editer l'étape de validation</span
+  >
+  <span class="me-4" [hidden]="mode == 'add' || mode == 'edit'"
+    ><strong>ID: </strong>46456454</span
+  >
+  <button mat-button [mat-dialog-close]="false" class="text-center">
+    <mat-icon class="me-0">close</mat-icon>
+  </button>
+</div>
+
+<!-- Content -->
+<mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
+  <form #add_client_form="ngForm">
+    <div class="row">
+      <!-- Intitulé -->
+      <div class="col-md-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Intitulé</mat-label>
+          <input
+            [readonly]="mode == 'show'"
+            required
+            matInput
+            placeholder="Intitulé"
+            name="intitule"
+            ngModel
+            [(ngModel)]="intitule"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Priorité -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Priorité</mat-label>
+          <input
+            [readonly]="mode == 'show'"
+            [(ngModel)]="priorite"
+            required
+            matInput
+            placeholder="0"
+            name="priorite"
+            ngModel
+            type="number"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Service -->
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Service</mat-label>
+          <mat-select name="service" [disabled]="mode == 'show'" required>
+            <mat-option value="1">Service 1</mat-option>
+            <mat-option value="2">Service 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Description -->
+      <div class="col-md-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Description</mat-label>
+          <textarea
+            [readonly]="mode == 'show'"
+            [(ngModel)]="description"
+            required
+            matInput
+            placeholder="Description"
+            name="description"
+            ngModel
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Dernière étape -->
+      <div class="col-md-12">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>C'est la dernière étape ?</mat-label>
+          <mat-select name="derniere_etape" [disabled]="mode == 'show'" required>
+            <mat-option value="1">Oui</mat-option>
+            <mat-option value="2">Non</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+  </form>
+</mat-dialog-content>
+
+<!-- Button action -->
+<mat-dialog-actions align="end" class="p-3 pt-1">
+  <button
+    class="primary-light-button"
+    mat-button
+    [mat-dialog-close]="add_client_form"
+    [hidden]="mode == 'show'"
+  >
+    Sauvegarder
+  </button>
+
+  <button class="primary-dark-button" mat-button [mat-dialog-close]="false">
+    Annuler
+  </button>
+</mat-dialog-actions>

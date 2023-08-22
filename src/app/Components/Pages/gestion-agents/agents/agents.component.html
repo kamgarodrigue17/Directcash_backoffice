@@ -1,0 +1,206 @@
+<app-base></app-base>
+
+<!-- Main -->
+<main id="main" class="main">
+  <!-- Page Title -->
+  <div class="pagetitle d-sm-flex justify-content-between align-items-center">
+    <div>
+      <h1>Gestion des Agents</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
+          <li class="breadcrumb-item">
+            <a routerLink="#">Gestion des Agents</a>
+          </li>
+          <li class="breadcrumb-item active">Agents</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div>
+      <button
+        (click)="go_to_add_page()"
+        mat-raised-button
+        class="primary-light-button text-center me-2 d-none"
+      >
+        <mat-icon class="me-0">add</mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        (click)="open_export_dialog()"
+        class="primary-dark-button text-center"
+      >
+        Exporter
+      </button>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <!-- Loader pour les requetes -->
+  <mat-progress-bar
+    mode="indeterminate"
+    [hidden]="isProgressHidden"
+  ></mat-progress-bar>
+
+  <!-- Alert section -->
+  <div
+    id="alert"
+    class="d-none alert alert-{{
+      alert_type
+    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-2 ps-3 pe-3"
+    role="alert"
+  >
+    <span>
+      <strong
+        ><i class="bi bi-info-circle-fill me-2 text-capitalize"></i>
+        {{ alert_type }} !</strong
+      >
+      {{ alert_message }}
+    </span>
+    <button
+      (click)="closeAlert()"
+      mat-icon-button
+      type="button"
+      class="m-0"
+      data-bs-dismiss="aler"
+      aria-label="Close"
+    >
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+
+  <div class="mat-elevation-z2 rounded">
+    <div class="container-fluid pt-3 pb-0 mb-0" style="background: white">
+      <mat-form-field appearance="outline" class="me-3">
+        <mat-label>Recherche</mat-label>
+        <input
+          (keyup)="filter($event)"
+          required
+          matInput
+          placeholder="Mot clé"
+          name="input-search"
+          ngModel
+          #inputSearch
+          required="false"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <!-- Loader de chargement du contenu du tableau -->
+      <div
+        class="d-{{ display }} align-items-center justify-content-center pb-3"
+      >
+        <mat-spinner diameter="25" class="me-3"></mat-spinner>
+        Chargement...
+      </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource">
+      <!-- Nom Column -->
+      <ng-container matColumnDef="Nom">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let element">{{ element.agentName }}</td>
+      </ng-container>
+
+      <!-- Solde Column -->
+      <ng-container matColumnDef="Solde (XAF)">
+        <th mat-header-cell *matHeaderCellDef>Solde (XAF)</th>
+        <td mat-cell *matCellDef="let element">{{ element.balance }}</td>
+      </ng-container>
+
+      <!-- Agence Column -->
+      <ng-container matColumnDef="Agence">
+        <th mat-header-cell *matHeaderCellDef>Agence</th>
+        <td mat-cell *matCellDef="let element">{{ element.agence }}</td>
+      </ng-container>
+
+      <!-- Merchant Column -->
+      <ng-container matColumnDef="Merchant">
+        <th mat-header-cell *matHeaderCellDef>Merchant</th>
+        <td mat-cell *matCellDef="let element">{{ element.merchantName }}</td>
+      </ng-container>
+
+      <!-- Imei Column -->
+      <ng-container matColumnDef="N° IMEI">
+        <th mat-header-cell *matHeaderCellDef>N° IMEI</th>
+        <td mat-cell *matCellDef="let element">{{ element.imei }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef style="width: 200px">Actions</th>
+        <td
+          colspan="3"
+          class=""
+          mat-cell
+          *matCellDef="let element"
+          style="width: 200px"
+        >
+          <ul class="list-group list-group-horizontal" style="max-width: 200px">
+            <li class="list-group-item border-0 pe-2 ps-0 d-none">
+              <button
+                (click)="open_add_agent_dialog('edit', element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #02c29c36"
+              >
+                <mat-icon style="color: #02c29c">edit</mat-icon>
+              </button>
+            </li>
+            <li class="list-group-item border-0 pe-2 ps-0 d-none">
+              <button
+                (click)="open_add_agent_dialog('edit', element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #02c29c36"
+              >
+                <mat-icon style="color: #02c29c">edit</mat-icon>
+              </button>
+            </li>
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="bloquer_agent('agent', element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #f60d2b4d"
+              >
+                <mat-icon style="color: #f60d2b">person_remove</mat-icon>
+              </button>
+            </li>
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="open_add_agent_dialog('show', element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #e6e6e6"
+              >
+                <mat-icon style="color: #5e5e5e">visibility</mat-icon>
+              </button>
+            </li>
+            <li class="list-group-item border-0 pe-0 ps-0">
+              <button
+                (click)="reset_password(element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #1d1d1d"
+              >
+                <mat-icon style="color: #fff">refresh</mat-icon>
+              </button>
+            </li>
+          </ul>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      class="pb-2"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+  </div>
+</main>
