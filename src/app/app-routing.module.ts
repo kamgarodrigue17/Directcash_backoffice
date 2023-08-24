@@ -44,11 +44,14 @@ import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapp
 import { GrilleTransfertArgentDirectcashInternationaleComponent } from './Components/Pages/tarifaire/grille-transfert-argent-directcash-internationale/grille-transfert-argent-directcash-internationale.component';
 import { GrilleTransfertArgentPaiementFactureEneoComponent } from './Components/Pages/tarifaire/grille-transfert-argent-paiement-facture-eneo/grille-transfert-argent-paiement-facture-eneo.component';
 import { GrilleTransfertArgentPaiementFactureCamwaterComponent } from './Components/Pages/tarifaire/grille-transfert-argent-paiement-facture-camwater/grille-transfert-argent-paiement-facture-camwater.component';
+import { EntrepriseComponent } from './Components/Pages/administration/entreprise/entreprise.component';
 
 const routes: Routes = [
-  {path : '', component: ConnexionComponent},
+  {path : '', component: ConnexionComponent, },
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'gestion-agents/agents', component: AgentsComponent},
+
+  // GESTION DES AGENTS ==============================
+  {path: 'gestion-agents/agents', component: AgentsComponent,},
   {path: 'gestion-agents/agents/ajouter', component: AddAgentComponent},
   {path: 'gestion-agents/super-agents', component: SuperAgentsComponent},
   {path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent},
@@ -100,6 +103,7 @@ const routes: Routes = [
   {path: 'administration/gestion-fonctionnalites', component: GestionFonctionnaliteComponent},
   {path: 'administration/gestion-fonctionnalites/detail', component: DetailFonctionnaliteComponent},
   {path: 'administration/changer-mot-de-passe', component: ChangerMotDePasseComponent},
+  {path: 'administration/entreprises', component: EntrepriseComponent},
 
 ];
 

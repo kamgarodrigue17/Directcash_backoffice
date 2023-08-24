@@ -1,8 +1,8 @@
 <div
   class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
 >
-  <span class="me-4" [hidden]="mode=='add' ">Editer une habilitation</span>
-  <span class="me-4" [hidden]="mode=='edit' ">Ajouter une habilitation</span>
+  <span class="me-4" [hidden]="mode == 'add'">Editer une habilitation</span>
+  <span class="me-4" [hidden]="mode == 'edit'">Ajouter une habilitation</span>
 
   <button mat-button [mat-dialog-close]="false" class="text-center">
     <mat-icon class="me-0">close</mat-icon>
@@ -13,20 +13,44 @@
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Intitulé</mat-label>
-        <input matInput required type="text" placeholder="Intitulé" ngModel name="label" [(ngModel)]="data.label"  [value]="data.label"/>
+        <input
+          matInput
+          required
+          type="text"
+          placeholder="Intitulé"
+          ngModel
+          name="label"
+          [(ngModel)]="data.label"
+          [value]="data.label"
+        />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Description</mat-label>
-        <input matInput required type="text" placeholder="Intitulé" ngModel name="description" [(ngModel)]="data.description" [value]="data.description"/>
+        <input
+          matInput
+          required
+          type="text"
+          placeholder="Intitulé"
+          ngModel
+          name="description"
+          [(ngModel)]="data.description"
+          [value]="data.description"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          required
+          type="text"
+          placeholder="Mot de passe"
+          ngModel
+          name="pass"
+          [(ngModel)]="data.pass"
+        />
       </mat-form-field>
     </div>
-    <mat-form-field appearance="outline">
-      <mat-label>Mot de passe</mat-label>
-      <input matInput required type="text" placeholder="Mot de passe" ngModel name="pass" [(ngModel)]="data.pass"/>
-    </mat-form-field>
   </form>
-  
-
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="p-3 pt-1">
   <button

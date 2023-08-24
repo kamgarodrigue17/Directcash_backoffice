@@ -45,7 +45,7 @@
           name="habilitation" ngModel [(ngModel)]="admin.habilitation"
           [disabled]="mode == 'show'"
         >
-        <mat-option *ngFor="let habilition of habilitions" [value]="habilition.label">{{habilition.label}}</mat-option>
+        <mat-option *ngFor="let habilitation of habilitations" [value]="habilitation.label">{{habilitation.label}}</mat-option>
 
         </mat-select>
       </mat-form-field>
@@ -133,7 +133,7 @@
 
     <div class="row">
 
-    
+
 
       <!-- Sexe -->
       <mat-form-field class="col-md-6" appearance="outline">
@@ -182,9 +182,8 @@
   <button
     class="primary-light-button"
     mat-button
-    [mat-dialog-close]="add_agent_form"
+    [mat-dialog-close]="validate()"
     [hidden]="mode == 'show'"
-    (click)="validate()"
   >
     Sauvegarder
   </button>

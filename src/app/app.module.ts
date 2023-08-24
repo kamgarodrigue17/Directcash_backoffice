@@ -15,13 +15,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatStepperModule} from '@angular/material/stepper';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatStepperModule } from '@angular/material/stepper';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { ConnexionComponent } from './Components/connexion/connexion.component';
 import { BaseComponent } from './Components/base/base.component';
@@ -95,6 +97,8 @@ import { AddTopAgentComponent } from './Components/Pages/gestion-agents/add-top-
 
 import { RapportPaiementFactureEneoComponent } from './Components/Pages/rapport/rapport-paiement-facture-eneo/rapport-paiement-facture-eneo.component';
 import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapport/rapport-paiement-facture-camwater/rapport-paiement-facture-camwater.component';
+import { EntrepriseComponent } from './Components/Pages/administration/entreprise/entreprise.component';
+import { EntrepriseDialogComponent } from './Components/Modals/entreprise-dialog/entreprise-dialog.component';
 
 @NgModule({
   declarations: [
@@ -167,7 +171,9 @@ import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapp
     DistributeurComponent,
     AddDistributeurComponent,
     TopAgentsComponent,
-    AddTopAgentComponent
+    AddTopAgentComponent,
+    EntrepriseComponent,
+    EntrepriseDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -190,7 +196,9 @@ import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapp
     MatSnackBarModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [
     {

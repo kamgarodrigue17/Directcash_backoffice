@@ -22,6 +22,9 @@ export class TransactionMydirectcashComponent {
     this.dataSource.paginator = this.paginator;
   }
 
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
+
   open_show_trans_dialog() {
     const show_trans_dialog = this.dialog.open(ShowTransMydirectcashDialogComponent, {});
 
@@ -42,5 +45,5 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { id_trans: "1464TR", client: "Emmanuel", montant: 30_000_000, service: "OM", date: "12/10/2023", statut: 'Reussie'},
+  { id_trans: "1464TR", client: "Emmanuel", montant: 30_000_000, service: "OM", date: "12/10/2023", statut: 'Reussie' },
 ];

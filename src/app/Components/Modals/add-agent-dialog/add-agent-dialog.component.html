@@ -2,9 +2,15 @@
 <div
   class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
 >
-  <span class="me-4" [hidden]="mode=='edit' || mode=='show' ">Ajouter un Agent</span>
-  <span class="me-4" [hidden]="mode=='add' || mode=='show' ">Editer un Agent</span>
-  <span class="me-4" [hidden]="mode=='add' || mode=='edit' "><strong>ID: </strong>46456454</span>
+  <span class="me-4" [hidden]="mode == 'edit' || mode == 'show'"
+    >Ajouter un Agent</span
+  >
+  <span class="me-4" [hidden]="mode == 'add' || mode == 'show'"
+    >Editer un Agent</span
+  >
+  <span class="me-4" [hidden]="mode == 'add' || mode == 'edit'"
+    ><strong>ID: </strong>{{agent.agentNo}}</span
+  >
   <button mat-button [mat-dialog-close]="false" class="text-center">
     <mat-icon class="me-0">close</mat-icon>
   </button>
@@ -12,22 +18,31 @@
 
 <!-- Content -->
 <mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
-  <form #add_agent_form="ngForm" >
+  <form #add_agent_form="ngForm">
     <div class="row">
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Nom</mat-label>
-          <input required matInput placeholder="Nom" name="nom" ngModel [(ngModel)]="agent.agentName" [readonly]="mode=='show' " />
+          <input
+            matInput
+            placeholder="Nom"
+            name="nom"
+            [(ngModel)]="agent.agentName"
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
-      
+
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Merchant</mat-label>
-          <mat-select name="merchant" [(ngModel)]="agent.merchant" [disabled]="mode=='show' ">
-            <mat-option *ngFor="let merchant of merchants" [value]="merchant.merchantID">{{merchant.nom}}</mat-option>
-
-          </mat-select>
+          <input
+            matInput
+            placeholder="Nom"
+            name="merchant"
+            [(ngModel)]="agent.merchantName"
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
     </div>
@@ -35,16 +50,27 @@
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>N° IMEI du téléphone</mat-label>
-          <input required matInput placeholder="N° IMEI" name="imei" ngModel [(ngModel)]="agent.imei" [readonly]="mode=='show' "/>
+          <input
+            matInput
+            placeholder="N° IMEI"
+            name="imei"
+            ngModel
+            [(ngModel)]="agent.imei"
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Agence</mat-label>
-          <mat-select name="agence" [(ngModel)]="agent.agence" [disabled]="mode=='show' ">
-            <mat-option value="1">Agence 1</mat-option>
-            <mat-option value="2">Agence 2</mat-option>
-          </mat-select>
+          <input
+            matInput
+            placeholder="Agence"
+            name="agence"
+            ngModel
+            [(ngModel)]="agent.agence"
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
     </div>
@@ -53,13 +79,27 @@
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Entreprise</mat-label>
-          <input required matInput placeholder="Entreprise" name="tel" ngModel  [(ngModel)]="agent.entreprise" [readonly]="mode=='show' " />
+          <input
+            matInput
+            placeholder="Entreprise"
+            name="entreprise"
+            ngModel
+            [(ngModel)]="agent.entreprise"
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Solde (XAF)</mat-label>
-          <input required type="number" matInput placeholder="0.00" name="solde" ngModel [(ngModel)]="agent.balance"  [readonly]="mode=='show' " />
+          <input
+            matInput
+            placeholder="0.00"
+            name="solde"
+            ngModel
+            [(ngModel)]="agent.balance"
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
     </div>
@@ -68,30 +108,57 @@
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Adresse Email</mat-label>
-          <input required type="email" matInput placeholder="exemple@gmail.con" name="email" [(ngModel)]="agent.email" ngModel [readonly]="mode=='show' "/>
+          <input
+            type="email"
+            matInput
+            placeholder="exemple@gmail.con"
+            name="email"
+            [(ngModel)]="agent.email"
+            ngModel
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
 
-      <mat-form-field class="col-md-6" appearance="outline">
-        <mat-label>Region</mat-label>
-        <mat-select name="region" [disabled]="mode=='show' ">
-          <mat-option value="1">Region 1</mat-option>
-          <mat-option value="2">Region 2</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Region</mat-label>
+          <input
+            matInput
+            placeholder="Region"
+            name="region"
+            ngModel
+            [(ngModel)]="agent.region"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
     </div>
 
     <div class="row">
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>N° CNI</mat-label>
-          <input required matInput placeholder="N° CNI" name="cni" ngModel [readonly]="mode=='show' "/>
+          <input
+            matInput
+            placeholder="N° CNI"
+            name="cni"
+            ngModel
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Date de création</mat-label>
-          <input required matInput placeholder="0.00" name="created_at" ngModel [(ngModel)]="agent.creerLe" readonly/>
+          <input
+            matInput
+            placeholder="0.00"
+            name="created_at"
+            ngModel
+            [(ngModel)]="agent.creerLe"
+            readonly
+          />
         </mat-form-field>
       </div>
     </div>
@@ -100,15 +167,19 @@
       <div class="col-md-12">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>N° contribuable</mat-label>
-          <input required matInput placeholder="N° IMEI" name="contribuable" ngModel [(ngModel)]="agent.contribuable" [readonly]="mode=='show' "/>
+          <input
+            matInput
+            placeholder="Contribuable"
+            name="contribuable"
+            [(ngModel)]="agent.contribuable"
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
     </div>
 
     <p class="text-primary">
-      <i class="bi bi-info-circle-fill me-2">
-
-      </i>
+      <i class="bi bi-info-circle-fill me-2"> </i>
       <span>Qui contacter en cas d'urgence</span>
     </p>
 
@@ -116,24 +187,41 @@
       <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Nom du contact</mat-label>
-          <input required matInput placeholder="Nom du contact" name="nomContact" ngModel [(ngModel)]="agent.nomContact" [readonly]="mode=='show' "/>
+          <input
+            matInput
+            placeholder="Nom du contact"
+            name="nomContact"
+            [(ngModel)]="agent.nomContact"
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
       <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>N° de téléphone du contact</mat-label>
-          <input required matInput placeholder="N° de téléphone du contact" name="phoneContact" ngModel [(ngModel)]="agent.phoneContact" [readonly]="mode=='show' "/>
+          <input
+            matInput
+            placeholder="N° de téléphone du contact"
+            name="phoneContact"
+            [(ngModel)]="agent.phoneContact"
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
       <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>N° CNI / NIU</mat-label>
-          <input required matInput placeholder="N° CNI / NIU" name="cniContact" ngModel [(ngModel)]="agent.cniContact"  [readonly]="mode=='show' "/>
+          <input
+            matInput
+            placeholder="N° CNI / NIU"
+            name="cniContact"
+            [(ngModel)]="agent.cniContact"
+            [readonly]="mode == 'show'"
+          />
         </mat-form-field>
       </div>
     </div>
   </form>
-
 </mat-dialog-content>
 
 <!-- Button action -->
@@ -142,7 +230,7 @@
     class="primary-light-button"
     mat-button
     [mat-dialog-close]="add_agent_form"
-    [hidden]="mode=='show' "
+    [hidden]="mode == 'show'"
     (click)="valid()"
   >
     Sauvegarder

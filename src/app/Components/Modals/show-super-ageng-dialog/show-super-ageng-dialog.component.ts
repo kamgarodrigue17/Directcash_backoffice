@@ -35,31 +35,34 @@ export class ShowSuperAgengDialogComponent  implements OnInit{
     creerPar:localStorage.getItem('id'),
     creerLe:"",
     type:""}
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public agentservice:AgentServiceService,public merchantService:SuperAgentService){
-    console.log(data);
-   this.merchant=data.element;
-   this.merchant.adminId=localStorage.getItem('id');
-   this.merchant.id=data.element.merchantID
+  
 
-   }
-    @ViewChild("form") form!: NgForm;
-  mode=this.data.mode
-  now = new Date();
-  valide(){
-    console.log(this.merchant);
-    this.merchantService.create(this.merchant).subscribe(res=>{
-      console.log(res);
-      
-    },((err)=>{
-      console.log(err);
+constructor(@Inject(MAT_DIALOG_DATA) private data: any, private agentservice: AgentServiceService, private merchantService: SuperAgentService) {
+  this.merchant = JSON.parse(JSON.stringify(this.data.element));
+  this.merchant.adminId = localStorage.getItem('id');
+  this.merchant.id = data.element.merchantID
+}
 
-    }))
+@ViewChild("form") form!: NgForm;
+mode = this.data.mode
+now = new Date();
 
-  }
-  ngOnInit(): void {
-    this.agentservice.Agents("Merchants").subscribe(merchants=>{
-      this.merchants=merchants.data;
-      console.log( this.merchants);
-    }); 
-  }
+valide(){
+  console.log(this.merchant);
+  this.merchantService.create(this.merchant).subscribe(res=>{
+    console.log(res);
+    
+  },((err)=>{
+    console.log(err);
+
+  }))
+
+}
+
+
+ngOnInit(): void {
+  this.agentservice.Agents("Merchants").subscribe(merchants => {
+    this.merchants = merchants.data;
+  });
+}
 }

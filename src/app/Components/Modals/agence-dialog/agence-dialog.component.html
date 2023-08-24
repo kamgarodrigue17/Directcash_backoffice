@@ -10,17 +10,17 @@
 </div>
 <mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
   <form #form="ngForm">
-    
+
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Nom de l'agence</mat-label>
-        <input matInput required type="text" placeholder="Nom de l'agence"  name="agenceName"  [(ngModel)]="this.agence.agenceName" />
+        <input matInput required type="text" placeholder="Nom de l'agence"  name="agenceName"  [(ngModel)]="this.agence.agenceName" ngModel/>
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Code de l'agence</mat-label>
-        <input matInput required type="text" placeholder="Code de l'agence"  name="agenceId"  [(ngModel)]="this.agence.agenceId" />
+        <input matInput required type="text" placeholder="Code de l'agence"  name="agenceId"  [(ngModel)]="this.agence.agenceId" ngModel />
       </mat-form-field>
     </div>
     <div class="row">
@@ -32,6 +32,7 @@
           type="text"
           placeholder="Pays (ville, quartier)"
           name="location"  [(ngModel)]="this.agence.location"
+          ngModel
         />
       </mat-form-field>
     </div>
@@ -51,8 +52,7 @@
   <button
     class="w-100 primary-light-button"
     mat-button
-    (click)="edit()"
-    [mat-dialog-close]="true"
+    [mat-dialog-close]="edit()"
   >
     Sauvegarder
   </button>

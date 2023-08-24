@@ -9,24 +9,24 @@ import { User } from '../modal/user';
 export class AuthServiceService {
 
   constructor(
-    public globalService:GloabalServiceService,
+    public globalService: GloabalServiceService,
     private http: HttpClient
   ) {
-    
-   }
-   Login(data:any): Observable<any>  {
-    console.log(this.globalService.baseUrl);
-    return this.http.post<any>(this.globalService.baseUrl+"/api/Authentication/authenticate",data);
+
   }
-refreshToken(): any  {
- let  data:any=localStorage.getItem("user")
-    
-    this.http.post<any>(this.globalService.baseUrl+"/api/Authentication/refreshToken?id="+localStorage.getItem("id"),JSON.parse(data)).subscribe(ress=>{
-      localStorage.setItem("token",ress.data.token);
-     
+  Login(data: any): Observable<any> {
+    console.log(this.globalService.baseUrl);
+    return this.http.post<any>(this.globalService.baseUrl + "/api/Authentication/authenticate", data);
+  }
+  refreshToken(): any {
+    let data: any = localStorage.getItem("user")
+
+    this.http.post<any>(this.globalService.baseUrl + "/api/Authentication/refreshToken?id=" + localStorage.getItem("id"), JSON.parse(data)).subscribe(ress => {
+      localStorage.setItem("token", ress.data.token);
+
     });
   }
   getMenu(): Observable<any[]> {
-    return this.http.get<any>(this.globalService.baseUrl+"/api/Authentication/getMenus?id=<string>");
+    return this.http.get<any>(this.globalService.baseUrl + "/api/Authentication/getMenus?id=<string>");
   }
 }

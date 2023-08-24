@@ -11,15 +11,48 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Gestion de la monnaie</a>
           </li>
-          <li class="breadcrumb-item active">Emmission de la monnaie</li>
+          <li class="breadcrumb-item active">Émission de la monnaie</li>
         </ol>
       </nav>
     </div>
   </div>
   <!-- End Page Title -->
 
+  <!-- Loader pour les requetes -->
+  <mat-progress-bar
+    mode="indeterminate"
+    [hidden]="isProgressHidden"
+  ></mat-progress-bar>
+
+  <!-- Alert section -->
+  <div
+    id="alert"
+    class="d-none alert alert-{{
+      alert_type
+    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-3 ps-3 pe-3"
+    role="alert"
+  >
+    <span>
+      <strong
+        ><i class="bi bi-info-circle-fill me-2 text-capitalize"></i>
+        {{ alert_type }} !</strong
+      >
+      {{ alert_message }}
+    </span>
+    <button
+      (click)="closeAlert()"
+      mat-icon-button
+      type="button"
+      class="m-0"
+      data-bs-dismiss="aler"
+      aria-label="Close"
+    >
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+
   <div class="container-fluid rounded bg-white mat-elevation-z2 mb-4 p-3">
-    <span class="fs-6 fw-bold mb-3">Emmission de la monnaie</span>
+    <span class="fs-6 fw-bold mb-3">Émission de la monnaie</span>
     <div class="row pt-3">
       <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
@@ -35,7 +68,7 @@
       </div>
       <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Solde client MyDirectCash</mat-label>
+          <mat-label>Solde Client MyDirectCash</mat-label>
           <input matInput placeholder="0.00" ngModel readonly />
         </mat-form-field>
       </div>
@@ -76,13 +109,21 @@
         />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
+
+      <!-- Loader de chargement du contenu du tableau -->
+      <div
+        class="d-{{ display }} align-items-center justify-content-center pb-3"
+      >
+        <mat-spinner diameter="25" class="me-3"></mat-spinner>
+        Chargement...
+      </div>
     </div>
 
     <table mat-table [dataSource]="dataSource">
       <!-- Solde courant Column -->
       <ng-container matColumnDef="Solde courant">
         <th mat-header-cell *matHeaderCellDef>Solde courant</th>
-        <td mat-cell *matCellDef="let element">{{ element.soldeCourant}}</td>
+        <td mat-cell *matCellDef="let element">{{ element.soldeCourant }}</td>
       </ng-container>
 
       <!-- Service Column -->
@@ -107,7 +148,7 @@
         <th mat-header-cell *matHeaderCellDef>Partenaire</th>
         <td mat-cell *matCellDef="let element">{{ element.nomPartenaire }}</td>
       </ng-container>
-      
+
       <!-- Dernière recharge Column -->
       <ng-container matColumnDef="Dernière recharge">
         <th mat-header-cell *matHeaderCellDef>Dernière recharge</th>

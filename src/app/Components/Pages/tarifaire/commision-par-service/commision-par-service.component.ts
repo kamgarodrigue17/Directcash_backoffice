@@ -1,4 +1,4 @@
-import { Component, ViewChild,OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
@@ -13,16 +13,11 @@ import { CommissionService } from 'src/app/services/commission/commission.servic
   styleUrls: ['./commision-par-service.component.css']
 })
 export class CommisionParServiceComponent implements OnInit {
-  displayedColumns: string[] =[];
-  ELEMENT_DATA: Commission[] = [
-  ];
-  dataSource!:MatTableDataSource<Commission, MatTableDataSourcePaginator>
+  displayedColumns: string[] = [];
+  ELEMENT_DATA: Commission[] = [];
+  dataSource!: MatTableDataSource<Commission, MatTableDataSourcePaginator>
 
-
-  constructor(public dialog: MatDialog,public commission:CommissionService) { }
-
-  // displayedColumns: string[] = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
-  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  constructor(public dialog: MatDialog, public commission: CommissionService) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -30,28 +25,62 @@ export class CommisionParServiceComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
 
+  // loader pour l'execution des requetes
+  isProgressHidden = true;
+
+  // message et type de l'alerte de la page
+  alert_message = "";
+  alert_type = "";
+
+  /**
+   * Filtre dynamique sur le tableau
+   * @param event
+   */
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  open_add_commission_dialog(mode: string,commision:any) {
+  /**
+   * Fermeture de l'alerte
+   */
+  closeAlert() {
+    const alert = document.getElementById("alert");
+    alert?.classList.add("d-none");
+  }
+
+  /**
+   * Ouverture de l'alerte
+   */
+  openAlert() {
+    this.closeAlert();
+    const alert = document.getElementById("alert");
+    alert?.classList.remove("d-none");
+  }
+
+  open_add_commission_dialog(mode: string, commision: any) {
     const commission_dialog = this.dialog.open(AddCommissionDialogComponent, {
-      data:{
+      data: {
         mode: mode,
-        element:commision
+        element: commision
       }
     });
 
     commission_dialog.afterClosed().subscribe(result => {
-      console.log(result);
+      if(result != false){
+
+      }else{
+
+      }
     });
   }
 
   open_del_commission_dialog() {
     const del_commission_dialog = this.dialog.open(ConfirmationDialogComponent, {
-      data:{
+      data: {
         title: "Confirmation de suppression",
         message: "Voulez - vous vraiment supprimer cette commission ?"
       }
@@ -61,18 +90,19 @@ export class CommisionParServiceComponent implements OnInit {
       console.log(result);
     });
   }
+
   ngOnInit(): void {
-    this.commission.commissions().subscribe(com=>{
-      this.ELEMENT_DATA=com.data
+    this.commission.commissions().subscribe(com => {
+      this.ELEMENT_DATA = com.data
       console.log(this.ELEMENT_DATA)
       this.displayedColumns = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
       this.dataSource = new MatTableDataSource<Commission>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
-
+      this.display = 'none';
     })
+
     this.displayedColumns = ["Type d\'utilisateur", 'Taux (%)', 'Type de service', 'Crée le', 'Modifié le', 'Actions'];
     this.dataSource = new MatTableDataSource<Commission>(this.ELEMENT_DATA);
-
   }
 
 }

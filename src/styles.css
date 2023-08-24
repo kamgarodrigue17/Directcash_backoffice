@@ -1,4 +1,3 @@
-
 @import url(/src/assets/css/bootstrap-icons/bootstrap-icons.min.css);
 
 /*--------------------------------------------------------------
@@ -6,51 +5,56 @@
 --------------------------------------------------------------*/
 :root {
   scroll-behavior: smooth;
-  --primary-light-color: #3090AB;
+  --primary-light-color: #3090ab;
   --secondary-light-color: #003341;
   --tertiary-light-color: #74acbb;
-  --primary-dark-color: #1D1D1D;
-  --secondary-dark-color: #49454F;
+  --primary-dark-color: #1d1d1d;
+  --secondary-dark-color: #49454f;
   --tertiary-dark-color: #7c7c7c;
-  --danger-color: #F60D2B;
-  --oragne-color: #FF4D00;
-  --violet-color: #D50DF6;
+  --danger-color: #f60d2b;
+  --oragne-color: #ff4d00;
+  --violet-color: #d50df6;
 }
 
-.bg-white{
+mat-progress-spinner circle,
+mat-spinner circle {
+  stroke: var(--primary-light-color) !important;
+}
+
+.bg-white {
   background: #fff;
 }
-.action-btn{
+.action-btn {
   width: 40px !important;
   height: 40px !important;
 }
 
-button{
+button {
   height: 50px !important;
 }
 
-.text-secondary{
+.text-secondary {
   color: var(--secondary-dark-color) !important;
 }
-.text-tertiary{
+.text-tertiary {
   color: var(--tertiary-dark-color) !important;
 }
-.text-orange{
+.text-orange {
   color: var(--oragne-color) !important;
 }
-.text-violet{
-  color: var(--violet-color) !important
+.text-violet {
+  color: var(--violet-color) !important;
 }
-.primary-light-button{
+.primary-light-button {
   color: white !important;
   background-color: var(--primary-light-color) !important;
 }
-.secondary-light-button{
+.secondary-light-button {
   color: white !important;
   background-color: var(--secondary-light-color) !important;
 }
 
-.primary-dark-button{
+.primary-dark-button {
   color: white !important;
   background-color: var(--secondary-dark-color) !important;
 }
@@ -135,11 +139,11 @@ h6 {
 
 /* Active router link */
 
-.active-router-link{
+.active-router-link {
   color: #fff !important;
   background: var(--primary-dark-color) !important;
 }
-.active-router-link i{
+.active-router-link i {
   color: white !important;
 }
 
@@ -221,7 +225,6 @@ h6 {
   background-color: var(--primary-light-color);
 }
 
-
 @media (max-width: 1199px) {
   .sidebar {
     left: -300px;
@@ -229,7 +232,6 @@ h6 {
 }
 
 @media (min-width: 1200px) {
-
   #main,
   #footer {
     margin-left: 300px;
@@ -243,7 +245,6 @@ h6 {
 }
 
 @media (min-width: 1200px) {
-
   .toggle-sidebar #main,
   .toggle-sidebar #footer {
     margin-left: 0;
@@ -253,8 +254,6 @@ h6 {
     left: -300px;
   }
 }
-
-
 
 /*--------------------------------------------------------------
 # Main
@@ -333,7 +332,6 @@ h6 {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   border: 0;
-  box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
 }
 
 .dropdown-menu .dropdown-header,
@@ -587,10 +585,10 @@ h6 {
   border-bottom: 2px solid #4154f1;
 }
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -608,14 +606,24 @@ h6 {
   -moz-osx-font-smoothing: grayscale;
 
   /* Support for IE. */
-  font-feature-settings: 'liga';
+  font-feature-settings: "liga";
 }
 
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-30 { font-size: 30px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-30 {
+  font-size: 30px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
 
 /*--------------------------------------------------------------
 # Dashboard
@@ -743,7 +751,7 @@ h6 {
 }
 
 /* News & Updates */
-.dashboard .news .post-item+.post-item {
+.dashboard .news .post-item + .post-item {
   margin-top: 15px;
 }
 
@@ -1010,7 +1018,7 @@ h6 {
   padding: 12px 15px;
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .php-email-form button[type="submit"] {
   background: #4154f1;
   border: 0;
   padding: 10px 30px;
@@ -1019,7 +1027,7 @@ h6 {
   border-radius: 4px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .php-email-form button[type="submit"]:hover {
   background: #5969f3;
 }
 
@@ -1103,5 +1111,11 @@ h6 {
   color: #012970;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

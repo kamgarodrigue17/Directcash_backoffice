@@ -9,23 +9,26 @@ import { PlafondService } from 'src/app/services/plafond/plafond.service';
   styleUrls: ['./notifier-recharge-dialog.component.css']
 })
 export class NotifierRechargeDialogComponent {
-   data:any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data1: any, public plafon:PlafondService){
-    this.data=data1;
-    this.data.userId= localStorage.getItem("id");
-    this.data.password= "";
-    this.data.amount=`${data1.plafond}`;
-    this.data.isMydirectCash= "0"
+  data: any;
+  data_copy: any;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data1: any) {
+    this.data = data1;
+    this.data.userId = localStorage.getItem("id");
+    this.data.password = "";
+    this.data.amount = `${data1.plafond}`;
+    this.data.isMydirectCash = "0"
+    this.data_copy = JSON.parse(JSON.stringify(data1));
     console.log(this.data)
 
   }
   @ViewChild("form") form!: NgForm;
-  valid(){
-    this.data.amount=`${this.data.plafond}`
-    console.log(this.data)
-    this.plafon.changeplafond(this.data).subscribe(res=>{
-      console.log(res)
-    })
+  valid() {
+    this.data_copy.password = '12345';
+    this.data.amount = this.data_copy.plafond;
+    return this.data;
 
   }
+
 }
+

@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-base',
@@ -7,9 +8,17 @@ import { Component, HostListener } from '@angular/core';
 })
 export class BaseComponent {
 
-    toggle_side_bar(){
-      const body = document.getElementsByTagName("body");
-      body[0].classList.toggle("toggle-sidebar");
-    }
+  constructor(private _router: Router) { }
+
+  toggle_side_bar() {
+    const body = document.getElementsByTagName("body");
+    body[0].classList.toggle("toggle-sidebar");
+  }
+
+  // deconnexion function
+  logout() {
+    localStorage.clear();
+    this._router.navigateByUrl('/');
+  }
 
 }

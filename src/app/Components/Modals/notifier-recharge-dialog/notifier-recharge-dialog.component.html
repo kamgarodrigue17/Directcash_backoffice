@@ -10,12 +10,12 @@
   <form #form="ngForm">
     <div class="row">
       <mat-form-field appearance="outline">
-        <mat-label>Nouveau plafond (XAF)</mat-label>
-        <input matInput required type="number" placeholder="0.00" name="plafond" ngModel [(ngModel)]="data.plafond" ngModel/>
+        <mat-label>Service</mat-label>
+        <input matInput required type="text" placeholder="Service" name="service" ngModel [(ngModel)]="data_copy.service" ngModel readonly=""/>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Mot de passe</mat-label>
-        <input matInput required type="text" placeholder="0.00" name="password" ngModel [(ngModel)]="data.password" ngModel/>
+        <mat-label>Nouveau plafond (XAF)</mat-label>
+        <input matInput required type="number" placeholder="0.00" name="plafond" ngModel [(ngModel)]="data_copy.plafond" ngModel/>
       </mat-form-field>
     </div>
   </form>
@@ -26,8 +26,7 @@
   <button
     class="w-100 primary-light-button"
     mat-button
-    [mat-dialog-close]="true"
-    (click)="valid()"
+    [mat-dialog-close]="valid()"
   >
     Continuer
   </button>

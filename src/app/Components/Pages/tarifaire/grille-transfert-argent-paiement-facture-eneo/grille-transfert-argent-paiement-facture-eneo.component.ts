@@ -1,4 +1,4 @@
-import { Component, ViewChild,OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
@@ -13,16 +13,14 @@ import { FeesService } from 'src/app/services/fees.service';
   templateUrl: './grille-transfert-argent-paiement-facture-eneo.component.html',
   styleUrls: ['./grille-transfert-argent-paiement-facture-eneo.component.css']
 })
-export class GrilleTransfertArgentPaiementFactureEneoComponent implements OnInit{
+export class GrilleTransfertArgentPaiementFactureEneoComponent implements OnInit {
 
-  displayedColumns: string[] =[];
-  ELEMENT_DATA:Fees[] = [
-];
-dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
+  displayedColumns: string[] = [];
+  ELEMENT_DATA: Fees[] = [
+  ];
+  dataSource!: MatTableDataSource<Fees, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog,public feesService:FeesService) { }
-
-
+  constructor(public dialog: MatDialog, public feesService: FeesService) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -30,9 +28,36 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
     this.dataSource.paginator = this.paginator;
   }
 
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
+
+  // loader pour l'execution des requetes
+  isProgressHidden = true;
+
+  // message et type de l'alerte de la page
+  alert_message = "";
+  alert_type = "";
+
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  /**
+ * Fermeture de l'alerte
+ */
+  closeAlert() {
+    const alert = document.getElementById("alert");
+    alert?.classList.add("d-none");
+  }
+
+  /**
+   * Ouverture de l'alerte
+   */
+  openAlert() {
+    this.closeAlert();
+    const alert = document.getElementById("alert");
+    alert?.classList.remove("d-none");
   }
 
   open_export_dialog() {
@@ -47,7 +72,7 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
 
   open_add_grille_dialog(mode: string) {
     const add_grille_dialog = this.dialog.open(GrilleTransfertDirectcashDialogComponent, {
-      data:{
+      data: {
         mode: mode,
         object: 'paiement facture eneo'
       }
@@ -60,7 +85,7 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
 
   open_del_grille_dialog() {
     const del_grille_dialog = this.dialog.open(ConfirmationDialogComponent, {
-      data:{
+      data: {
         title: "Confirmation de suppression",
         message: "Voulez - vous vraiment supprimer cette grille de transfert ?"
       }
@@ -71,16 +96,17 @@ dataSource!:MatTableDataSource<Fees, MatTableDataSourcePaginator>
     });
   }
   ngOnInit(): void {
-    this.feesService.getfees("eneo").subscribe(fees=>{
-      this.ELEMENT_DATA =fees.data;
+    this.feesService.getfees("eneo").subscribe(fees => {
+      this.ELEMENT_DATA = fees.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns= ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
-      this.dataSource=new MatTableDataSource<Fees>(this.ELEMENT_DATA);
-      this.dataSource.paginator = this.paginator;  
+      this.displayedColumns = ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
+      this.dataSource = new MatTableDataSource<Fees>(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
+      this.display = 'none';
     });
 
-    this.displayedColumns=  ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
-    this.dataSource=new MatTableDataSource<Fees>(this.ELEMENT_DATA);
+    this.displayedColumns = ['De', 'A', 'Frais local (XAF)', 'Frais international (XAF)', 'Actions'];
+    this.dataSource = new MatTableDataSource<Fees>(this.ELEMENT_DATA);
   }
 
 }

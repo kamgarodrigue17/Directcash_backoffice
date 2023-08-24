@@ -17,26 +17,30 @@ export class AgenceDialogComponent implements OnInit {
     this.agence.ModifiedBy=`${localStorage.getItem("id")}`;
     this.agence.mondifiedOn=Date();
   }
+
   mode = this.data.mode;
   @ViewChild("form") form!: NgForm;
-  edit(){
-    if (this.data.mode=='add') {
-      this.agence.createdBy=`${localStorage.getItem("id")}`
-    }
-    
-    if (this.data.mode=='edit') {
-      this.agence.createdBy=`${this.agence.createdBy}`
+  edit() {
+    if (this.data.mode == 'add') {
+      this.agence.createdBy = `${localStorage.getItem("id")}`
     }
 
-    console.log(this.agence)
-    this.agenceService.newEditAgence(this.agence).subscribe(res=>{
-      console.log(res);
-    })
+    if (this.data.mode == 'edit') {
+      this.agence.createdBy = `${this.agence.createdBy}`
+    }
+
+    return this.agence;
+
+    // console.log(this.agence)
+    // this.agenceService.newEditAgence(this.agence).subscribe(res => {
+    //   console.log(res);
+    // })
   }
+
   ngOnInit(): void {
-    this.agentservice.Agents("Merchants").subscribe(merchants=>{
-      this.merchants=merchants.data;
-      console.log( this.merchants);
-    }); 
+    // this.agentservice.Agents("Merchants").subscribe(merchants=>{
+    //   this.merchants=merchants.data;
+    //   console.log( this.merchants);
+    // });
   }
 }
