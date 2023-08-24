@@ -44,6 +44,8 @@ export class AddSuperAgentStepOneComponent implements OnInit  {
     "region":this.myForm.value.region,
     "phoneContact":this.myForm1.value.phoneContact ,
     "cniContact": this.myForm1.value.cniContact,
+    "creerPar":localStorage.getItem('id'),
+    "creerLe":""
    
     };
   

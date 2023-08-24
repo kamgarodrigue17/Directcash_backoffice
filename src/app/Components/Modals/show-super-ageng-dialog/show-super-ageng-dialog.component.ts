@@ -32,6 +32,8 @@ export class ShowSuperAgengDialogComponent  implements OnInit{
     region:"",
     segment:"",
     superMerchant:"",
+    creerPar:localStorage.getItem('id'),
+    creerLe:"",
     type:""}
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public agentservice:AgentServiceService,public merchantService:SuperAgentService){
     console.log(data);

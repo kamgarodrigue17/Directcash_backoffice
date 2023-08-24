@@ -14,6 +14,8 @@ export class AgenceDialogComponent implements OnInit {
   merchants:Merchant[]=[];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public agentservice:AgentServiceService , public agenceService:SuperAgentService){
     this.agence={...data.agence};
+    this.agence.ModifiedBy=`${localStorage.getItem("id")}`;
+    this.agence.mondifiedOn=Date();
   }
   mode = this.data.mode;
   @ViewChild("form") form!: NgForm;
