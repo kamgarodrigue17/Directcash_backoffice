@@ -16,7 +16,7 @@ import { SuperAgentService } from 'src/app/services/superAgent/super-agent.servi
   styleUrls: ['./agence.component.css']
 })
 export class AgenceComponent implements OnInit {
-  displayedColumns: string[] = ['Nom de l\'agence', 'Adresse', 'Merchant', 'Ajoutée par', 'Ajoutée le', 'Actions'];
+  displayedColumns: string[] = ['Matricule','Nom de l\'agence', 'Adresse', 'Merchant', 'Ajoutée par', 'Ajoutée le', 'Actions'];
   ELEMENT_DATA: Habilitation[] = [];
   merchants: Merchant[] = [];
   dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>

@@ -10,12 +10,12 @@ import { SuperAgentService } from 'src/app/services/superAgent/super-agent.servi
   styleUrls: ['./agence-dialog.component.css']
 })
 export class AgenceDialogComponent implements OnInit {
-  agence: any = {}
-  merchants: Merchant[] = [];
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public agentservice: AgentServiceService, public agenceService: SuperAgentService) {
-    this.agence = { ...data.agence };
-    this.merchants = data.merchants;
+  agence:any={}
+  merchants:Merchant[]=[];
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public agentservice:AgentServiceService , public agenceService:SuperAgentService){
+    this.agence={...data.agence};
+    this.agence.ModifiedBy=`${localStorage.getItem("id")}`;
+    this.agence.mondifiedOn=Date();
   }
 
   mode = this.data.mode;
