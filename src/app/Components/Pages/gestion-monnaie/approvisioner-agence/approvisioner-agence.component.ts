@@ -93,7 +93,7 @@ export class ApprovisionerAgenceComponent implements OnInit {
       // }
       if (result != false) {
         // on recupere les valeur du formulaire
-        let form_data: any = JSON.parse(JSON.stringify(result));
+        let form_data: any = result;
 
         // on active la barre de progression
         this.isProgressHidden = false;
@@ -106,7 +106,12 @@ export class ApprovisionerAgenceComponent implements OnInit {
             let request = this.valideservice.initdemandeAprovisionenm(result).subscribe(res => {
               // on masque la barre de progression
               this.isProgressHidden = true;
-              // console.log(res);
+
+              // on affiche un message de retour
+              this.alert_type = 'success';
+              this.alert_message = 'Approvisionnement effectué avec succès.';
+              this.closeAlert();
+              this.openAlert();
             });
 
             setTimeout(() => {
@@ -132,17 +137,18 @@ export class ApprovisionerAgenceComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+
+    // On recupere la liste des merchants
+    this.agentService.Agents("Merchants").subscribe(merchants => {
+      this.merchants = merchants.data;
+    });
+
     this.plafond.getDemandeAprov().subscribe(plafond => {
       this.ELEMENT_DATA = plafond.data;
-      console.log(this.ELEMENT_DATA);
       this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
       this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
-    });
-
-    this.agentService.Agents("Merchants").subscribe(merchants => {
-      this.merchants = merchants.data;
     });
 
     this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];

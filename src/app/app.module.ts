@@ -99,6 +99,7 @@ import { RapportPaiementFactureEneoComponent } from './Components/Pages/rapport/
 import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapport/rapport-paiement-facture-camwater/rapport-paiement-facture-camwater.component';
 import { EntrepriseComponent } from './Components/Pages/administration/entreprise/entreprise.component';
 import { EntrepriseDialogComponent } from './Components/Modals/entreprise-dialog/entreprise-dialog.component';
+import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/requete-emission/requete-emission.component';
 
 @NgModule({
   declarations: [
@@ -173,7 +174,8 @@ import { EntrepriseDialogComponent } from './Components/Modals/entreprise-dialog
     TopAgentsComponent,
     AddTopAgentComponent,
     EntrepriseComponent,
-    EntrepriseDialogComponent
+    EntrepriseDialogComponent,
+    RequeteEmissionComponent
   ],
   imports: [
     BrowserModule,
