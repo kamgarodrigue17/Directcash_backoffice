@@ -12,19 +12,19 @@ import { ValidationService } from 'src/app/services/validation/validation.servic
   styleUrls: ['./approvisionner-agence-dialog.component.css']
 })
 export class ApprovisionnerAgenceDialogComponent implements OnInit {
-  merchants: Merchant[] = [];
+  merchants: any[] = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public agentservice: AgentServiceService, public valideservice: ValidationService) { }
 
   object = this.data.object;
   id: string = "";
-  amount: string = "";
+  amount: number = 0;
   password: string = "";
   @ViewChild("form") form!: NgForm;
   valide() {
     let data: any = {
       "merchantId": `${this.id}`,
-      "amount": this.amount,
+      "amount": `${this.amount}`,
       "createBy": localStorage.getItem("id"),
 
       "password": this.password

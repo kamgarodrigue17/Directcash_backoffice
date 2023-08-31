@@ -21,7 +21,6 @@ export class SuperAgentsComponent implements OnInit {
   ];
   dataSource!: MatTableDataSource<Merchant, MatTableDataSourcePaginator>
 
-
   constructor(public dialog: MatDialog, public AgentService: AgentServiceService, public merchantService: SuperAgentService) { }
 
   // variable pour le loader du chargement des elements du tableau

@@ -96,26 +96,27 @@
       <!-- Nom Column -->
       <ng-container matColumnDef="Nom">
         <th mat-header-cell *matHeaderCellDef>Nom</th>
-        <td mat-cell *matCellDef="let element">{{ element.nom }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.merchantName }}</td>
       </ng-container>
 
-      <!-- Email Column -->
+      <!-- Solde Column -->
       <ng-container matColumnDef="Solde">
         <th mat-header-cell *matHeaderCellDef>Solde</th>
         <td mat-cell *matCellDef="let element">{{ element.balance }}</td>
       </ng-container>
 
-      <!-- Téléphone Column -->
+      <!-- Agence Column -->
       <ng-container matColumnDef="Agence">
         <th mat-header-cell *matHeaderCellDef>Agence</th>
         <td mat-cell *matCellDef="let element"></td>
       </ng-container>
 
-      <!-- Région Column -->
+      <!-- MerchantName Column -->
       <ng-container matColumnDef="MerchantName">
         <th mat-header-cell *matHeaderCellDef>MerchantName</th>
         <td mat-cell *matCellDef="let element">{{ element.superMerchant }}</td>
       </ng-container>
+
       <!-- Imei Column -->
       <ng-container matColumnDef="N° IMEI">
         <th mat-header-cell *matHeaderCellDef>N° IMEI</th>

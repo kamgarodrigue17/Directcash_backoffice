@@ -1,5 +1,5 @@
 export class Merchant {
-    
+
         public merchantID!:string;
         public nom!:string;
         public Balance!:string;
@@ -11,13 +11,13 @@ export class Merchant {
         public PayementMedthode!:String;
         public PayementAC!:String;
         public Marketer!:String;
-        public SuperMarchant!:String;
+        public SuperMerchant!:String;
         public CreatedOn!:String;
         public Region!:String;
         public Departement!:String;
         public District!:String;
         public Type!:String;
         public Imei!:String;
-    
-    
+
+
 }
