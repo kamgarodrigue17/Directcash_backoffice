@@ -45,6 +45,7 @@ import { GrilleTransfertArgentDirectcashInternationaleComponent } from './Compon
 import { GrilleTransfertArgentPaiementFactureEneoComponent } from './Components/Pages/tarifaire/grille-transfert-argent-paiement-facture-eneo/grille-transfert-argent-paiement-facture-eneo.component';
 import { GrilleTransfertArgentPaiementFactureCamwaterComponent } from './Components/Pages/tarifaire/grille-transfert-argent-paiement-facture-camwater/grille-transfert-argent-paiement-facture-camwater.component';
 import { EntrepriseComponent } from './Components/Pages/administration/entreprise/entreprise.component';
+import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/requete-emission/requete-emission.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent, },
@@ -71,6 +72,7 @@ const routes: Routes = [
   {path: 'gestion-monnaie/crediter-super-agent/valider', component: ValiderCrediterSuperAgentComponent},
   {path: 'gestion-monnaie/valider-recharge', component: ValiderRechargeComponent},
   {path: 'gestion-monnaie/creation-monnaie', component: CreationMonnaieComponent},
+  {path: 'gestion-monnaie/requete-emission', component: RequeteEmissionComponent},
 
   // TARIFAIRE ==============================
   {path: 'tarifaire/commission-par-service', component: CommisionParServiceComponent},

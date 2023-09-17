@@ -169,12 +169,12 @@ export class ValiderRechargeComponent implements OnInit {
 
       this.ELEMENT_DATA = plafond.data.filter((valid: any) => valid.statut === "En attente");
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Actions'];
+      this.displayedColumns = ['Client', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Actions'];
       this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
-    this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Actions'];
+    this.displayedColumns = ['Client', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Actions'];
     this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
   }
 }
