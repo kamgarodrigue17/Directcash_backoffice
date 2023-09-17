@@ -112,7 +112,9 @@
           > </a
         ><!-- End Profile Iamge Icon -->
 
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile mat-elevation-z4">
+        <ul
+          class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile mat-elevation-z4"
+        >
           <li class="dropdown-header">
             <h6>Chretien Tabetsing</h6>
             <span>Superviseur</span>
@@ -136,7 +138,10 @@
           </li>
 
           <li>
-            <button class="dropdown-item d-flex align-items-center" (click)="logout()">
+            <button
+              class="dropdown-item d-flex align-items-center"
+              (click)="logout()"
+            >
               <i class="bi bi-box-arrow-right"></i>
               <span>Deconnexion</span>
             </button>
@@ -204,11 +209,11 @@
             <i class="bi bi-circle"></i><span>Distributeurs</span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a routerLink="/gestion-agents/top-agents" routerLinkActive="active">
             <i class="bi bi-circle"></i><span>Top Agents</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </li>
     <!-- End Gestion des Agents Nav -->
@@ -293,6 +298,14 @@
         </li>
         <li>
           <a
+            routerLink="/gestion-monnaie/requete-emission"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-circle"></i><span>Requêtes d'émissions</span>
+          </a>
+        </li>
+        <li>
+          <a
             routerLink="/gestion-monnaie/valider-recharge"
             routerLinkActive="active"
           >
@@ -344,12 +357,18 @@
           </a>
         </li>
         <li>
-          <a routerLink="/rapports/paiement-facture-eneo" routerLinkActive="active">
+          <a
+            routerLink="/rapports/paiement-facture-eneo"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i><span>Paiement Facture Eneo</span>
           </a>
         </li>
         <li>
-          <a routerLink="/rapports/paiement-facture-camwater" routerLinkActive="active">
+          <a
+            routerLink="/rapports/paiement-facture-camwater"
+            routerLinkActive="active"
+          >
             <i class="bi bi-circle"></i><span>Paiement Facture Camwater</span>
           </a>
         </li>
@@ -529,10 +548,7 @@
           </a>
         </li>
         <li>
-          <a
-          >
-            <i class="bi bi-circle"></i><span>Paiement</span>
-          </a>
+          <a> <i class="bi bi-circle"></i><span>Paiement</span> </a>
         </li>
         <li>
           <a

@@ -5,7 +5,6 @@ import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/materi
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { EntrepriseDialogComponent } from 'src/app/Components/Modals/entreprise-dialog/entreprise-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
-import { GrilleTransfertDirectcashDialogComponent } from 'src/app/Components/Modals/grille-transfert-directcash-dialog/grille-transfert-directcash-dialog.component';
 import { Entreprise } from 'src/app/modal/entreprise.model';
 import { EntrepriseService } from 'src/app/services/entreprise/entreprise.service';
 

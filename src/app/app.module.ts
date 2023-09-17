@@ -94,6 +94,7 @@ import { TopAgentsComponent } from './Components/Pages/gestion-agents/top-agents
 import { HttpInterceptore } from './interceptor/http.interceptor';
 import { AddDistributeurComponent } from './Components/Pages/gestion-agents/add-distributeur/add-distributeur.component';
 import { AddTopAgentComponent } from './Components/Pages/gestion-agents/add-top-agent/add-top-agent.component';
+import { RequeteEmissionDialogComponent } from './Components/Modals/requete-emission-dialog/requete-emission-dialog.component';
 
 import { RapportPaiementFactureEneoComponent } from './Components/Pages/rapport/rapport-paiement-facture-eneo/rapport-paiement-facture-eneo.component';
 import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapport/rapport-paiement-facture-camwater/rapport-paiement-facture-camwater.component';
@@ -175,7 +176,8 @@ import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/req
     AddTopAgentComponent,
     EntrepriseComponent,
     EntrepriseDialogComponent,
-    RequeteEmissionComponent
+    RequeteEmissionComponent,
+    RequeteEmissionDialogComponent
   ],
   imports: [
     BrowserModule,

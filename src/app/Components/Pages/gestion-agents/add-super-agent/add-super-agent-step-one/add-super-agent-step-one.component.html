@@ -27,6 +27,12 @@
   </div>
   <!-- End Page Title -->
 
+  <!-- Loader pour les requetes -->
+  <mat-progress-bar
+    mode="indeterminate"
+    [hidden]="isProgressHidden"
+  ></mat-progress-bar>
+
   <section class="section dashboard">
     <mat-stepper [linear]="isLinear" #stepper class="mat-elevation-z2 rounded">
       <!-- step 1 -->
@@ -128,7 +134,7 @@
                 <mat-option
                   *ngFor="let merchant of merchants"
                   [value]="merchant.merchantID"
-                  >{{ merchant.merchantID }}</mat-option
+                  >{{ merchant.merchantName }}</mat-option
                 >
               </mat-select>
             </mat-form-field>
@@ -207,15 +213,16 @@
               mat-button
               matStepperPrevious
               class="primary-dark-button me-2"
+              [disabled]="isLoading"
             >
-              Back
+              Retour
             </button>
             <button
               mat-button
-              (click)="add_super_agent()"
-              class="primary-light-button"
+              (click)="isLoading ? cancel_request() : add_super_agent()"
+              class="{{ connexion_class }}"
             >
-              Valider
+              {{ textRetourConnexion }}
             </button>
           </div>
         </form>
