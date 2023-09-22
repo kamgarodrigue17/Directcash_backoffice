@@ -7,9 +7,7 @@
         <div
           class="col-lg-8 col-sm-12 d-flex flex-column align-items-center justify-content-center"
         >
-          <div
-            class="card mb-0 col-md-12 flex-md-row border-0 shadow-lg h-100"
-          >
+          <div class="card mb-0 col-md-12 flex-md-row border-0 shadow-lg h-100">
             <!-- Section 1 -->
             <div class="col-md-6 custom-bg-primary rounded text-center">
               <div class="mt-5">
@@ -55,7 +53,7 @@
                       <input
                         required
                         matInput
-                        placeholder="ID"
+                        placeholder="Identifiant"
                         formControlName="username"
                       />
                       <mat-icon matPrefix>account_circle</mat-icon>
@@ -97,7 +95,7 @@
                   <div class="col-md-12 text-center mt-3">
                     <button
                       mat-raised-button
-                      class="w-100 {{connexion_class}}"
+                      class="w-100 {{ connexion_class }}"
                       [disabled]="isLoading"
                     >
                       Se connecter
@@ -110,12 +108,12 @@
                       }} align-items-center justify-content-center pt-4"
                     >
                       <mat-spinner diameter="25" class="me-3"></mat-spinner>
-                      Chargement...
+                      Connexion...
                     </div>
 
                     <!-- Message du timeout -->
-                    <div class="small pt-3 text-danger d-{{displayTimeout}}">
-                      {{timeoutMessage}}
+                    <div class="small pt-3 text-danger d-{{ displayTimeout }}">
+                      {{ timeoutMessage }}
                     </div>
                   </div>
                 </form>
