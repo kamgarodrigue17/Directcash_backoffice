@@ -152,6 +152,9 @@ export class AddSuperAgentStepOneComponent implements OnInit {
       // }, this.globalService.timeout_time);
     } catch (error) {
 
+      // le texte retour devient "Valider"
+      this.textRetourConnexion = "Valider";
+
       // si une erreur survient
       // on affiche un message d'alerte
       let snackbar = this._snackBar.open("Une erreur est survenue.", "Ok");
