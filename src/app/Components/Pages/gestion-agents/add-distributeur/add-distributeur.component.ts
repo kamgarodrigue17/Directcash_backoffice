@@ -73,6 +73,8 @@ export class AddDistributeurComponent implements OnInit {
       "OperateurMarketing": this.myForm1.value.OperateurMarketing,
       "region": this.myForm.value.region,
       "phoneContact": this.myForm1.value.phoneContact,
+      "EmergencyContact": this.myForm1.value.phoneContact,
+      "EmergencyCni": this.myForm1.value.cniContact,
       "cniContact": this.myForm1.value.cniContact,
       "creerPar": localStorage.getItem('id'),
       "creerLe": ""

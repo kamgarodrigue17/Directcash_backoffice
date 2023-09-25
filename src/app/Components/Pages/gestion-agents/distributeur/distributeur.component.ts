@@ -102,15 +102,3 @@ export class DistributeurComponent implements OnInit {
   }
 
 }
-
-export interface PeriodicElement {
-  nom: string;
-  email: string;
-  tel: string;
-  region: string;
-  created_at: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { nom: "Emmanuel", email: "exemple@gmail.com", tel: '670630558', region: 'Region', created_at: '10/10/2012 14:30' },];
-
