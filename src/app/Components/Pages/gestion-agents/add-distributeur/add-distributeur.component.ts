@@ -57,14 +57,7 @@ export class AddDistributeurComponent implements OnInit {
     // le texte retour devient "Annuler"
     this.textRetourConnexion = "Annuler";
 
-    // EmergencyCni
-    // :
-    // ['The EmergencyCni field is required.']
-    // EmergencyContact
-    // :
-    // ['The EmergencyContact field is required.']
-    // adminId
-    // :
+    //
     let data: any = {
       "nom": this.myForm.value.nom,
       "email": this.myForm1.value.email,
