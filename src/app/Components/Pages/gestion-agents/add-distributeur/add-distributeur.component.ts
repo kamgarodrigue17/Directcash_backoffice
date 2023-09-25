@@ -57,7 +57,14 @@ export class AddDistributeurComponent implements OnInit {
     // le texte retour devient "Annuler"
     this.textRetourConnexion = "Annuler";
 
-    //
+    // EmergencyCni
+    // :
+    // ['The EmergencyCni field is required.']
+    // EmergencyContact
+    // :
+    // ['The EmergencyContact field is required.']
+    // adminId
+    // :
     let data: any = {
       "nom": this.myForm.value.nom,
       "email": this.myForm1.value.email,
@@ -73,6 +80,8 @@ export class AddDistributeurComponent implements OnInit {
       "OperateurMarketing": this.myForm1.value.OperateurMarketing,
       "region": this.myForm.value.region,
       "phoneContact": this.myForm1.value.phoneContact,
+      "EmergencyContact": this.myForm1.value.phoneContact,
+      "EmergencyCni": this.myForm1.value.cniContact,
       "cniContact": this.myForm1.value.cniContact,
       "creerPar": localStorage.getItem('id'),
       "creerLe": ""
