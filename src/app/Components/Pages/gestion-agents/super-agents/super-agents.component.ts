@@ -147,7 +147,7 @@ export class SuperAgentsComponent implements OnInit {
     this.AgentService.Agents("Merchants").subscribe(agents => {
       this.ELEMENT_DATA = agents.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Nom', 'Solde', 'Agence', 'MerchantName', 'N° IMEI', 'Date de création', 'Actions'];
+      this.displayedColumns = ['Nom', 'Solde', 'Agence', 'MerchantName', 'N° IMEI','Date de création', 'Actions'];
       this.dataSource = new MatTableDataSource<Merchant>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none'
