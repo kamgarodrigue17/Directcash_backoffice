@@ -1,20 +1,32 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Habilitation } from 'src/app/modal/habilitation';
+import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctionalites.service';
 
 @Component({
   selector: 'app-gestion-fonctionnalite',
   templateUrl: './gestion-fonctionnalite.component.html',
   styleUrls: ['./gestion-fonctionnalite.component.css']
 })
-export class GestionFonctionnaliteComponent {
 
-  constructor(private _router: Router) { }
+export class GestionFonctionnaliteComponent  implements OnInit{
 
-  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à', 'Action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à', 'Action'];;
+  ELEMENT_DATA: Habilitation[] = [
+  ];
+  dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
+  constructor(private _router: Router,public dialog: MatDialog, public fonctionalié: FonctionalitesService, private _snackBar: MatSnackBar) {
+
+
+   }
+   
+
+ 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -28,6 +40,25 @@ export class GestionFonctionnaliteComponent {
 
   detail_fonctionnalite() {
     this._router.navigateByUrl("/administration/gestion-fonctionnalites/detail");
+  }
+
+
+  ngOnInit(): void {
+    this.fonctionalié.fonctionalites("1").subscribe(habi => {
+
+      this.ELEMENT_DATA = habi.data;
+      console.log(this.ELEMENT_DATA);
+      this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
+      this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
+     
+    });
+
+
+    this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
+
+    this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+
   }
 
 }
