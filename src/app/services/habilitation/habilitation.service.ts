@@ -24,5 +24,9 @@ export class HabilitationService {
   
     return this.http.post<any>(this.globalService.baseUrl+"/api/Administration/Reclamation/newEdit", data);
   }
- 
+  
+  newEditHabilitation(data:any): Observable<any> {
+  
+    return this.http.post<any>(this.globalService.baseUrl+"/api/Administration/Habilitation/newEdit", data);
+  }
 }
