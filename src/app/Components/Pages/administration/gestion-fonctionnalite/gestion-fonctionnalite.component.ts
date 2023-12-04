@@ -4,7 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Habilitation } from 'src/app/modal/habilitation';
 import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctionalites.service';
 
 @Component({
@@ -15,10 +14,10 @@ import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctiona
 
 export class GestionFonctionnaliteComponent implements OnInit {
 
-  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à', 'Action'];
-  ELEMENT_DATA: Habilitation[] = [
+  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à'];
+  ELEMENT_DATA: PeriodicElement[] = [
   ];
-  dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
+  dataSource!: MatTableDataSource<PeriodicElement, MatTableDataSourcePaginator>
 
   constructor(private _router: Router, public dialog: MatDialog, public fonctionalié: FonctionalitesService, private _snackBar: MatSnackBar) {
 
@@ -38,37 +37,30 @@ export class GestionFonctionnaliteComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  detail_fonctionnalite() {
-    this._router.navigateByUrl("/administration/gestion-fonctionnalites/detail");
-  }
-
-
   ngOnInit(): void {
     this.fonctionalié.fonctionalites("1").subscribe(habi => {
 
       this.ELEMENT_DATA = habi.data;
-      console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
-      this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+      console.log(habi.data);
+      this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à'];
+      this.dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
 
     });
 
 
-    this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
+    this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à'];
 
-    this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+    this.dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
 
   }
 
 }
 
 export interface PeriodicElement {
-  menu: string;
-  sous_menu: string;
-  accessible_a: number;
+  accessibilite: number;
+  id: number,
+  label: string,
+  menu: string,
+  status: string
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { menu: "Gestion des agents", sous_menu: "Agents", accessible_a: 4 },
-];
