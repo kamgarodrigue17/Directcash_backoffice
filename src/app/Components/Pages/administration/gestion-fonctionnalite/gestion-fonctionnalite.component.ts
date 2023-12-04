@@ -13,20 +13,20 @@ import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctiona
   styleUrls: ['./gestion-fonctionnalite.component.css']
 })
 
-export class GestionFonctionnaliteComponent  implements OnInit{
+export class GestionFonctionnaliteComponent implements OnInit {
 
-  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à', 'Action'];;
+  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à', 'Action'];
   ELEMENT_DATA: Habilitation[] = [
   ];
   dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
-  constructor(private _router: Router,public dialog: MatDialog, public fonctionalié: FonctionalitesService, private _snackBar: MatSnackBar) {
+  constructor(private _router: Router, public dialog: MatDialog, public fonctionalié: FonctionalitesService, private _snackBar: MatSnackBar) {
 
 
-   }
-   
+  }
 
- 
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -51,7 +51,7 @@ export class GestionFonctionnaliteComponent  implements OnInit{
       this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
       this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
-     
+
     });
 
 
@@ -70,5 +70,5 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { menu: "Gestion des agents", sous_menu: "Agents", accessible_a: 4},
+  { menu: "Gestion des agents", sous_menu: "Agents", accessible_a: 4 },
 ];

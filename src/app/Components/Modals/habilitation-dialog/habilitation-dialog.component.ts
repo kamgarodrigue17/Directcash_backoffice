@@ -29,15 +29,20 @@ export class HabilitationDialogComponent {
       this.data.label = datas.element.label;
       this.data.creerPar = datas.element.creerPar;
       this.data.creerLe = datas.element.creerLe;
+      console.log('====================================');
+      console.log(this.data);
+      console.log('====================================');
     }
   }
 
   mode = this.datas.mode;
   valide() {
-    console.log(this.data);
-    this.habilitationService.newEditHabilitation(this.data).subscribe(res => {
-      console.log(res);
-    })
+    // console.log(this.data);
+    // this.habilitationService.newEditHabilitation(this.data).subscribe(res => {
+    //   console.log(res);
+    // })
+
+    return this.data;
   }
 }
 
