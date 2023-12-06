@@ -109,7 +109,6 @@ export class GestionHabilitationComponent implements OnInit {
       this.display = 'none';
     });
 
-    this.displayedColumns = ['Intitulé', 'Crée par', 'Crée le', 'Statut', 'Actions'];
 
     this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
 

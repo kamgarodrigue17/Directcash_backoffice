@@ -12,7 +12,7 @@ export class AdminDialogComponent {
   admin: any = {
     "userName": "",
     "isActive": "",
-    "habilitation": "",
+    "habilitation": 0,
     "lastConnection": "",
     "fullName": "",
     "role": "",
@@ -20,6 +20,7 @@ export class AdminDialogComponent {
     "creerLe": "",
     "creerPar": "",
     "modifierPar": "",
+    "user":"",
     "modifierLe": ""
   };
 
@@ -27,9 +28,12 @@ export class AdminDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public userService: ValidationService) {
     this.admin = data.data;
     this.admin.adminId = localStorage.getItem("id");
+this.admin.user=localStorage.getItem("id")?.toString();
     this.admin.defaultPassword = "";
     this.admin.adminPassword = "";
     this.habilitations = data.habilitations;
+    console.log(this.habilitations);
+    this.admin.company=JSON.parse(`${localStorage.getItem("user")}`).fullName;
   }
 
   /**
@@ -39,6 +43,11 @@ export class AdminDialogComponent {
   validate() {
     this.admin.adminPassword = `${this.admin.defaultPassword}`;
     this.admin.modifierPar = localStorage.getItem("id");
+    this.admin.isActive=Number.parseInt(this.admin.isActive);
+    if (this.admin.habilitation!=null) {
+      this.admin.role=this.habilitations[this.admin.habilitation].label;
+    console.log(this.admin.role)
+    }
     return this.admin;
   }
 

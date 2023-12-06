@@ -41,7 +41,7 @@
       <mat-form-field class="w-100">
         <mat-label>Merchant</mat-label>
         <mat-select name="merchant" [(ngModel)]="agence.merchant" [disabled]="mode=='show' ">
-          <mat-option *ngFor="let merchant of merchants" [value]="merchant.merchantID">{{merchant.nom}}</mat-option>
+          <mat-option *ngFor="let merchant of merchants" [value]="merchant.merchantID">{{merchant.merchantName}}</mat-option>
 
         </mat-select>
       </mat-form-field>

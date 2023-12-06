@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -12,8 +13,17 @@ import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmat
   styleUrls: ['./detail-fonctionnalite.component.css']
 })
 export class DetailFonctionnaliteComponent {
-
-  constructor(private _router: Router, private dialog: MatDialog) { }
+  data:any={
+    accessibilite: "",
+    id: "1",
+    label:"Agent",
+    menu: "Gestion des Agents",
+    status: "Actif"
+  }
+  @ViewChild("form") form!: NgForm;
+  constructor(@Inject(MAT_DIALOG_DATA) public datas: any,private _router: Router, private dialog: MatDialog) {
+    this.data = { ...datas.element }
+   }
 
   displayedColumns: string[] = ['Profil', 'Action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -31,7 +41,9 @@ export class DetailFonctionnaliteComponent {
 
   add_profil() {
     const add_profil_dialog = this.dialog.open(AddProfilDialogComponent, {
-      data: {}
+      data: {
+        element:this.data
+      }
     });
 
     add_profil_dialog.afterClosed().subscribe(result => {

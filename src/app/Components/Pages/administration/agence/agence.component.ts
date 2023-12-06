@@ -209,6 +209,7 @@ export class AgenceComponent implements OnInit {
     // on recupere aussi la liste des merchants
     this.agentservice.Agents("Merchants").subscribe(res => {
       this.merchants = res.data;
+      console.log(this.merchants)
     });
 
     this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);

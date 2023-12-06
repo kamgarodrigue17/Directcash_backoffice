@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GloabalServiceService } from '../gloabal-service.service';
 import { Observable } from 'rxjs';
+import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
 
 @Injectable({
   providedIn: 'root'

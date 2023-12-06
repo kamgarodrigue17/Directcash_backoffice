@@ -11,13 +11,28 @@
   <form #form="ngForm">
     <div class="row">
       <mat-form-field class="w-100">
-        <mat-label>Profil</mat-label>
-        <mat-select required placeholder="Selectionner un profil">
-          <mat-option value="1">Profil 1</mat-option>
-          <mat-option value="2">Profil 2</mat-option>
-          <mat-option value="3">Profil 3</mat-option>
+        <mat-label>Admin</mat-label>
+        <mat-select required placeholder="Selectionner un Admin"name="userId"  [(ngModel)]="datas.userId">
+          <mat-option
+          *ngFor="let user of users"
+          [value]="user.userName"
+          
+          
+          >{{ user.userName}}</mat-option
+        >
         </mat-select>
       </mat-form-field>
+      <mat-form-field class="w-100">
+        <mat-label>Habilitations</mat-label>
+        <mat-select required placeholder="Selectionner une Habilitations" name="habilitation"  [(ngModel)]="datas.habilitation">
+          <mat-option
+          *ngFor="let hab of habilitation"
+          [value]="hab.idhabilitation"
+          >{{ hab.label}}</mat-option
+        >
+        </mat-select>
+      </mat-form-field>
+      
     </div>
   </form>
 
@@ -27,6 +42,7 @@
     class="w-100 primary-light-button"
     mat-button
     [mat-dialog-close]="true"
+    (click)="addOption()"
   >
     Continuer
   </button>
