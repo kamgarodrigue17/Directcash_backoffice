@@ -25,7 +25,9 @@ export class DetailFonctionnaliteComponent {
     this.data = { ...datas.element }
    }
 
-  displayedColumns: string[] = ['Profil', 'Action'];
+  habilitation: any;
+
+  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -46,34 +48,45 @@ export class DetailFonctionnaliteComponent {
       }
     });
 
-    add_profil_dialog.afterClosed().subscribe(result => {
-      console.log(result);
-    });  }
-
-  del_profil(){
-    const del_profil_dialog = this.dialog.open(ConfirmationDialogComponent, {
-      data: {
-        title: "Confirmation de suppression",
-        message: "Retirer ce profil de la liste ?"
-      }
-    });
-
-    del_profil_dialog.afterClosed().subscribe(result => {
+   add_profil_dialog.afterClosed().subscribe(result => {
       console.log(result);
     });
   }
 
-  go_back(){
-    this._router.navigateByUrl("/administration/gestion-fonctionnalites");
+  del_fonctionnalite() {
+    const del_fonctionnalite_dialog = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: "Confirmation de suppression",
+        message: "Retirer cette fonctionnalité de la liste ?"
+      }
+    });
+
+    del_fonctionnalite_dialog.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  /**
+   * Retourner a la page des habilitations
+   */
+  go_back() {
+    this._router.navigateByUrl("/administration/gestion-habilitations");
+  }
+
+  ngOnInit(): void {
+    this.habilitation = window.Storage;
+    console.log('====================================');
+    console.log(this.habilitation);
+    console.log('====================================');
   }
 
 }
 
 export interface PeriodicElement {
-  profil: string;
-  id_profil: number;
+  menu: string;
+  sous_menu: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { profil: "Comptable", id_profil: 1},
+  { menu: "Gestion des agents", sous_menu: "Agents" },
 ];

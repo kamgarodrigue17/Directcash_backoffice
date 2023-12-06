@@ -4,9 +4,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Habilitation } from 'src/app/modal/habilitation';
 import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctionalites.service';
 import { DetailFonctionnaliteComponent } from '../detail-fonctionnalite/detail-fonctionnalite.component';
+import { Habilitation } from 'src/app/modal/habilitation';
 
 @Component({
   selector: 'app-gestion-fonctionnalite',
@@ -14,20 +14,20 @@ import { DetailFonctionnaliteComponent } from '../detail-fonctionnalite/detail-f
   styleUrls: ['./gestion-fonctionnalite.component.css']
 })
 
-export class GestionFonctionnaliteComponent  implements OnInit{
+export class GestionFonctionnaliteComponent implements OnInit {
 
-  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à', 'Action'];;
+  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à'];
   ELEMENT_DATA: Habilitation[] = [
   ];
   dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
-  constructor(private _router: Router,public dialog: MatDialog, public fonctionalié: FonctionalitesService, private _snackBar: MatSnackBar) {
+  constructor(private _router: Router, public dialog: MatDialog, public fonctionalié: FonctionalitesService, private _snackBar: MatSnackBar) {
 
 
-   }
-   
+  }
 
- 
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -61,7 +61,7 @@ export class GestionFonctionnaliteComponent  implements OnInit{
       ;
       this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
-     
+
     });
 
 
@@ -72,3 +72,6 @@ export class GestionFonctionnaliteComponent  implements OnInit{
   }
 
 }
+
+
+

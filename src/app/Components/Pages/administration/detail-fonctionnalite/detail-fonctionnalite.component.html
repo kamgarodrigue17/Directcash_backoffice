@@ -12,8 +12,8 @@
             <a routerLink="#">Administration</a>
           </li>
           <li class="breadcrumb-item">
-            <a routerLink="/administration/gestion-fonctionnalites"
-              >Gestion des fonctionnalités</a
+            <a routerLink="/administration/gestion-habilitations"
+              >Gestion des habilitations</a
             >
           </li>
           <li class="breadcrumb-item active">Détails</li>
@@ -23,7 +23,7 @@
 
     <div>
       <button
-        title="Retour a la page des fonctionnalités"
+        title="Retour a la page des habilitations"
         (click)="go_back()"
         mat-raised-button
         class="primary-light-button text-center me-2"
@@ -38,38 +38,32 @@
     <div class="row">
       <div class="col-md-4">
         <div class="container-fluid pt-3">
-          <!-- Menus -->
+          <!-- Habilitation -->
           <div class="col-md-12">
             <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Menu</mat-label>
-              <input matInput placeholder="Menu" name="menu"  [(ngModel)]="data.menu" readonly />
-            </mat-form-field>
-          </div>
-          <!-- Sous - menus -->
-          <div class="col-md-12">
-            <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Sous - menu</mat-label>
+              <mat-label>Habilitation</mat-label>
               <input
                 matInput
-                placeholder="Sous - menu"
-                name="sous-menu"
-                [(ngModel)]="data.label"
+                placeholder="Habilitation"
+                name="habilitation"
+                [(ngModel)]="habilitation.label"
+                ngModel
                 readonly
               />
             </mat-form-field>
           </div>
-          <!-- Accéssible à -->
+          <!-- Description habilitation -->
           <div class="col-md-12">
             <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Accéssible à</mat-label>
-              <input
+              <mat-label>Description</mat-label>
+              <textarea
                 matInput
-                placeholder="Accéssible à"
-                name="accessible_a"
-                
-                [(ngModel)]="data.accessibilite"
+                placeholder="Description"
+                name="description"
+                [(ngModel)]="habilitation.description"
+                ngModel
                 readonly
-              />
+              ></textarea>
             </mat-form-field>
           </div>
         </div>
@@ -99,15 +93,22 @@
             class="primary-light-button text-center me-2"
           >
             <mat-icon class="me-2">add</mat-icon>
-            <span>Ajouter un profil</span>
+            <span>Ajouter une fonctionnalité</span>
           </button>
         </div>
         <table mat-table [dataSource]="dataSource">
-          <!-- Profil Column -->
-          <ng-container matColumnDef="Profil">
-            <th mat-header-cell *matHeaderCellDef>Profil</th>
-            <td mat-cell *matCellDef="let element">{{ element.profil }}</td>
+          <!-- Menu Column -->
+          <ng-container matColumnDef="Menu">
+            <th mat-header-cell *matHeaderCellDef>Menu</th>
+            <td mat-cell *matCellDef="let element">{{ element.menu }}</td>
           </ng-container>
+
+          <!-- Sous menu Column -->
+          <ng-container matColumnDef="Sous - menu">
+            <th mat-header-cell *matHeaderCellDef>Sous - menu</th>
+            <td mat-cell *matCellDef="let element">{{ element.sous_menu }}</td>
+          </ng-container>
+
           <!-- Action Column -->
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef style="width: 100px">
@@ -120,7 +121,7 @@
               >
                 <li class="list-group-item border-0 pe-2 ps-0">
                   <button
-                    (click)="del_profil()"
+                    (click)="del_fonctionnalite()"
                     type="button"
                     class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                     style="background: #f60d2b4d"

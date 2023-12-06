@@ -1,7 +1,7 @@
 <div
   class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
 >
-  <span class="me-4">Ajouter un profil pour cette fonctionnalité</span>
+  <span class="me-4">Ajouter une fonctionnalité pour ce profil</span>
 
   <button mat-button [mat-dialog-close]="false" class="text-center">
     <mat-icon class="me-0">close</mat-icon>
@@ -11,15 +11,14 @@
   <form #form="ngForm">
     <div class="row">
       <mat-form-field class="w-100">
-        <mat-label>Admin</mat-label>
-        <mat-select required placeholder="Selectionner un Admin"name="userId"  [(ngModel)]="datas.userId">
-          <mat-option
-          *ngFor="let user of users"
-          [value]="user.userName"
-          
-          
-          >{{ user.userName}}</mat-option
-        >
+        <mat-label>Fonctionnalité</mat-label>
+        <mat-select required placeholder="Selectionner une fonctionnalité">
+          <!-- On va lister les fonctionnalites ici -->
+          <mat-option value="1">Gestion des Agents - Agents</mat-option>
+          <mat-option value="2"
+            >Administration - Gestion des habilitations</mat-option
+          >
+          <mat-option value="3">Gestion des Agents - Super Agents</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="w-100">
@@ -35,7 +34,6 @@
       
     </div>
   </form>
-
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="p-3 pt-1">
   <button

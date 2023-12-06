@@ -101,9 +101,10 @@ const routes: Routes = [
   {path: 'administration/gestion-reclamations', component: GestionReclamationsComponent},
   {path: 'administration/mouchard', component: MouchardComponent},
   {path: 'administration/gestion-habilitations', component: GestionHabilitationComponent},
+  {path: 'administration/gestion-habilitations/detail', component: DetailFonctionnaliteComponent},
   {path: 'administration/admins', component: AdminPlateformeComponent},
   {path: 'administration/gestion-fonctionnalites', component: GestionFonctionnaliteComponent},
-  {path: 'administration/gestion-fonctionnalites/detail', component: DetailFonctionnaliteComponent},
+  // {path: 'administration/gestion-fonctionnalites/detail', component: DetailFonctionnaliteComponent},
   {path: 'administration/changer-mot-de-passe', component: ChangerMotDePasseComponent},
   {path: 'administration/entreprises', component: EntrepriseComponent},
 

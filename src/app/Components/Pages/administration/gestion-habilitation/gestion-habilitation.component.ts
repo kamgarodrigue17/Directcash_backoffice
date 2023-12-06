@@ -7,6 +7,7 @@ import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmat
 import { HabilitationDialogComponent } from 'src/app/Components/Modals/habilitation-dialog/habilitation-dialog.component';
 import { Habilitation } from 'src/app/modal/habilitation';
 import { HabilitationService } from '../../../../services/habilitation/habilitation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-habilitation',
@@ -19,7 +20,7 @@ export class GestionHabilitationComponent implements OnInit {
   ];
   dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, public habilition: HabilitationService, private _snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog, public habilition: HabilitationService, private _snackBar: MatSnackBar, private _router: Router) { }
 
   snackbar_message = "";
 
@@ -70,7 +71,70 @@ export class GestionHabilitationComponent implements OnInit {
     });
 
     habilitation_dialog.afterClosed().subscribe(result => {
-      console.log(result);
+
+      // Apres la fermeture du dialog, si le resultat est diff de false
+      if (result != false) {
+
+        // on recupere le formulaire
+        let data = result;
+
+        if (data != undefined) {
+
+          // on affiche dans la console
+          console.log('====================================');
+          console.log(data);
+          console.log('====================================');
+
+          // on verifie si les champs ont ete bien renseigner
+          if (data.label.trim() == '' || data.description.trim() == '' || data.pass.trim() == '') {
+            this.closeAlert()
+            this.alert_message = "Tous les champs sont obligatoires."
+            this.alert_type = "warning";
+            this.openAlert();
+          } else {
+            // on verifie si le mot de passe est correct
+            let myPassword = "12345";
+            if (data.pass != myPassword) {
+              this.closeAlert();
+              this.alert_message = "Votre mot de passe est incorrect."
+              this.alert_type = "warning";
+              this.openAlert();
+            } else {
+              // Si tout est bon, on active la barre de progression
+              this.isProgressHidden = false;
+
+              try {
+                // envoi de la requete et au retour
+                let request = this.habilition.newEditHabilitation(data).subscribe(res => {
+
+                  // on masque la barre de progression
+                  this.isProgressHidden = true;
+
+                  // on affiche le retour
+                  console.log(res);
+
+                  // si le code de retour est 200, on met a jour la liste des habilitation
+                  if (res.code == 200) this.getHabilitationList;
+
+                  // on notifie sur la vue
+                  this.closeAlert();
+                  this.alert_type = "info";
+                  this.alert_message = res.message;
+                  this.openAlert();
+                });
+
+              } catch (error) {
+                this.closeAlert();
+                this.alert_message = `${error}`
+                this.alert_type = "danger";
+                this.openAlert();
+              }
+
+
+            }
+          }
+        }
+      }
     });
 
   }
@@ -89,7 +153,10 @@ export class GestionHabilitationComponent implements OnInit {
     });
   }
 
-  show_information() {
+  /**
+   * Afficher les fonctionnalites rattaches a une habilitation
+   */
+  show_information(habilitation: any) {
     // const show_info_dialog = this.dialog.open(GestionMonnaieShowInformationDialogComponent, {
     //   data: {}
     // });
@@ -97,8 +164,14 @@ export class GestionHabilitationComponent implements OnInit {
     // show_info_dialog.afterClosed().subscribe(result => {
     //   console.log(result);
     // });
+    window.Storage = habilitation;
+    this._router.navigateByUrl("/administration/gestion-habilitations/detail");
   }
-  ngOnInit(): void {
+
+  /**
+   * Recuperer la liste des habilitations
+   */
+  getHabilitationList() {
     this.habilition.habilitations().subscribe(habi => {
 
       this.ELEMENT_DATA = habi.data;
@@ -108,7 +181,11 @@ export class GestionHabilitationComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
+  }
 
+
+  ngOnInit(): void {
+    this.getHabilitationList();
 
     this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
 
