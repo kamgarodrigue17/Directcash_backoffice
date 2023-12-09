@@ -1,0 +1,18 @@
+<div class="card info-card sales-card mat-elevation-z2">
+  <div class="card-body">
+    <h5 class="card-title fs-6 mb-0 text-secondary">{{ card_title }}</h5>
+
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="ps-3">
+        <h6 class="text-secondary fs-3">{{ card_value }}</h6>
+      </div>
+      <div
+        class="card-icon {{
+          card_icon_color
+        }} rounded-circle d-flex align-items-center justify-content-center"
+      >
+        <i class="bi {{ card_icon_class }}"></i>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<app-base></app-base>
+
+<!-- Main -->
+<main id="main" class="main">
+  <div class="pagetitle d-sm-flex justify-content-between align-items-center">
+    <div>
+      <h1>Administration</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
+          <li class="breadcrumb-item">
+            <a routerLink="#">Administration</a>
+          </li>
+          <li class="breadcrumb-item active">Changer mon mot de passe</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <div class="mat-elevation-z2 rounded pt-1 pb-3 bg-white d-flex justify-content-center">
+
+    <form class="mt-4 text-center col-md-5">
+
+      <p class="mb-0">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Ancien mot de passe</mat-label>
+          <input
+            required
+            [(ngModel)] = "old_password"
+            matInput
+            name="old_password"
+            [type]="hide ? 'password' : 'text'"
+            placeholder="Password"
+          />
+          <mat-icon matPrefix>lock</mat-icon>
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{
+              hide ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </p>
+
+      <p class="mb-0">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Nouveau mot de passe</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Nouveau mot de passe"
+            [(ngModel)] = "new_password"
+            name="new_password"
+            required
+          />
+        </mat-form-field>
+      </p>
+
+      <p class="mb-0">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Confirmer le nouveau mot de passe</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="..."
+            [(ngModel)] = "confirm_new_password"
+            name="confirm_new_password"
+            required
+          />
+        </mat-form-field>
+      </p>
+
+      <div>
+        <button
+        (click)="change_password()"
+        mat-button class="primary-light-button w-100">Changer le mot de passe</button>
+      </div>
+    </form>
+  </div>
+
+</main>

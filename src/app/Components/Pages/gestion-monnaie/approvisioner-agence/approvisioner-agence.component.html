@@ -1,0 +1,153 @@
+<app-base></app-base>
+
+<!-- Main -->
+<main id="main" class="main">
+  <div class="pagetitle d-sm-flex justify-content-between align-items-center">
+    <div>
+      <h1>Gestion de la monnaie</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
+          <li class="breadcrumb-item">
+            <a routerLink="#">Gestion de la monnaie</a>
+          </li>
+          <li class="breadcrumb-item active">Approvisionner une agence</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div>
+      <button
+        (click)="open_appr_agence_dialog()"
+        mat-raised-button
+        class="primary-light-button text-center me-2"
+      >
+        Approvisionner une agence
+      </button>
+
+      <button
+        mat-raised-button
+        (click)="open_export_dialog()"
+        class="primary-dark-button text-center"
+      >
+        Exporter
+      </button>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <!-- Loader pour les requetes -->
+  <mat-progress-bar
+    mode="indeterminate"
+    [hidden]="isProgressHidden"
+  ></mat-progress-bar>
+
+  <!-- Alert section -->
+  <div
+    id="alert"
+    class="d-none alert alert-{{
+      alert_type
+    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-3 ps-3 pe-3"
+    role="alert"
+  >
+    <span>
+      <strong
+        ><i class="bi bi-info-circle-fill me-2 text-capitalize"></i>
+        {{ alert_type }} !</strong
+      >
+      {{ alert_message }}
+    </span>
+    <button
+      (click)="closeAlert()"
+      mat-icon-button
+      type="button"
+      class="m-0"
+      data-bs-dismiss="aler"
+      aria-label="Close"
+    >
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+
+  <div class="mat-elevation-z2 rounded">
+    <div class="container-fluid pt-3 pb-0 mb-0" style="background: white">
+      <mat-form-field appearance="outline">
+        <mat-label>Recherche</mat-label>
+        <input
+          (keyup)="filter($event)"
+          required
+          matInput
+          placeholder="Mot clé"
+          name="input-search"
+          ngModel
+          #inputSearch
+          required="false"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <!-- Loader de chargement du contenu du tableau -->
+      <div
+        class="d-{{ display }} align-items-center justify-content-center pb-3"
+      >
+        <mat-spinner diameter="25" class="me-3"></mat-spinner>
+        Chargement...
+      </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource">
+      <!-- Merchant Column -->
+      <ng-container matColumnDef="Super agent">
+        <th mat-header-cell *matHeaderCellDef>Super agent</th>
+        <td mat-cell *matCellDef="let element">{{ element.merchant }}</td>
+      </ng-container>
+
+      <!-- Montant (XAF) Column -->
+      <ng-container matColumnDef="Montant (XAF)">
+        <th mat-header-cell *matHeaderCellDef>Montant (XAF)</th>
+        <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+      </ng-container>
+
+      <!-- Statut Column -->
+      <ng-container matColumnDef="Statut">
+        <th mat-header-cell *matHeaderCellDef>Statut</th>
+        <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
+      </ng-container>
+
+      <!-- Crée par Column -->
+      <ng-container matColumnDef="Crée par">
+        <th mat-header-cell *matHeaderCellDef>Crée par</th>
+        <td mat-cell *matCellDef="let element">{{ element.creerPar }}</td>
+      </ng-container>
+
+      <!-- Crée le Column -->
+      <ng-container matColumnDef="Crée le">
+        <th mat-header-cell *matHeaderCellDef>Crée le</th>
+        <td mat-cell *matCellDef="let element">{{ element.creerLe }}</td>
+      </ng-container>
+
+      <!-- Traité par Column -->
+      <ng-container matColumnDef="Traité par">
+        <th mat-header-cell *matHeaderCellDef>Traité par</th>
+        <td mat-cell *matCellDef="let element">{{ element.traiterPar }}</td>
+      </ng-container>
+
+      <!-- Traité le Column -->
+      <ng-container matColumnDef="Traité le">
+        <th mat-header-cell *matHeaderCellDef>Traité le</th>
+        <td mat-cell *matCellDef="let element">{{ element.traiterLe }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      class="pb-2"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+  </div>
+</main>

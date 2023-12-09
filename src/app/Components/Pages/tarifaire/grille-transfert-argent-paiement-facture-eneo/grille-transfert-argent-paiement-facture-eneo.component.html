@@ -1,0 +1,185 @@
+<app-base></app-base>
+
+<!-- Main -->
+<main id="main" class="main">
+  <div class="pagetitle d-sm-flex justify-content-between align-items-center">
+    <div>
+      <h1>Tarifaire</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
+          <li class="breadcrumb-item">
+            <a routerLink="#">Tarifaire</a>
+          </li>
+          <li class="breadcrumb-item active">
+            Grille Tarifaire de Paiement Facture Eneo
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div>
+      <button
+        title="Ajouter une grille de transfert DirectCash"
+        (click)="open_add_grille_dialog('add')"
+        mat-raised-button
+        class="primary-light-button text-center me-2"
+      >
+        <mat-icon class="me-0">add</mat-icon>
+      </button>
+      <button
+        title="Exporter la grille de transfert DirectCash"
+        mat-raised-button
+        (click)="open_export_dialog()"
+        class="primary-dark-button text-center"
+      >
+        Exporter
+      </button>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <!-- Loader pour les requetes -->
+  <mat-progress-bar
+    mode="indeterminate"
+    [hidden]="isProgressHidden"
+  ></mat-progress-bar>
+
+  <!-- Alert section -->
+  <div
+    id="alert"
+    class="d-none alert alert-{{
+      alert_type
+    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-2 ps-3 pe-3"
+    role="alert"
+  >
+    <span>
+      <strong
+        ><i class="bi bi-info-circle-fill me-2 text-capitalize"></i>
+        {{ alert_type }} !</strong
+      >
+      {{ alert_message }}
+    </span>
+    <button
+      (click)="closeAlert()"
+      mat-icon-button
+      type="button"
+      class="m-0"
+      data-bs-dismiss="aler"
+      aria-label="Close"
+    >
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+
+  <div class="mat-elevation-z2 rounded">
+    <div class="container-fluid pt-3 pb-0 mb-0" style="background: white">
+      <mat-form-field appearance="outline">
+        <mat-label>Recherche</mat-label>
+        <input
+          (keyup)="filter($event)"
+          required
+          matInput
+          placeholder="Mot clé"
+          name="input-search"
+          ngModel
+          #inputSearch
+          required="false"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <!-- Loader de chargement du contenu du tableau -->
+      <div
+        class="d-{{ display }} align-items-center justify-content-center pb-3"
+      >
+        <mat-spinner diameter="25" class="me-3"></mat-spinner>
+        Chargement...
+      </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource">
+      <!-- De Column -->
+      <ng-container matColumnDef="De">
+        <th mat-header-cell *matHeaderCellDef>De</th>
+        <td mat-cell *matCellDef="let element">{{ element.amountFrom }}</td>
+      </ng-container>
+
+      <!-- A Column -->
+      <ng-container matColumnDef="A">
+        <th mat-header-cell *matHeaderCellDef>A</th>
+        <td mat-cell *matCellDef="let element">{{ element.amountTo }}</td>
+      </ng-container>
+
+      <!-- Frais local (XAF) Column -->
+      <ng-container matColumnDef="Frais local (XAF)">
+        <th mat-header-cell *matHeaderCellDef>Frais local (XAF)</th>
+        <td mat-cell *matCellDef="let element">{{ element.rate }}</td>
+      </ng-container>
+
+      <!-- Frais international (XAF) Column -->
+      <ng-container matColumnDef="Frais international (XAF)">
+        <th mat-header-cell *matHeaderCellDef>Frais international (XAF)</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.frais_international }}
+        </td>
+      </ng-container>
+
+      <!-- Type Column -->
+      <ng-container matColumnDef="Type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.rateType }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef style="width: 180px">Actions</th>
+        <td colspan="3" mat-cell *matCellDef="let element" style="width: 180px">
+          <ul class="list-group list-group-horizontal" style="max-width: 180px">
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="open_add_grille_dialog('edit')"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #02c29c36"
+              >
+                <mat-icon style="color: #02c29c">edit</mat-icon>
+              </button>
+            </li>
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="open_del_grille_dialog()"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #f60d2b4d"
+              >
+                <mat-icon style="color: #f60d2b">cancel</mat-icon>
+              </button>
+            </li>
+            <li class="list-group-item border-0 pe-0 ps-0">
+              <button
+                (click)="open_add_grille_dialog('show')"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #e6e6e6"
+              >
+                <mat-icon style="color: #5e5e5e">visibility</mat-icon>
+              </button>
+            </li>
+          </ul>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      class="pb-2"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+  </div>
+</main>

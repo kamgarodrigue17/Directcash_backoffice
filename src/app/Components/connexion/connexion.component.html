@@ -1,0 +1,127 @@
+<div class="" style="background-color: #f2f4f5">
+  <section
+    class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4"
+  >
+    <div class="container">
+      <div class="row justify-content-center">
+        <div
+          class="col-lg-8 col-sm-12 d-flex flex-column align-items-center justify-content-center"
+        >
+          <div class="card mb-0 col-md-12 flex-md-row border-0 shadow-lg h-100">
+            <!-- Section 1 -->
+            <div class="col-md-6 custom-bg-primary rounded text-center">
+              <div class="mt-5">
+                <img
+                  src="assets/images/large_alliance_icon.svg"
+                  width="250"
+                  class=""
+                  alt=""
+                  srcset=""
+                />
+              </div>
+
+              <div class="mt-5 mb-5">
+                <h4 class="fw-bold fs-5">Bienvenue</h4>
+              </div>
+
+              <div class="text-uppercase text-center small text-secondary">
+                @2023 alliance financial <br />
+                Cameroun sa all right reserved
+              </div>
+            </div>
+            <hr />
+            <!-- Section 2 -->
+            <div class="col-md-6">
+              <div class="card-body pt-5 pb-4">
+                <h4 class="text-dark fw-bold fs-5 text-center mb-4">
+                  Se connecter
+                </h4>
+                <p class="small text-gray text-center">
+                  Entrez votre identifiant & mot de passe pour continuer
+                </p>
+                <form
+                  (ngSubmit)="onSubmit()"
+                  [formGroup]="myForm"
+                  novalidate
+                  class="needs-validation fs-6 mt-4 mb-3 ps-3 pe-3"
+                  action="/"
+                  method="post"
+                >
+                  <p class="mt-1 mb-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>Identifiant</mat-label>
+                      <input
+                        required
+                        matInput
+                        placeholder="Identifiant"
+                        formControlName="username"
+                      />
+                      <mat-icon matPrefix>account_circle</mat-icon>
+                    </mat-form-field>
+                  </p>
+
+                  <p class="mt-1 mb-1">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>Mot de passe</mat-label>
+                      <input
+                        required
+                        formControlName="password"
+                        matInput
+                        [type]="hide ? 'password' : 'text'"
+                        placeholder="Password"
+                      />
+                      <mat-icon matPrefix>lock</mat-icon>
+                      <button
+                        type="button"
+                        mat-icon-button
+                        matSuffix
+                        (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide"
+                      >
+                        <mat-icon>{{
+                          hide ? "visibility_off" : "visibility"
+                        }}</mat-icon>
+                      </button>
+                      <mat-error
+                        class="small"
+                        *ngIf="passwordFormControl.hasError('required')"
+                      >
+                        {{ passwordFormControl.getError("required") }}
+                      </mat-error>
+                    </mat-form-field>
+                  </p>
+
+                  <div class="col-md-12 text-center mt-3">
+                    <button
+                      mat-raised-button
+                      class="w-100 {{ connexion_class }}"
+                      [disabled]="isLoading"
+                    >
+                      Se connecter
+                    </button>
+
+                    <!-- Loader de connexion -->
+                    <div
+                      class="d-{{
+                        display
+                      }} align-items-center justify-content-center pt-4"
+                    >
+                      <mat-spinner diameter="25" class="me-3"></mat-spinner>
+                      Connexion...
+                    </div>
+
+                    <!-- Message du timeout -->
+                    <div class="small pt-3 text-danger d-{{ displayTimeout }}">
+                      {{ timeoutMessage }}
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
