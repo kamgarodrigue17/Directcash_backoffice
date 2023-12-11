@@ -219,5 +219,3 @@ export interface FonctionnaliteModel {
   menu: string,
   status: string
 }
-
-

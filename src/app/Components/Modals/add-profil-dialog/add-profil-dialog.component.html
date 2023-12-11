@@ -23,17 +23,6 @@
           >
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="w-100">
-        <mat-label>Habilitations</mat-label>
-        <mat-select required placeholder="Selectionner une Habilitations" name="habilitation"  [(ngModel)]="datas.habilitation">
-          <mat-option
-          *ngFor="let hab of habilitation"
-          [value]="hab.idhabilitation"
-          >{{ hab.label}}</mat-option
-        >
-        </mat-select>
-      </mat-form-field>
-      
     </div>
   </form>
 </mat-dialog-content>
@@ -42,7 +31,6 @@
     class="w-100 primary-light-button"
     mat-button
     [mat-dialog-close]="true"
-    (click)="addOption()"
   >
     Continuer
   </button>
