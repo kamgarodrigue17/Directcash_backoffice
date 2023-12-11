@@ -57,7 +57,7 @@ export class GestionFonctionnaliteComponent implements OnInit {
 
       this.ELEMENT_DATA = habi.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à', "statut",'Action'];
+      this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à'];
       ;
       this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
@@ -65,7 +65,7 @@ export class GestionFonctionnaliteComponent implements OnInit {
     });
 
 
-    this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à',"statut", 'Action'];
+    this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à'];
 
     this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
 
