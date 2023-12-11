@@ -14,11 +14,13 @@
         <mat-label>Fonctionnalité</mat-label>
         <mat-select required placeholder="Selectionner une fonctionnalité">
           <!-- On va lister les fonctionnalites ici -->
-          <mat-option value="1">Gestion des Agents - Agents</mat-option>
-          <mat-option value="2"
-            >Administration - Gestion des habilitations</mat-option
+          <mat-option
+            *ngFor="let fonctionnalite of fonctionnalites"
+            [value]="fonctionnalite.id"
+            >{{
+              fonctionnalite.menu + " - " + fonctionnalite.label
+            }}</mat-option
           >
-          <mat-option value="3">Gestion des Agents - Super Agents</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="w-100">

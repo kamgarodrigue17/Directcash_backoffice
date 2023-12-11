@@ -26,6 +26,7 @@ export class DetailFonctionnaliteComponent {
    }
 
   habilitation: any;
+  fonctionnalites: any;
 
   displayedColumns: string[] = ['Menu', 'Sous - menu', 'Action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -74,9 +75,18 @@ export class DetailFonctionnaliteComponent {
   }
 
   ngOnInit(): void {
-    this.habilitation = window.Storage;
+    // on recupere l'habilitation
+    this.habilitation = JSON.parse(`${localStorage.getItem("currentHabilitation")}`);
+
+    // on recupere la liste des fonctionnalites
+    this.fonctionnalites = JSON.parse(JSON.stringify(localStorage.getItem("fonctionnaliteList")));
+
     console.log('====================================');
     console.log(this.habilitation);
+    console.log('====================================');
+
+    console.log('====================================');
+    console.log(this.fonctionnalites);
     console.log('====================================');
   }
 
