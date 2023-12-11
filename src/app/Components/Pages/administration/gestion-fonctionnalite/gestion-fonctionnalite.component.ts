@@ -21,7 +21,6 @@ export class GestionFonctionnaliteComponent implements OnInit {
 
   constructor(private _router: Router, public dialog: MatDialog, public fonctionalié: FonctionalitesService, private _snackBar: MatSnackBar) {
 
-
   }
 
 
@@ -47,7 +46,6 @@ export class GestionFonctionnaliteComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
 
     });
-
 
     this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à'];
 

@@ -16,6 +16,7 @@ export class DetailFonctionnaliteComponent implements OnInit {
   constructor(private _router: Router, private dialog: MatDialog) { }
 
   habilitation: any;
+  fonctionnalites: any;
 
   displayedColumns: string[] = ['Menu', 'Sous - menu', 'Action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -35,8 +36,11 @@ export class DetailFonctionnaliteComponent implements OnInit {
    * Ajouter une fonctionnalite a une habilitation
    */
   add_fonctionnalite() {
+
     const add_fonctionnalite_dialog = this.dialog.open(AddProfilDialogComponent, {
-      data: {}
+      data: {
+        fonctionnalites: this.fonctionnalites
+      }
     });
 
     add_fonctionnalite_dialog.afterClosed().subscribe(result => {
@@ -65,9 +69,18 @@ export class DetailFonctionnaliteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.habilitation = window.Storage;
+    // on recupere l'habilitation
+    this.habilitation = JSON.parse(`${localStorage.getItem("currentHabilitation")}`);
+
+    // on recupere la liste des fonctionnalites
+    this.fonctionnalites = JSON.parse(JSON.stringify(localStorage.getItem("fonctionnaliteList")));
+
     console.log('====================================');
     console.log(this.habilitation);
+    console.log('====================================');
+
+    console.log('====================================');
+    console.log(this.fonctionnalites);
     console.log('====================================');
   }
 
