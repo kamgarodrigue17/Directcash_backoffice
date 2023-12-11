@@ -1,35 +1,27 @@
-import { Component, Inject, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AddProfilDialogComponent } from 'src/app/Components/Modals/add-profil-dialog/add-profil-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
+import { Habilitation } from 'src/app/modal/habilitation';
+import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctionalites.service';
 
 @Component({
   selector: 'app-detail-fonctionnalite',
   templateUrl: './detail-fonctionnalite.component.html',
   styleUrls: ['./detail-fonctionnalite.component.css']
 })
-export class DetailFonctionnaliteComponent {
-  data:any={
-    accessibilite: "",
-    id: "1",
-    label:"Agent",
-    menu: "Gestion des Agents",
-    status: "Actif"
-  }
-  @ViewChild("form") form!: NgForm;
-  constructor(@Inject(MAT_DIALOG_DATA) public datas: any,private _router: Router, private dialog: MatDialog) {
-    this.data = { ...datas.element }
-   }
+export class DetailFonctionnaliteComponent implements OnInit {
+
+  constructor(private _router: Router, private dialog: MatDialog,public fonctionalié: FonctionalitesService) { }
 
   habilitation: any;
-  fonctionnalites: any;
+  fonctionnalites: Habilitation[]=[];
 
   displayedColumns: string[] = ['Menu', 'Sous - menu', 'Action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<any>(this.fonctionnalites);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -42,14 +34,18 @@ export class DetailFonctionnaliteComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  add_profil() {
-    const add_profil_dialog = this.dialog.open(AddProfilDialogComponent, {
+  /**
+   * Ajouter une fonctionnalite a une habilitation
+   */
+  add_fonctionnalite() {
+
+    const add_fonctionnalite_dialog = this.dialog.open(AddProfilDialogComponent, {
       data: {
-        element:this.data
+        fonctionnalites: this.fonctionnalites
       }
     });
 
-   add_profil_dialog.afterClosed().subscribe(result => {
+    add_fonctionnalite_dialog.afterClosed().subscribe(result => {
       console.log(result);
     });
   }
@@ -78,8 +74,17 @@ export class DetailFonctionnaliteComponent {
     // on recupere l'habilitation
     this.habilitation = JSON.parse(`${localStorage.getItem("currentHabilitation")}`);
 
-    // on recupere la liste des fonctionnalites
-    this.fonctionnalites = JSON.parse(JSON.stringify(localStorage.getItem("fonctionnaliteList")));
+    this.fonctionalié.fonctionalites(this.habilitation.idhabilitation).subscribe(habi => {
+
+      this.fonctionnalites = habi.data;
+      console.log(this.fonctionnalites);
+      this.displayedColumns = ['Menu', 'Sous - menu','Action'];
+      ;
+      this.dataSource = new MatTableDataSource<Habilitation>(this.fonctionnalites);
+      this.dataSource.paginator = this.paginator;
+
+    });
+  
 
     console.log('====================================');
     console.log(this.habilitation);
@@ -87,6 +92,7 @@ export class DetailFonctionnaliteComponent {
 
     console.log('====================================');
     console.log(this.fonctionnalites);
+
     console.log('====================================');
   }
 

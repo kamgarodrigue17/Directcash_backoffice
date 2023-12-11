@@ -12,20 +12,46 @@ import { ValidationService } from 'src/app/services/validation/validation.servic
   styleUrls: ['./add-profil-dialog.component.css']
 })
 export class AddProfilDialogComponent implements OnInit {
+  habilitation:any;
+  option:any={
+    "userId":"",
+    "option":"",
+    "habilitation":""
+}
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public fonctionalité:FonctionalitesService) { }
 
   fonctionnalites: any[] = [];
-
+ 
   ngOnInit(): void {
-    // on recupere la liste des fonctionnalites
-    this.fonctionnalites = JSON.parse(this.data.fonctionnalites);
+    this.habilitation = JSON.parse(`${localStorage.getItem("currentHabilitation")}`);
+
+
+
+    this.fonctionalité.fonctionalites("*").subscribe(habi => {
+
+      this.fonctionnalites = habi.data;
+   
+    });
+    
 
     console.log('====================================');
     console.log(this.fonctionnalites[0]);
     console.log('====================================');
   }
+  addOption(): void {
+    this.habilitation = JSON.parse(`${localStorage.getItem("currentHabilitation")}`);
+    this.option.userId=localStorage.getItem("id");
 
+    this.option.habilitation=`${this.habilitation.idhabilitation}` ;
+console.log(this.option)
+
+    this.fonctionalité.HabilitationAddOption(this.option).subscribe(hab => {
+      console.log(hab);
+      
+    });
+
+   }
 
 
 
