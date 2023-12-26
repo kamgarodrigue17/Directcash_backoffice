@@ -27,6 +27,9 @@ export class DetailFonctionnaliteComponent implements OnInit {
   displayedColumns: string[] = ['Menu', 'Sous - menu', 'Action'];
   dataSource = new MatTableDataSource<any>(this.fonctionnalites);
 
+  // variable pour le loader du chargement des elements du tableau
+  display = 'flex';
+
   // loader pour l'execution des requetes
   isProgressHidden = true;
 
@@ -165,7 +168,7 @@ export class DetailFonctionnaliteComponent implements OnInit {
       ;
       this.dataSource = new MatTableDataSource<Habilitation>(this.fonctionnalites);
       this.dataSource.paginator = this.paginator;
-
+      this.display = 'none';
     });
   }
 
