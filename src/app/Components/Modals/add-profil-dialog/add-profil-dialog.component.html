@@ -12,7 +12,12 @@
     <div class="row">
       <mat-form-field class="w-100">
         <mat-label>Fonctionnalité</mat-label>
-        <mat-select required  name="option"  [(ngModel)]="this.option.option" placeholder="Selectionner une fonctionnalité">
+        <mat-select
+          required
+          name="option"
+          [(ngModel)]="this.option.option"
+          placeholder="Selectionner une fonctionnalité"
+        >
           <!-- On va lister les fonctionnalites ici -->
           <mat-option
             *ngFor="let fonctionnalite of fonctionnalites"
@@ -30,8 +35,7 @@
   <button
     class="w-100 primary-light-button"
     mat-button
-    [mat-dialog-close]="true"
-    (click)="addOption()"
+    [mat-dialog-close]="addOption()"
   >
     Continuer
   </button>
