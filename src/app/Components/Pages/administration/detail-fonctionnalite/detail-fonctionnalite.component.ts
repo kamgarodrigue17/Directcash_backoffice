@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AddProfilDialogComponent } from 'src/app/Components/Modals/add-profil-dialog/add-profil-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
+import { Habilitation } from 'src/app/modal/habilitation';
+import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctionalites.service';
 
 @Component({
   selector: 'app-detail-fonctionnalite',
@@ -13,12 +15,13 @@ import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmat
 })
 export class DetailFonctionnaliteComponent implements OnInit {
 
-  constructor(private _router: Router, private dialog: MatDialog) { }
+  constructor(private _router: Router, private dialog: MatDialog,public fonctionalié: FonctionalitesService) { }
 
   habilitation: any;
+  fonctionnalites: Habilitation[]=[];
 
   displayedColumns: string[] = ['Menu', 'Sous - menu', 'Action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<any>(this.fonctionnalites);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -35,8 +38,11 @@ export class DetailFonctionnaliteComponent implements OnInit {
    * Ajouter une fonctionnalite a une habilitation
    */
   add_fonctionnalite() {
+
     const add_fonctionnalite_dialog = this.dialog.open(AddProfilDialogComponent, {
-      data: {}
+      data: {
+        fonctionnalites: this.fonctionnalites
+      }
     });
 
     add_fonctionnalite_dialog.afterClosed().subscribe(result => {
@@ -65,9 +71,28 @@ export class DetailFonctionnaliteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.habilitation = window.Storage;
+    // on recupere l'habilitation
+    this.habilitation = JSON.parse(`${localStorage.getItem("currentHabilitation")}`);
+
+    this.fonctionalié.fonctionalites(this.habilitation.idhabilitation).subscribe(habi => {
+
+      this.fonctionnalites = habi.data;
+      console.log(this.fonctionnalites);
+      this.displayedColumns = ['Menu', 'Sous - menu','Action'];
+      ;
+      this.dataSource = new MatTableDataSource<Habilitation>(this.fonctionnalites);
+      this.dataSource.paginator = this.paginator;
+
+    });
+  
+
     console.log('====================================');
     console.log(this.habilitation);
+    console.log('====================================');
+
+    console.log('====================================');
+    console.log(this.fonctionnalites);
+
     console.log('====================================');
   }
 

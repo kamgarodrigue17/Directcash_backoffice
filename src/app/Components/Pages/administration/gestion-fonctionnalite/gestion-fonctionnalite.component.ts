@@ -5,6 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctionalites.service';
+import { DetailFonctionnaliteComponent } from '../detail-fonctionnalite/detail-fonctionnalite.component';
+import { Habilitation } from 'src/app/modal/habilitation';
 
 @Component({
   selector: 'app-gestion-fonctionnalite',
@@ -15,12 +17,11 @@ import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctiona
 export class GestionFonctionnaliteComponent implements OnInit {
 
   displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à'];
-  ELEMENT_DATA: PeriodicElement[] = [
+  ELEMENT_DATA: Habilitation[] = [
   ];
-  dataSource!: MatTableDataSource<PeriodicElement, MatTableDataSourcePaginator>
+  dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
   constructor(private _router: Router, public dialog: MatDialog, public fonctionalié: FonctionalitesService, private _snackBar: MatSnackBar) {
-
 
   }
 
@@ -37,30 +38,38 @@ export class GestionFonctionnaliteComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  detail_fonctionnalite(data:any) {
+    const fonctionalites_dialog = this.dialog.open(DetailFonctionnaliteComponent, {
+      data: {
+      
+        element: data
+      }
+    });
+
+    fonctionalites_dialog.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+ ///   this._router.navigateByUrl("/administration/gestion-fonctionnalites/detail");
+  }
   ngOnInit(): void {
-    this.fonctionalié.fonctionalites("1").subscribe(habi => {
+    this.fonctionalié.fonctionalites("*").subscribe(habi => {
 
       this.ELEMENT_DATA = habi.data;
-      console.log(habi.data);
+      console.log(this.ELEMENT_DATA);
       this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à'];
-      this.dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
+      ;
+      this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
 
     });
 
-
     this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à'];
 
-    this.dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
+    this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
 
   }
 
 }
 
-export interface PeriodicElement {
-  accessibilite: number;
-  id: number,
-  label: string,
-  menu: string,
-  status: string
-}
+
+

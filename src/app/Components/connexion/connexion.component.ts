@@ -64,12 +64,13 @@ export class ConnexionComponent implements OnInit {
         this.display = 'none';
         this.isLoading = false;
         this.connexion_class = 'primary-light-button';
+        
         localStorage.setItem("id", user.data.userName);
         user.data.token.refreshToken = "null";
         localStorage.setItem("token", user.data.token.token)
         localStorage.setItem("user", JSON.stringify(user.data));
 
-        console.log(this.myForm.value);
+        console.log(user.data);
         this.router.navigateByUrl('/dashboard');
       }, error => {
         console.error('une erreur :', error);

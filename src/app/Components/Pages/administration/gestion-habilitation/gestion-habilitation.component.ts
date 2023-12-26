@@ -8,6 +8,7 @@ import { HabilitationDialogComponent } from 'src/app/Components/Modals/habilitat
 import { Habilitation } from 'src/app/modal/habilitation';
 import { HabilitationService } from '../../../../services/habilitation/habilitation.service';
 import { Router } from '@angular/router';
+import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctionalites.service';
 
 @Component({
   selector: 'app-gestion-habilitation',
@@ -16,11 +17,16 @@ import { Router } from '@angular/router';
 })
 export class GestionHabilitationComponent implements OnInit {
   displayedColumns: string[] = [];
-  ELEMENT_DATA: Habilitation[] = [
-  ];
+  ELEMENT_DATA: Habilitation[] = [];
+  Fonctionnalites: FonctionnaliteModel[] = [];
   dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, public habilition: HabilitationService, private _snackBar: MatSnackBar, private _router: Router) { }
+  constructor(
+    public dialog: MatDialog,
+    public habilition: HabilitationService,
+    public fonctionaliteService: FonctionalitesService,
+    private _snackBar: MatSnackBar,
+    private _router: Router) { }
 
   snackbar_message = "";
 
@@ -62,6 +68,11 @@ export class GestionHabilitationComponent implements OnInit {
     alert?.classList.remove("d-none");
   }
 
+  /**
+   * Modal d'une habilitation | ajouter - Modifier
+   * @param mode
+   * @param data
+   */
   editer_habilitation(mode: string, data: any) {
     const habilitation_dialog = this.dialog.open(HabilitationDialogComponent, {
       data: {
@@ -114,7 +125,7 @@ export class GestionHabilitationComponent implements OnInit {
                   console.log(res);
 
                   // si le code de retour est 200, on met a jour la liste des habilitation
-                  if (res.code == 200) this.getHabilitationList;
+                  if (res.code == 200) this.getHabilitationList();
 
                   // on notifie sur la vue
                   this.closeAlert();
@@ -139,7 +150,10 @@ export class GestionHabilitationComponent implements OnInit {
 
   }
 
-
+  /**
+   * Supprimer une habilitation
+   * @param intitule
+   */
   supprimer_habilitation(intitule: string) {
     const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
@@ -157,14 +171,8 @@ export class GestionHabilitationComponent implements OnInit {
    * Afficher les fonctionnalites rattaches a une habilitation
    */
   show_information(habilitation: any) {
-    // const show_info_dialog = this.dialog.open(GestionMonnaieShowInformationDialogComponent, {
-    //   data: {}
-    // });
-
-    // show_info_dialog.afterClosed().subscribe(result => {
-    //   console.log(result);
-    // });
-    window.Storage = habilitation;
+    localStorage.setItem("currentHabilitation", JSON.stringify(habilitation));
+    localStorage.setItem("fonctionnaliteList", JSON.stringify(this.Fonctionnalites));
     this._router.navigateByUrl("/administration/gestion-habilitations/detail");
   }
 
@@ -173,7 +181,6 @@ export class GestionHabilitationComponent implements OnInit {
    */
   getHabilitationList() {
     this.habilition.habilitations().subscribe(habi => {
-
       this.ELEMENT_DATA = habi.data;
       console.log(this.ELEMENT_DATA);
       this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
@@ -183,16 +190,32 @@ export class GestionHabilitationComponent implements OnInit {
     });
   }
 
+  /**
+   * Recuperer la liste des fonctionnalité
+   */
+  getFonctionnalite() {
+    this.fonctionaliteService.fonctionalites("1").subscribe(response => {
+      this.Fonctionnalites = response.data;
+    })
+  }
+
 
   ngOnInit(): void {
     this.getHabilitationList();
-
+    this.getFonctionnalite()
     this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
-
     this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
-
   }
 
 }
 
-
+/**
+ * Model pour representer une fonctionnalite
+ */
+export interface FonctionnaliteModel {
+  accessibilite: number;
+  id: number,
+  label: string,
+  menu: string,
+  status: string
+}

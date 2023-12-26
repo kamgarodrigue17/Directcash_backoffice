@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class HabilitationService {
 
   constructor(
-    public globalService:GloabalServiceService,
+    private globalService:GloabalServiceService,
     private http: HttpClient
   ) { }
   habilitations(): Observable<any> {

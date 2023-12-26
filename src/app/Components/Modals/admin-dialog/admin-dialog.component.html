@@ -45,7 +45,7 @@
           name="habilitation" ngModel [(ngModel)]="admin.habilitation"
           [disabled]="mode == 'show'"
         >
-        <mat-option *ngFor="let habilitation of habilitations" [value]="habilitation.label">{{habilitation.label}}</mat-option>
+        <mat-option *ngFor="let habilitation of habilitations" [value]="habilitation.idhabilitation">{{habilitation.label}}</mat-option>
 
         </mat-select>
       </mat-form-field>
@@ -76,8 +76,8 @@
             name="isActive" ngModel [(ngModel)]="admin.isActive"
             [disabled]="mode == 'show'"
           >
-            <mat-option value="True">Actif</mat-option>
-            <mat-option value="false">Inactif</mat-option>
+            <mat-option value=1>Actif</mat-option>
+            <mat-option value=0>Inactif</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -154,8 +154,8 @@
             required
             matInput
             placeholder="Nom d'utilisateur"
-            name="username"
-            ngModel [(ngModel)]="admin.userName"
+            name="fullName"
+            ngModel [(ngModel)]="admin.fullName"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
