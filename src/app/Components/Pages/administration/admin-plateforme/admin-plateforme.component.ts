@@ -122,7 +122,7 @@ export class AdminPlateformeComponent implements OnInit {
             let res_code = res.code;
             switch (+res_code) {
               case 400:
-                this.alert_type = 'warning'
+                this.alert_type = 'danger'
                 break;
               default:
                 this.alert_type = 'info'
