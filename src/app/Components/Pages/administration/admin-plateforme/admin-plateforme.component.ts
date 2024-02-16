@@ -128,7 +128,10 @@ export class AdminPlateformeComponent implements OnInit {
                 this.alert_type = 'info'
                 break;
             }
+            this.getAllAdmin();
             this.alert_message = res.data;
+            this.closeAlert();
+            this.openAlert();
             console.log(res);
 
             // lorsque le temps de reponse est au dessus du timeout (10s)
@@ -243,7 +246,10 @@ export class AdminPlateformeComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  /**
+   * Recuperer la liste des admins
+   */
+  getAllAdmin() {
     this.userService.getAdmin().subscribe(user => {
       this.ELEMENT_DATA = user.data;
       console.log(this.ELEMENT_DATA);
@@ -252,6 +258,10 @@ export class AdminPlateformeComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
+  }
+
+  ngOnInit(): void {
+    this.getAllAdmin();
 
     // on recupere la liste des habilitation
     this.habilitationService.habilitations().subscribe(habilitations => {
