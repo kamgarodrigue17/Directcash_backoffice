@@ -101,6 +101,7 @@ import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapp
 import { EntrepriseComponent } from './Components/Pages/administration/entreprise/entreprise.component';
 import { EntrepriseDialogComponent } from './Components/Modals/entreprise-dialog/entreprise-dialog.component';
 import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/requete-emission/requete-emission.component';
+import { IsFirstimeDialogComponent } from './Components/Modals/is-firstime-dialog/is-firstime-dialog.component';
 
 @NgModule({
   declarations: [
@@ -177,7 +178,8 @@ import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/req
     EntrepriseComponent,
     EntrepriseDialogComponent,
     RequeteEmissionComponent,
-    RequeteEmissionDialogComponent
+    RequeteEmissionDialogComponent,
+    IsFirstimeDialogComponent
   ],
   imports: [
     BrowserModule,
