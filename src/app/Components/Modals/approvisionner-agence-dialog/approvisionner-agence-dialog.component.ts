@@ -29,6 +29,11 @@ export class ApprovisionnerAgenceDialogComponent implements OnInit {
 
       "password": this.password
     };
+     if (data.merchantId != null) {
+      this.valideservice.initdemandeAprovisionenm(data).subscribe(res => {
+        console.log(res);
+     })
+    }
 
     return data;
     // if (data.merchantId != null) {
@@ -40,5 +45,6 @@ export class ApprovisionnerAgenceDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.merchants = this.data.merchants;
+    console.log(this.data.merchants);
   }
 }
