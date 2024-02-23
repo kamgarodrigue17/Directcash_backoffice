@@ -7,6 +7,7 @@ import { ApprovisionnerAgenceDialogComponent } from 'src/app/Components/Modals/a
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Plafond } from 'src/app/modal/plafond';
 import { Transaction } from 'src/app/modal/transaction';
+import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 import { PlafondService } from 'src/app/services/plafond/plafond.service';
 
 @Component({
@@ -18,9 +19,10 @@ export class CrediterSuperAgentComponent implements OnInit {
   displayedColumns: string[] = [];
   ELEMENT_DATA: Plafond[] = [
   ];
+  merchants:any[]=[];
   dataSource!: MatTableDataSource<Plafond, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, private router: Router, public plafond: PlafondService) {
+  constructor(public dialog: MatDialog, public AgentService: AgentServiceService, private router: Router, public plafond: PlafondService) {
 
   }
 
@@ -54,7 +56,8 @@ export class CrediterSuperAgentComponent implements OnInit {
   open_crediter_super_agent_dialog() {
     const crediter_super_agent_dialog = this.dialog.open(ApprovisionnerAgenceDialogComponent, {
       data: {
-        object: 'super-agent'
+        object: 'super-agent',
+        merchants:this.merchants
       }
     });
 
@@ -78,6 +81,13 @@ export class CrediterSuperAgentComponent implements OnInit {
 
     this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
     this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+    this.AgentService.Agents("Merchants").subscribe(data => {
+      this.merchants = data.data;
+    
+    });
+ 
   }
+
+  
 }
 
