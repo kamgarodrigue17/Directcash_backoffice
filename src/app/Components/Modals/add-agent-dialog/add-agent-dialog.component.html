@@ -9,7 +9,7 @@
     >Editer un Agent</span
   >
   <span class="me-4" [hidden]="mode == 'add' || mode == 'edit'"
-    ><strong>ID: </strong>{{agent.agentNo}}</span
+    ><strong>ID: </strong>{{ agent.agentNo }}</span
   >
   <button mat-button [mat-dialog-close]="false" class="text-center">
     <mat-icon class="me-0">close</mat-icon>
@@ -164,7 +164,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>N° contribuable</mat-label>
           <input
@@ -172,6 +172,63 @@
             placeholder="Contribuable"
             name="contribuable"
             [(ngModel)]="agent.contribuable"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° téléphone</mat-label>
+          <input
+            matInput
+            placeholder="Téléphone"
+            name="tel"
+            [(ngModel)]="agent.tel"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Collecte de fonds input -->
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Collecte de fonds (XAF)</mat-label>
+          <input
+            matInput
+            placeholder="Collecte de fonds"
+            name="collectedefonds"
+            [(ngModel)]="agent.collectedefonds"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Paiement marchand input -->
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Paiement marchand (XAF)</mat-label>
+          <input
+            matInput
+            placeholder="Paiement marchand"
+            name="paiementmarchand"
+            [(ngModel)]="agent.paiementmarchand"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Commissions input -->
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Commissions (XAF)</mat-label>
+          <input
+            matInput
+            placeholder="Commissions"
+            name="commissions"
+            [(ngModel)]="agent.commissions"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>

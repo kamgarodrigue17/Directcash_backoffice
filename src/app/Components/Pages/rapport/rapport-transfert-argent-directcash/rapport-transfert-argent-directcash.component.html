@@ -20,7 +20,7 @@
       <div class="input-group me-2">
         <input
           type="date"
-          [(ngModel)] = 'filter_date_1'
+          [(ngModel)]="filter_date_1"
           class="form-control h-100"
           placeholder="Username"
           aria-label="Username"
@@ -28,14 +28,18 @@
         <span class="input-group-text h-100">à</span>
         <input
           type="date"
-          [(ngModel)] = 'filter_date_2'
+          [(ngModel)]="filter_date_2"
           class="form-control h-100"
           placeholder="Server"
           aria-label="Server"
         />
       </div>
 
-      <button (click)="filter_date()" mat-raised-button class="primary-light-button text-center me-2">
+      <button
+        (click)="filter_date()"
+        mat-raised-button
+        class="primary-light-button text-center me-2"
+      >
         <mat-icon class="me-0">filter_list</mat-icon>
       </button>
     </div>
@@ -90,60 +94,52 @@
     </div>
 
     <table mat-table [dataSource]="dataSource">
-      <!-- Agent Column -->
-      <ng-container matColumnDef="Agent">
-        <th mat-header-cell *matHeaderCellDef>Agent</th>
+      <!-- expediteur Column -->
+      <ng-container matColumnDef="expediteur">
+        <th mat-header-cell *matHeaderCellDef>Agent / Particulier</th>
         <td mat-cell *matCellDef="let element">{{ element.agent }}</td>
       </ng-container>
 
       <!-- Montant (XAF) Column -->
-      <ng-container matColumnDef="Montant (XAF)">
+      <ng-container matColumnDef="montant">
         <th mat-header-cell *matHeaderCellDef>Montant (XAF)</th>
         <td mat-cell *matCellDef="let element">{{ element.montant }}</td>
       </ng-container>
 
-      <!-- Expediteur Column -->
-      <ng-container matColumnDef="Expediteur">
-        <th mat-header-cell *matHeaderCellDef>Expediteur</th>
-        <td mat-cell *matCellDef="let element">{{ element.expediteur }}</td>
+      <!-- N° Destinataire Column -->
+      <ng-container matColumnDef="destinataire">
+        <th mat-header-cell *matHeaderCellDef>N° Destinataire</th>
+        <td mat-cell *matCellDef="let element">{{ element.receiver }}</td>
       </ng-container>
 
-      <!-- Destinataire Column -->
-      <ng-container matColumnDef="Destinataire">
-        <th mat-header-cell *matHeaderCellDef>Destinataire</th>
-        <td mat-cell *matCellDef="let element">{{ element.destinataire }}</td>
+      <!-- Tva Column -->
+      <ng-container matColumnDef="tva">
+        <th mat-header-cell *matHeaderCellDef>Montant %TVA</th>
+        <td mat-cell *matCellDef="let element">{{ element.tva }}</td>
       </ng-container>
 
-      <!-- Statut Column -->
-      <ng-container matColumnDef="Statut">
-        <th mat-header-cell *matHeaderCellDef>Statut</th>
-        <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
+      <!-- tta Column -->
+      <ng-container matColumnDef="tta">
+        <th mat-header-cell *matHeaderCellDef>Montant TTA</th>
+        <td mat-cell *matCellDef="let element">{{ element.tta }}</td>
+      </ng-container>
+
+      <!-- Commission Column -->
+      <ng-container matColumnDef="commissions">
+        <th mat-header-cell *matHeaderCellDef>Commission</th>
+        <td mat-cell *matCellDef="let element">{{ element.commission }}</td>
       </ng-container>
 
       <!-- Effectuée le Column -->
-      <ng-container matColumnDef="Effectuée le">
+      <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef>Effectuée le</th>
-        <td mat-cell *matCellDef="let element">{{ element.created_at }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.date }}</td>
       </ng-container>
 
-      <!-- Action Column -->
-      <ng-container matColumnDef="Action">
-        <th mat-header-cell *matHeaderCellDef style="width: 100px">Actions</th>
-        <td mat-cell *matCellDef="let element" style="width: 100px">
-          <ul class="list-group list-group-horizontal" style="max-width: 100px">
-            <li class="list-group-item border-0 pe-2 ps-0">
-              <button
-                (click)="open_show_information_dialog()"
-                title="Consulter les details"
-                type="button"
-                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
-                style="background: #e6e6e6"
-              >
-                <mat-icon style="color: #5e5e5e">visibility</mat-icon>
-              </button>
-            </li>
-          </ul>
-        </td>
+      <!-- Statut Column -->
+      <ng-container matColumnDef="statut">
+        <th mat-header-cell *matHeaderCellDef>Statut</th>
+        <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

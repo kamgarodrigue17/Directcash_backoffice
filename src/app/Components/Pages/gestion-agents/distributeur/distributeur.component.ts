@@ -91,13 +91,12 @@ export class DistributeurComponent implements OnInit {
     this.AgentService.Agents("Distributors").subscribe(distributeurs => {
       this.ELEMENT_DATA = distributeurs.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Nom', 'Solde (XAF)','banque', 'Merchant', 'N° IMEI','date' ,'Actions'];
       this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none'
     });
 
-    this.displayedColumns = ['Nom',  'Solde (XAF)', 'banque','Merchant', 'N° IMEI','date' , 'Actions'];
+    this.displayedColumns = ['Nom', 'Téléphone', 'Compte principal', 'Collecte de fonds', 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
     this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
   }
 

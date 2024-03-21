@@ -66,12 +66,13 @@ export class RapportMomoOmComponent implements OnInit {
         };
       });//trx.data.;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
       this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
-    this.displayedColumns = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
+    // this.displayedColumns = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
+    this.displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+
     this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   }

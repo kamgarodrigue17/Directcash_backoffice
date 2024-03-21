@@ -10,17 +10,32 @@
 </div>
 <mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
   <form #form="ngForm">
-
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Nom de l'agence</mat-label>
-        <input matInput required type="text" placeholder="Nom de l'agence"  name="agenceName"  [(ngModel)]="this.agence.agenceName" ngModel/>
+        <input
+          matInput
+          required
+          type="text"
+          placeholder="Nom de l'agence"
+          name="agenceName"
+          [(ngModel)]="this.agence.agenceName"
+          ngModel
+        />
       </mat-form-field>
     </div>
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Code de l'agence</mat-label>
-        <input matInput required type="text" placeholder="Code de l'agence"  name="agenceId"  [(ngModel)]="this.agence.agenceId" ngModel />
+        <input
+          matInput
+          required
+          type="text"
+          placeholder="Code de l'agence"
+          name="agenceId"
+          [(ngModel)]="this.agence.agenceId"
+          ngModel
+        />
       </mat-form-field>
     </div>
     <div class="row">
@@ -31,7 +46,8 @@
           required
           type="text"
           placeholder="Pays (ville, quartier)"
-          name="location"  [(ngModel)]="this.agence.location"
+          name="location"
+          [(ngModel)]="this.agence.location"
           ngModel
         />
       </mat-form-field>
@@ -40,9 +56,16 @@
     <div class="row">
       <mat-form-field class="w-100">
         <mat-label>Merchant</mat-label>
-        <mat-select name="merchant" [(ngModel)]="agence.merchant" [disabled]="mode=='show' ">
-          <mat-option *ngFor="let merchant of merchants" [value]="merchant.merchantID">{{merchant.nom}}</mat-option>
-
+        <mat-select
+          name="merchant"
+          [(ngModel)]="agence.merchant"
+          [disabled]="mode == 'show'"
+        >
+          <mat-option
+            *ngFor="let merchant of merchants"
+            [value]="merchant.merchantID"
+            >{{ merchant.nom }}</mat-option
+          >
         </mat-select>
       </mat-form-field>
     </div>

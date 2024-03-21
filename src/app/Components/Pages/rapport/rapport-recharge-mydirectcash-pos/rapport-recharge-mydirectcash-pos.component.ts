@@ -11,7 +11,9 @@ export class RapportRechargeMydirectcashPosComponent {
 
   constructor() { }
 
-  displayedColumns: string[] = ['Agent', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Statut', 'Effectuée le'];
+  // displayedColumns: string[] = ['Agent', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Statut', 'Effectuée le'];
+  displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild("paginator") paginator!: MatPaginator;

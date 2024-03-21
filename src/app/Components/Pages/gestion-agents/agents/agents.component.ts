@@ -169,13 +169,13 @@ export class AgentsComponent implements OnInit {
     this.AgentService.Agents("Agents").subscribe(agents => {
       this.ELEMENT_DATA = agents.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Nom', 'Type', 'Solde (XAF)',  "Banque", 'Merchant', 'N° IMEI', "Date",'Actions'];
       this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none'
     });
 
-    this.displayedColumns = ['Nom', 'Type', 'Solde (XAF)',  "Banque", 'Merchant', 'N° IMEI', "Date",'Actions'];
+    // this.displayedColumns = ['Nom', 'Type', 'Solde (XAF)',  "Banque", 'Merchant', 'N° IMEI', "Date",'Actions'];
+    this.displayedColumns = ['Nom', 'Téléphone', 'Type', 'Compte principal (XAF)', "Collecte de fonds", 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
     this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
   }
 }

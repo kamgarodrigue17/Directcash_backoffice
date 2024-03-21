@@ -22,7 +22,9 @@ export class RapportPaiementFactureComponent {
       })
     }
 
-  displayedColumns: string[] = ['Agent', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type de facture', 'Type d\'opération', 'Effectuée le'];
+  // displayedColumns: string[] = ['Agent', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type de facture', 'Type d\'opération', 'Effectuée le'];
+  displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+
   dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   @ViewChild("paginator") paginator!: MatPaginator;

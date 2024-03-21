@@ -65,13 +65,13 @@ export class RapportAirtimeComponent implements OnInit {
         };
       });//trx.data.;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
       this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     })
       ;//trx.data.;
-    this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
+    // this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
+    this.displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
     this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   }

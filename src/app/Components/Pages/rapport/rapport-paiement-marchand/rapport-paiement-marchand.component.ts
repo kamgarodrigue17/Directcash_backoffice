@@ -11,7 +11,9 @@ export class RapportPaiementMarchandComponent {
 
   constructor() { }
 
-  displayedColumns: string[] = ['Code caisse', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type d\'opération', 'Effectuée le'];
+  // displayedColumns: string[] = ['Code caisse', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type d\'opération', 'Effectuée le'];
+  displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild("paginator") paginator!: MatPaginator;
