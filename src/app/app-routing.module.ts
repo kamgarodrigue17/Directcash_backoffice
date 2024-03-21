@@ -46,6 +46,7 @@ import { GrilleTransfertArgentPaiementFactureEneoComponent } from './Components/
 import { GrilleTransfertArgentPaiementFactureCamwaterComponent } from './Components/Pages/tarifaire/grille-transfert-argent-paiement-facture-camwater/grille-transfert-argent-paiement-facture-camwater.component';
 import { EntrepriseComponent } from './Components/Pages/administration/entreprise/entreprise.component';
 import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/requete-emission/requete-emission.component';
+import { RapportCollecteFondComponent } from './Components/Pages/rapport/rapport-collecte-fond/rapport-collecte-fond.component';
 
 const routes: Routes = [
   {path : '', component: ConnexionComponent, },
@@ -94,6 +95,7 @@ const routes: Routes = [
   {path: 'rapports/paiement-marchand', component: RapportPaiementMarchandComponent},
   {path: 'rapports/recharges-mydirectcash-online', component: RapportRechargeMydirectcashOnlineComponent},
   {path: 'rapports/recharges-mydirectcash-pos', component: RapportRechargeMydirectcashPosComponent},
+  {path: 'rapports/collecte-fonds', component: RapportCollecteFondComponent},
 
   // ADMINISTRATION ==============================
   {path: 'administration/agences', component: AgenceComponent},
