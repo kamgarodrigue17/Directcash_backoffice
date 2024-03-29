@@ -1,5 +1,3 @@
-<app-base></app-base>
-
 <!-- Main -->
 <main id="main" class="main">
   <div class="pagetitle d-sm-flex justify-content-between align-items-center">
@@ -18,7 +16,6 @@
 
     <div>
       <button
-        (click)="open_add_client_dialog('add', null)"
         mat-raised-button
         class="primary-light-button text-center me-2 d-none"
       >
@@ -143,7 +140,6 @@
           <ul class="list-group list-group-horizontal" style="max-width: 200px">
             <li class="list-group-item border-0 pe-2 ps-0 d-none">
               <button
-                (click)="open_add_client_dialog('edit', element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #02c29c36"

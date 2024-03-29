@@ -47,67 +47,78 @@ import { GrilleTransfertArgentPaiementFactureCamwaterComponent } from './Compone
 import { EntrepriseComponent } from './Components/Pages/administration/entreprise/entreprise.component';
 import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/requete-emission/requete-emission.component';
 import { RapportCollecteFondComponent } from './Components/Pages/rapport/rapport-collecte-fond/rapport-collecte-fond.component';
+import { ClientDirectcashComponent } from './Components/Pages/gestion-clients/client-directcash/client-directcash.component';
+import { TransactionDirectcashComponent } from './Components/Pages/gestion-clients/transaction-directcash/transaction-directcash.component';
+import { BaseComponent } from './Components/base/base.component';
 
 const routes: Routes = [
-  {path : '', component: ConnexionComponent, },
-  {path: 'dashboard', component: DashboardComponent},
+  { path: '', component: ConnexionComponent, },
+  {
+    path: 'home', component: BaseComponent, children: [
+      // TABLEAU DE BORD ==============================
+      { path: 'dashboard', component: DashboardComponent},
 
-  // GESTION DES AGENTS ==============================
-  {path: 'gestion-agents/agents', component: AgentsComponent,},
-  {path: 'gestion-agents/agents/ajouter', component: AddAgentComponent},
-  {path: 'gestion-agents/super-agents', component: SuperAgentsComponent},
-  {path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent},
-  {path: 'gestion-agents/distributeurs', component: DistributeurComponent},
-  {path: 'gestion-agents/distributeurs/ajouter', component: AddDistributeurComponent},
-  {path: 'gestion-agents/top-agents', component: TopAgentsComponent},
-  {path: 'gestion-agents/top-agents/ajouter', component: AddTopAgentComponent},
+      // GESTION DES AGENTS ==============================
+      { path: 'gestion-agents/agents', component: AgentsComponent, },
+      { path: 'gestion-agents/agents/ajouter', component: AddAgentComponent },
+      { path: 'gestion-agents/super-agents', component: SuperAgentsComponent },
+      { path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent },
+      { path: 'gestion-agents/distributeurs', component: DistributeurComponent },
+      { path: 'gestion-agents/distributeurs/ajouter', component: AddDistributeurComponent },
+      { path: 'gestion-agents/top-agents', component: TopAgentsComponent },
+      { path: 'gestion-agents/top-agents/ajouter', component: AddTopAgentComponent },
 
-  // GESTION DES CLIENTS ==============================
-  {path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent},
-  {path: 'gestion-clients/transactions-mydirectcash', component: TransactionMydirectcashComponent},
+      // GESTION DES CLIENTS ==============================
+      { path: 'gestion-clients/clients-directcash', component: ClientDirectcashComponent },
+      { path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent },
+      { path: 'gestion-clients/transactions-directcash', component: TransactionDirectcashComponent },
+      { path: 'gestion-clients/transactions-mydirectcash', component: TransactionMydirectcashComponent },
 
-  // GESTION DE LA MONNAIE ==============================
-  {path: 'gestion-monnaie/approvisionner-agence', component: ApprovisionerAgenceComponent},
-  {path: 'gestion-monnaie/approvisionner-agence/valider', component: ValiderApprovisionnementComponent},
-  {path: 'gestion-monnaie/crediter-super-agent', component: CrediterSuperAgentComponent},
-  {path: 'gestion-monnaie/crediter-super-agent/valider', component: ValiderCrediterSuperAgentComponent},
-  {path: 'gestion-monnaie/valider-recharge', component: ValiderRechargeComponent},
-  {path: 'gestion-monnaie/creation-monnaie', component: CreationMonnaieComponent},
-  {path: 'gestion-monnaie/requete-emission', component: RequeteEmissionComponent},
+      // GESTION DE LA MONNAIE ==============================
+      { path: 'gestion-monnaie/approvisionner-agence', component: ApprovisionerAgenceComponent },
+      { path: 'gestion-monnaie/approvisionner-agence/valider', component: ValiderApprovisionnementComponent },
+      { path: 'gestion-monnaie/crediter-super-agent', component: CrediterSuperAgentComponent },
+      { path: 'gestion-monnaie/crediter-super-agent/valider', component: ValiderCrediterSuperAgentComponent },
+      { path: 'gestion-monnaie/valider-recharge', component: ValiderRechargeComponent },
+      { path: 'gestion-monnaie/creation-monnaie', component: CreationMonnaieComponent },
+      { path: 'gestion-monnaie/requete-emission', component: RequeteEmissionComponent },
 
-  // TARIFAIRE ==============================
-  {path: 'tarifaire/commission-par-service', component: CommisionParServiceComponent},
-  {path: 'tarifaire/grille-transfert-directcash', component: GrilleTransfertArgentDirectcashComponent},
-  {path: 'tarifaire/grille-transfert-directcash-internationale', component: GrilleTransfertArgentDirectcashInternationaleComponent},
-  {path: 'tarifaire/grille-transfert-mydirectcash', component: GrilleTransfertArgentMydirectcashComponent},
-  {path: 'tarifaire/grille-tarifaire-paiement-facture', component: GrilleTarifairePaiementFactureComponent},
-  {path: 'tarifaire/grille-tarifaire-paiement-facture-eneo', component: GrilleTransfertArgentPaiementFactureEneoComponent},
-  {path: 'tarifaire/grille-tarifaire-paiement-facture-camwater', component: GrilleTransfertArgentPaiementFactureCamwaterComponent},
-  {path: 'tarifaire/grille-tarifaire-paiement-marchand', component: GrilleTarifairePaiementMarchandComponent},
+      // TARIFAIRE ==============================
+      { path: 'tarifaire/commission-par-service', component: CommisionParServiceComponent },
+      { path: 'tarifaire/grille-transfert-directcash', component: GrilleTransfertArgentDirectcashComponent },
+      { path: 'tarifaire/grille-transfert-directcash-internationale', component: GrilleTransfertArgentDirectcashInternationaleComponent },
+      { path: 'tarifaire/grille-transfert-mydirectcash', component: GrilleTransfertArgentMydirectcashComponent },
+      { path: 'tarifaire/grille-tarifaire-paiement-facture', component: GrilleTarifairePaiementFactureComponent },
+      { path: 'tarifaire/grille-tarifaire-paiement-facture-eneo', component: GrilleTransfertArgentPaiementFactureEneoComponent },
+      { path: 'tarifaire/grille-tarifaire-paiement-facture-camwater', component: GrilleTransfertArgentPaiementFactureCamwaterComponent },
+      { path: 'tarifaire/grille-tarifaire-paiement-marchand', component: GrilleTarifairePaiementMarchandComponent },
 
-  // RAPPORTS ==============================
-  {path: 'rapports/airtime', component: RapportAirtimeComponent},
-  {path: 'rapports/momo-om', component: RapportMomoOmComponent},
-  {path: 'rapports/transfert-argent-directcash', component: RapportTransfertArgentDirectcashComponent},
-  {path: 'rapports/paiement-facture', component: RapportPaiementFactureComponent},
-  {path: 'rapports/paiement-facture-eneo', component: RapportPaiementFactureEneoComponent},
-  {path: 'rapports/paiement-facture-camwater', component: RapportPaiementFactureCamwaterComponent},
-  {path: 'rapports/paiement-marchand', component: RapportPaiementMarchandComponent},
-  {path: 'rapports/recharges-mydirectcash-online', component: RapportRechargeMydirectcashOnlineComponent},
-  {path: 'rapports/recharges-mydirectcash-pos', component: RapportRechargeMydirectcashPosComponent},
-  {path: 'rapports/collecte-fonds', component: RapportCollecteFondComponent},
+      // RAPPORTS ==============================
+      { path: 'rapports/airtime', component: RapportAirtimeComponent },
+      { path: 'rapports/momo-om', component: RapportMomoOmComponent },
+      { path: 'rapports/transfert-argent-directcash', component: RapportTransfertArgentDirectcashComponent },
+      { path: 'rapports/paiement-facture', component: RapportPaiementFactureComponent },
+      { path: 'rapports/paiement-facture-eneo', component: RapportPaiementFactureEneoComponent },
+      { path: 'rapports/paiement-facture-camwater', component: RapportPaiementFactureCamwaterComponent },
+      { path: 'rapports/paiement-marchand', component: RapportPaiementMarchandComponent },
+      { path: 'rapports/recharges-mydirectcash-online', component: RapportRechargeMydirectcashOnlineComponent },
+      { path: 'rapports/recharges-mydirectcash-pos', component: RapportRechargeMydirectcashPosComponent },
+      { path: 'rapports/collecte-fonds', component: RapportCollecteFondComponent },
 
-  // ADMINISTRATION ==============================
-  {path: 'administration/agences', component: AgenceComponent},
-  {path: 'administration/etapes-validation', component: EtapeValidationComponent},
-  {path: 'administration/gestion-reclamations', component: GestionReclamationsComponent},
-  {path: 'administration/mouchard', component: MouchardComponent},
-  {path: 'administration/gestion-habilitations', component: GestionHabilitationComponent},
-  {path: 'administration/admins', component: AdminPlateformeComponent},
-  {path: 'administration/gestion-fonctionnalites', component: GestionFonctionnaliteComponent},
-  {path: 'administration/gestion-fonctionnalites/detail', component: DetailFonctionnaliteComponent},
-  {path: 'administration/changer-mot-de-passe', component: ChangerMotDePasseComponent},
-  {path: 'administration/entreprises', component: EntrepriseComponent},
+      // ADMINISTRATION ==============================
+      { path: 'administration/agences', component: AgenceComponent },
+      { path: 'administration/etapes-validation', component: EtapeValidationComponent },
+      { path: 'administration/gestion-reclamations', component: GestionReclamationsComponent },
+      { path: 'administration/mouchard', component: MouchardComponent },
+      { path: 'administration/gestion-habilitations', component: GestionHabilitationComponent },
+      { path: 'administration/admins', component: AdminPlateformeComponent },
+      { path: 'administration/gestion-fonctionnalites', component: GestionFonctionnaliteComponent },
+      { path: 'administration/gestion-fonctionnalites/detail', component: DetailFonctionnaliteComponent },
+      { path: 'administration/changer-mot-de-passe', component: ChangerMotDePasseComponent },
+      { path: 'administration/entreprises', component: EntrepriseComponent },
+    ]
+  },
+
 
 ];
 

@@ -2,16 +2,32 @@
 <main id="main" class="main">
   <div class="pagetitle d-sm-flex justify-content-between align-items-center">
     <div>
-      <h1>Administration</h1>
+      <h1>Gestion des clients</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
           <li class="breadcrumb-item">
-            <a routerLink="#">Administration</a>
+            <a routerLink="#">Gestion des clients</a>
           </li>
-          <li class="breadcrumb-item active">Gestion des réclamations</li>
+          <li class="breadcrumb-item active">Clients DirectCash</li>
         </ol>
       </nav>
+    </div>
+
+    <div>
+      <button
+        mat-raised-button
+        class="primary-light-button text-center me-2 d-none"
+      >
+        <mat-icon class="me-0">add</mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        (click)="open_export_dialog()"
+        class="primary-dark-button text-center"
+      >
+        Exporter
+      </button>
     </div>
   </div>
   <!-- End Page Title -->
@@ -27,7 +43,7 @@
     id="alert"
     class="d-none alert alert-{{
       alert_type
-    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-3 ps-3 pe-3"
+    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-2 ps-3 pe-3"
     role="alert"
   >
     <span>
@@ -76,39 +92,27 @@
     </div>
 
     <table mat-table [dataSource]="dataSource">
-      <!-- Réclamant Column -->
-      <ng-container matColumnDef="Réclamant">
-        <th mat-header-cell *matHeaderCellDef>Réclamant</th>
-        <td mat-cell *matCellDef="let element">{{ element.titre }}</td>
+      <!-- Nom Column -->
+      <ng-container matColumnDef="Noms">
+        <th mat-header-cell *matHeaderCellDef>Noms</th>
+        <td mat-cell *matCellDef="let element">{{ element.nom }}</td>
       </ng-container>
 
-      <!-- Email Column -->
-      <ng-container matColumnDef="Description">
-        <th mat-header-cell *matHeaderCellDef>Description</th>
-        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
-      </ng-container>
-      <!-- Email Column -->
-      <ng-container matColumnDef="Application">
-        <th mat-header-cell *matHeaderCellDef>Application</th>
-        <td mat-cell *matCellDef="let element">{{ element.application }}</td>
+      <!-- Matricule Column -->
+      <ng-container matColumnDef="Matricule">
+        <th mat-header-cell *matHeaderCellDef>Matricule</th>
+        <td mat-cell *matCellDef="let element">{{ element.matricule }}</td>
       </ng-container>
 
-      <!-- Effectuée le Column -->
-      <ng-container matColumnDef="Effectuée le">
-        <th mat-header-cell *matHeaderCellDef>Effectuée le</th>
-        <td mat-cell *matCellDef="let element">{{ element.creerLe }}</td>
+      <!-- Téléphone Column -->
+      <ng-container matColumnDef="Téléphone">
+        <th mat-header-cell *matHeaderCellDef>Téléphone</th>
+        <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
       </ng-container>
-
-      <!-- Traité par Column -->
-      <ng-container matColumnDef="Traité par">
-        <th mat-header-cell *matHeaderCellDef>Traité par</th>
-        <td mat-cell *matCellDef="let element">{{ element.modifierPar }}</td>
-      </ng-container>
-
-      <!-- Traité le Column -->
-      <ng-container matColumnDef="Traité le">
-        <th mat-header-cell *matHeaderCellDef>Traité le</th>
-        <td mat-cell *matCellDef="let element">{{ element.modifierLe }}</td>
+      <!-- Solde Column -->
+      <ng-container matColumnDef="Solde (XAF)">
+        <th mat-header-cell *matHeaderCellDef>Solde (XAF)</th>
+        <td mat-cell *matCellDef="let element">{{ element.solde }}</td>
       </ng-container>
 
       <!-- Statut Column -->
@@ -117,45 +121,60 @@
         <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
       </ng-container>
 
+      <!-- Adresse Column -->
+      <ng-container matColumnDef="Adresse">
+        <th mat-header-cell *matHeaderCellDef>Adresse</th>
+        <td mat-cell *matCellDef="let element">{{ element.adresse }}</td>
+      </ng-container>
+
       <!-- Actions Column -->
       <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef style="width: 180px">Actions</th>
+        <th mat-header-cell *matHeaderCellDef style="width: 200px">Actions</th>
         <td
-          colspan="3"
+          colspan="4"
           class=""
           mat-cell
           *matCellDef="let element"
-          style="width: 180px"
+          style="width: 200px"
         >
-          <ul class="list-group list-group-horizontal" style="max-width: 180px">
-            <li class="list-group-item border-0 pe-2 ps-0">
+          <ul class="list-group list-group-horizontal" style="max-width: 200px">
+            <li class="list-group-item border-0 pe-2 ps-0 d-none">
               <button
-                (click)="marquer_comme_resolue(element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #02c29c36"
               >
-                <mat-icon style="color: #02c29c">check_circle</mat-icon>
+                <mat-icon style="color: #02c29c">edit</mat-icon>
               </button>
             </li>
             <li class="list-group-item border-0 pe-2 ps-0">
               <button
-                (click)="supprimer_reclamation()"
+                (click)="bloquer_client('client', element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #f60d2b4d"
               >
-                <mat-icon style="color: #f60d2b">cancel</mat-icon>
+                <mat-icon style="color: #f60d2b">person_remove</mat-icon>
               </button>
             </li>
-            <li class="list-group-item border-0 pe-0 ps-0">
+            <li class="list-group-item border-0 pe-2 ps-0">
               <button
-                (click)="show_information()"
+                (click)="open_add_client_dialog('show', element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #e6e6e6"
               >
                 <mat-icon style="color: #5e5e5e">visibility</mat-icon>
+              </button>
+            </li>
+            <li class="list-group-item border-0 pe-0 ps-0">
+              <button
+                (click)="reset_password(element, 'client')"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #1d1d1d"
+              >
+                <mat-icon style="color: #fff">refresh</mat-icon>
               </button>
             </li>
           </ul>

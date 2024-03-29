@@ -102,6 +102,8 @@ import { EntrepriseComponent } from './Components/Pages/administration/entrepris
 import { EntrepriseDialogComponent } from './Components/Modals/entreprise-dialog/entreprise-dialog.component';
 import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/requete-emission/requete-emission.component';
 import { RapportCollecteFondComponent } from './Components/Pages/rapport/rapport-collecte-fond/rapport-collecte-fond.component';
+import { ClientDirectcashComponent } from './Components/Pages/gestion-clients/client-directcash/client-directcash.component';
+import { TransactionDirectcashComponent } from './Components/Pages/gestion-clients/transaction-directcash/transaction-directcash.component';
 
 @NgModule({
   declarations: [
@@ -179,7 +181,9 @@ import { RapportCollecteFondComponent } from './Components/Pages/rapport/rapport
     EntrepriseDialogComponent,
     RequeteEmissionComponent,
     RequeteEmissionDialogComponent,
-    RapportCollecteFondComponent
+    RapportCollecteFondComponent,
+    ClientDirectcashComponent,
+    TransactionDirectcashComponent
   ],
   imports: [
     BrowserModule,

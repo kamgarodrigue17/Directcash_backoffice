@@ -70,7 +70,7 @@ export class ConnexionComponent implements OnInit {
         localStorage.setItem("user", JSON.stringify(user.data));
 
         console.log(this.myForm.value);
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/home/dashboard');
       }, error => {
         console.error('une erreur :', error);
       })

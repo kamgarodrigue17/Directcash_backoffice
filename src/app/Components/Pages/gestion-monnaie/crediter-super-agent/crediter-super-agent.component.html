@@ -1,5 +1,3 @@
-<app-base></app-base>
-
 <!-- Main -->
 <main id="main" class="main">
   <div class="pagetitle d-sm-flex justify-content-between align-items-center">
@@ -11,7 +9,7 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Gestion de la monnaie</a>
           </li>
-          <li class="breadcrumb-item active">Créditer un Super agent</li>
+          <li class="breadcrumb-item active">Demande d'approvisionnement</li>
         </ol>
       </nav>
     </div>
@@ -22,7 +20,7 @@
         mat-raised-button
         class="primary-light-button text-center"
       >
-        Créditer un Super agent
+        Requête d'approvisionnement
       </button>
 
       <!-- <button
@@ -65,7 +63,7 @@
     <table mat-table [dataSource]="dataSource">
       <!-- Merchant Column -->
       <ng-container matColumnDef="Super agent">
-        <th mat-header-cell *matHeaderCellDef>Super agent</th>
+        <th mat-header-cell *matHeaderCellDef>Distributeur</th>
         <td mat-cell *matCellDef="let element">{{ element.merchant }}</td>
       </ng-container>
 
