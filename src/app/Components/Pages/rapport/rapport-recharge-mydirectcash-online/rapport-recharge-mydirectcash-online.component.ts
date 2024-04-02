@@ -12,7 +12,7 @@ export class RapportRechargeMydirectcashOnlineComponent {
   constructor() { }
 
   // displayedColumns: string[] = ['Agent', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Statut', 'Effectuée le'];
-  displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+  displayedColumns = ['expediteur', 'telephone', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
 
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 

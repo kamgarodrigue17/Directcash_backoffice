@@ -12,7 +12,7 @@ export class RapportPaiementMarchandComponent {
   constructor() { }
 
   // displayedColumns: string[] = ['Code caisse', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type d\'opération', 'Effectuée le'];
-  displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+  displayedColumns = ['expediteur', 'telephone', 'montant', 'caisse', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
 
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
@@ -47,5 +47,5 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { code_caisse: '46FT64', id_transaction: 'THFS465', ptn: '....', montant: 40, frais: 40, type_operation: 'type operation', created_at: '14/10/2010 15:30'}
+  { code_caisse: '46FT64', id_transaction: 'THFS465', ptn: '....', montant: 40, frais: 40, type_operation: 'type operation', created_at: '14/10/2010 15:30' }
 ];

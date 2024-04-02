@@ -155,12 +155,11 @@ export class ClientDirectcashComponent {
     this.AgentService.Agents("Clients").subscribe(agents => {
       this.ELEMENT_DATA = agents.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Noms', 'Matricule', 'Téléphone', 'Solde (XAF)', 'Statut', 'Adresse', 'Actions'];
       this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
-    this.displayedColumns = ['Noms', 'Matricule', 'Téléphone', 'Solde (XAF)', 'Statut', 'Adresse', 'Actions'];
+    this.displayedColumns = ['Nom', 'Téléphone', 'Type', 'solde', "Collecte de fonds", 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
     this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
 
   }

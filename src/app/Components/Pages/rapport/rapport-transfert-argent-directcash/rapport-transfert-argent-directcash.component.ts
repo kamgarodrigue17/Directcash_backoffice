@@ -52,6 +52,7 @@ export class RapportTransfertArgentDirectcashComponent implements OnInit {
 
     });
   }
+
   ngOnInit(): void {
     this.trxService.getTransaction(localStorage.getItem('id')!, "xfert", "2033-6-1", "", this.global.formatDate(this.day)).subscribe(trx => {
 
@@ -77,12 +78,14 @@ export class RapportTransfertArgentDirectcashComponent implements OnInit {
       });//trx.data.;
       console.log(this.ELEMENT_DATA);
       // this.displayedColumns = ['Agent', 'Montant (XAF)', 'Expediteur', 'Destinataire', 'Statut', 'Effectuée le', 'Action'];
-      this.displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+
 
       this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
+    this.displayedColumns = ['expediteur', 'telephone', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+    this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
     // this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
     // this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);

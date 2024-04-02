@@ -12,7 +12,7 @@ import { ShowTransMydirectcashDialogComponent } from 'src/app/Components/Modals/
 export class TransactionDirectcashComponent {
   constructor(public dialog: MatDialog) { }
 
-  displayedColumns: string[] = ['ID Transaction', 'Client', 'Montant (XAF)', 'Service', 'Date', 'Statut', 'Action'];
+  displayedColumns: string[] = ['nom', "telephone", 'Montant (XAF)', 'Service', 'tva', 'tta', 'commission', 'destinataire', 'Date', 'statut', 'Action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

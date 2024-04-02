@@ -71,7 +71,7 @@ export class RapportAirtimeComponent implements OnInit {
     })
       ;//trx.data.;
     // this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
-    this.displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+    this.displayedColumns = ['expediteur', 'telephone', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
     this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   }

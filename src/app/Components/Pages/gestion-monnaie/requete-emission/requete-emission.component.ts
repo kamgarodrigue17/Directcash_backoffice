@@ -242,12 +242,12 @@ export class RequeteEmissionComponent {
     // recuperation des requetes d'emission
     this.requeteEmissionService.index().subscribe(requetes => {
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Actions'];
+      // this.displayedColumns = ['Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Actions'];
       this.dataSource = new MatTableDataSource<RequeteEmission>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
-    this.displayedColumns = ['Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Actions'];
+    this.displayedColumns = ['Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
     this.dataSource = new MatTableDataSource<RequeteEmission>(this.ELEMENT_DATA);
   }
 }

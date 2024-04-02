@@ -12,20 +12,20 @@ import { GloabalServiceService } from 'src/app/services/gloabal-service.service'
 })
 export class RapportPaiementFactureComponent {
 
-  ELEMENT_DATA:any[]=[];
-  day:Date=new Date();
-    constructor(trxService:TransactionService,global:GloabalServiceService) {
-     console.log(global.formatDate(this.day))
-     trxService.getTransaction(localStorage.getItem('id')!,"bills","2033-6-1","",global.formatDate(this.day)).subscribe(trx=>{
-      console.log(trx);
-      this.ELEMENT_DATA=trx.data;
-      })
-    }
-
-  // displayedColumns: string[] = ['Agent', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type de facture', 'Type d\'opération', 'Effectuée le'];
-  displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
-
+  displayedColumns!: string[];
+  ELEMENT_DATA: any[] = [];
   dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
+
+  day: Date = new Date();
+  constructor(trxService: TransactionService, global: GloabalServiceService) {
+    console.log(global.formatDate(this.day))
+    trxService.getTransaction(localStorage.getItem('id')!, "bills", "2033-6-1", "", global.formatDate(this.day)).subscribe(trx => {
+      console.log(trx);
+      this.ELEMENT_DATA = trx.data;
+    });
+
+    this.displayedColumns = ['expediteur', 'telephone', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+  }
 
   @ViewChild("paginator") paginator!: MatPaginator;
 

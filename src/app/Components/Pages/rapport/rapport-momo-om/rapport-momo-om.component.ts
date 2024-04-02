@@ -71,7 +71,7 @@ export class RapportMomoOmComponent implements OnInit {
       this.display = 'none';
     });
     // this.displayedColumns = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
-    this.displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+    this.displayedColumns = ['expediteur', 'telephone', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
 
     this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 

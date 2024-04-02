@@ -12,7 +12,7 @@ export class RapportPaiementFactureCamwaterComponent {
   constructor() { }
 
   // displayedColumns: string[] = ['Agent', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type d\'opération', 'Effectuée le'];
-  displayedColumns = ['expediteur', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+  displayedColumns = ['expediteur', 'telephone', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
 
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 

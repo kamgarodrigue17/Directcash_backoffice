@@ -175,7 +175,7 @@ export class AgentsComponent implements OnInit {
     });
 
     // this.displayedColumns = ['Nom', 'Type', 'Solde (XAF)',  "Banque", 'Merchant', 'N° IMEI', "Date",'Actions'];
-    this.displayedColumns = ['Nom', 'Téléphone', 'Type', 'Compte principal (XAF)', "Collecte de fonds", 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
+    this.displayedColumns = ['Nom', 'Téléphone', 'Type', 'solde', "Collecte de fonds", 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
     this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
   }
 }
