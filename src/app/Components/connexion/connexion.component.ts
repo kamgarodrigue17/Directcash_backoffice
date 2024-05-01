@@ -75,7 +75,7 @@ export class ConnexionComponent implements OnInit {
         this.isClose = true;
         this.display = 'none';
         this.isLoading = false;
-        this.connexion_class = 'primary-light-button';
+        this.connexion_class = 'primary-light-button';        
 
         // si il s'agit de la 1ere connexion
         if (user.data.token != undefined && user.data.token == null) {
