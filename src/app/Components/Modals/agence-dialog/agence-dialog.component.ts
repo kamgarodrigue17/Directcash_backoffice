@@ -11,11 +11,14 @@ import { SuperAgentService } from 'src/app/services/superAgent/super-agent.servi
 })
 export class AgenceDialogComponent implements OnInit {
   agence:any={}
-  merchants:Merchant[]=[];
+  merchants:any[]=[];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public agentservice:AgentServiceService , public agenceService:SuperAgentService){
     this.agence={...data.agence};
+    this.merchants=data.merchants;
+    console.log(this.merchants)
     this.agence.ModifiedBy=`${localStorage.getItem("id")}`;
     this.agence.mondifiedOn=Date();
+    this.agence.CreatedOn=Date();
   }
 
   mode = this.data.mode;

@@ -4,8 +4,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { Habilitation } from 'src/app/modal/habilitation';
 import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctionalites.service';
+import { DetailFonctionnaliteComponent } from '../detail-fonctionnalite/detail-fonctionnalite.component';
+import { Habilitation } from 'src/app/modal/habilitation';
 
 @Component({
   selector: 'app-gestion-fonctionnalite',
@@ -13,20 +14,19 @@ import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctiona
   styleUrls: ['./gestion-fonctionnalite.component.css']
 })
 
-export class GestionFonctionnaliteComponent  implements OnInit{
+export class GestionFonctionnaliteComponent implements OnInit {
 
-  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à', 'Action'];;
+  displayedColumns: string[] = ['Menu', 'Sous - menu', 'Accéssible à'];
   ELEMENT_DATA: Habilitation[] = [
   ];
   dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
-  constructor(private _router: Router,public dialog: MatDialog, public fonctionalié: FonctionalitesService, private _snackBar: MatSnackBar) {
+  constructor(private _router: Router, public dialog: MatDialog, public fonctionalié: FonctionalitesService, private _snackBar: MatSnackBar) {
+
+  }
 
 
-   }
-   
 
- 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
@@ -38,24 +38,32 @@ export class GestionFonctionnaliteComponent  implements OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  detail_fonctionnalite() {
-    this._router.navigateByUrl("/administration/gestion-fonctionnalites/detail");
+  detail_fonctionnalite(data:any) {
+    const fonctionalites_dialog = this.dialog.open(DetailFonctionnaliteComponent, {
+      data: {
+      
+        element: data
+      }
+    });
+
+    fonctionalites_dialog.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+ ///   this._router.navigateByUrl("/administration/gestion-fonctionnalites/detail");
   }
-
-
   ngOnInit(): void {
-    this.fonctionalié.fonctionalites("1").subscribe(habi => {
+    this.fonctionalié.fonctionalites("*").subscribe(habi => {
 
       this.ELEMENT_DATA = habi.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
+      this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à'];
+      ;
       this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
-     
+
     });
 
-
-    this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
+    this.displayedColumns = ['Menu', 'Sous - menu', 'Accéssible à'];
 
     this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
 
@@ -63,12 +71,5 @@ export class GestionFonctionnaliteComponent  implements OnInit{
 
 }
 
-export interface PeriodicElement {
-  menu: string;
-  sous_menu: string;
-  accessible_a: number;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { menu: "Gestion des agents", sous_menu: "Agents", accessible_a: 4},
-];
+

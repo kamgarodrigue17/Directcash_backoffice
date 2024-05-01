@@ -120,7 +120,6 @@ const routes: Routes = [
     ]
   },
 
-
 ];
 
 @NgModule({

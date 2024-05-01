@@ -10,8 +10,8 @@
             <a routerLink="#">Administration</a>
           </li>
           <li class="breadcrumb-item">
-            <a routerLink="/administration/gestion-fonctionnalites"
-              >Gestion des fonctionnalités</a
+            <a routerLink="/administration/gestion-habilitations"
+              >Gestion des habilitations</a
             >
           </li>
           <li class="breadcrumb-item active">Détails</li>
@@ -21,7 +21,7 @@
 
     <div>
       <button
-        title="Retour a la page des fonctionnalités"
+        title="Retour a la page des habilitations"
         (click)="go_back()"
         mat-raised-button
         class="primary-light-button text-center me-2"
@@ -32,41 +32,68 @@
   </div>
   <!-- End Page Title -->
 
+  <!-- Loader pour les requetes -->
+  <mat-progress-bar
+    mode="indeterminate"
+    [hidden]="isProgressHidden"
+  ></mat-progress-bar>
+
+  <!-- Alert section -->
+  <div
+    id="alert"
+    class="mat-elevation-z2 d-none alert alert-{{
+      alert_type
+    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-2 ps-3 pe-3"
+    role="alert"
+  >
+    <span>
+      <strong
+        ><i class="bi bi-info-circle-fill me-2 text-capitalize"></i>
+      </strong>
+      {{ alert_message }}
+    </span>
+    <button
+      (click)="closeAlert()"
+      mat-icon-button
+      type="button"
+      class="m-0"
+      data-bs-dismiss="aler"
+      aria-label="Close"
+    >
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+
   <div class="bg-white mat-elevation-z2 rounded">
     <div class="row">
       <div class="col-md-4">
         <div class="container-fluid pt-3">
-          <!-- Menus -->
+          <!-- Habilitation -->
           <div class="col-md-12">
             <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Menu</mat-label>
-              <input matInput placeholder="Menu" name="menu" ngModel readonly />
-            </mat-form-field>
-          </div>
-          <!-- Sous - menus -->
-          <div class="col-md-12">
-            <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Sous - menu</mat-label>
+              <mat-label>Habilitation</mat-label>
               <input
                 matInput
-                placeholder="Sous - menu"
-                name="sous-menu"
+                placeholder="Habilitation"
+                name="habilitation"
+                [(ngModel)]="habilitation.label"
                 ngModel
                 readonly
               />
             </mat-form-field>
           </div>
-          <!-- Accéssible à -->
+          <!-- Description habilitation -->
           <div class="col-md-12">
             <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Accéssible à</mat-label>
-              <input
+              <mat-label>Description</mat-label>
+              <textarea
                 matInput
-                placeholder="Accéssible à"
-                name="accessible_a"
+                placeholder="Description"
+                name="description"
+                [(ngModel)]="habilitation.description"
                 ngModel
                 readonly
-              />
+              ></textarea>
             </mat-form-field>
           </div>
         </div>
@@ -90,21 +117,37 @@
             />
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
+
           <button
-            (click)="add_profil()"
+            (click)="add_fonctionnalite()"
             mat-raised-button
             class="primary-light-button text-center me-2"
           >
             <mat-icon class="me-2">add</mat-icon>
-            <span>Ajouter un profil</span>
+            <span>Ajouter une fonctionnalité</span>
           </button>
         </div>
+
+        <!-- Loader de chargement du contenu du tableau -->
+        <div
+          class="d-{{ display }} align-items-center justify-content-center pb-3"
+        >
+          <mat-spinner diameter="25" class="me-3"></mat-spinner>
+          Chargement...
+        </div>
         <table mat-table [dataSource]="dataSource">
-          <!-- Profil Column -->
-          <ng-container matColumnDef="Profil">
-            <th mat-header-cell *matHeaderCellDef>Profil</th>
-            <td mat-cell *matCellDef="let element">{{ element.profil }}</td>
+          <!-- Menu Column -->
+          <ng-container matColumnDef="Menu">
+            <th mat-header-cell *matHeaderCellDef>Menu</th>
+            <td mat-cell *matCellDef="let element">{{ element.menu }}</td>
           </ng-container>
+
+          <!-- Sous menu Column -->
+          <ng-container matColumnDef="Sous - menu">
+            <th mat-header-cell *matHeaderCellDef>Sous - menu</th>
+            <td mat-cell *matCellDef="let element">{{ element.label }}</td>
+          </ng-container>
+
           <!-- Action Column -->
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef style="width: 100px">
@@ -117,7 +160,7 @@
               >
                 <li class="list-group-item border-0 pe-2 ps-0">
                   <button
-                    (click)="del_profil()"
+                    (click)="del_fonctionnalite()"
                     type="button"
                     class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                     style="background: #f60d2b4d"

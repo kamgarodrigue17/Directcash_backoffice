@@ -9,7 +9,7 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Administration</a>
           </li>
-          <li class="breadcrumb-item active">Admins de la plateforme</li>
+          <li class="breadcrumb-item active">Utilisateurs de la plateforme</li>
         </ol>
       </nav>
     </div>
@@ -18,6 +18,7 @@
       <button
         (click)="open_admin_dialog('add', {})"
         mat-raised-button
+        title="Ajouter un administrateur"
         class="primary-light-button text-center me-2"
       >
         <mat-icon class="me-0">add</mat-icon>
@@ -37,14 +38,13 @@
     id="alert"
     class="d-none alert alert-{{
       alert_type
-    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-3 ps-3 pe-3"
+    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-2 ps-3 pe-3"
     role="alert"
   >
     <span>
       <strong
         ><i class="bi bi-info-circle-fill me-2 text-capitalize"></i>
-        {{ alert_type }} !</strong
-      >
+      </strong>
       {{ alert_message }} <br />
     </span>
     <button
@@ -158,9 +158,9 @@
                 (click)="reset_password(element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
-                style="background: #1d1d1d"
+                style="background: #e6e6e6"
               >
-                <mat-icon style="color: #fff">refresh</mat-icon>
+                <mat-icon style="color: #5e5e5e">refresh</mat-icon>
               </button>
             </li>
           </ul>
