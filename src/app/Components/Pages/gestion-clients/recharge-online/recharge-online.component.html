@@ -9,25 +9,9 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Gestion des clients</a>
           </li>
-          <li class="breadcrumb-item active">Agents DirectCash</li>
+          <li class="breadcrumb-item active">Recharges en ligne</li>
         </ol>
       </nav>
-    </div>
-
-    <div>
-      <button
-        mat-raised-button
-        class="primary-light-button text-center me-2 d-none"
-      >
-        <mat-icon class="me-0">add</mat-icon>
-      </button>
-      <button
-        mat-raised-button
-        (click)="open_export_dialog()"
-        class="primary-dark-button text-center"
-      >
-        Exporter
-      </button>
     </div>
   </div>
   <!-- End Page Title -->
@@ -43,14 +27,11 @@
     id="alert"
     class="d-none alert alert-{{
       alert_type
-    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-2 ps-3 pe-3"
+    }} alert-dismissible fade show d-flex justify-content-between align-items-center p-3 ps-3 pe-3"
     role="alert"
   >
     <span>
-      <strong
-        ><i class="bi bi-info-circle-fill me-2 text-capitalize"></i>
-        {{ alert_type }} !</strong
-      >
+      <strong><i class="bi bi-info-circle-fill me-2"></i></strong>
       {{ alert_message }}
     </span>
     <button
@@ -92,104 +73,101 @@
     </div>
 
     <table mat-table [dataSource]="dataSource">
-      <!-- Nom Column -->
-      <ng-container matColumnDef="Nom">
-        <th mat-header-cell *matHeaderCellDef>Noms</th>
-        <td mat-cell *matCellDef="let element">{{ element.agentName }}</td>
+      <!-- idtrans Column -->
+      <ng-container matColumnDef="idtrans">
+        <th mat-header-cell *matHeaderCellDef>ID Transaction</th>
+        <td mat-cell *matCellDef="let element">{{ element.idtrans }}</td>
       </ng-container>
 
-      <!-- Téléphone Column -->
-      <ng-container matColumnDef="Téléphone">
+      <!-- nom Column -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let element">{{ element.nom }}</td>
+      </ng-container>
+
+      <!-- tel Column -->
+      <ng-container matColumnDef="tel">
         <th mat-header-cell *matHeaderCellDef>Téléphone</th>
         <td mat-cell *matCellDef="let element">{{ element.tel }}</td>
       </ng-container>
 
-      <!-- Type Column -->
-      <ng-container matColumnDef="Type">
-        <th mat-header-cell *matHeaderCellDef>Type</th>
-        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+       <!-- montant Column -->
+       <ng-container matColumnDef="montant">
+        <th mat-header-cell *matHeaderCellDef>Montant (XAF)</th>
+        <td mat-cell *matCellDef="let element">{{ element.montant }}</td>
       </ng-container>
 
-      <!-- Solde / Compte principal Column -->
-      <ng-container matColumnDef="solde">
-        <th mat-header-cell *matHeaderCellDef>Compte principal (XAF)</th>
-        <td mat-cell *matCellDef="let element">{{ element.balance }}</td>
+       <!-- statut Column -->
+       <ng-container matColumnDef="statut">
+        <th mat-header-cell *matHeaderCellDef>Statut</th>
+        <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
       </ng-container>
 
-      <!-- Collecte de fonds Column -->
-      <ng-container matColumnDef="Collecte de fonds">
-        <th mat-header-cell *matHeaderCellDef>Collecte de fonds (XAF)</th>
-        <td mat-cell *matCellDef="let element">0</td>
+      <!-- creerle Column -->
+      <ng-container matColumnDef="creerle">
+        <th mat-header-cell *matHeaderCellDef>Crée le</th>
+        <td mat-cell *matCellDef="let element">{{ element.creerle }}</td>
       </ng-container>
 
-      <!-- Paiement marchand Column -->
-      <ng-container matColumnDef="Paiement marchand">
-        <th mat-header-cell *matHeaderCellDef>Paiement marchand (XAF)</th>
-        <td mat-cell *matCellDef="let element">0</td>
+      <!-- creerpar Column -->
+      <ng-container matColumnDef="creerpar">
+        <th mat-header-cell *matHeaderCellDef>Crée par</th>
+        <td mat-cell *matCellDef="let element">{{ element.creerpar }}</td>
       </ng-container>
 
-      <!-- Commissions Column -->
-      <ng-container matColumnDef="Commissions">
-        <th mat-header-cell *matHeaderCellDef>Commissions (XAF)</th>
-        <td mat-cell *matCellDef="let element">0</td>
+      <!-- traiterle Column -->
+      <ng-container matColumnDef="traiterle">
+        <th mat-header-cell *matHeaderCellDef>Traité le</th>
+        <td mat-cell *matCellDef="let element">{{ element.traiterle }}</td>
       </ng-container>
 
-      <!-- Merchant Column -->
-      <ng-container matColumnDef="Merchant">
-        <th mat-header-cell *matHeaderCellDef>Merchant</th>
-        <td mat-cell *matCellDef="let element">{{ element.creerPar }}</td>
+      <!-- traiterpar Column -->
+      <ng-container matColumnDef="traiterpar">
+        <th mat-header-cell *matHeaderCellDef>Traité par</th>
+        <td mat-cell *matCellDef="let element">{{ element.traiterpar }}</td>
       </ng-container>
 
-      <!-- Actions Column -->
-      <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef style="width: 200px">Actions</th>
+      <!-- action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef style="width: 180px">Actions</th>
         <td
-          colspan="4"
+          colspan="3"
           class=""
           mat-cell
           *matCellDef="let element"
-          style="width: 200px"
+          style="width: 180px"
         >
-          <ul class="list-group list-group-horizontal" style="max-width: 200px">
-            <li class="list-group-item border-0 pe-2 ps-0 d-none">
+          <ul class="list-group list-group-horizontal" style="max-width: 180px">
+            <li class="list-group-item border-0 pe-2 ps-0">
               <button
+                (click)="valider_recharge(element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #02c29c36"
               >
-                <mat-icon style="color: #02c29c">edit</mat-icon>
+                <mat-icon style="color: #02c29c">check_circle</mat-icon>
               </button>
             </li>
             <li class="list-group-item border-0 pe-2 ps-0">
               <button
-                (click)="bloquer_client('client', element)"
+                (click)="rejeter_recharge(element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #f60d2b4d"
               >
-                <mat-icon style="color: #f60d2b">person_remove</mat-icon>
+                <mat-icon style="color: #f60d2b">cancel</mat-icon>
               </button>
             </li>
-            <li class="list-group-item border-0 pe-2 ps-0">
+            <!-- <li class="list-group-item border-0 pe-0 ps-0">
               <button
-                (click)="open_add_client_dialog('show', element)"
+                (click)="show_information(element)"
                 type="button"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #e6e6e6"
               >
                 <mat-icon style="color: #5e5e5e">visibility</mat-icon>
               </button>
-            </li>
-            <li class="list-group-item border-0 pe-0 ps-0">
-              <button
-                (click)="reset_password(element, 'client')"
-                type="button"
-                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
-                style="background: #1d1d1d"
-              >
-                <mat-icon style="color: #fff">refresh</mat-icon>
-              </button>
-            </li>
+            </li> -->
           </ul>
         </td>
       </ng-container>

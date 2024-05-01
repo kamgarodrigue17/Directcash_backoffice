@@ -103,6 +103,13 @@
   <!-- Section Transactions -->
   <span class="small text-dark pb-0 mb-0">Transactions</span>
   <hr class="mt-1 mb-3 gec-color-middle-dark" />
+  <mat-form-field class="w-100 rounded small" appearance="outline">
+    <mat-select value="1">
+      <mat-option value="1">Cette semaine</mat-option>
+      <mat-option value="2">Ce mois</mat-option>
+      <mat-option value="3">Cette année</mat-option>
+    </mat-select>
+  </mat-form-field>
   <section class="section dashboard">
     <div class="row">
       <!-- Content -->
@@ -148,7 +155,15 @@
 
   <!-- Section Commissions -->
   <span class="small text-dark pb-0 mb-0">Commissions</span>
+
   <hr class="mt-1 mb-3 gec-color-middle-dark" />
+  <mat-form-field class="w-100 rounded small" appearance="outline">
+    <mat-select value="1">
+      <mat-option value="1">Cette semaine</mat-option>
+      <mat-option value="2">Ce mois</mat-option>
+      <mat-option value="3">Cette année</mat-option>
+    </mat-select>
+  </mat-form-field>
   <section class="section dashboard">
     <div class="row">
       <!-- Content -->
@@ -187,9 +202,9 @@
           </app-basic-card>
           <!-- End Commissions DirectCash Card -->
 
-          <!-- Commissions Partenaires Card -->
+          <!-- Commissions Top Agent Card -->
           <app-basic-card
-            card_title="Partenaires"
+            card_title="Top Agent"
             card_value="100M"
             card_icon_class="bi-currency-exchange"
             card_icon_color="text-tertiary"
@@ -198,6 +213,37 @@
           </app-basic-card>
           <!-- End Commissions Partenaires Card -->
 
+          <!-- Commissions Alliance Financial Card -->
+          <app-basic-card
+            card_title="Alliance Financial"
+            card_value="100M"
+            card_icon_class="bi-currency-exchange"
+            card_icon_color="text-tertiary"
+            class="col-xxl-3 col-md-3 col-sm-6"
+          >
+          </app-basic-card>
+          <!-- End Commissions Net Card -->
+        </div>
+      </div>
+      <!-- End Content -->
+    </div>
+  </section>
+
+  <!-- Section débours -->
+  <span class="small text-dark pb-0 mb-0">Débours</span>
+  <hr class="mt-1 mb-3 gec-color-middle-dark" />
+  <mat-form-field class="w-100 rounded small" appearance="outline">
+    <mat-select value="1">
+      <mat-option value="1">Cette semaine</mat-option>
+      <mat-option value="2">Ce mois</mat-option>
+      <mat-option value="3">Cette année</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <section class="section dashboard">
+    <div class="row">
+      <!-- Content -->
+      <div class="col-lg-12">
+        <div class="row">
           <!-- Commissions Montant TTA Card -->
           <app-basic-card
             card_title="Montant TTA"
@@ -219,17 +265,6 @@
           >
           </app-basic-card>
           <!-- End Commissions Montant TVA Card -->
-
-          <!-- Commissions Net Card -->
-          <app-basic-card
-            card_title="Net"
-            card_value="100M"
-            card_icon_class="bi-currency-exchange"
-            card_icon_color="text-tertiary"
-            class="col-xxl-3 col-md-3 col-sm-6"
-          >
-          </app-basic-card>
-          <!-- End Commissions Net Card -->
 
           <!-- Notifications SMS Card -->
           <app-basic-card

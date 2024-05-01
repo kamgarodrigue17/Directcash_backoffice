@@ -9,16 +9,22 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Gestion des Agents</a>
           </li>
-          <li class="breadcrumb-item active">Distributeurs</li>
+          <li class="breadcrumb-item">
+            <a routerLink="#">Distributeurs</a>
+          </li>
+          <li class="breadcrumb-item active">Liste des Distributeurs</li>
         </ol>
       </nav>
     </div>
 
     <div>
-      <a routerLink="/gestion-agents/distributeurs/ajouter">
-        <button mat-raised-button class="primary-light-button text-center me-2">
+      <a>
+        <button
+          (click)="go_to_add_page()"
+          mat-raised-button
+          class="primary-light-button text-center me-2"
+        >
           Créer un distributeur
-          <mat-icon class="me-0">add</mat-icon>
         </button>
       </a>
       <button

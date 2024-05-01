@@ -75,6 +75,10 @@ export class DistributeurComponent implements OnInit {
     });
   }
 
+  go_to_add_page() {
+    this.router.navigateByUrl('/home/gestion-agents/distributeurs/liste/ajouter');
+  }
+
   open_distributeur_dialog(mode: string) {
     // const show_super_agent_dialog = this.dialog.open(ShowSuperAgengDialogComponent, {
     //   data:{

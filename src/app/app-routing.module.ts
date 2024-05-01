@@ -47,37 +47,38 @@ import { GrilleTransfertArgentPaiementFactureCamwaterComponent } from './Compone
 import { EntrepriseComponent } from './Components/Pages/administration/entreprise/entreprise.component';
 import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/requete-emission/requete-emission.component';
 import { RapportCollecteFondComponent } from './Components/Pages/rapport/rapport-collecte-fond/rapport-collecte-fond.component';
-import { ClientDirectcashComponent } from './Components/Pages/gestion-clients/client-directcash/client-directcash.component';
-import { TransactionDirectcashComponent } from './Components/Pages/gestion-clients/transaction-directcash/transaction-directcash.component';
 import { BaseComponent } from './Components/base/base.component';
+import { RechargeOnlineComponent } from './Components/Pages/gestion-clients/recharge-online/recharge-online.component';
 
 const routes: Routes = [
   { path: '', component: ConnexionComponent, },
   {
     path: 'home', component: BaseComponent, children: [
       // TABLEAU DE BORD ==============================
-      { path: 'dashboard', component: DashboardComponent},
+      { path: 'dashboard', component: DashboardComponent },
 
       // GESTION DES AGENTS ==============================
       { path: 'gestion-agents/agents', component: AgentsComponent, },
       { path: 'gestion-agents/agents/ajouter', component: AddAgentComponent },
       { path: 'gestion-agents/super-agents', component: SuperAgentsComponent },
-      { path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent },
-      { path: 'gestion-agents/distributeurs', component: DistributeurComponent },
-      { path: 'gestion-agents/distributeurs/ajouter', component: AddDistributeurComponent },
+      // { path: 'gestion-agents/super-agents/add', component: AddSuperAgentStepOneComponent },
+      // { path: 'gestion-agents/distributeurs/ajouter', component: AddDistributeurComponent },
       { path: 'gestion-agents/top-agents', component: TopAgentsComponent },
       { path: 'gestion-agents/top-agents/ajouter', component: AddTopAgentComponent },
 
+      // GESTION DES AGENTS - DISTRIBUTEURS ==============================
+      { path: 'gestion-agents/distributeurs/liste', component: DistributeurComponent },
+      { path: 'gestion-agents/distributeurs/liste/ajouter', component: AddDistributeurComponent },
+      { path: 'gestion-agents/distributeurs/requete-approvisionnement', component: CrediterSuperAgentComponent },
+
       // GESTION DES CLIENTS ==============================
-      { path: 'gestion-clients/clients-directcash', component: ClientDirectcashComponent },
       { path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent },
-      { path: 'gestion-clients/transactions-directcash', component: TransactionDirectcashComponent },
       { path: 'gestion-clients/transactions-mydirectcash', component: TransactionMydirectcashComponent },
+      { path: 'gestion-clients/recharge-online', component: RechargeOnlineComponent },
 
       // GESTION DE LA MONNAIE ==============================
       { path: 'gestion-monnaie/approvisionner-agence', component: ApprovisionerAgenceComponent },
       { path: 'gestion-monnaie/approvisionner-agence/valider', component: ValiderApprovisionnementComponent },
-      { path: 'gestion-monnaie/crediter-super-agent', component: CrediterSuperAgentComponent },
       { path: 'gestion-monnaie/crediter-super-agent/valider', component: ValiderCrediterSuperAgentComponent },
       { path: 'gestion-monnaie/valider-recharge', component: ValiderRechargeComponent },
       { path: 'gestion-monnaie/creation-monnaie', component: CreationMonnaieComponent },

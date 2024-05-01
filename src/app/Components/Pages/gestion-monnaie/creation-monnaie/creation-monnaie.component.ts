@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { NotifierRechargeDialogComponent } from 'src/app/Components/Modals/notifier-recharge-dialog/notifier-recharge-dialog.component';
+import { StockDirectcashDialogComponent } from 'src/app/Components/Modals/stock-directcash-dialog/stock-directcash-dialog.component';
 import { Plafond } from 'src/app/modal/plafond';
 import { PlafondService } from 'src/app/services/plafond/plafond.service';
 
@@ -13,17 +14,99 @@ import { PlafondService } from 'src/app/services/plafond/plafond.service';
   styleUrls: ['./creation-monnaie.component.css']
 })
 export class CreationMonnaieComponent implements OnInit {
-  displayedColumns: string[] = [];
-  ELEMENT_DATA: Plafond[] = [
+  displayedColumns: string[] = ["stock", "montant", "affecteLe", "affectePar"];
+  ELEMENT_DATA: any[] = [
   ];
-  dataSource!: MatTableDataSource<Plafond, MatTableDataSourcePaginator>
+  dataSource!: MatTableDataSource<any, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, public plafond: PlafondService) { }
+  constructor(
+    public dialog: MatDialog,
+    public plafond: PlafondService
+  ) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  /**
+   * -----------------------------------------------------------------------------
+   * Variable d'affectation de la monnaie
+   * -----------------------------------------------------------------------------
+   */
+
+  // solde stockmonnaie restant
+  stockmonnaie_restant = 1_000_000;
+
+  // stock DirectCash 
+  stockdirectcash = 0; // doit etre >= stockmonnaie
+
+  // stock MyDirectCash
+  stockmydirectcash = 0; // doit etre >= stockmonnaie
+
+  // stock monnaie (valeur qui sera remplie automatique apres emission valider)
+  stockmonnaie = this.stockdirectcash + this.stockmonnaie_restant + this.stockmydirectcash;
+
+  /**
+   * Open dialog to define max level amount to use services for DirectCash users
+   */
+  openStockDirectCashDialog() {
+    let stock_dialog = this.dialog.open(StockDirectcashDialogComponent, {
+      data: {
+        title: "Directcash",
+        montant: this.stockdirectcash,
+        stockmonnaie_restant: this.stockmonnaie_restant
+      },
+    });
+
+    stock_dialog.afterClosed().subscribe(result => {
+      if (result != false) {
+        let montant = result.montant;
+        let stockmonnaie_restant = result.stockmonnaie_restant;
+
+        // appel de l'api de mise a jour du stock directcash
+        // au retour de la reponse
+        this.stockdirectcash = montant;
+        this.stockmonnaie_restant = stockmonnaie_restant;
+
+        // on met a jour le stock mydirectcash
+        this.stockmydirectcash = this.stockmonnaie_restant;
+
+        // stock resetant
+        this.stockmonnaie_restant = (this.stockdirectcash + this.stockmydirectcash) - this.stockmonnaie;
+
+        //
+
+        // on notifie
+        this.alert_message = 'Stocks mis à jour';
+        this.alert_type = 'info'
+
+        this.openAlert()
+
+        // on met a jour pour 
+      }
+
+    });
+
+  }
+
+  /**
+   * Open dialog to define max level amount to use services for MyDirectCash users
+   */
+  openStockMyDirectCashDialog() {
+    let stock_dialog = this.dialog.open(StockDirectcashDialogComponent, {
+      data: {
+        title: "MyDirectcash",
+        montant: this.stockmydirectcash,
+        stockmonnaie_restant: this.stockmonnaie_restant
+      },
+    });
+
+    stock_dialog.afterClosed().subscribe(result => {
+      console.log(result);
+
+    });
   }
 
   // variable pour le loader du chargement des elements du tableau
@@ -114,17 +197,17 @@ export class CreationMonnaieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.plafond.plafonds().subscribe(plafond => {
-      this.ELEMENT_DATA = plafond.data;
-      console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Solde courant', 'Service', 'Plafond (XAF)', 'Limite courante (XAF)', 'Partenaire', 'Dernière recharge', 'Statut', 'Action'];
-      this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
-      this.dataSource.paginator = this.paginator;
-      this.display = 'none';
-    });
+    // this.plafond.plafonds().subscribe(plafond => {
+    //   this.ELEMENT_DATA = plafond.data;
+    //   console.log(this.ELEMENT_DATA);
+    //   this.displayedColumns = ['Solde courant', 'Service', 'Plafond (XAF)', 'Limite courante (XAF)', 'Partenaire', 'Dernière recharge', 'Statut', 'Action'];
+    //   this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+    //   this.dataSource.paginator = this.paginator;
+    //   this.display = 'none';
+    // });
 
-    this.displayedColumns = ['Solde courant', 'Service', 'Plafond (XAF)', 'Limite courante (XAF)', 'Partenaire', 'Dernière recharge', 'Statut', 'Action'];
-    this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+    // this.displayedColumns = ['Solde courant', 'Service', 'Plafond (XAF)', 'Limite courante (XAF)', 'Partenaire', 'Dernière recharge', 'Statut', 'Action'];
+    // this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
   }
 }
 

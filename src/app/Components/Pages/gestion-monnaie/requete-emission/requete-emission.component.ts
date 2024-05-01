@@ -171,6 +171,21 @@ export class RequeteEmissionComponent {
 
   }
 
+  valider_requete(requete: any) {
+    let confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: "Requête du 20/10/2023 15:36",
+        message: "Valider l'émission de 1 000 000 XAF ?"
+      }
+    });
+
+    confirmation_dialog.afterClosed().subscribe(confirm => {
+      if (confirm) {
+        console.log(requete);
+      }
+    });
+  }
+
   rejeter_requete(requete: RequeteEmission) {
 
     // si le statut de la requete est "En attente"
@@ -242,12 +257,11 @@ export class RequeteEmissionComponent {
     // recuperation des requetes d'emission
     this.requeteEmissionService.index().subscribe(requetes => {
       console.log(this.ELEMENT_DATA);
-      // this.displayedColumns = ['Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Actions'];
       this.dataSource = new MatTableDataSource<RequeteEmission>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
-    this.displayedColumns = ['Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le'];
+    this.displayedColumns = ['Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'action'];
     this.dataSource = new MatTableDataSource<RequeteEmission>(this.ELEMENT_DATA);
   }
 }

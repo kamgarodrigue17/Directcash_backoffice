@@ -124,6 +124,41 @@
         <td mat-cell *matCellDef="let element">{{ element.traiter_le }}</td>
       </ng-container>
 
+      <!-- action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef style="width: 180px">Actions</th>
+        <td
+          colspan="3"
+          class=""
+          mat-cell
+          *matCellDef="let element"
+          style="width: 180px"
+        >
+          <ul class="list-group list-group-horizontal" style="max-width: 180px">
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="valider_requete(element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #02c29c36"
+              >
+                <mat-icon style="color: #02c29c">check_circle</mat-icon>
+              </button>
+            </li>
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="rejeter_requete(element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #f60d2b4d"
+              >
+                <mat-icon style="color: #f60d2b">cancel</mat-icon>
+              </button>
+            </li>
+          </ul>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>

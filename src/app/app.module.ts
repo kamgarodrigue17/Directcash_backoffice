@@ -24,6 +24,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTreeModule } from '@angular/material/tree';
+
 
 import { ConnexionComponent } from './Components/connexion/connexion.component';
 import { BaseComponent } from './Components/base/base.component';
@@ -102,8 +104,8 @@ import { EntrepriseComponent } from './Components/Pages/administration/entrepris
 import { EntrepriseDialogComponent } from './Components/Modals/entreprise-dialog/entreprise-dialog.component';
 import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/requete-emission/requete-emission.component';
 import { RapportCollecteFondComponent } from './Components/Pages/rapport/rapport-collecte-fond/rapport-collecte-fond.component';
-import { ClientDirectcashComponent } from './Components/Pages/gestion-clients/client-directcash/client-directcash.component';
-import { TransactionDirectcashComponent } from './Components/Pages/gestion-clients/transaction-directcash/transaction-directcash.component';
+import { StockDirectcashDialogComponent } from './Components/Modals/stock-directcash-dialog/stock-directcash-dialog.component';
+import { RechargeOnlineComponent } from './Components/Pages/gestion-clients/recharge-online/recharge-online.component';
 
 @NgModule({
   declarations: [
@@ -182,8 +184,8 @@ import { TransactionDirectcashComponent } from './Components/Pages/gestion-clien
     RequeteEmissionComponent,
     RequeteEmissionDialogComponent,
     RapportCollecteFondComponent,
-    ClientDirectcashComponent,
-    TransactionDirectcashComponent
+    StockDirectcashDialogComponent,
+    RechargeOnlineComponent,
   ],
   imports: [
     BrowserModule,
@@ -208,7 +210,8 @@ import { TransactionDirectcashComponent } from './Components/Pages/gestion-clien
     MatDatepickerModule,
     MatTabsModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTreeModule
   ],
   providers: [
     {

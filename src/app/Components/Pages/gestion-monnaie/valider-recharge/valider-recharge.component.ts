@@ -162,6 +162,7 @@ export class ValiderRechargeComponent implements OnInit {
       console.log(result);
     });
   }
+  
   ngOnInit(): void {
     this.plafond.getDemandeAprov().subscribe(plafond => {
       let data: any[] = [];
