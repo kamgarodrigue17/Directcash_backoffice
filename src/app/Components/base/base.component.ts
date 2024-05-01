@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-base',
@@ -8,17 +9,21 @@ import { Router } from '@angular/router';
 })
 export class BaseComponent {
 
-  constructor(private _router: Router) { }
+  constructor(
+    private _router: Router,
+    private _authService: AuthServiceService
+  ) { }
 
   toggle_side_bar() {
     const body = document.getElementsByTagName("body");
     body[0].classList.toggle("toggle-sidebar");
   }
 
-  // deconnexion function
+  /**
+   * Handle logout function
+   */
   logout() {
-    localStorage.clear();
-    this._router.navigateByUrl('/');
+    this._authService.logout();
   }
 
 }
