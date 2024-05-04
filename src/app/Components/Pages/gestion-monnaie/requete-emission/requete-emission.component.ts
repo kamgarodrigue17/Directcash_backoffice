@@ -88,10 +88,10 @@ export class RequeteEmissionComponent {
 
               // on active la barre de progression de la requete
               this.isProgressHidden = false;
-
+console.log(data_requete)
               // on envoi la requete d'ajout de la requete d'emission
               this.requeteEmissionService.create(data_requete).subscribe(res => {
-
+console.log(res)
                 // au retour de la reponse, on desactive la barre de progression
                 this.isProgressHidden = true;
 

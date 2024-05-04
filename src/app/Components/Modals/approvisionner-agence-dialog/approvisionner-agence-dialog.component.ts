@@ -21,6 +21,7 @@ export class ApprovisionnerAgenceDialogComponent implements OnInit {
   amount: number = 0;
   password: string = "";
   @ViewChild("form") form!: NgForm;
+  
   valide() {
     let data: any = {
       "merchantId": `${this.id}`,
@@ -29,11 +30,7 @@ export class ApprovisionnerAgenceDialogComponent implements OnInit {
 
       "password": this.password
     };
-     if (data.merchantId != null) {
-      this.valideservice.initdemandeAprovisionenm(data).subscribe(res => {
-        console.log(res);
-     })
-    }
+     
 
     return data;
     // if (data.merchantId != null) {
