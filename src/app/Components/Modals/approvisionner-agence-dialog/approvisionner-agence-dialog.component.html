@@ -2,10 +2,10 @@
   class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
 >
   <span class="me-4" [hidden]="object == 'super-agent'"
-    >Requête d'approvisionnement</span
+    >Approvisionner une agence</span
   >
   <span class="me-4" [hidden]="object == 'agence'"
-    >Requête d'approvisionnement</span
+    >Créditer un super agent</span
   >
 
   <button mat-button [mat-dialog-close]="false" class="text-center">
@@ -16,7 +16,7 @@
   <form #form="ngForm">
     <div class="row">
       <mat-form-field class="w-100" appearance="outline">
-        <mat-label>Distributeur</mat-label>
+        <mat-label>Merchant</mat-label>
         <mat-select name="merchant" [(ngModel)]="id" ngModel>
           <mat-option
             *ngFor="let merchant of merchants"
@@ -50,7 +50,7 @@
         />
       </mat-form-field>
     </div>
-    <!-- <div class="row">
+    <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Mot de passe</mat-label>
         <input
@@ -63,7 +63,7 @@
           ngModel
         />
       </mat-form-field>
-    </div> 
+    </div>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="p-3 pt-1">
