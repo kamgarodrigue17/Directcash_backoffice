@@ -70,7 +70,7 @@ const routes: Routes = [
       { path: 'gestion-agents/distributeurs/liste', component: DistributeurComponent },
       { path: 'gestion-agents/distributeurs/liste/ajouter', component: AddDistributeurComponent },
       { path: 'gestion-agents/distributeurs/requete-approvisionnement', component: CrediterSuperAgentComponent },
-
+ 
       // GESTION DES CLIENTS ==============================
       { path: 'gestion-clients/clients-mydirectcash', component: ClientMydirectcashComponent },
       { path: 'gestion-clients/transactions-mydirectcash', component: TransactionMydirectcashComponent },

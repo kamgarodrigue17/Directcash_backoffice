@@ -8,7 +8,9 @@ import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmat
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Plafond } from 'src/app/modal/plafond';
 import { Transaction } from 'src/app/modal/transaction';
+import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 import { PlafondService } from 'src/app/services/plafond/plafond.service';
+import { ValidationService } from 'src/app/services/validation/validation.service';
 
 @Component({
   selector: 'app-crediter-super-agent',
@@ -19,9 +21,10 @@ export class CrediterSuperAgentComponent implements OnInit {
   displayedColumns: string[] = [];
   ELEMENT_DATA: Plafond[] = [
   ];
+  merchants:any[]=[];
   dataSource!: MatTableDataSource<Plafond, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, private router: Router, public plafond: PlafondService) {
+  constructor(public dialog: MatDialog, public AgentService: AgentServiceService, private router: Router, public plafond: PlafondService, public valideservice: ValidationService) {
 
   }
 
@@ -69,16 +72,19 @@ export class CrediterSuperAgentComponent implements OnInit {
   open_crediter_super_agent_dialog() {
     const crediter_super_agent_dialog = this.dialog.open(ApprovisionnerAgenceDialogComponent, {
       data: {
-        object: 'super-agent'
+        object: 'super-agent',
+        merchants:this.merchants
       }
     });
 
     crediter_super_agent_dialog.afterClosed().subscribe(result => {
+      this.valideservice.initdemandeAprovisionenm(result).subscribe(res => {
+        console.log(res);
+        this.router.navigateByUrl("gestion-agents/distributeurs/requete-approvisionnement");
 
-      if (result == true) {
-        this.router.navigateByUrl("gestion-monnaie/crediter-super-agent/valider");
-      }
-      console.log(result);
+      })
+      
+     // console.log(result);
     });
   }
 
@@ -101,34 +107,34 @@ export class CrediterSuperAgentComponent implements OnInit {
         this.isProgressHidden = false;
 
         // on deefinit corps de la requete
-        // let data: any = {
-        //   "merchantId": `${valid.merchant}`,
-        //   "amount": `${valid.amount}`,
-        //   "createBy": `${valid.creerPar}`,
-        //   "password": "12345",
-        //   "status": valid.statut != "En attente" ? "0" : "1",
-        //   "cautionId": `${valid.id}`
-        // }
-
+        let data: any = {
+          "merchantId": `${requete.merchant}`,
+         "amount": `${requete.amount}`,
+        "createBy": localStorage.getItem("id"),
+         "password": "12345",
+          "status": requete.statut != "En attente" ? "0" : "1",
+         "cautionId": `${requete.id}`
+        }
+console.log(data)
         // on envoi la requete de validation
-        // this.valideservice.suplyvalidate(data).subscribe(res => {
-
+       this.valideservice.suplyvalidate(data).subscribe(res => {
+console.log(res)
         //   // au retour de la reponse, on desactive la barre de progression
-        //   this.isProgressHidden = true;
+          this.isProgressHidden = true;
 
         //   // on definit le type d'alerte  afficher en fonction du code de retour
-        //   let res_code = res.code;
-        //   switch (+res_code) {
-        //     case 400:
-        //       this.alert_type = 'warning'
-        //       break;
-        //     default:
-        //       this.alert_type = 'info'
-        //       break;
-        //   }
-        //   this.alert_message = res.data;
-        //   this.openAlert();
-        // });
+          let res_code = res.code;
+          switch (+res_code) {
+             case 400:
+             this.alert_type = 'warning'
+            break;
+           default:
+             this.alert_type = 'info'
+             break;
+          }
+          this.alert_message = res.data;
+          this.openAlert();
+      });
 
 
       } else {
@@ -149,6 +155,13 @@ export class CrediterSuperAgentComponent implements OnInit {
 
     this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Action'];
     this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+    this.AgentService.Agents("Merchants").subscribe(data => {
+      this.merchants = data.data;
+    
+    });
+ 
   }
+
+  
 }
 
