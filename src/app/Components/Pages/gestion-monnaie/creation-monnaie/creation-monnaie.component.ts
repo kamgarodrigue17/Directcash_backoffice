@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
+import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { NotifierRechargeDialogComponent } from 'src/app/Components/Modals/notifier-recharge-dialog/notifier-recharge-dialog.component';
 import { StockDirectcashDialogComponent } from 'src/app/Components/Modals/stock-directcash-dialog/stock-directcash-dialog.component';
 import { Plafond } from 'src/app/modal/plafond';
@@ -89,6 +90,20 @@ export class CreationMonnaieComponent implements OnInit {
 
     });
 
+  }
+
+  /**
+   * Fonction d'exportation du contenu du tableau sous plusieurs formats
+   * CSV, EXCEL, PDF
+   */
+  open_export_dialog() {
+    const export_dialog = this.dialog.open(ExportComponent, {
+      data: { selected_value: "", title: "des affectations de la monnaie" }
+    });
+
+    export_dialog.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   /**

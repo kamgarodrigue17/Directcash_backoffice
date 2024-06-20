@@ -107,6 +107,7 @@ import { RapportCollecteFondComponent } from './Components/Pages/rapport/rapport
 import { StockDirectcashDialogComponent } from './Components/Modals/stock-directcash-dialog/stock-directcash-dialog.component';
 import { RechargeOnlineComponent } from './Components/Pages/gestion-clients/recharge-online/recharge-online.component';
 import { IsFirstimeDialogComponent } from './Components/Modals/is-firstime-dialog/is-firstime-dialog.component';
+import { DistributeurDialogComponent } from './Components/Modals/distributeur-dialog/distributeur-dialog.component';
 
 @NgModule({
   declarations: [
@@ -188,7 +189,8 @@ import { IsFirstimeDialogComponent } from './Components/Modals/is-firstime-dialo
     StockDirectcashDialogComponent,
     RechargeOnlineComponent,
     RequeteEmissionDialogComponent,
-    IsFirstimeDialogComponent
+    IsFirstimeDialogComponent,
+    DistributeurDialogComponent
   ],
   imports: [
     BrowserModule,

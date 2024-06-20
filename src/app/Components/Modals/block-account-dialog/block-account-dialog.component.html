@@ -9,23 +9,23 @@
 <mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
   <div class="row">
     <mat-form-field appearance="outline">
-      <mat-label [hidden]="object == 'agent'">Nom du client</mat-label>
-      <mat-label [hidden]="object == 'client'">Nom de l'agent</mat-label>
-      <input
-        matInput
-        placeholder="Nom"
-        name="nom"
-        [(ngModel)]="object == 'agent' ? agent.agentName: agent.nom"
-        readonly
-      />
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="Nom" name="nom" [(ngModel)]="nom" readonly />
     </mat-form-field>
   </div>
 
   <div class="row">
     <mat-form-field appearance="outline">
-      <mat-label [hidden]="object == 'agent'">Matricule</mat-label>
+      <mat-label [hidden]="object == 'agent' || object == 'distributeur'"
+        >Matricule</mat-label
+      >
       <mat-label [hidden]="object == 'client'">ID de l'agent</mat-label>
-      <input matInput placeholder="..." [(ngModel)]="object == 'agent' ? agent.agentNo : agent.matricule" readonly />
+      <input
+        matInput
+        placeholder="..."
+        [(ngModel)]="id"
+        readonly
+      />
     </mat-form-field>
   </div>
 

@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Transaction } from 'src/app/modal/transaction';
 import { TransactionService } from 'src/app/service/transaction.service';
 import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
@@ -17,7 +19,7 @@ export class RapportPaiementFactureComponent {
   dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   day: Date = new Date();
-  constructor(trxService: TransactionService, global: GloabalServiceService) {
+  constructor(trxService: TransactionService, global: GloabalServiceService, private dialog: MatDialog) {
     console.log(global.formatDate(this.day))
     trxService.getTransaction(localStorage.getItem('id')!, "bills", "2033-6-1", "", global.formatDate(this.day)).subscribe(trx => {
       console.log(trx);
@@ -31,6 +33,20 @@ export class RapportPaiementFactureComponent {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  /**
+  * Fonction d'exportation du contenu du tableau sous plusieurs formats
+  * CSV, EXCEL, PDF
+  */
+  open_export_dialog() {
+    const export_dialog = this.dialog.open(ExportComponent, {
+      data: { selected_value: "", title: "des affectations de la monnaie" }
+    });
+
+    export_dialog.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   filter(event: Event) {

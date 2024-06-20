@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
+import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Transaction } from 'src/app/modal/transaction';
 import { TransactionService } from 'src/app/service/transaction.service';
 import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
@@ -29,6 +30,20 @@ export class RapportCollecteFondComponent {
 
   // variable pour le loader du chargement des elements du tableau
   display = 'flex';
+
+  /**
+   * Fonction d'exportation du contenu du tableau sous plusieurs formats
+   * CSV, EXCEL, PDF
+   */
+  open_export_dialog() {
+    const export_dialog = this.dialog.open(ExportComponent, {
+      data: { selected_value: "", title: "des collectes de fonds" }
+    });
+
+    export_dialog.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 
 @Component({
   selector: 'app-rapport-paiement-marchand',
@@ -9,7 +11,9 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class RapportPaiementMarchandComponent {
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialog
+  ) { }
 
   // displayedColumns: string[] = ['Code caisse', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Type d\'opération', 'Effectuée le'];
   displayedColumns = ['expediteur', 'telephone', 'montant', 'caisse', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
@@ -20,6 +24,20 @@ export class RapportPaiementMarchandComponent {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  /**
+  * Fonction d'exportation du contenu du tableau sous plusieurs formats
+  * CSV, EXCEL, PDF
+  */
+  open_export_dialog() {
+    const export_dialog = this.dialog.open(ExportComponent, {
+      data: { selected_value: "", title: "des paiements marchands" }
+    });
+
+    export_dialog.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   filter(event: Event) {

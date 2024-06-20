@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 
 @Component({
   selector: 'app-rapport-recharge-mydirectcash-online',
@@ -9,7 +11,9 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class RapportRechargeMydirectcashOnlineComponent {
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialog
+  ) { }
 
   // displayedColumns: string[] = ['Agent', 'ID Transaction', 'PTN', 'Montant (XAF)', 'Frais (XAF)', 'Statut', 'Effectuée le'];
   displayedColumns = ['expediteur', 'telephone', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
@@ -20,6 +24,20 @@ export class RapportRechargeMydirectcashOnlineComponent {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  /**
+ * Fonction d'exportation du contenu du tableau sous plusieurs formats
+ * CSV, EXCEL, PDF
+ */
+  open_export_dialog() {
+    const export_dialog = this.dialog.open(ExportComponent, {
+      data: { selected_value: "", title: "des recharges MyDirectCash en ligne" }
+    });
+
+    export_dialog.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   filter(event: Event) {
@@ -47,5 +65,5 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { agent: 'agent', id_transaction: 'THFS465', ptn: '....', montant: 40, frais: 40, statut: 'Réussie', created_at: '14/10/2010 15:30'}
+  { agent: 'agent', id_transaction: 'THFS465', ptn: '....', montant: 40, frais: 40, statut: 'Réussie', created_at: '14/10/2010 15:30' }
 ];

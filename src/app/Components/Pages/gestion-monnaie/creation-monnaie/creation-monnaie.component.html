@@ -13,6 +13,15 @@
         </ol>
       </nav>
     </div>
+    <div>
+      <button
+        mat-raised-button
+        (click)="open_export_dialog()"
+        class="primary-dark-button text-center"
+      >
+        Exporter
+      </button>
+    </div>
   </div>
   <!-- End Page Title -->
 
@@ -144,12 +153,12 @@
     </div>
   </div>
 
-  <div class="mat-elevation-z2 ">
+  <div class="mat-elevation-z2">
     <div class="container-fluid pt-3 pb-0 mb-0" style="background: white">
       <mat-form-field appearance="outline">
         <mat-label>Recherche</mat-label>
         <input
-          (keyup)="filter($event)" 
+          (keyup)="filter($event)"
           required
           matInput
           placeholder="Mot clé"

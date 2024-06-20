@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
+import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Transaction } from 'src/app/modal/transaction';
 import { TransactionService } from 'src/app/service/transaction.service';
 import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
@@ -17,7 +19,7 @@ export class RapportAirtimeComponent implements OnInit {
   dataSource!: MatTableDataSource<Transaction, MatTableDataSourcePaginator>
 
   day: Date = new Date();
-  constructor(public trxService: TransactionService, public global: GloabalServiceService) { }
+  constructor(public trxService: TransactionService, public global: GloabalServiceService, private dialog: MatDialog) { }
 
   @ViewChild("paginator") paginator!: MatPaginator;
 
@@ -27,6 +29,20 @@ export class RapportAirtimeComponent implements OnInit {
 
   // variable pour le loader du chargement des elements du tableau
   display = 'flex';
+
+  /**
+   * Fonction d'exportation du contenu du tableau sous plusieurs formats
+   * CSV, EXCEL, PDF
+   */
+  open_export_dialog() {
+    const export_dialog = this.dialog.open(ExportComponent, {
+      data: { selected_value: "", title: "des transactions airtimes" }
+    });
+
+    export_dialog.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

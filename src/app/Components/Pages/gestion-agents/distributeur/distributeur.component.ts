@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
+import { DistributeurDialogComponent } from 'src/app/Components/Modals/distributeur-dialog/distributeur-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Agent } from 'src/app/modal/agent';
 import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
@@ -79,16 +81,46 @@ export class DistributeurComponent implements OnInit {
     this.router.navigateByUrl('/home/gestion-agents/distributeurs/liste/ajouter');
   }
 
-  open_distributeur_dialog(mode: string) {
-    // const show_super_agent_dialog = this.dialog.open(ShowSuperAgengDialogComponent, {
-    //   data:{
-    //     mode: mode
-    //   }
-    // });
+  /**
+  * Fonction pour bloquer un agent
+  * @param object represente le type d'utilisateur (Soit un client / Soit un agent)
+  * @param agent
+  */
+  bloquer_agent(object: string, agent: any) {
+    const block_agent_dialog = this.dialog.open(BlockAccountDialogComponent, {
+      data: {
+        object: object,
+        agent: agent
+      }
+    });
 
-    // show_super_agent_dialog.afterClosed().subscribe(result => {
+    block_agent_dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.isProgressHidden = false;
+        // consommation de l'api
+        // au retour de la reponse
+        // on remet le isProgressHidden a true et
+        // en fonction du code de retour on defini le type d'alerte a afficher
+        this.alert_type = "info";
+        this.alert_message = "L'agent " + agent.agentName + "a été bloqué."
+        this.openAlert();
+      } else {
 
-    // });
+      }
+    });
+  }
+
+  open_distributeur_dialog(mode: string, element: any) {
+    const distributeur_dialog = this.dialog.open(DistributeurDialogComponent, {
+      data: {
+        mode: mode,
+        element: element
+      }
+    });
+
+    distributeur_dialog.afterClosed().subscribe(result => {
+
+    });
   }
 
   ngOnInit(): void {
