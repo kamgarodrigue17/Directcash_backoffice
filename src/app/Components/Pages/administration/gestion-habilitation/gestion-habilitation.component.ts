@@ -138,7 +138,7 @@ export class GestionHabilitationComponent implements OnInit {
 
                   } else {
                     // set error message
-                    this.alert_type = "error";
+                    this.alert_type = "danger";
                     this.alert_message = res.data;
 
                   }

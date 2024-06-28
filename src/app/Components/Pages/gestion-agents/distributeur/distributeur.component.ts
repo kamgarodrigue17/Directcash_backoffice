@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
+import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { DistributeurDialogComponent } from 'src/app/Components/Modals/distributeur-dialog/distributeur-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Agent } from 'src/app/modal/agent';
@@ -120,6 +121,37 @@ export class DistributeurComponent implements OnInit {
 
     distributeur_dialog.afterClosed().subscribe(result => {
 
+    });
+  }
+
+  /**
+   * Fonction pour renitialiser le mot de passe d'un agent
+   * @param agent
+   */
+  reset_password(agent: any) {
+
+    const block_agent_dialog = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: "Renitialisation du mot de passe Agent",
+        message: "Voulez - vous vraiment renitialiser le mot de passe de " + agent.merchantName + " à 12345 ?"
+      }
+    });
+
+    block_agent_dialog.afterClosed().subscribe(result => {
+      if (result) {
+        // on affiche la barre de progression de la requete
+        this.isProgressHidden = false;
+
+        // consommation de l'api
+        // au retour de la reponse
+        // on remet le isProgressHidden a true et
+        // en fonction du code de retour on defini le type d'alerte a afficher
+        this.alert_type = "success";
+        this.alert_message = "Le mot de passe de l'agent " + agent.agentName + " été rénitialiser à 12345."
+        this.openAlert();
+      } else {
+
+      }
     });
   }
 

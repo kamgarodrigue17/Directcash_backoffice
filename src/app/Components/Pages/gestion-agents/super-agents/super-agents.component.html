@@ -1,4 +1,3 @@
-
 <!-- Main -->
 <main id="main" class="main">
   <div class="pagetitle d-sm-flex justify-content-between align-items-center">
@@ -145,7 +144,8 @@
           style="width: 180px"
         >
           <ul class="list-group list-group-horizontal" style="max-width: 180px">
-            <li class="list-group-item border-0 pe-2 ps-0">
+            <!-- On ne doit pas pouvoir modifier -->
+            <li class="list-group-item border-0 pe-2 ps-0 d-none">
               <button
                 (click)="open_show_super_agent_dialog('edit', element)"
                 type="button"
@@ -155,7 +155,8 @@
                 <mat-icon style="color: #02c29c">edit</mat-icon>
               </button>
             </li>
-            <li class="list-group-item border-0 pe-0 ps-0">
+
+            <li class="list-group-item border-0 pe-2 ps-0">
               <button
                 (click)="open_show_super_agent_dialog('show', element)"
                 type="button"
@@ -163,6 +164,28 @@
                 style="background: #e6e6e6"
               >
                 <mat-icon style="color: #5e5e5e">visibility</mat-icon>
+              </button>
+            </li>
+
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="bloquer_agent('agent', element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #f60d2b4d"
+              >
+                <mat-icon style="color: #f60d2b">person_remove</mat-icon>
+              </button>
+            </li>
+
+            <li class="list-group-item border-0 pe-0 ps-0">
+              <button
+                (click)="reset_password(element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #1d1d1d"
+              >
+                <mat-icon style="color: #fff">refresh</mat-icon>
               </button>
             </li>
           </ul>
