@@ -155,7 +155,7 @@ console.log(res)
 
     this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Action'];
     this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
-    this.AgentService.Agents("Merchants").subscribe(data => {
+    this.AgentService.Agents("Distributors").subscribe(data => {
       this.merchants = data.data;
     
     });

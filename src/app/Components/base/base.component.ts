@@ -25,5 +25,8 @@ export class BaseComponent {
   logout() {
     this._authService.logout();
   }
-
+  displayedname: any = " ";
+  ngOnInit(): void {
+    this.displayedname = localStorage.getItem("id");
+  }
 }

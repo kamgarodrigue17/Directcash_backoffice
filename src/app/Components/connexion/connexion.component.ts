@@ -108,7 +108,9 @@ export class ConnexionComponent implements OnInit {
         } else {
           localStorage.setItem("id", user.data.userName);
           user.data.token.refreshToken = "null";
-          localStorage.setItem("token", user.data.token.token)
+          localStorage.setItem("token", user.data.token.token);
+          localStorage.setItem("company", user.data.company) ;
+
           localStorage.setItem("user", JSON.stringify(user.data));
 
           console.log(user.data);

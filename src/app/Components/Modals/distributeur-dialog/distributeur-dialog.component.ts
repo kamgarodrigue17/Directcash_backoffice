@@ -26,6 +26,7 @@ export class DistributeurDialogComponent {
 
   ngOnInit() {
     console.log(this.merchant);
+    
 
   }
 

@@ -16,7 +16,7 @@ export class AdminDialogComponent {
     "lastConnection": "",
     "fullName": "",
     "role": "",
-    "company": "",
+    "company":localStorage.getItem("company"),
     "creerLe": "",
     "creerPar": "",
     
@@ -41,8 +41,9 @@ this.admin.user=localStorage.getItem("id")?.toString();
    * @returns
    */
   validate() {
+    this.admin.company=localStorage.getItem("company");
     this.admin.adminPassword = `${this.admin.defaultPassword}`;
-    
+    console.log(this.admin);
     this.admin.modifierPar =this.data.mode!="add"? localStorage.getItem("id"):"";
     this.admin.isActive=Number.parseInt(this.admin.isActive);
     if (this.admin.habilitation!=null) {
