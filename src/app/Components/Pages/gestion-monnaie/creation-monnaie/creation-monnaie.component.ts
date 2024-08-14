@@ -1,13 +1,17 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
+import { catchError, throwError } from 'rxjs';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { NotifierRechargeDialogComponent } from 'src/app/Components/Modals/notifier-recharge-dialog/notifier-recharge-dialog.component';
 import { StockDirectcashDialogComponent } from 'src/app/Components/Modals/stock-directcash-dialog/stock-directcash-dialog.component';
 import { Plafond } from 'src/app/modal/plafond';
 import { PlafondService } from 'src/app/services/plafond/plafond.service';
+import { RequeteEmissionService } from 'src/app/services/requete-emission/requete-emission.service';
 
 @Component({
   selector: 'app-creation-monnaie',
@@ -19,10 +23,14 @@ export class CreationMonnaieComponent implements OnInit {
   ELEMENT_DATA: any[] = [
   ];
   dataSource!: MatTableDataSource<any, MatTableDataSourcePaginator>
+  isInfoLoading = false;
 
   constructor(
     public dialog: MatDialog,
-    public plafond: PlafondService
+    public plafond: PlafondService,
+    protected requeteEmissionService: RequeteEmissionService,
+    private matSnackBar: MatSnackBar
+
   ) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -40,7 +48,7 @@ export class CreationMonnaieComponent implements OnInit {
   // solde stockmonnaie restant
   stockmonnaie_restant = 1_000_000;
 
-  // stock DirectCash 
+  // stock DirectCash
   stockdirectcash = 0; // doit etre >= stockmonnaie
 
   // stock MyDirectCash
@@ -211,6 +219,27 @@ export class CreationMonnaieComponent implements OnInit {
     });
   }
 
+  /**
+   * Recuperer les info sur les stocks de monnaie
+   */
+  handleGetInfo() {
+    try {
+      this.isProgressHidden = false;
+
+      this.requeteEmissionService.getInfo().subscribe(res => {
+        // stop loading
+        this.isProgressHidden = true;
+
+        // assign values
+        this.stockdirectcash = res.data.soldeDirectcash;
+        this.stockmydirectcash = res.data.soldeMd;
+        this.stockmonnaie_restant = res.data.soldeFournisseur;
+      })
+    } catch (error) {
+      this.matSnackBar.open("Une erreur est survenue");
+    }
+  }
+
   ngOnInit(): void {
     // this.plafond.plafonds().subscribe(plafond => {
     //   this.ELEMENT_DATA = plafond.data;
@@ -223,6 +252,8 @@ export class CreationMonnaieComponent implements OnInit {
 
     // this.displayedColumns = ['Solde courant', 'Service', 'Plafond (XAF)', 'Limite courante (XAF)', 'Partenaire', 'Dernière recharge', 'Statut', 'Action'];
     // this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
+
+    this.handleGetInfo();
   }
 }
 

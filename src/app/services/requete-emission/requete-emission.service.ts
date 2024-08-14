@@ -11,6 +11,11 @@ export class RequeteEmissionService {
 
   constructor(private http: HttpClient, private globalService: GloabalServiceService) { }
 
+  /**
+   * ==============================================================================
+   * API POUR LA GESTION DE MONNAIE
+   * ==============================================================================
+   */
 
   /**
    * Recuperer la liste des requetes d'emission
@@ -57,5 +62,16 @@ export class RequeteEmissionService {
   delete(requete: RequeteEmission) {
     let url = this.globalService.baseUrl + "";
     return this.http.delete<any>(url);
+  }
+
+  // =============================================================================
+
+  /**
+   * Recuperer les info sur les stock de monnaie
+   * @returns
+   */
+  getInfo(): Observable<any> {
+    let url = this.globalService.baseUrl + "/api/Monnetique/getMonnaieInfo?admin=tabetsing";
+    return this.http.get<any>(url);
   }
 }

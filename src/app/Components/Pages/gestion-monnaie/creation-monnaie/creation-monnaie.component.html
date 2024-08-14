@@ -69,6 +69,7 @@
             matInput
             placeholder="0.00"
             [(ngModel)]="stockmonnaie"
+            [value]="stockmonnaie | numberFormatter"
             ngModel
             readonly
           />
