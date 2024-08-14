@@ -108,6 +108,7 @@ import { StockDirectcashDialogComponent } from './Components/Modals/stock-direct
 import { RechargeOnlineComponent } from './Components/Pages/gestion-clients/recharge-online/recharge-online.component';
 import { IsFirstimeDialogComponent } from './Components/Modals/is-firstime-dialog/is-firstime-dialog.component';
 import { DistributeurDialogComponent } from './Components/Modals/distributeur-dialog/distributeur-dialog.component';
+import { NumberFormatterPipe } from './number-formatter.pipe';
 
 @NgModule({
   declarations: [
@@ -190,7 +191,8 @@ import { DistributeurDialogComponent } from './Components/Modals/distributeur-di
     RechargeOnlineComponent,
     RequeteEmissionDialogComponent,
     IsFirstimeDialogComponent,
-    DistributeurDialogComponent
+    DistributeurDialogComponent,
+    NumberFormatterPipe
   ],
   imports: [
     BrowserModule,

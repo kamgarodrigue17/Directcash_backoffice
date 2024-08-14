@@ -42,12 +42,13 @@
       <mat-form-field class="w-100" appearance="outline">
         <mat-label>Montant à émettre</mat-label>
         <input
-          type="number"
           required
           matInput
           placeholder="00.0"
           name="montant"
           ngModel
+          (ngModelChange)="onInputChange($event)"
+          [value]="requete.montant | numberFormatter"
           [(ngModel)]="requete.montant"
           [readonly]="mode == 'show'"
         />

@@ -21,6 +21,10 @@ export class RequeteEmissionDialogComponent {
   mode = this.data.mode;
   now = new Date();
 
+  onInputChange(value: string) {
+    this.requete.montant = Number.parseFloat(value.replace(/ /g, '')); // Supprime les espaces pour garder une valeur numérique propre
+  }
+
   /**
    * Valider les donner du formulaire
    * @returns
