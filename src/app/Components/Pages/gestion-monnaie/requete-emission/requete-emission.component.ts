@@ -84,7 +84,7 @@ export class RequeteEmissionComponent {
           if (mode == 'add') {
 
             let data_requete: RequeteEmission = data.requete;
-            if (data_requete.montant > 1) {
+            if (data_requete.amount > 1) {
 
               // on active la barre de progression de la requete
               this.isProgressHidden = false;
