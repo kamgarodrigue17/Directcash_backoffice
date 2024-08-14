@@ -14,6 +14,7 @@ export class RequeteEmissionDialogComponent {
 
   }
 
+
   requete: RequeteEmission = this.data.requete;
   stock_monnaie_actuel = this.data.stock_monnaie_actuel;
   password!: string;
@@ -25,9 +26,12 @@ export class RequeteEmissionDialogComponent {
    * @returns
    */
   validate() {
-    return {
-      'password': this.password,
-      'requete': this.requete
+  var  data={
+      "amount": this.requete.montant,
+      "adminId": localStorage.getItem("id"),
+      "pass": this.password
     }
+    console.log(data);
+    return data;
   }
 }

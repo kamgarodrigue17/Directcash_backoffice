@@ -9,4 +9,5 @@ export class RequeteEmission {
   traiter_le!: String;
   statut!: string;
   montant!: number;
+  amount!: number;
 }
