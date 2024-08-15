@@ -14,28 +14,22 @@ export class RequeteEmissionDialogComponent {
 
   }
 
-
   requete: RequeteEmission = this.data.requete;
   stock_monnaie_actuel = this.data.stock_monnaie_actuel;
   password!: string;
   mode = this.data.mode;
   now = new Date();
 
-  onInputChange(value: string) {
-    this.requete.montant = Number.parseFloat(value.replace(/ /g, '')); // Supprime les espaces pour garder une valeur numérique propre
-  }
-
   /**
    * Valider les donner du formulaire
    * @returns
    */
   validate() {
-  var  data={
+    var data = {
       "amount": this.requete.montant,
       "adminId": localStorage.getItem("id"),
       "pass": this.password
     }
-    console.log(data);
     return data;
   }
 }

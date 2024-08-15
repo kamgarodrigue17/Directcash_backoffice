@@ -83,39 +83,43 @@ export class RequeteEmissionComponent {
 
           if (mode == 'add') {
 
-            let data_requete: RequeteEmission = data.requete;
-            if (data_requete.amount > 1) {
+            let data_requete: RequeteEmission = data;
 
-              // on active la barre de progression de la requete
-              this.isProgressHidden = false;
-console.log(data_requete)
-              // on envoi la requete d'ajout de la requete d'emission
-              this.requeteEmissionService.create(data_requete).subscribe(res => {
-console.log(res)
-                // au retour de la reponse, on desactive la barre de progression
-                this.isProgressHidden = true;
+            console.log('--- DATA ---');
+            console.log(data_requete);
 
-                // on definit le type d'alerte  afficher en fonction du code de retour
-                let res_code = res.code;
-                switch (+res_code) {
-                  case 400:
-                    this.alert_type = 'warning'
-                    break;
-                  default:
-                    this.alert_type = 'info'
-                    break;
-                }
-                this.alert_message = res.data;
-                this.openAlert();
-              });
+            // if (data_requete.amount > 1) {
 
-            } else {
-              const snackbar = this._snackBar.open("Montant invalide.", "Ok");
-              snackbar.onAction().subscribe(s => {
-                snackbar.dismiss();
-              })
-              return;
-            }
+            //   // on active la barre de progression de la requete
+            //   this.isProgressHidden = false;
+            //   console.log(data_requete)
+            //   // on envoi la requete d'ajout de la requete d'emission
+            //   this.requeteEmissionService.create(data_requete).subscribe(res => {
+            //     console.log(res)
+            //     // au retour de la reponse, on desactive la barre de progression
+            //     this.isProgressHidden = true;
+
+            //     // on definit le type d'alerte  afficher en fonction du code de retour
+            //     let res_code = res.code;
+            //     switch (+res_code) {
+            //       case 400:
+            //         this.alert_type = 'warning'
+            //         break;
+            //       default:
+            //         this.alert_type = 'info'
+            //         break;
+            //     }
+            //     this.alert_message = res.data;
+            //     this.openAlert();
+            //   });
+
+            // } else {
+            //   const snackbar = this._snackBar.open("Montant invalide.", "Ok");
+            //   snackbar.onAction().subscribe(s => {
+            //     snackbar.dismiss();
+            //   })
+            //   return;
+            // }
 
           } else if (mode == 'show') {
 

@@ -12,7 +12,8 @@ export class NumberFormatterPipe implements PipeTransform {
     let numericValue = typeof value === 'string' ? parseFloat(value) : value;
 
     // Appliquer le formatage avec des espaces comme séparateurs
-    return numericValue.toLocaleString('en-US').replace(/,/g, ' ');
+    // return numericValue.toLocaleString('en-US').replace(/ /g, ' ');
+    return numericValue.toLocaleString('fr-FR');
   }
 
 }
