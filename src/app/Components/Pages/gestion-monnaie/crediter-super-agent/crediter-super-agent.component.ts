@@ -22,16 +22,14 @@ import { ValidationService } from 'src/app/services/validation/validation.servic
   styleUrls: ['./crediter-super-agent.component.css']
 })
 export class CrediterSuperAgentComponent implements OnInit {
-  displayedColumns: string[] = [];
-  ELEMENT_DATA: Plafond[] = [
-  ];
+  displayedColumns: string[] = ['distributeur', 'montant', 'statut', 'created_by', 'created_at', 'updated_by', 'updated_at', 'action'];
+  ELEMENT_DATA: any[] = [];
   merchants: any[] = [];
-  dataSource!: MatTableDataSource<Plafond, MatTableDataSourcePaginator>
+  dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
 
   constructor(
     public dialog: MatDialog,
     public AgentService: AgentServiceService,
-    private router: Router,
     public plafond: PlafondService,
     public valideservice: ValidationService,
     private _matSnackBar: MatSnackBar,
@@ -132,6 +130,9 @@ export class CrediterSuperAgentComponent implements OnInit {
               case 200:
                 this.alert_type = 'success';
                 this.alert_message = "Requête d'approvisionnement initiée avec succès";
+
+                // refresh data
+                this.getRequeteApproList();
                 break;
               default:
                 this.alert_type = 'danger';
@@ -166,6 +167,10 @@ export class CrediterSuperAgentComponent implements OnInit {
     });
   }
 
+  /**
+   * Valider uen requete
+   * @param requete 
+   */
   valider_requete(requete: any) {
 
     console.log(requete);
@@ -179,64 +184,131 @@ export class CrediterSuperAgentComponent implements OnInit {
     });
 
     confirmation_dialog.afterClosed().subscribe(result => {
-      if (result) {
+      if (result == true) {
+        try {
 
-        // on active la barre de progression de la requete
-        this.isProgressHidden = false;
+          // on deefinit corps de la requete
+          let data: any = {
+            "merchantId": `${requete.merchant}`,
+            "amount": `${requete.amount}`,
+            "createBy": localStorage.getItem("id"),
+            "password": "12345",
+            "status": requete.statut != "En attente" ? "0" : "1",
+            "cautionId": `${requete.id}`
+          }
+          console.log(data)
 
-        // on deefinit corps de la requete
-        let data: any = {
-          "merchantId": `${requete.merchant}`,
-          "amount": `${requete.amount}`,
-          "createBy": localStorage.getItem("id"),
-          "password": "12345",
-          "status": requete.statut != "En attente" ? "0" : "1",
-          "cautionId": `${requete.id}`
-        }
-        console.log(data)
-        // on envoi la requete de validation
-        this.valideservice.suplyvalidate(data).subscribe(res => {
-          console.log(res)
-          //   // au retour de la reponse, on desactive la barre de progression
+          // on active la barre de progression de la requete
+          this.isProgressHidden = false;
+
+          // on envoi la requete de validation
+          this.valideservice.suplyvalidate(data).pipe(
+            catchError((error: HttpErrorResponse) => {
+              this.isProgressHidden = true;
+              if (error.status !== 200) {
+                this.alert_type = 'danger';
+
+                this.alert_message = this._messageService.getHttpMessage(error.status);
+
+                this.closeAlert();
+                this.openAlert();
+
+                // log response
+                console.log(error.message);
+              }
+              return throwError(error);
+            })
+          ).subscribe(res => {
+            console.log(res)
+            // au retour de la reponse, on desactive la barre de progression
+            this.isProgressHidden = true;
+
+            // on definit le type d'alerte  afficher en fonction du code de retour
+            let res_code = res.code;
+            switch (+res_code) {
+              case 400:
+                this.alert_type = 'warning'
+                break;
+
+              case 200:
+                this.alert_type = 'success';
+                this.alert_message = "Requête validée avec succès.";
+                break;
+                
+              default:
+                this.alert_type = 'info'
+                break;
+            }
+            this.alert_message = res.data;
+            this.openAlert();
+          });
+        } catch (error) {
+
+          // stop laoding
           this.isProgressHidden = true;
 
-          //   // on definit le type d'alerte  afficher en fonction du code de retour
-          let res_code = res.code;
-          switch (+res_code) {
-            case 400:
-              this.alert_type = 'warning'
-              break;
-            default:
-              this.alert_type = 'info'
-              break;
-          }
-          this.alert_message = res.data;
+          // log error
+          console.log('--- ERREUR ---');
+          console.log(error);
+
+          // show alert
+          this.alert_message = "Une erreur est survenue";
+          this.alert_type = 'danger';
+          this.closeAlert();
           this.openAlert();
-        });
 
-
-      } else {
-
+        }
       }
     });
   }
 
+  /**
+   * Recuperer la liste des approvisionnements
+   */
+  getRequeteApproList() {
+    try {
+      this.plafond.getDemandeAprov().subscribe(res => {
+        // get data
+        this.ELEMENT_DATA = res.data.objects;
+
+        // set data
+        this.dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
+
+        // set paginator
+        this.dataSource.paginator = this.paginator;
+        this.display = 'none';
+      });
+    } catch (error) {
+      // log error
+      console.log('--- ERREUR GET DEMANDES LIST ---');
+      console.log(error);
+    }
+  }
+
+  /**
+   * Recuperer la liste des distributeurs
+   */
+  getDistrbuteurList() {
+    try {
+      this.AgentService.Agents("Distributors").subscribe(data => {
+        this.merchants = data.data;
+      });
+    } catch (error) {
+      // log error
+      console.log('--- ERREUR GET DISTRIBUTEUR LIST ---');
+      console.log(error);
+    }
+
+  }
+
   ngOnInit(): void {
-    this.plafond.getDemandeAprov().subscribe(plafond => {
-      this.ELEMENT_DATA = plafond.data;
-      console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Action'];
-      this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
-      this.dataSource.paginator = this.paginator;
-      this.display = 'none';
-    });
 
-    this.displayedColumns = ['Super agent', 'Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'Action'];
-    this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
-    this.AgentService.Agents("Distributors").subscribe(data => {
-      this.merchants = data.data;
+    this.getDistrbuteurList();
+    this.getRequeteApproList();
 
-    });
+
+    // this.dataSource.paginator = this.paginator;
+
 
   }
 

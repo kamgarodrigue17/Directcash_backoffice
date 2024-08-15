@@ -109,6 +109,7 @@ import { RechargeOnlineComponent } from './Components/Pages/gestion-clients/rech
 import { IsFirstimeDialogComponent } from './Components/Modals/is-firstime-dialog/is-firstime-dialog.component';
 import { DistributeurDialogComponent } from './Components/Modals/distributeur-dialog/distributeur-dialog.component';
 import { NumberFormatterPipe } from './number-formatter.pipe';
+import { CustomBadgeComponent } from './Components/custom-badge/custom-badge.component';
 
 @NgModule({
   declarations: [
@@ -192,7 +193,8 @@ import { NumberFormatterPipe } from './number-formatter.pipe';
     RequeteEmissionDialogComponent,
     IsFirstimeDialogComponent,
     DistributeurDialogComponent,
-    NumberFormatterPipe
+    NumberFormatterPipe,
+    CustomBadgeComponent
   ],
   imports: [
     BrowserModule,
