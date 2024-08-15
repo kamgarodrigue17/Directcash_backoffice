@@ -149,7 +149,7 @@ export class DetailFonctionnaliteComponent implements OnInit {
    * Retourner a la page des habilitations
    */
   go_back() {
-    this._router.navigateByUrl("/administration/gestion-habilitations");
+    this._router.navigateByUrl("/home/administration/gestion-habilitations");
   }
 
   /**

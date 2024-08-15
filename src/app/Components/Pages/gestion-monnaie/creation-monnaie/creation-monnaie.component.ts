@@ -10,6 +10,7 @@ import { ExportComponent } from 'src/app/Components/Modals/export/export.compone
 import { NotifierRechargeDialogComponent } from 'src/app/Components/Modals/notifier-recharge-dialog/notifier-recharge-dialog.component';
 import { StockDirectcashDialogComponent } from 'src/app/Components/Modals/stock-directcash-dialog/stock-directcash-dialog.component';
 import { Plafond } from 'src/app/modal/plafond';
+import { MessageService } from 'src/app/services/message/message.service';
 import { PlafondService } from 'src/app/services/plafond/plafond.service';
 import { RequeteEmissionService } from 'src/app/services/requete-emission/requete-emission.service';
 
@@ -29,7 +30,8 @@ export class CreationMonnaieComponent implements OnInit {
     public dialog: MatDialog,
     public plafond: PlafondService,
     protected requeteEmissionService: RequeteEmissionService,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private _messageService: MessageService
 
   ) { }
 
@@ -226,7 +228,23 @@ export class CreationMonnaieComponent implements OnInit {
     try {
       this.isProgressHidden = false;
 
-      this.requeteEmissionService.getInfo().subscribe(res => {
+      this.requeteEmissionService.getInfo().pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.isProgressHidden = true;
+          if (error.status !== 200) {
+            this.alert_type = 'danger';
+
+            this.alert_message = this._messageService.getHttpMessage(error.status);
+
+            this.closeAlert();
+            this.openAlert();
+
+            // log response
+            console.log(error.message);
+          }
+          return throwError(error);
+        })
+      ).subscribe(res => {
         // stop loading
         this.isProgressHidden = true;
 
