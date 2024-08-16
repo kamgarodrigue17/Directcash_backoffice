@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GloabalServiceService } from '../gloabal-service.service';
 import { Observable } from 'rxjs';
-import { RequeteEmission } from 'src/app/modal/requete-emission.model';
+import { RequeteEmission } from 'src/app/modal/requete-emission';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class RequeteEmissionService {
    * @returns
    */
   index(): Observable<any> {
-    let url = this.globalService.baseUrl + "";
+    let url = this.globalService.baseUrl + "/api/Monnetique/getPending?who=" + localStorage.getItem("id");
     return this.http.get<any>(url);
   }
 
@@ -31,7 +31,7 @@ export class RequeteEmissionService {
    * @param entreprise
    * @returns
    */
-  create(requete: RequeteEmission) {
+  create(requete: any) {
     let url = this.globalService.baseUrl + "/api/Monnetique/InitierEmission";
     return this.http.post<any>(url, requete);
   }

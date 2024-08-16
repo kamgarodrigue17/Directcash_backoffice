@@ -16,7 +16,7 @@
 
     <div>
       <button
-        (click)="open_requete_dialog('add', nouvelle_requete)"
+        (click)="open_requete_dialog('add', undefined)"
         mat-raised-button
         class="primary-light-button text-center me-2"
       >
@@ -44,9 +44,7 @@
     role="alert"
   >
     <span>
-      <strong
-        ><i class="bi bi-info-circle-fill me-2"></i> {{ alert_type }}!</strong
-      >
+      <strong><i class="bi bi-info-circle-fill me-2"></i></strong>
       {{ alert_message }}
     </span>
     <button
@@ -77,49 +75,47 @@
         />
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
-
-      <!-- Loader de chargement du contenu du tableau -->
-      <div
-        class="d-{{ display }} align-items-center justify-content-center pb-3"
-      >
-        <mat-spinner diameter="25" class="me-3"></mat-spinner>
-        Chargement...
-      </div>
     </div>
 
     <table mat-table [dataSource]="dataSource">
+      <!-- Ref Column -->
+      <ng-container matColumnDef="ref">
+        <th mat-header-cell *matHeaderCellDef>Montant (XAF)</th>
+        <td mat-cell *matCellDef="let element">{{ element.reference }}</td>
+      </ng-container>
+
       <!-- Montant (XAF) Column -->
-      <ng-container matColumnDef="Montant (XAF)">
+      <ng-container matColumnDef="amount">
         <th mat-header-cell *matHeaderCellDef>Montant (XAF)</th>
         <td mat-cell *matCellDef="let element">{{ element.montant }}</td>
       </ng-container>
 
       <!-- Statut Column -->
-      <ng-container matColumnDef="Statut">
+      <ng-container matColumnDef="statut">
         <th mat-header-cell *matHeaderCellDef>Statut</th>
         <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
       </ng-container>
 
       <!-- Crée par Column -->
-      <ng-container matColumnDef="Crée par">
+      <ng-container matColumnDef="created_by">
         <th mat-header-cell *matHeaderCellDef>Crée par</th>
         <td mat-cell *matCellDef="let element">{{ element.id_creer_pa }}</td>
       </ng-container>
 
       <!-- Crée le Column -->
-      <ng-container matColumnDef="Crée le">
+      <ng-container matColumnDef="created_at">
         <th mat-header-cell *matHeaderCellDef>Crée le</th>
         <td mat-cell *matCellDef="let element">{{ element.cree_le }}</td>
       </ng-container>
 
       <!-- Traité par Column -->
-      <ng-container matColumnDef="Traité par">
+      <ng-container matColumnDef="treated_by">
         <th mat-header-cell *matHeaderCellDef>Traité par</th>
         <td mat-cell *matCellDef="let element">{{ element.id_traiter_par }}</td>
       </ng-container>
 
       <!-- Traité le Column -->
-      <ng-container matColumnDef="Traité le">
+      <ng-container matColumnDef="treated_at">
         <th mat-header-cell *matHeaderCellDef>Traité le</th>
         <td mat-cell *matCellDef="let element">{{ element.traiter_le }}</td>
       </ng-container>
@@ -139,6 +135,7 @@
               <button
                 (click)="valider_requete(element)"
                 type="button"
+                [disabled]="element.statut != 'En attente'"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #02c29c36"
               >
@@ -149,6 +146,7 @@
               <button
                 (click)="rejeter_requete(element)"
                 type="button"
+                [disabled]="element.statut != 'En attente'"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #f60d2b4d"
               >
