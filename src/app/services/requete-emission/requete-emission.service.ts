@@ -32,8 +32,18 @@ export class RequeteEmissionService {
    * @returns
    */
   create(requete: RequeteEmission) {
-    let url = this.globalService.baseUrl + "/api/Monnetique/CreerMonnaie";
+    let url = this.globalService.baseUrl + "/api/Monnetique/InitierEmission";
     return this.http.post<any>(url, requete);
+  }
+
+  /**
+   * Valider une requete d'emission
+   * @param data 
+   * @returns 
+   */
+  validate(data: any) {
+    let url = this.globalService.baseUrl + "/api/Monnetique/validateEmission?admin=" + localStorage.getItem("id");
+    return this.http.post<any>(url, data);
   }
 
   /**

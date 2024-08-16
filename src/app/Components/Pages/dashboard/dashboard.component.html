@@ -20,36 +20,35 @@
         <div class="row">
           <!-- Total admin Card -->
           <app-basic-card
-            card_title="Admins"
-            card_value="100"
+            [isloading]="isAdminUserLoading"
+            card_title="Administrateurs"
+            [card_value]="admin_user.toString()"
             card_icon_class="bi-person-fill"
             card_icon_color="text-dark"
             class="col-xxl-4 col-md-4"
-          >
-          </app-basic-card>
-          <!-- End Total Admin Card -->
+          />
 
           <!-- Utilisateurs MyDirectCash Card -->
           <app-basic-card
             card_title="MyDirectCash"
-            card_value="100"
+            [isloading]="isMyDirectcashUserLoading"
+            [card_value]="myDirectCash_user.toString()"
             card_icon_class="bi-person-fill"
             card_icon_color="text-orange"
             class="col-xxl-4 col-md-4"
-          >
-          </app-basic-card>
-          <!-- End Utilisateurs MyDirectCash Card -->
+          />
 
           <!-- Utilisateurs DirectCash Card -->
           <app-basic-card
             card_title="DirectCash"
-            card_value="100"
+            [isloading]="isDirectcashUserLoading"
+            [card_value]="directCash_user.toString()"
             card_icon_class="bi-person-fill"
             card_icon_color="text-primary"
             class="col-xxl-4 col-md-4"
-          >
-          </app-basic-card>
-          <!-- End Utilisateurs DirectCash Card -->
+          />
+
+          <!-- lister les profils de la bd ----------------------------------------->
 
           <!-- Total comptable Card -->
           <app-basic-card
