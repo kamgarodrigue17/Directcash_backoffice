@@ -14,6 +14,8 @@ export class BaseComponent {
     private _authService: AuthServiceService
   ) { }
 
+  currentYear = new Date().getFullYear();
+
   toggle_side_bar() {
     const body = document.getElementsByTagName("body");
     body[0].classList.toggle("toggle-sidebar");
@@ -25,6 +27,7 @@ export class BaseComponent {
   logout() {
     this._authService.logout();
   }
+
   displayedname: any = " ";
   ngOnInit(): void {
     this.displayedname = localStorage.getItem("id");

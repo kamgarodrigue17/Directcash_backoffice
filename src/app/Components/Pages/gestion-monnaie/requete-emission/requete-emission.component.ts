@@ -20,7 +20,7 @@ export class RequeteEmissionComponent {
   displayedColumns: string[] = ['ref', 'amount', 'statut', 'created_by', 'created_at', 'treated_by', 'treated_at', 'action'];
 
   ELEMENT_DATA: RequeteEmission[] = [];
-  dataSource!: MatTableDataSource<RequeteEmission>
+  dataSource!: MatTableDataSource<any>
   stock_monnaie_actuel!: Number;
   myPassword!: string;
   myId!: number;
@@ -194,8 +194,6 @@ export class RequeteEmissionComponent {
         }
       }
     });
-
-
   }
 
   /**
@@ -303,7 +301,7 @@ export class RequeteEmissionComponent {
                 this.alert_message = "Une erreur est survenue.";
                 break;
             }
-            
+
             this.closeAlert();
             this.openAlert();
           });
@@ -415,6 +413,14 @@ export class RequeteEmissionComponent {
         console.log('--- liste requete ---');
         console.log(res);
 
+        // get data
+        this.ELEMENT_DATA = res.data;
+
+        // log data
+        console.log('--- data ---');
+        console.log(this.ELEMENT_DATA);
+        this.dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
+        this.dataSource.paginator = this.paginator;
       });
 
     } catch (error) {
@@ -435,16 +441,6 @@ export class RequeteEmissionComponent {
     this.stock_monnaie_actuel = 400;
     this.myPassword = "12345";
     this.myId = 0;
-
-    // recuperation des requetes d'emission
-    // this._requeteEmissionService.index().subscribe(requetes => {
-    //   console.log(this.ELEMENT_DATA);
-    //   this.dataSource = new MatTableDataSource<RequeteEmission>(this.ELEMENT_DATA);
-    //   this.dataSource.paginator = this.paginator;
-    //   this.display = 'none';
-    // });
-    // this.displayedColumns = ['Montant (XAF)', 'Statut', 'Crée par', 'Crée le', 'Traité par', 'Traité le', 'action'];
-    // this.dataSource = new MatTableDataSource<RequeteEmission>(this.ELEMENT_DATA);
 
     this.getSTockActuel();
     this.getRequeteList();
