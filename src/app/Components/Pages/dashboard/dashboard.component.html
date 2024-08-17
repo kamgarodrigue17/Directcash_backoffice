@@ -1,10 +1,10 @@
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Dashboard</h1>
+    <h1>Tableau de bord</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item active">Tableau de bord</li>
       </ol>
     </nav>
   </div>
@@ -256,7 +256,8 @@
           <!-- Stock de monnaie Card -->
           <app-basic-card
             card_title="Stock de monnaie"
-            card_value="100M"
+            [card_value]="stock_monnaie.toString()"
+            [isloading]="isEncourLoading"
             card_icon_class="bi-currency-exchange"
             card_icon_color="text-tertiary"
             class="col-xxl-4 col-md-4"
@@ -266,8 +267,9 @@
 
           <!-- Stock Directcash Card -->
           <app-basic-card
-            card_title="Stock de monnaie"
-            card_value="100M"
+            card_title="Stock Directcash"
+            [isloading]="isEncourLoading"
+            [card_value]="stock_directcash.toString()"
             card_icon_class="bi-currency-exchange"
             card_icon_color="text-tertiary"
             class="col-xxl-4 col-md-4"
@@ -277,8 +279,9 @@
 
           <!-- Stock MyDirectcash Card -->
           <app-basic-card
-            card_title="Stock Directcash"
-            card_value="100M"
+            card_title="Stock MyDirectcash"
+            [card_value]="stock_mydirectcash.toString()"
+            [isloading]="isEncourLoading"
             card_icon_class="bi-currency-exchange"
             card_icon_color="text-tertiary"
             class="col-xxl-4 col-md-4"
