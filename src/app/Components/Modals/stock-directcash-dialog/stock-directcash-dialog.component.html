@@ -1,5 +1,5 @@
 <div
-  class="fw-bold text-start d-flex pt-2 ps-3 pe-3 justify-content-between align-items-center"
+  class="fw-bold text-start d-flex pt-2 ps-3 pe-3 pb-2 justify-content-between align-items-center"
 >
   <span class="me-4">Definir le stock {{ data.title }}</span>
   <button mat-button [mat-dialog-close]="false" class="text-center">
@@ -8,7 +8,6 @@
 </div>
 <mat-dialog-content class="mat-typography p-3 pb-1">
   <!-- stock monnaie restant -->
-
   <p class="pb-2">
     Stock de monnaie restant: <strong>{{ data.stockmonnaie_restant }}</strong>
   </p>
@@ -21,7 +20,7 @@
         matInput
         required
         type="number"
-        placeholder="0.00"
+        placeholder="500.00"
         [formControl]="montantFormControl"
         [errorStateMatcher]="matcher"
         ngModel
@@ -29,15 +28,33 @@
         ngModel
       />
     </mat-form-field>
-  </div>
 
-  <!-- display error -->
-  <span *ngIf="hasError" class="text-danger small mb-1"
-    >Montant invalide !
-  </span>
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input
+        required
+        matInput
+        placeholder="Mot de passe"
+        name="password"
+        ngModel
+        [(ngModel)]="password"
+        [errorStateMatcher]="matcher"
+        [formControl]="passwordFormControl"
+      />
+    </mat-form-field>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="p-3 pt-1">
-  <button class="w-100 primary-light-button" mat-button (click)="valid()">
-    Enregistrer
+  <button
+    mat-raised-button
+    class=" {{
+      passwordFormControl.invalid || montantFormControl.invalid
+        ? ''
+        : 'primary-light-button'
+    }}"
+    [disabled]="passwordFormControl.invalid || montantFormControl.invalid"
+    (click)="valid()"
+  >
+    COnfirmer
   </button>
 </mat-dialog-actions>

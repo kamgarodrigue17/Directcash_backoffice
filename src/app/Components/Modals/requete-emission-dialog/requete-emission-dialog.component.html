@@ -18,9 +18,8 @@
 
 <!-- Content -->
 <mat-dialog-content class="mat-typography pb-1 p-3">
-  <form #add_agent_form="ngForm">
-    <!-- Stock de monnaie actuel -->
-    <div class="row">
+  <!-- Stock de monnaie actuel -->
+  <!-- <div class="row">
       <div class="col-md-12">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Stock de monnaie actuel</mat-label>
@@ -35,50 +34,57 @@
           />
         </mat-form-field>
       </div>
-    </div>
+    </div> -->
 
-    <!-- Montant a emettre -->
-    <div class="col-md-12">
-      <mat-form-field class="w-100" appearance="outline">
-        <mat-label>Montant à émettre</mat-label>
-        <input
-          type="number"
-          required
-          matInput
-          placeholder="00.0"
-          name="montant"
-          ngModel
-          [(ngModel)]="requete.montant"
-          [readonly]="mode == 'show'"
-        />
-      </mat-form-field>
-    </div>
+  <!-- Montant a emettre -->
+  <div class="col-md-12">
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Montant à émettre</mat-label>
+      <input
+        required
+        matInput
+        placeholder="00.0"
+        ngModel
+        type="number"
+        [(ngModel)]="requete.amount"
+        [errorStateMatcher]="matcher"
+        [formControl]="amountControl"
+        [readonly]="mode == 'show'"
+      />
+    </mat-form-field>
+  </div>
 
-    <!-- Mot de passe -->
-    <div class="col-md-12 ">
-      <mat-form-field class="w-100" appearance="outline">
-        <mat-label>Mot de passe</mat-label>
-        <input
-          required
-          matInput
-          placeholder="Mot de passe"
-          name="password"
-          ngModel
-          [(ngModel)]="password"
-        />
-      </mat-form-field>
-    </div>
-  </form>
+  <!-- Mot de passe -->
+  <div class="col-md-12">
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input
+        required
+        matInput
+        placeholder="Mot de passe"
+        name="password"
+        ngModel
+        [(ngModel)]="password"
+        [errorStateMatcher]="matcher"
+        [formControl]="passwordControl"
+      />
+    </mat-form-field>
+  </div>
 </mat-dialog-content>
 
 <!-- Button action -->
 <mat-dialog-actions align="end" class="p-3 pt-1">
   <button
-    class="primary-light-button"
-    mat-button
-    [mat-dialog-close]="validate()"
+    mat-raised-button
+    (click)="validate()"
+    class=" {{
+      passwordControl.invalid || amountControl.invalid
+        ? ''
+        : 'primary-light-button'
+    }}"
+    [disabled]="passwordControl.invalid || amountControl.invalid"
   >
-    {{ mode == "show" ? "Confirmer l'émission" : "Sauvegarder" }}
+    Confirmer
   </button>
 
   <button class="primary-dark-button" mat-button [mat-dialog-close]="false">

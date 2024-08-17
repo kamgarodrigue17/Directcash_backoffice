@@ -10,6 +10,7 @@ export class BasicCardComponent {
   @Input() card_value!: string;
   @Input() card_icon_class!: string;
   @Input() card_icon_color!: string;
+  @Input() isloading!: boolean;
 
-  constructor(){}
+  constructor() { }
 }

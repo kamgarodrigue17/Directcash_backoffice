@@ -187,7 +187,7 @@ export class GestionHabilitationComponent implements OnInit {
   show_information(habilitation: any) {
     localStorage.setItem("currentHabilitation", JSON.stringify(habilitation));
     localStorage.setItem("fonctionnaliteList", JSON.stringify(this.Fonctionnalites));
-    this._router.navigateByUrl("/administration/gestion-habilitations/detail");
+    this._router.navigateByUrl("/home/administration/gestion-fonctionnalites/detail");
   }
 
   /**
