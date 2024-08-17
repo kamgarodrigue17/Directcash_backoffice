@@ -24,6 +24,7 @@ mat-spinner circle {
 .bg-white {
   background: #fff;
 }
+
 .action-btn {
   width: 40px !important;
   height: 40px !important;
@@ -36,19 +37,24 @@ button {
 .text-secondary {
   color: var(--secondary-dark-color) !important;
 }
+
 .text-tertiary {
   color: var(--tertiary-dark-color) !important;
 }
+
 .text-orange {
   color: var(--oragne-color) !important;
 }
+
 .text-violet {
   color: var(--violet-color) !important;
 }
+
 .primary-light-button {
   color: white !important;
   background-color: var(--primary-light-color) !important;
 }
+
 .secondary-light-button {
   color: white !important;
   background-color: var(--secondary-light-color) !important;
@@ -97,16 +103,19 @@ h6 {
   transition: all 0.3s;
   padding: 20px;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-light-color) transparent;
+  /* scrollbar-width: thin; */
+  /* scrollbar-color: #ffffff transparent; */
+  scrollbar-width: 1px !important;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
   /* box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1); */
   background-color: #fff;
 }
 
 .sidebar::-webkit-scrollbar {
-  width: 5px;
-  height: 8px;
   background-color: #fff;
+  display: none;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
@@ -143,6 +152,7 @@ h6 {
   color: #fff !important;
   background: var(--primary-dark-color) !important;
 }
+
 .active-router-link i {
   color: white !important;
 }
@@ -232,6 +242,7 @@ h6 {
 }
 
 @media (min-width: 1200px) {
+
   #main,
   #footer {
     margin-left: 300px;
@@ -245,6 +256,7 @@ h6 {
 }
 
 @media (min-width: 1200px) {
+
   .toggle-sidebar #main,
   .toggle-sidebar #footer {
     margin-left: 0;
@@ -584,11 +596,13 @@ h6 {
   color: #4154f1;
   border-bottom: 2px solid #4154f1;
 }
+
 .material-icons {
   font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
-  font-size: 24px; /* Preferred icon size */
+  font-size: 24px;
+  /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -612,15 +626,19 @@ h6 {
 .material-icons.md-18 {
   font-size: 18px;
 }
+
 .material-icons.md-24 {
   font-size: 24px;
 }
+
 .material-icons.md-30 {
   font-size: 30px;
 }
+
 .material-icons.md-36 {
   font-size: 36px;
 }
+
 .material-icons.md-48 {
   font-size: 48px;
 }
@@ -751,7 +769,7 @@ h6 {
 }
 
 /* News & Updates */
-.dashboard .news .post-item + .post-item {
+.dashboard .news .post-item+.post-item {
   margin-top: 15px;
 }
 
@@ -1115,6 +1133,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;

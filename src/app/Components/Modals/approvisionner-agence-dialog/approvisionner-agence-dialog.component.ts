@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormControl, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Merchant } from 'src/app/modal/merchant';
 import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
@@ -14,31 +15,41 @@ import { ValidationService } from 'src/app/services/validation/validation.servic
 export class ApprovisionnerAgenceDialogComponent implements OnInit {
   merchants: any[] = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public agentservice: AgentServiceService, public valideservice: ValidationService) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public agentservice: AgentServiceService,
+    public valideservice: ValidationService,
+    private _dialogRef: MatDialogRef<ApprovisionnerAgenceDialogComponent>
+  ) { }
+
+  // Matcher
+  matcher = new ErrorStateMatcher();
+
+  // Form control
+  merchantControl = new FormControl('', [Validators.required]);
+  amountControl = new FormControl('', [Validators.required, Validators.min(500)]);
+  passwordControl = new FormControl('', [Validators.required]);
 
   object = this.data.object;
   id: string = "";
   amount: number = 0;
   password: string = "";
   @ViewChild("form") form!: NgForm;
+
   valide() {
-    let data: any = {
-      "merchantId": `${this.id}`,
-      "amount": `${this.amount}`,
-      "createBy": localStorage.getItem("id"),
-
-      "password": this.password
-    };
-
-    return data;
-    // if (data.merchantId != null) {
-    //   this.valideservice.initdemandeAprovisionenm(data).subscribe(res => {
-    //     console.log(res);
-    //   })
-    // }
+    if (this.merchantControl.valid && this.amountControl.valid && this.passwordControl.valid) {
+      let data: any = {
+        "merchantId": `${this.id}`,
+        "amount": `${this.amount}`,
+        "createBy": localStorage.getItem("id"),
+        "password": this.password
+      };
+      this._dialogRef.close(data);
+    }
   }
 
   ngOnInit(): void {
     this.merchants = this.data.merchants;
+    console.log(this.data.merchants);
   }
 }

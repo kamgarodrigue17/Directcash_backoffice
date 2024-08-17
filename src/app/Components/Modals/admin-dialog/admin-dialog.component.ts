@@ -16,10 +16,10 @@ export class AdminDialogComponent {
     "lastConnection": "",
     "fullName": "",
     "role": "",
-    "company": "",
+    "company":localStorage.getItem("company"),
     "creerLe": "",
     "creerPar": "",
-    "modifierPar": "",
+    
     "user":"",
     "modifierLe": ""
   };
@@ -41,8 +41,10 @@ this.admin.user=localStorage.getItem("id")?.toString();
    * @returns
    */
   validate() {
+    this.admin.company=localStorage.getItem("company");
     this.admin.adminPassword = `${this.admin.defaultPassword}`;
-    this.admin.modifierPar = localStorage.getItem("id");
+    console.log(this.admin);
+    this.admin.modifierPar =this.data.mode!="add"? localStorage.getItem("id"):"";
     this.admin.isActive=Number.parseInt(this.admin.isActive);
     if (this.admin.habilitation!=null) {
       this.admin.role=this.habilitations[this.admin.habilitation].label;

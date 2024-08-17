@@ -79,10 +79,10 @@ export class ValiderRechargeComponent implements OnInit {
           "status": valid.statut != "En attente" ? "0" : "1",
           "cautionId": `${valid.id}`
         }
-
+console.log(data);
         // on envoi la requete de validation
         this.valideservice.suplyvalidate(data).subscribe(res => {
-
+          console.log(res);
           // au retour de la reponse, on desactive la barre de progression
           this.isProgressHidden = true;
 
@@ -162,6 +162,7 @@ export class ValiderRechargeComponent implements OnInit {
       console.log(result);
     });
   }
+  
   ngOnInit(): void {
     this.plafond.getDemandeAprov().subscribe(plafond => {
       let data: any[] = [];

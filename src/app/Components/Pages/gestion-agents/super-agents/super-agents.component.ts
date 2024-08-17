@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dialog/add-agent-dialog.component';
+import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { ShowSuperAgengDialogComponent } from 'src/app/Components/Modals/show-super-ageng-dialog/show-super-ageng-dialog.component';
@@ -142,18 +143,77 @@ export class SuperAgentsComponent implements OnInit {
     });
   }
 
+  /**
+   * Fonction pour bloquer un agent
+   * @param object represente le type d'utilisateur (Soit un client / Soit un agent)
+   * @param agent
+   */
+  bloquer_agent(object: string, agent: any) {
+    const block_agent_dialog = this.dialog.open(BlockAccountDialogComponent, {
+      data: {
+        object: object,
+        agent: agent
+      }
+    });
+
+    block_agent_dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.isProgressHidden = false;
+        // consommation de l'api
+        // au retour de la reponse
+        // on remet le isProgressHidden a true et
+        // en fonction du code de retour on defini le type d'alerte a afficher
+        this.alert_type = "info";
+        this.alert_message = "L'agent " + agent.agentName + "a été bloqué."
+        this.openAlert();
+      } else {
+
+      }
+    });
+  }
+
+  /**
+   * Fonction pour renitialiser le mot de passe d'un agent
+   * @param agent
+   */
+  reset_password(agent: any) {
+
+    const block_agent_dialog = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: "Renitialisation du mot de passe Agent",
+        message: "Voulez - vous vraiment renitialiser le mot de passe de " + agent.merchantName + " à 12345 ?"
+      }
+    });
+
+    block_agent_dialog.afterClosed().subscribe(result => {
+      if (result) {
+        // on affiche la barre de progression de la requete
+        this.isProgressHidden = false;
+
+        // consommation de l'api
+        // au retour de la reponse
+        // on remet le isProgressHidden a true et
+        // en fonction du code de retour on defini le type d'alerte a afficher
+        this.alert_type = "success";
+        this.alert_message = "Le mot de passe de l'agent " + agent.agentName + " été rénitialiser à 12345."
+        this.openAlert();
+      } else {
+
+      }
+    });
+  }
+
 
   ngOnInit(): void {
     this.AgentService.Agents("Merchants").subscribe(agents => {
       this.ELEMENT_DATA = agents.data;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Nom', 'Solde','banque', 'MerchantName' ,'N° IMEI','Date de création', 'Actions'];
       this.dataSource = new MatTableDataSource<Merchant>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none'
     });
 
-    this.displayedColumns = ['Noms', 'Solde','banque', 'Merchant', 'N° IMEI', 'Date de création', 'Actions'];
+    this.displayedColumns = ['Nom', 'Téléphone', 'Compte principal', 'Collecte de fonds', 'Paiement marchand', 'Commissions', 'MerchantName', 'Actions'];
     this.dataSource = new MatTableDataSource<Merchant>(this.ELEMENT_DATA);
   }
 

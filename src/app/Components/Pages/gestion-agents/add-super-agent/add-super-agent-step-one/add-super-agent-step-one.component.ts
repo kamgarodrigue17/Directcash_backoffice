@@ -112,7 +112,7 @@ export class AddSuperAgentStepOneComponent implements OnInit {
         })
 
         // et on retourne a la page de liste
-        this._router.navigateByUrl("/gestion-agents/super-agents");
+        // this._router.navigateByUrl("/gestion-agents/super-agents");
 
       }, ((err) => {
 

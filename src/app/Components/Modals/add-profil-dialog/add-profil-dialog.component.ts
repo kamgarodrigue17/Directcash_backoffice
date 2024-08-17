@@ -12,56 +12,53 @@ import { ValidationService } from 'src/app/services/validation/validation.servic
   styleUrls: ['./add-profil-dialog.component.css']
 })
 export class AddProfilDialogComponent implements OnInit {
-  habilitation:any;
-  option:any={
-    "userId":"",
-    "option":"",
-    "habilitation":""
-}
+  habilitation: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public fonctionalité:FonctionalitesService) { }
+  option: any = {
+    "userId": "",
+    "option": "",
+    "habilitation": ""
+  }
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public fonctionalité: FonctionalitesService) { }
 
   fonctionnalites: any[] = [];
- 
+
   ngOnInit(): void {
     this.habilitation = JSON.parse(`${localStorage.getItem("currentHabilitation")}`);
-
-
-
     this.fonctionalité.fonctionalites("*").subscribe(habi => {
-
       this.fonctionnalites = habi.data;
-   
     });
-    
 
     console.log('====================================');
     console.log(this.fonctionnalites[0]);
     console.log('====================================');
   }
+
+  /**
+   * Retourne l'option a ajouter
+   * @returns
+   */
   addOption(): void {
     this.habilitation = JSON.parse(`${localStorage.getItem("currentHabilitation")}`);
-    this.option.userId=localStorage.getItem("id");
+    this.option.userId = localStorage.getItem("id");
 
-    this.option.habilitation=`${this.habilitation.idhabilitation}` ;
-console.log(this.option)
+    this.option.habilitation = `${this.habilitation.idhabilitation}`;
 
-    this.fonctionalité.HabilitationAddOption(this.option).subscribe(hab => {
+    // on retourne l'option
+    return this.option;
+
+  }
+
+
+
+  /*addOption(){
+    this.datas.habilitation= `${this.datas.habilitation}`;
+    console.log(this.datas );
+    this.fonctionalité.HabilitationAddOption(this.datas).subscribe(hab => {
       console.log(hab);
-      
+
     });
-
-   }
-
-
-
-/*addOption(){
-  this.datas.habilitation= `${this.datas.habilitation}`;
-  console.log(this.datas );
-  this.fonctionalité.HabilitationAddOption(this.datas).subscribe(hab => {
-    console.log(hab);
-    
-  });
-}*/
+  }*/
 
 }

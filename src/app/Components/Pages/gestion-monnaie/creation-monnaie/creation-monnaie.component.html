@@ -1,5 +1,3 @@
-<app-base></app-base>
-
 <!-- Main -->
 <main id="main" class="main">
   <div class="pagetitle d-sm-flex justify-content-between align-items-center">
@@ -11,9 +9,18 @@
           <li class="breadcrumb-item">
             <a routerLink="#">Gestion de la monnaie</a>
           </li>
-          <li class="breadcrumb-item active">Émission de la monnaie</li>
+          <li class="breadcrumb-item active">Affectation de la monnaie</li>
         </ol>
       </nav>
+    </div>
+    <div>
+      <button
+        mat-raised-button
+        (click)="open_export_dialog()"
+        class="primary-dark-button text-center"
+      >
+        Exporter
+      </button>
     </div>
   </div>
   <!-- End Page Title -->
@@ -35,8 +42,7 @@
     <span>
       <strong
         ><i class="bi bi-info-circle-fill me-2 text-capitalize"></i>
-        {{ alert_type }} !</strong
-      >
+      </strong>
       {{ alert_message }}
     </span>
     <button
@@ -54,46 +60,92 @@
   <div class="container-fluid rounded bg-white mat-elevation-z2 mb-4 p-3">
     <span class="fs-6 fw-bold mb-3">Émission de la monnaie</span>
     <div class="row pt-3">
+      <!-- stock monnaie -->
       <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Stock monnaie (XAF)</mat-label>
-          <input matInput placeholder="0.00" ngModel readonly />
+          <input
+            matInput
+            placeholder="0.00"
+            [(ngModel)]="stockmonnaie"
+            [value]="stockmonnaie | numberFormatter"
+            ngModel
+            readonly
+          />
         </mat-form-field>
       </div>
+
+      <!-- stock DirectCash -->
       <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Solde Transfert DirectCash</mat-label>
+          <mat-label>Stock DirectCash (XAF)</mat-label>
+          <input
+            matInput
+            placeholder="0.00"
+            [(ngModel)]="stockdirectcash"
+            ngModel
+            readonly
+          />
+          <button
+            (click)="openStockDirectCashDialog()"
+            type="button"
+            mat-icon-button
+            matSuffix
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <!-- stock MyDirectCash -->
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Stock MyDirectCash (XAF)</mat-label>
+          <input
+            matInput
+            placeholder="0.00"
+            [(ngModel)]="stockmydirectcash"
+            ngModel
+            readonly
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Stock service / from maviance API -->
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Stock services</mat-label>
           <input matInput placeholder="0.00" ngModel readonly />
         </mat-form-field>
       </div>
-      <div class="col-md-4">
+      <!-- <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Solde Client MyDirectCash</mat-label>
           <input matInput placeholder="0.00" ngModel readonly />
         </mat-form-field>
-      </div>
-      <div class="col-md-4">
+      </div> -->
+      <!-- <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Stock MyDirectCash</mat-label>
           <input matInput placeholder="0.00" ngModel readonly />
         </mat-form-field>
-      </div>
-      <div class="col-md-4">
+      </div> -->
+      <!-- <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Solde Autres Services</mat-label>
           <input matInput placeholder="0.00" ngModel readonly />
         </mat-form-field>
-      </div>
-      <div class="col-md-4">
+      </div> -->
+      <!-- <div class="col-md-4">
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>Commissions générées</mat-label>
           <input matInput placeholder="0.00" ngModel readonly />
         </mat-form-field>
-      </div>
+      </div> -->
     </div>
   </div>
 
-  <div class="mat-elevation-z2 rounded">
+  <div class="mat-elevation-z2">
     <div class="container-fluid pt-3 pb-0 mb-0" style="background: white">
       <mat-form-field appearance="outline">
         <mat-label>Recherche</mat-label>
@@ -120,66 +172,28 @@
     </div>
 
     <table mat-table [dataSource]="dataSource">
-      <!-- Solde courant Column -->
-      <ng-container matColumnDef="Solde courant">
-        <th mat-header-cell *matHeaderCellDef>Solde courant</th>
-        <td mat-cell *matCellDef="let element">{{ element.soldeCourant }}</td>
+      <!-- stock Column -->
+      <ng-container matColumnDef="stock">
+        <th mat-header-cell *matHeaderCellDef>Stock</th>
+        <td mat-cell *matCellDef="let element">{{ element.stock }}</td>
       </ng-container>
 
-      <!-- Service Column -->
-      <ng-container matColumnDef="Service">
-        <th mat-header-cell *matHeaderCellDef>Service</th>
-        <td mat-cell *matCellDef="let element">{{ element.service }}</td>
+      <!-- montant Column -->
+      <ng-container matColumnDef="montant">
+        <th mat-header-cell *matHeaderCellDef>Montant (UVE)</th>
+        <td mat-cell *matCellDef="let element">{{ element.stock }}</td>
       </ng-container>
 
-      <!-- Plafond (XAF) Column -->
-      <ng-container matColumnDef="Plafond (XAF)">
-        <th mat-header-cell *matHeaderCellDef>Plafond (XAF)</th>
-        <td mat-cell *matCellDef="let element">{{ element.plafond }}</td>
+      <!-- affecteLe Column -->
+      <ng-container matColumnDef="affecteLe">
+        <th mat-header-cell *matHeaderCellDef>Affecté le</th>
+        <td mat-cell *matCellDef="let element">{{ element.affecteLe }}</td>
       </ng-container>
 
-      <!-- Limite courante Column -->
-      <ng-container matColumnDef="Limite courante (XAF)">
-        <th mat-header-cell *matHeaderCellDef>Limite courante (XAF)</th>
-        <td mat-cell *matCellDef="let element">{{ element.limiteCourante }}</td>
-      </ng-container>
-      <!-- Column -->
-      <ng-container matColumnDef="Partenaire">
-        <th mat-header-cell *matHeaderCellDef>Partenaire</th>
-        <td mat-cell *matCellDef="let element">{{ element.nomPartenaire }}</td>
-      </ng-container>
-
-      <!-- Dernière recharge Column -->
-      <ng-container matColumnDef="Dernière recharge">
-        <th mat-header-cell *matHeaderCellDef>Dernière recharge</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.dateRecharge }}
-        </td>
-      </ng-container>
-
-      <!-- Statut Column -->
-      <ng-container matColumnDef="Statut">
-        <th mat-header-cell *matHeaderCellDef>Statut</th>
-        <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
-      </ng-container>
-
-      <!-- Action Column -->
-      <ng-container matColumnDef="Action">
-        <th mat-header-cell *matHeaderCellDef style="width: 100px">Actions</th>
-        <td mat-cell *matCellDef="let element" style="width: 100px">
-          <ul class="list-group list-group-horizontal" style="max-width: 100px">
-            <li class="list-group-item border-0 pe-2 ps-0">
-              <button
-                (click)="open_edit_plafond_dialog(element)"
-                type="button"
-                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
-                style="background: #02c29c36"
-              >
-                <mat-icon style="color: #02c29c">edit</mat-icon>
-              </button>
-            </li>
-          </ul>
-        </td>
+      <!-- affectePar Column -->
+      <ng-container matColumnDef="affectePar">
+        <th mat-header-cell *matHeaderCellDef>Affecté par</th>
+        <td mat-cell *matCellDef="let element">{{ element.affectePar }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

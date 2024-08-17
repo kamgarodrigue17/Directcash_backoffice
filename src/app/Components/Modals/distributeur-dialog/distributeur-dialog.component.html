@@ -1,0 +1,328 @@
+<!-- Header -->
+<div
+  class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
+>
+  <span class="me-4" [hidden]="mode == 'show'">Editer un Distributeur</span>
+  <span class="me-4" [hidden]="mode == 'edit'"
+    ><strong>ID: </strong>{{ merchant.merchandID }}</span
+  >
+  <button mat-button [mat-dialog-close]="false" class="text-center">
+    <mat-icon class="me-0">close</mat-icon>
+  </button>
+</div>
+
+<!-- Content -->
+<mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
+  <form #form="ngForm">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input
+            required
+            matInput
+            placeholder="Nom"
+            name="nom"
+            ngModel
+            [(ngModel)]="merchant.merchantName"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Super Merchant</mat-label>
+          <mat-select
+            name="superMerchant"
+            [(ngModel)]="merchant.superMerchant"
+            [disabled]="mode == 'show'"
+          >
+            <mat-option
+              *ngFor="let merchant of merchants"
+              [value]="merchant.merchantID"
+              >{{ merchant.SuperMerchant }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° IMEI du téléphone</mat-label>
+          <input
+            required
+            matInput
+            placeholder="N° IMEI"
+            name="imei"
+            ngModel
+            [(ngModel)]="merchant.imei"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Operateur marketing</mat-label>
+          <input
+            required
+            matInput
+            placeholder="Operateur marketing"
+            name="operateurMarketing"
+            ngModel
+            [(ngModel)]="merchant.operateurMarketing"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Téléphone</mat-label>
+          <input
+            required
+            matInput
+            placeholder="Téléphone"
+            name="phone"
+            ngModel
+            [(ngModel)]="merchant.phone"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Solde (XAF)</mat-label>
+          <input
+            required
+            type="text"
+            matInput
+            placeholder="0.00"
+            name="balance"
+            ngModel
+            [(ngModel)]="merchant.balance"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Adresse Email</mat-label>
+          <input
+            required
+            type="email"
+            matInput
+            placeholder="exemple@gmail.con"
+            name="email"
+            ngModel
+            [(ngModel)]="merchant.email"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="col-md-6" appearance="outline">
+        <mat-label>Region</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Region"
+          name="region"
+          ngModel
+          [(ngModel)]="merchant.region"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+      <mat-form-field class="col-md-6" appearance="outline">
+        <mat-label>Dépatement</mat-label>
+        <mat-select
+          name="department"
+          [(ngModel)]="merchant.department"
+          [disabled]="mode == 'show'"
+        >
+          <mat-option value="1"> vale du nem</mat-option>
+          <mat-option value="2">nyon</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>District</mat-label>
+          <input
+            required
+            type="email"
+            matInput
+            placeholder="District"
+            name="district"
+            ngModel
+            [(ngModel)]="merchant.district"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° CNI</mat-label>
+          <input
+            required
+            matInput
+            placeholder="N° CNI"
+            name="cni"
+            ngModel
+            [(ngModel)]="merchant.cni"
+            [value]="merchant.cni"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Date de création</mat-label>
+          <input
+            required
+            matInput
+            [(ngModel)]="merchant.creerLe"
+            placeholder="0.00"
+            name="createdOn"
+            ngModel
+            readonly
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° contribuable</mat-label>
+          <input
+            required
+            matInput
+            placeholder="N° contribuable"
+            name="contribuable"
+            ngModel
+            [(ngModel)]="merchant.contribuable"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Collecte de fonds input -->
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Collecte de fonds (XAF)</mat-label>
+          <input
+            matInput
+            placeholder="Collecte de fonds"
+            name="collectedefonds"
+            [(ngModel)]="merchant.collectedefonds"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Paiement marchand input -->
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Paiement marchand (XAF)</mat-label>
+          <input
+            matInput
+            placeholder="Paiement marchand"
+            name="paiementmarchand"
+            [(ngModel)]="merchant.paiementmarchand"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Commissions input -->
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Commissions (XAF)</mat-label>
+          <input
+            matInput
+            placeholder="Commissions"
+            name="commissions"
+            [(ngModel)]="merchant.commissions"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <p class="text-primary">
+      <i class="bi bi-info-circle-fill me-2"> </i>
+      <span>Qui contacter en cas d'urgence</span>
+    </p>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Nom du contact</mat-label>
+          <input
+            required
+            matInput
+            placeholder="Nom du contact"
+            name="nomContact"
+            ngModel
+            [(ngModel)]="merchant.contactName"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° de téléphone du contact</mat-label>
+          <input
+            required
+            matInput
+            placeholder="N° de téléphone du contact"
+            name="phoneContact"
+            ngModel
+            [(ngModel)]="merchant.emergencyContact"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>N° CNI / NIU</mat-label>
+          <input
+            required
+            matInput
+            placeholder="N° CNI / NIU"
+            name="cniContact"
+            ngModel
+            [(ngModel)]="merchant.emergencyCni"
+            [readonly]="mode == 'show'"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<!-- Button action -->
+<mat-dialog-actions align="end" class="p-3 pt-1">
+  <button
+    class="primary-light-button"
+    mat-button
+    [mat-dialog-close]="merchant"
+    [hidden]="mode == 'show'"
+  >
+    Sauvegarder
+  </button>
+
+  <button class="primary-dark-button" mat-button [mat-dialog-close]="false">
+    Annuler
+  </button>
+</mat-dialog-actions>

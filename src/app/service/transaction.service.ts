@@ -16,4 +16,9 @@ getTransaction(id:string,trxType:string,startDate:string,forWho:string,endDate:s
   console.log(this.globalService.baseUrl+`/api/Operations/GetTransactions?id=${id}&trxType=${trxType}&forWho=${forWho}&startDate=${startDate}&endDate=${endDate}`);
   return this.http.get<any[]>(this.globalService.baseUrl+`/api/Operations/GetTransactions?id=${id}&trxType=${trxType}&forWho=${forWho}&startDate=${startDate}&endDate=${endDate}`);
 }
+// passer l id
+update(data:any): Observable<String> {
+    
+  return this.http.post<String>(this.globalService.baseUrl+"api/Monnetique/CreerMonnaie",data);
+}
 }

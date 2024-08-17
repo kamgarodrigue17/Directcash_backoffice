@@ -1,5 +1,3 @@
-<app-base></app-base>
-
 <!-- Main -->
 <main id="main" class="main">
   <div class="pagetitle d-sm-flex justify-content-between align-items-center">
@@ -17,11 +15,11 @@
     </div>
 
     <div>
-      <a routerLink="/gestion-agents/super-agents/add">
+      <!-- <a routerLink="/gestion-agents/super-agents/add">
         <button mat-raised-button class="primary-light-button text-center me-2">
           <mat-icon class="me-0">add</mat-icon>
         </button>
-      </a>
+      </a> -->
       <button
         mat-raised-button
         (click)="open_export_dialog()"
@@ -99,36 +97,40 @@
         <td mat-cell *matCellDef="let element">{{ element.merchantName }}</td>
       </ng-container>
 
-      <!-- Solde Column -->
-      <ng-container matColumnDef="Solde">
-        <th mat-header-cell *matHeaderCellDef>Solde (XAF)</th>
+      <!-- Téléphone Column -->
+      <ng-container matColumnDef="Téléphone">
+        <th mat-header-cell *matHeaderCellDef>Téléphone</th>
+        <td mat-cell *matCellDef="let element">{{ element.tel }}</td>
+      </ng-container>
+
+      <!-- Solde / Compte principal Column -->
+      <ng-container matColumnDef="Compte principal">
+        <th mat-header-cell *matHeaderCellDef>Compte principal (XAF)</th>
         <td mat-cell *matCellDef="let element">{{ element.balance }}</td>
       </ng-container>
- <!-- MerchantName Column -->
- <ng-container matColumnDef="banque">
-  <th mat-header-cell *matHeaderCellDef>Banque</th>
-  <td mat-cell *matCellDef="let element"></td>
-</ng-container>
-   
+
+      <!-- Collecte de fonds Column -->
+      <ng-container matColumnDef="Collecte de fonds">
+        <th mat-header-cell *matHeaderCellDef>Collecte de fonds (XAF)</th>
+        <td mat-cell *matCellDef="let element">0</td>
+      </ng-container>
+
+      <!-- Paiement marchand Column -->
+      <ng-container matColumnDef="Paiement marchand">
+        <th mat-header-cell *matHeaderCellDef>Paiement marchand (XAF)</th>
+        <td mat-cell *matCellDef="let element">0</td>
+      </ng-container>
+
+      <!-- Commissions Column -->
+      <ng-container matColumnDef="Commissions">
+        <th mat-header-cell *matHeaderCellDef>Commissions (XAF)</th>
+        <td mat-cell *matCellDef="let element">0</td>
+      </ng-container>
 
       <!-- MerchantName Column -->
       <ng-container matColumnDef="MerchantName">
         <th mat-header-cell *matHeaderCellDef>Merchant</th>
         <td mat-cell *matCellDef="let element">{{ element.creerPar }}</td>
-      </ng-container>
-
-      
-
-      <!-- Imei Column -->
-      <ng-container matColumnDef="N° IMEI">
-        <th mat-header-cell *matHeaderCellDef>N° IMEI</th>
-        <td mat-cell *matCellDef="let element">{{ element.imei }}</td>
-      </ng-container>
-
-      <!-- Date de création Column -->
-      <ng-container matColumnDef="Date de création">
-        <th mat-header-cell *matHeaderCellDef>Date de création</th>
-        <td mat-cell *matCellDef="let element">{{ element.createdOn }}</td>
       </ng-container>
 
       <!-- Actions Column -->
@@ -142,7 +144,8 @@
           style="width: 180px"
         >
           <ul class="list-group list-group-horizontal" style="max-width: 180px">
-            <li class="list-group-item border-0 pe-2 ps-0">
+            <!-- On ne doit pas pouvoir modifier -->
+            <li class="list-group-item border-0 pe-2 ps-0 d-none">
               <button
                 (click)="open_show_super_agent_dialog('edit', element)"
                 type="button"
@@ -152,7 +155,8 @@
                 <mat-icon style="color: #02c29c">edit</mat-icon>
               </button>
             </li>
-            <li class="list-group-item border-0 pe-0 ps-0">
+
+            <li class="list-group-item border-0 pe-2 ps-0">
               <button
                 (click)="open_show_super_agent_dialog('show', element)"
                 type="button"
@@ -160,6 +164,28 @@
                 style="background: #e6e6e6"
               >
                 <mat-icon style="color: #5e5e5e">visibility</mat-icon>
+              </button>
+            </li>
+
+            <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="bloquer_agent('agent', element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #f60d2b4d"
+              >
+                <mat-icon style="color: #f60d2b">person_remove</mat-icon>
+              </button>
+            </li>
+
+            <li class="list-group-item border-0 pe-0 ps-0">
+              <button
+                (click)="reset_password(element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #1d1d1d"
+              >
+                <mat-icon style="color: #fff">refresh</mat-icon>
               </button>
             </li>
           </ul>

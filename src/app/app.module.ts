@@ -24,6 +24,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTreeModule } from '@angular/material/tree';
+
 
 import { ConnexionComponent } from './Components/connexion/connexion.component';
 import { BaseComponent } from './Components/base/base.component';
@@ -101,6 +103,13 @@ import { RapportPaiementFactureCamwaterComponent } from './Components/Pages/rapp
 import { EntrepriseComponent } from './Components/Pages/administration/entreprise/entreprise.component';
 import { EntrepriseDialogComponent } from './Components/Modals/entreprise-dialog/entreprise-dialog.component';
 import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/requete-emission/requete-emission.component';
+import { RapportCollecteFondComponent } from './Components/Pages/rapport/rapport-collecte-fond/rapport-collecte-fond.component';
+import { StockDirectcashDialogComponent } from './Components/Modals/stock-directcash-dialog/stock-directcash-dialog.component';
+import { RechargeOnlineComponent } from './Components/Pages/gestion-clients/recharge-online/recharge-online.component';
+import { IsFirstimeDialogComponent } from './Components/Modals/is-firstime-dialog/is-firstime-dialog.component';
+import { DistributeurDialogComponent } from './Components/Modals/distributeur-dialog/distributeur-dialog.component';
+import { NumberFormatterPipe } from './number-formatter.pipe';
+import { CustomBadgeComponent } from './Components/custom-badge/custom-badge.component';
 
 @NgModule({
   declarations: [
@@ -177,7 +186,15 @@ import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/req
     EntrepriseComponent,
     EntrepriseDialogComponent,
     RequeteEmissionComponent,
-    RequeteEmissionDialogComponent
+    RequeteEmissionDialogComponent,
+    RapportCollecteFondComponent,
+    StockDirectcashDialogComponent,
+    RechargeOnlineComponent,
+    RequeteEmissionDialogComponent,
+    IsFirstimeDialogComponent,
+    DistributeurDialogComponent,
+    NumberFormatterPipe,
+    CustomBadgeComponent
   ],
   imports: [
     BrowserModule,
@@ -202,7 +219,8 @@ import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/req
     MatDatepickerModule,
     MatTabsModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTreeModule
   ],
   providers: [
     {

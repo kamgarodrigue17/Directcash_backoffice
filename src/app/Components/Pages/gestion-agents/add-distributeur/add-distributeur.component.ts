@@ -78,9 +78,8 @@ export class AddDistributeurComponent implements OnInit {
       "cniContact": this.myForm1.value.cniContact,
       "creerPar": localStorage.getItem('id'),
       "creerLe": ""
-
     };
-
+ 
     // on recupere les donnee du formulaire
     console.log(data);
 

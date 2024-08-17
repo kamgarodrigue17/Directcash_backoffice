@@ -124,14 +124,28 @@ export class GestionHabilitationComponent implements OnInit {
                   // on affiche le retour
                   console.log(res);
 
+                  // fermer l'alert si celui ci etait ouvert
+                  this.closeAlert();
+
                   // si le code de retour est 200, on met a jour la liste des habilitation
-                  if (res.code == 200) this.getHabilitationList();
+                  if (res.code == 200) {
+                    // mise ajour des habilitations
+                    this.getHabilitationList();
+
+                    // on notifie sur la vue
+                    this.alert_type = "success";
+                    this.alert_message = "Mise à jour effectuée avec succès";
+
+                  } else {
+                    // set error message
+                    this.alert_type = "danger";
+                    this.alert_message = res.data;
+
+                  }
 
                   // on notifie sur la vue
-                  this.closeAlert();
-                  this.alert_type = "info";
-                  this.alert_message = res.message;
                   this.openAlert();
+
                 });
 
               } catch (error) {
@@ -173,7 +187,7 @@ export class GestionHabilitationComponent implements OnInit {
   show_information(habilitation: any) {
     localStorage.setItem("currentHabilitation", JSON.stringify(habilitation));
     localStorage.setItem("fonctionnaliteList", JSON.stringify(this.Fonctionnalites));
-    this._router.navigateByUrl("/administration/gestion-habilitations/detail");
+    this._router.navigateByUrl("/home/administration/gestion-fonctionnalites/detail");
   }
 
   /**

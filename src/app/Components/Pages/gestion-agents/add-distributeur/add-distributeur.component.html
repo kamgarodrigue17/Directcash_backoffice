@@ -1,4 +1,4 @@
-<app-base></app-base>
+<!-- <app-base></app-base> -->
 <main id="main" class="main">
   <div class="pagetitle d-sm-flex justify-content-between align-items-center">
     <div>
@@ -18,7 +18,7 @@
     </div>
 
     <div>
-      <a routerLink="/gestion-agents/distributeurs" title="Annuler">
+      <a routerLink="/home/gestion-agents/distributeurs/liste" title="Annuler">
         <button mat-raised-button class="primary-light-button text-center me-2">
           <mat-icon class="me-0">close</mat-icon>
         </button>
@@ -34,14 +34,14 @@
   ></mat-progress-bar>
 
   <section class="section dashboard">
-    <mat-stepper [linear]="isLinear" #stepper class="mat-elevation-z2 rounded">
+    <mat-stepper [linear]="isLinear" #stepper class="mat-elevation-z2">
       <!-- step 1 -->
       <mat-step [stepControl]="myForm">
         <form [formGroup]="myForm" class="mt-4 text-center">
           <ng-template matStepLabel>INFORMATIONS PERSONNELLES</ng-template>
 
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>Nom</mat-label>
               <input
                 matInput
@@ -53,7 +53,7 @@
           </p>
 
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>N° CNI</mat-label>
               <input
                 matInput
@@ -65,7 +65,7 @@
           </p>
 
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>Téléphone</mat-label>
               <input
                 matInput
@@ -77,7 +77,7 @@
           </p>
 
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>N° IMEI</mat-label>
               <input
                 matInput
@@ -88,7 +88,7 @@
             </mat-form-field>
           </p>
           <p>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>Region</mat-label>
               <input
                 matInput
@@ -111,7 +111,7 @@
       <mat-step [stepControl]="myForm1" label="INFORMATIONS SOCIALES">
         <form [formGroup]="myForm1" class="mt-4 text-center">
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>Opérateur marketing</mat-label>
               <input
                 matInput
@@ -123,7 +123,7 @@
           </p>
 
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>Merchant</mat-label>
               <mat-select
                 name="pays"
@@ -141,7 +141,7 @@
           </p>
 
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>Email</mat-label>
               <input
                 matInput
@@ -153,7 +153,7 @@
           </p>
 
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>N° contribuable</mat-label>
               <input
                 matInput
@@ -173,7 +173,7 @@
           </p>
 
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>Nom du contact</mat-label>
               <input
                 required
@@ -184,7 +184,7 @@
             </mat-form-field>
           </p>
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>N° de téléphone du contact</mat-label>
               <input
                 required
@@ -196,7 +196,7 @@
           </p>
 
           <p class="mb-0">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label
                 >N° CNI / Numéro d'Identification Unique (NIU)</mat-label
               >

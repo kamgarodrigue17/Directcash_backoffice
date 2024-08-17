@@ -3,10 +3,10 @@
   class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
 >
   <span class="me-4" [hidden]="mode == 'edit' || mode == 'show'"
-    >Ajouter un admin</span
+    >Ajouter un utilisateur</span
   >
   <span class="me-4" [hidden]="mode == 'add' || mode == 'show'"
-    >Editer un admin</span
+    >Editer un utilisateur</span
   >
   <span class="me-4" [hidden]="mode == 'add' || mode == 'edit'"
     ><strong>ID: </strong>46456454</span
@@ -27,7 +27,7 @@
           <input
             required
             matInput
-            placeholder="Nom"
+            placeholder="Entrez votre nom"
             name="nom"
             ngModel
             [(ngModel)]="admin.userName"
@@ -37,68 +37,81 @@
       </div>
     </div>
 
-    <!-- Habilitation -->
+    <!-- Adresse Email -->
     <div class="col-md-12">
       <mat-form-field class="w-100" appearance="outline">
-        <mat-label>Habilitation</mat-label>
-        <mat-select
-          name="habilitation" ngModel [(ngModel)]="admin.habilitation"
-          [disabled]="mode == 'show'"
-        >
-        <mat-option *ngFor="let habilitation of habilitations" [value]="habilitation.idhabilitation">{{habilitation.label}}</mat-option>
-
-        </mat-select>
+        <mat-label>Adresse Email</mat-label>
+        <input
+          required
+          matInput
+          placeholder="exemple@gmail.com"
+          name="email"
+          ngModel
+          [(ngModel)]="admin.email"
+          [readonly]="mode == 'show'"
+        />
       </mat-form-field>
     </div>
 
     <div class="row">
-      <!-- Adresse Email -->
-      <div class="col-md-6">
+      <!-- Habilitation -->
+      <div class="col-md-12">
         <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Adresse Email</mat-label>
-          <input
-            required
-            matInput
-            placeholder="exemple@gmail.com"
-            name="email"
-            ngModel [(ngModel)]="admin.email"
-            [readonly]="mode == 'show'"
-          />
-        </mat-form-field>
-      </div>
-
-      <!-- Statut -->
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Statut</mat-label>
+          <mat-label>Habilitation</mat-label>
           <mat-select
-            value="1"
-            name="isActive" ngModel [(ngModel)]="admin.isActive"
+            name="habilitation"
+            placeholder="Selectionner une habilitation"
+            ngModel
+            [(ngModel)]="admin.habilitation"
             [disabled]="mode == 'show'"
           >
-            <mat-option value=1>Actif</mat-option>
-            <mat-option value=0>Inactif</mat-option>
+            <mat-option
+              *ngFor="let habilitation of habilitations"
+              [value]="habilitation.idhabilitation"
+              >{{ habilitation.label }}</mat-option
+            >
           </mat-select>
         </mat-form-field>
       </div>
     </div>
 
     <div class="row">
+      <!-- Statut -->
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Date de création</mat-label>
-          <input
-            required
-            type="text"
-            matInput
-            placeholder="jj/mm/yyyy"
-            name="creerLe"
-            ngModel [(ngModel)]="admin.creerLe"
-            disabled
-            readonly
-          />
+          <mat-label>Statut</mat-label>
+          <mat-select
+            value="1"
+            placeholder="Selectionner un statut"
+            name="isActive"
+            ngModel
+            [(ngModel)]="admin.isActive"
+            [disabled]="mode == 'show'"
+          >
+            <mat-option value="1">Actif</mat-option>
+            <mat-option value="0">Inactif</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
+
+      <!-- Sexe -->
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Sexe</mat-label>
+          <mat-select
+            name="sexe"
+            ngModel
+            [(ngModel)]="admin.sexe"
+            [disabled]="mode == 'show'"
+          >
+            <mat-option value="Masculin">Masculin</mat-option>
+            <mat-option value="Féminin">Féminin</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
       <!-- Telephone -->
       <div class="col-md-6">
         <mat-form-field class="w-100" appearance="outline">
@@ -108,7 +121,8 @@
             matInput
             placeholder="Téléphone"
             name="tel"
-            ngModel [(ngModel)]="admin.tel"
+            ngModel
+            [(ngModel)]="admin.tel"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -124,25 +138,12 @@
             matInput
             placeholder="Pays (ville, quartier)"
             name="adresse"
-            ngModel [(ngModel)]="admin.adresse"
+            ngModel
+            [(ngModel)]="admin.adresse"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
       </div>
-    </div>
-
-    <div class="row">
-
-
-
-      <!-- Sexe -->
-      <mat-form-field class="col-md-6" appearance="outline">
-        <mat-label>Sexe</mat-label>
-        <mat-select name="sexe" ngModel [(ngModel)]="admin.sexe" [disabled]="mode == 'show'">
-          <mat-option value="Masculin">Masculin</mat-option>
-          <mat-option value="Féminin">Féminin</mat-option>
-        </mat-select>
-      </mat-form-field>
     </div>
 
     <div class="row">
@@ -155,7 +156,8 @@
             matInput
             placeholder="Nom d'utilisateur"
             name="fullName"
-            ngModel [(ngModel)]="admin.fullName"
+            ngModel
+            [(ngModel)]="admin.fullName"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -166,9 +168,10 @@
           <input
             required
             matInput
-            placeholder="Nom"
+            placeholder="Mot de passe"
             name="defaultPassword"
-            ngModel [(ngModel)]="admin.defaultPassword"
+            ngModel
+            [(ngModel)]="admin.defaultPassword"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>

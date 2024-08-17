@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
+import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { ShowInformationRapportTransactionDirectcashComponent } from 'src/app/Components/Modals/show-information-rapport-transaction-directcash/show-information-rapport-transaction-directcash.component';
 import { Transaction } from 'src/app/modal/transaction';
 import { TransactionService } from 'src/app/service/transaction.service';
@@ -28,6 +29,20 @@ export class RapportTransfertArgentDirectcashComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  /**
+ * Fonction d'exportation du contenu du tableau sous plusieurs formats
+ * CSV, EXCEL, PDF
+ */
+  open_export_dialog() {
+    const export_dialog = this.dialog.open(ExportComponent, {
+      data: { selected_value: "", title: "des transactions DirectCash" }
+    });
+
+    export_dialog.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   // variable pour le loader du chargement des elements du tableau
   display = 'flex';
 
@@ -52,6 +67,7 @@ export class RapportTransfertArgentDirectcashComponent implements OnInit {
 
     });
   }
+
   ngOnInit(): void {
     this.trxService.getTransaction(localStorage.getItem('id')!, "xfert", "2033-6-1", "", this.global.formatDate(this.day)).subscribe(trx => {
 
@@ -76,11 +92,15 @@ export class RapportTransfertArgentDirectcashComponent implements OnInit {
         };
       });//trx.data.;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Agent', 'Montant (XAF)', 'Expediteur', 'Destinataire', 'Statut', 'Effectuée le', 'Action'];
+      // this.displayedColumns = ['Agent', 'Montant (XAF)', 'Expediteur', 'Destinataire', 'Statut', 'Effectuée le', 'Action'];
+
+
       this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
+    this.displayedColumns = ['expediteur', 'telephone', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+    this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
     // this.displayedColumns = ['Agent', 'Montant (XAF)', 'Statut', 'Effectuée le', 'N° Destinataire', 'Commission'];
     // this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);

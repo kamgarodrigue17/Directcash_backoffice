@@ -1,5 +1,3 @@
-<app-base></app-base>
-
 <!-- Main -->
 <main id="main" class="main">
   <div class="pagetitle d-sm-flex justify-content-between align-items-center">
@@ -20,7 +18,7 @@
       <div class="input-group me-2">
         <input
           type="date"
-          [(ngModel)] = 'filter_date_1'
+          [(ngModel)]="filter_date_1"
           class="form-control h-100"
           placeholder="Username"
           aria-label="Username"
@@ -28,15 +26,27 @@
         <span class="input-group-text h-100">à</span>
         <input
           type="date"
-          [(ngModel)] = 'filter_date_2'
+          [(ngModel)]="filter_date_2"
           class="form-control h-100"
           placeholder="Server"
           aria-label="Server"
         />
       </div>
 
-      <button (click)="filter_date()" mat-raised-button class="primary-light-button text-center me-2">
+      <button
+        (click)="filter_date()"
+        mat-raised-button
+        class="primary-light-button text-center me-2"
+      >
         <mat-icon class="me-0">filter_list</mat-icon>
+      </button>
+
+      <button
+        mat-raised-button
+        (click)="open_export_dialog()"
+        class="primary-dark-button text-center"
+      >
+        Exporter
       </button>
     </div>
   </div>
@@ -47,35 +57,19 @@
       <div class="row">
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Total transactions</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Transactions réussies</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Transactions échouées</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-md-3">
           <mat-label>Transactions en attente</mat-label>
-          <input
-            matInput
-            placeholder="0"
-            readonly
-            />
+          <input matInput placeholder="0" readonly />
         </mat-form-field>
       </div>
     </div>
@@ -98,47 +92,58 @@
     </div>
 
     <table mat-table [dataSource]="dataSource">
-
-      <!-- Code caisse Column -->
-      <ng-container matColumnDef="Agent">
-        <th mat-header-cell *matHeaderCellDef>Agent</th>
+      <!-- expediteur Column -->
+      <ng-container matColumnDef="expediteur">
+        <th mat-header-cell *matHeaderCellDef>Agent / Particulier</th>
         <td mat-cell *matCellDef="let element">{{ element.agent }}</td>
       </ng-container>
 
-      <!-- ID transaction Column -->
-      <ng-container matColumnDef="ID Transaction">
-        <th mat-header-cell *matHeaderCellDef>ID Transaction</th>
-        <td mat-cell *matCellDef="let element">{{ element.id_transaction }}</td>
-      </ng-container>
-
-      <!-- PTN Column -->
-      <ng-container matColumnDef="PTN">
-        <th mat-header-cell *matHeaderCellDef>PTN</th>
-        <td mat-cell *matCellDef="let element">{{ element.ptn }}</td>
+      <!-- telephone Column -->
+      <ng-container matColumnDef="telephone">
+        <th mat-header-cell *matHeaderCellDef>Téléphone</th>
+        <td mat-cell *matCellDef="let element">{{ element.telephone }}</td>
       </ng-container>
 
       <!-- Montant (XAF) Column -->
-      <ng-container matColumnDef="Montant (XAF)">
+      <ng-container matColumnDef="montant">
         <th mat-header-cell *matHeaderCellDef>Montant (XAF)</th>
         <td mat-cell *matCellDef="let element">{{ element.montant }}</td>
       </ng-container>
 
-      <!-- Frais (XAF) Column -->
-      <ng-container matColumnDef="Frais (XAF)">
-        <th mat-header-cell *matHeaderCellDef>Frais (XAF)</th>
-        <td mat-cell *matCellDef="let element">{{ element.frais }}</td>
+      <!-- N° Destinataire Column -->
+      <ng-container matColumnDef="destinataire">
+        <th mat-header-cell *matHeaderCellDef>N° Destinataire</th>
+        <td mat-cell *matCellDef="let element">{{ element.receiver }}</td>
       </ng-container>
 
-      <!-- Type d'opération Column -->
-      <ng-container matColumnDef="Type d'opération">
-        <th mat-header-cell *matHeaderCellDef>Type d'opération</th>
-        <td mat-cell *matCellDef="let element">{{ element.type_operation }}</td>
+      <!-- Tva Column -->
+      <ng-container matColumnDef="tva">
+        <th mat-header-cell *matHeaderCellDef>Montant TVA</th>
+        <td mat-cell *matCellDef="let element">{{ element.tva }}</td>
+      </ng-container>
+
+      <!-- tta Column -->
+      <ng-container matColumnDef="tta">
+        <th mat-header-cell *matHeaderCellDef>Montant TTA</th>
+        <td mat-cell *matCellDef="let element">{{ element.tta }}</td>
+      </ng-container>
+
+      <!-- Commission Column -->
+      <ng-container matColumnDef="commissions">
+        <th mat-header-cell *matHeaderCellDef>Commission</th>
+        <td mat-cell *matCellDef="let element">{{ element.commission }}</td>
       </ng-container>
 
       <!-- Effectuée le Column -->
-      <ng-container matColumnDef="Effectuée le">
+      <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef>Effectuée le</th>
-        <td mat-cell *matCellDef="let element">{{ element.created_at }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+      </ng-container>
+
+      <!-- Statut Column -->
+      <ng-container matColumnDef="statut">
+        <th mat-header-cell *matHeaderCellDef>Statut</th>
+        <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

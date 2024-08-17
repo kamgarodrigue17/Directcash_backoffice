@@ -1,6 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
+import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Transaction } from 'src/app/modal/transaction';
 import { TransactionService } from 'src/app/service/transaction.service';
 import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
@@ -17,7 +19,7 @@ export class RapportMomoOmComponent implements OnInit {
   dataSource!: MatTableDataSource<Transaction, MatTableDataSourcePaginator>
 
   day: Date = new Date();
-  constructor(public trxService: TransactionService, public global: GloabalServiceService) {
+  constructor(public trxService: TransactionService, public global: GloabalServiceService, private dialog: MatDialog) {
     console.log(global.formatDate(this.day))
   }
 
@@ -29,6 +31,20 @@ export class RapportMomoOmComponent implements OnInit {
 
   // variable pour le loader du chargement des elements du tableau
   display = 'flex';
+
+  /**
+  * Fonction d'exportation du contenu du tableau sous plusieurs formats
+  * CSV, EXCEL, PDF
+  */
+  open_export_dialog() {
+    const export_dialog = this.dialog.open(ExportComponent, {
+      data: { selected_value: "", title: "des transactions MOMO/OM" }
+    });
+
+    export_dialog.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -66,12 +82,13 @@ export class RapportMomoOmComponent implements OnInit {
         };
       });//trx.data.;
       console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
       this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
     });
-    this.displayedColumns = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
+    // this.displayedColumns = ['Expediteur', 'Destinataire', 'Montant (XAF)', 'Statut', 'Type de service', 'Effectuée le'];
+    this.displayedColumns = ['expediteur', 'telephone', 'montant', 'destinataire', 'tva', 'tta', 'commissions', 'date', 'statut'];
+
     this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
 
   }
