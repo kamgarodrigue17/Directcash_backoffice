@@ -74,7 +74,7 @@ export class RequeteEmissionService {
     return this.http.delete<any>(url);
   }
 
-  // =============================================================================
+  // ============================================================================= Affectation
 
   /**
    * Recuperer les info sur les stock de monnaie
@@ -83,5 +83,15 @@ export class RequeteEmissionService {
   getInfo(): Observable<any> {
     let url = this.globalService.baseUrl + "/api/Monnetique/getMonnaieInfo?admin=tabetsing";
     return this.http.get<any>(url);
+  }
+
+  /**
+   * affecter la monnaie sur DirectCash (et le reste ira automatiquement sur MyDirecCash)
+   * @param data 
+   * @returns 
+   */
+  affecterMonnaie(data: any): Observable<any> {
+    let url = this.globalService.baseUrl + "/api/Monnetique/affecterMonnaie";
+    return this.http.post<any>(url, data);
   }
 }

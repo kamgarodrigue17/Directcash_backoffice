@@ -16,6 +16,7 @@ export class StockDirectcashDialogComponent {
   ) { }
 
   montant = this.data.montant;
+  password!: string;
   stockmonnaie_restant = this.data.stockmonnaie_restant;
 
   // error variables
@@ -24,24 +25,19 @@ export class StockDirectcashDialogComponent {
   // Matcher
   matcher = new ErrorStateMatcher();
 
-  montantFormControl = new FormControl('', [Validators.required, Validators.min(0)]);
+  // form control
+  montantFormControl = new FormControl('', [Validators.required, Validators.min(500)]);
+  passwordFormControl = new FormControl('', [Validators.required]);
 
   valid() {
-    if (this.montantFormControl.valid) {
+    if (this.montantFormControl.valid && this.passwordFormControl.valid) {
       // update stock monnaie restant value
       let m = this.stockmonnaie_restant - this.montant;
-
-      // check if stock monnaie restant > 0
-      if (m >= 0) {
-        this.hasError = false;
-        let res = {
-          montant: this.montant,
-          stockmonnaie_restant: m
-        }
-        this.dialogRef.close(res);
-      } else {
-        this.hasError = true;
+      let res = {
+        montant: this.montant,
+        stockmonnaie_restant: m
       }
+      this.dialogRef.close(res);
     }
   }
 }
