@@ -206,6 +206,9 @@ export class DashboardComponent {
       // log error
       console.log('--- ERREUR GET ENCOURS MONNAIE ---');
       console.log(error);
+
+      // stop loading
+      this.isEncourLoading = false;
     }
   }
 
@@ -216,6 +219,7 @@ export class DashboardComponent {
     this.getMyDirectCashUser();
     this.getDirectCashUser();
     this.getHabilitation();
+    this.getEncoursMonnaie();
   }
 
 }
