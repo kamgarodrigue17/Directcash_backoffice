@@ -25,7 +25,7 @@
             [card_value]="admin_user.toString()"
             card_icon_class="bi-person-fill"
             card_icon_color="text-dark"
-            class="col-xxl-4 col-md-4"
+            class="col-xxl-3 col-md-4"
           />
 
           <!-- Utilisateurs MyDirectCash Card -->
@@ -35,7 +35,7 @@
             [card_value]="myDirectCash_user.toString()"
             card_icon_class="bi-person-fill"
             card_icon_color="text-orange"
-            class="col-xxl-4 col-md-4"
+            class="col-xxl-3 col-md-4"
           />
 
           <!-- Utilisateurs DirectCash Card -->
@@ -45,7 +45,17 @@
             [card_value]="directCash_user.toString()"
             card_icon_class="bi-person-fill"
             card_icon_color="text-primary"
-            class="col-xxl-4 col-md-4"
+            class="col-xxl-3 col-md-4"
+          />
+
+          <!-- Profil Card -->
+          <app-basic-card
+            card_title="Profils"
+            [isloading]="isProfilLoading"
+            [card_value]="nbr_habilitation.toString()"
+            card_icon_class="bi-person-fill"
+            card_icon_color="text-danger"
+            class="col-xxl-3 col-md-4"
           />
 
           <!-- lister les profils de la bd ----------------------------------------->

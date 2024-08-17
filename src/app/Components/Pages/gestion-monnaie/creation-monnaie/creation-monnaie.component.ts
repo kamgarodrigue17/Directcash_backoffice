@@ -58,7 +58,7 @@ export class CreationMonnaieComponent implements OnInit {
    */
 
   // solde stockmonnaie restant
-  stockmonnaie_restant = 1_000_000;
+  stockmonnaie_restant = 0;
 
   // stock DirectCash
   stockdirectcash = 0; // doit etre >= stockmonnaie
@@ -297,6 +297,11 @@ export class CreationMonnaieComponent implements OnInit {
         this.stockdirectcash = res.data.soldeDirectcash;
         this.stockmydirectcash = res.data.soldeMd;
         this.stockmonnaie_restant = res.data.soldeFournisseur;
+        this.stockmonnaie = this.stockmonnaie_restant;
+
+        // log res
+        console.log(res);
+
       })
     } catch (error) {
       this.matSnackBar.open("Une erreur est survenue");
