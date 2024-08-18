@@ -54,7 +54,8 @@ export class DashboardComponent {
         let admins: any[] = res.data;
 
         // get admin number
-        this.admin_user = admins.length;
+        if (admins.length)
+          this.admin_user = admins.length;
 
         // stop loading
         this.isAdminUserLoading = false;
@@ -85,7 +86,8 @@ export class DashboardComponent {
         let myDirectacshUser: any[] = res.data;
 
         // get mydirectcash user number
-        this.myDirectCash_user = myDirectacshUser.length;
+        if (myDirectacshUser.length)
+          this.myDirectCash_user = myDirectacshUser.length;
 
         // stop loading
         this.isMyDirectcashUserLoading = false;
@@ -117,7 +119,9 @@ export class DashboardComponent {
 
         // get data
         let agents: any[] = res.data;
-        this.directCash_user = agents.length;
+
+        if (agents.length)
+          this.directCash_user = agents.length;
       });
     } catch (error) {
       // stop loading
@@ -145,7 +149,8 @@ export class DashboardComponent {
         let profils: any[] = res.data;
 
         // set number
-        this.nbr_habilitation = profils.length;
+        if (profils.length)
+          this.nbr_habilitation = profils.length;
       });
     } catch (error) {
 
@@ -197,10 +202,17 @@ export class DashboardComponent {
         // stop loading
         this.isEncourLoading = false;
 
+        console.log(res);
+
         // assign values
-        this.stock_directcash = res.data.soldeDirectcash;
-        this.stock_mydirectcash = res.data.soldeMd;
-        this.stock_monnaie = res.data.soldeFournisseur;
+        if (res.data.soldeDirectcash != null)
+          this.stock_directcash = res.data.soldeDirectcash;
+
+        if (res.data.soldeMd != null)
+          this.stock_mydirectcash = res.data.soldeMd;
+
+        if (res.data.soldeFournisseur != null)
+          this.stock_monnaie = res.data.soldeFournisseur;
       })
     } catch (error) {
       // log error

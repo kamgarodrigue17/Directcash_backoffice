@@ -2,7 +2,9 @@
 <div
   class="fw-bold text-start d-flex pt-2 pb-2 ps-3 pe-3 justify-content-between align-items-center"
 >
-  <span class="me-4"><strong>ID Transaction: </strong>46456454TR</span>
+  <span class="me-4"
+    ><strong>ID Transaction: </strong>{{ element.transactionID }}</span
+  >
   <button mat-button [mat-dialog-close]="false" class="text-center">
     <mat-icon class="me-0">close</mat-icon>
   </button>
@@ -10,47 +12,64 @@
 
 <!-- Content -->
 <mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
-  <form #trans_mydirectcash_form="ngForm" >
-    <div class="row">
-      <div class="col-md-12">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Client</mat-label>
-          <input matInput placeholder="Client" readonly/>
-        </mat-form-field>
-      </div>
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Client ID</mat-label>
+        <input
+          matInput
+          [(ngModel)]="element.agentID"
+          placeholder="Client"
+          readonly
+        />
+      </mat-form-field>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Montant (XAF)</mat-label>
-          <input matInput placeholder="0.00" readonly/>
-        </mat-form-field>
-      </div>
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Commission</mat-label>
-          <input matInput placeholder="Commission" readonly/>
-        </mat-form-field>
-      </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Montant (XAF)</mat-label>
+        <input
+          matInput
+          [(ngModel)]="element.montant"
+          placeholder="0.00"
+          readonly
+        />
+      </mat-form-field>
     </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Date & heure de l'opération</mat-label>
-          <input matInput placeholder="Date & heure de l'opération" readonly/>
-        </mat-form-field>
-      </div>
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Statut</mat-label>
-          <input matInput placeholder="Statut" readonly/>
-        </mat-form-field>
-      </div>
+    <div class="col-md-6">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Commission</mat-label>
+        <input
+          matInput
+          [(ngModel)]="element.commission"
+          placeholder="Commission"
+          readonly
+        />
+      </mat-form-field>
     </div>
-  </form>
+  </div>
 
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Date & heure de l'opération</mat-label>
+        <input matInput placeholder="Date & heure de l'opération" readonly />
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Statut</mat-label>
+        <input
+          matInput
+          [(ngModel)]="element.statut"
+          placeholder="Statut"
+          readonly
+        />
+      </mat-form-field>
+    </div>
+  </div>
 </mat-dialog-content>
 
 <!-- Button action -->

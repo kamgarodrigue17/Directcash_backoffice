@@ -188,12 +188,12 @@ export class CrediterSuperAgentComponent implements OnInit {
         try {
 
           // on deefinit corps de la requete
-          let data: any = {
+          let data = {
             "merchantId": `${requete.merchant}`,
             "amount": `${requete.amount}`,
-            "createBy": localStorage.getItem("id"),
+            "createBy": `${localStorage.getItem("id")}`,
             "password": "12345",
-            "status": requete.statut != "En attente" ? "0" : "1",
+            "status": 1,
             "cautionId": `${requete.id}`
           }
           console.log(data)
@@ -233,13 +233,16 @@ export class CrediterSuperAgentComponent implements OnInit {
               case 200:
                 this.alert_type = 'success';
                 this.alert_message = "Requête validée avec succès.";
+
+                // refresh data list
+                this.getRequeteApproList();
                 break;
-                
+
               default:
-                this.alert_type = 'info'
+                this.alert_type = 'info';
+                this.alert_message = res.data;
                 break;
             }
-            this.alert_message = res.data;
             this.openAlert();
           });
         } catch (error) {

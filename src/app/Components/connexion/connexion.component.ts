@@ -70,6 +70,7 @@ export class ConnexionComponent implements OnInit {
       };
 
       this.isClose = false;
+      this.authService.Login(this.myForm.value).subscribe(res => {})
       let request = this.authService.Login(this.myForm.value).subscribe(user => {
 
         this.isClose = true;

@@ -11,22 +11,23 @@ import { AuthServiceService } from '../services/auth-service.service';
 @Injectable()
 export class HttpInterceptore implements HttpInterceptor {
 
-  constructor(public global:AuthServiceService) {
-    this.global.refreshToken();
+  constructor(public global: AuthServiceService) {
+    // this.global.refreshToken();
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-//console.log(localStorage.getItem("token"))
-  const authRequest = request.clone({
-    setHeaders: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`
-    }
+    //console.log(localStorage.getItem("token"))
+    const authRequest = request.clone({
+      setHeaders: {
+        // 'Content-Type': 'application/json',
+        // 'Access-Control-Allow-Origin': 'http://localhost:4200',
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    });
 
-  });
-    
 
-    
-    return  next.handle(authRequest);
+
+    return next.handle(authRequest);
   }
 }
