@@ -9,20 +9,21 @@ import { GloabalServiceService } from '../gloabal-service.service';
 })
 export class AgentServiceService {
 
-  constructor(private http: HttpClient, private globalService:GloabalServiceService) { }
+  constructor(private http: HttpClient, private globalService: GloabalServiceService) { }
 
-  Agents(listid:string): Observable<any> {
-  
-    return this.http.get<any>(this.globalService.baseUrl+"/api/Users/GetReportList?id=tabetsing&listeId="+listid);
+  Agents(listid: string): Observable<any> {
+
+    return this.http.get<any>(this.globalService.baseUrl + "/api/Users/GetReportList?id=tabetsing&listeId=" + listid);
   }
   // passer l id
-  update(data:Agent): Observable<String> {
-    
-    return this.http.post<String>(this.globalService.baseUrl+"/api/Users/AddEditAgent",data);
+  update(data: Agent): Observable<String> {
+    // hola
+
+    return this.http.post<String>(this.globalService.baseUrl + "/api/Users/AddEditAgent", data);
   }
   //id=null car l api  est generique
-  create(data:Agent): Observable<String> {
-    
-    return this.http.post<String>(this.globalService.baseUrl+"/api/Users/AddEditAgent",data);
+  create(data: Agent): Observable<String> {
+
+    return this.http.post<String>(this.globalService.baseUrl + "/api/Users/AddEditAgent", data);
   }
 }

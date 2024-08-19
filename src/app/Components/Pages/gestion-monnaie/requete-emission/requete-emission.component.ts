@@ -8,6 +8,7 @@ import { catchError, throwError } from 'rxjs';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { RequeteEmissionDialogComponent } from 'src/app/Components/Modals/requete-emission-dialog/requete-emission-dialog.component';
 import { RequeteEmission } from 'src/app/modal/requete-emission';
+import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
 import { MessageService } from 'src/app/services/message/message.service';
 import { RequeteEmissionService } from 'src/app/services/requete-emission/requete-emission.service';
 
@@ -30,7 +31,8 @@ export class RequeteEmissionComponent {
     private _dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private _requeteEmissionService: RequeteEmissionService,
-    private _messageService: MessageService
+    private _messageService: MessageService,
+    private _globalService:GloabalServiceService
   ) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -248,14 +250,14 @@ export class RequeteEmissionComponent {
             "reference": `${requete.reference}`,
             "jour": `${requete.jour}`,
             "amount": `${requete.amount}`,
-            "fournisseur": "",
+            "fournisseur": ``,
             "statut": "1",
             "s": 1,
             "pass": `12345`,
             "creerPar": `${requete.creerPar}`,
             "creerLe": `${requete.creerLe}`,
             "traiterPar": `${localStorage.getItem("id")}`,
-            "traiterLe": new Date().toISOString()
+            "traiterLe": `${this._globalService.formatDate(new Date)}`
           };
 
           // on active la barre de progression de la requete
