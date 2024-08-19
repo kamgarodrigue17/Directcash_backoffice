@@ -1,15 +1,18 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { DistributeurDialogComponent } from 'src/app/Components/Modals/distributeur-dialog/distributeur-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Agent } from 'src/app/modal/agent';
 import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
+import { MessageService } from 'src/app/services/message/message.service';
 
 @Component({
   selector: 'app-distributeur',
@@ -18,12 +21,18 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
 })
 export class DistributeurComponent implements OnInit {
 
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = ['Nom', 'Téléphone', 'Compte principal', 'Collecte de fonds', 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
   ELEMENT_DATA: Agent[] = [
   ];
   dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, private router: Router, public AgentService: AgentServiceService, private _snackBar: MatSnackBar) {
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    public AgentService: AgentServiceService,
+    private _snackBar: MatSnackBar,
+    private _messageService: MessageService
+  ) {
 
   }
 
@@ -155,17 +164,78 @@ export class DistributeurComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.AgentService.Agents("Distributors").subscribe(distributeurs => {
-      this.ELEMENT_DATA = distributeurs.data;
-      console.log(this.ELEMENT_DATA);
-      this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
-      this.dataSource.paginator = this.paginator;
-      this.display = 'none'
-    });
+  /**
+   * Recuperer liste des distributeurs
+   */
+  getDistributeurs() {
 
-    this.displayedColumns = ['Nom', 'Téléphone', 'Compte principal', 'Collecte de fonds', 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
-    this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+    try {
+      // start loader
+      this.isProgressHidden = false;
+
+      // send request
+      this.AgentService.Agents("Distributors").pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.isProgressHidden = true;
+          if (error.status !== 200) {
+            this.alert_type = 'danger';
+
+            this.alert_message = this._messageService.getHttpMessage(error.status);
+
+            this.closeAlert();
+            this.openAlert();
+
+            // log response
+            console.log(error.message);
+          }
+          return throwError(error);
+        })
+      ).subscribe(res => {
+
+        // stop loading
+        this.isProgressHidden = true;
+
+        // get data
+        this.ELEMENT_DATA = res.data;
+
+        // log data
+        console.log(this.ELEMENT_DATA);
+
+        // populate table
+        this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+
+        // set paginator
+        this.dataSource.paginator = this.paginator;
+
+        // //
+        // this.display = 'none'
+      });
+
+      // this.displayedColumns = ['Nom', 'Téléphone', 'Compte principal', 'Collecte de fonds', 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
+      // this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+
+    } catch (error) {
+      // stop loader
+      this.isProgressHidden = true;
+
+      // log response
+      console.log('--- ERREUR ---');
+      console.log(error);
+
+      // show error
+      this.alert_message = "Une erreur est survenue.";
+      this.alert_type = "danger";
+      this.closeAlert();
+      this.openAlert();
+    }
+
+  }
+
+  ngOnInit() {
+
+    // get list distributeur
+    this.getDistributeurs();
+
   }
 
 }

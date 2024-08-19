@@ -8,6 +8,15 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ShowTransMydirectcashDialogComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any){}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+
+  }
+
+  element = this.data.element;
+
+  ngOnInit() {
+    console.log(this.element);
+
+  }
 
 }

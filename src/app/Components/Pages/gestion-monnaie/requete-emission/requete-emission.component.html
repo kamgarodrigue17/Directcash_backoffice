@@ -80,44 +80,56 @@
     <table mat-table [dataSource]="dataSource">
       <!-- Ref Column -->
       <ng-container matColumnDef="ref">
-        <th mat-header-cell *matHeaderCellDef>Montant (XAF)</th>
+        <th mat-header-cell *matHeaderCellDef>Référence</th>
         <td mat-cell *matCellDef="let element">{{ element.reference }}</td>
       </ng-container>
 
       <!-- Montant (XAF) Column -->
       <ng-container matColumnDef="amount">
         <th mat-header-cell *matHeaderCellDef>Montant (XAF)</th>
-        <td mat-cell *matCellDef="let element">{{ element.montant }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
       </ng-container>
 
       <!-- Statut Column -->
       <ng-container matColumnDef="statut">
         <th mat-header-cell *matHeaderCellDef>Statut</th>
-        <td mat-cell *matCellDef="let element">{{ element.statut }}</td>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="text-{{
+            element.statut == 'Valider'
+              ? 'success'
+              : element.statut == 'En attente'
+              ? 'primary'
+              : 'danger'
+          }} fw-semibold"
+        >
+          {{ element.statut }}
+        </td>
       </ng-container>
 
       <!-- Crée par Column -->
       <ng-container matColumnDef="created_by">
         <th mat-header-cell *matHeaderCellDef>Crée par</th>
-        <td mat-cell *matCellDef="let element">{{ element.id_creer_pa }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.creerPar }}</td>
       </ng-container>
 
       <!-- Crée le Column -->
       <ng-container matColumnDef="created_at">
         <th mat-header-cell *matHeaderCellDef>Crée le</th>
-        <td mat-cell *matCellDef="let element">{{ element.cree_le }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.creerLe }}</td>
       </ng-container>
 
       <!-- Traité par Column -->
       <ng-container matColumnDef="treated_by">
         <th mat-header-cell *matHeaderCellDef>Traité par</th>
-        <td mat-cell *matCellDef="let element">{{ element.id_traiter_par }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.traiterPar }}</td>
       </ng-container>
 
       <!-- Traité le Column -->
       <ng-container matColumnDef="treated_at">
         <th mat-header-cell *matHeaderCellDef>Traité le</th>
-        <td mat-cell *matCellDef="let element">{{ element.traiter_le }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.traiterLe }}</td>
       </ng-container>
 
       <!-- action Column -->

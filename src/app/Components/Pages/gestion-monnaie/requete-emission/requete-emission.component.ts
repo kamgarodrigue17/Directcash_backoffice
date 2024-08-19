@@ -219,7 +219,7 @@ export class RequeteEmissionComponent {
     // check if is same user
     if (requete.creerPar == localStorage.getItem("id")) {
       // set alert
-      this.alert_message = "Vous ne pouvez pas valider une requête que vous avez intiée."
+      this.alert_message = "Vous ne pouvez pas valider une requête que vous avez intié."
       this.alert_type = "warning";
       this.closeAlert();
       this.openAlert();
