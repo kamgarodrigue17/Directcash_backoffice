@@ -32,7 +32,7 @@ export class RequeteEmissionComponent {
     private _snackBar: MatSnackBar,
     private _requeteEmissionService: RequeteEmissionService,
     private _messageService: MessageService,
-    private _globalService:GloabalServiceService
+    private _globalService: GloabalServiceService
   ) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -115,14 +115,14 @@ export class RequeteEmissionComponent {
           "reference": `${data.reference}`,
           "jour": `${data.jour}`,
           "amount": `${data.amount}`,
-          "fournisseur": "",
-          "statut": "0",
+          "fournisseur": ``,
+          "statut": 1,
           "s": 1,
           "pass": `${data.pass}`,
           "creerPar": `${data.creerPar}`,
           "creerLe": `${data.creerLe}`,
-          "traiterPar": " ",
-          "traiterLe": " "
+          "traiterPar": ``,
+          "traiterLe": ``
         };
 
         // log data
@@ -205,7 +205,7 @@ export class RequeteEmissionComponent {
   valider_requete(requete: any) {
     // log data
     console.log("--- requete a valider ---");
-    console.log(requete);
+    // console.log(requete);
 
     // check if request is pending (Dans le cas ou il est quand meme arriver ici hahaha)
     if (requete.statut != "En attente") {
@@ -247,18 +247,19 @@ export class RequeteEmissionComponent {
           // set data request
           let data_request = {
             "id": `${requete.id}`,
-            "reference": `${requete.reference}`,
-            "jour": `${requete.jour}`,
-            "amount": `${requete.amount}`,
-            "fournisseur": ``,
-            "statut": "1",
+            // "reference": `${requete.reference}`,
+            // "jour": `2020-8-19`,
+            // "amount": `${requete.amount}`,
+            // "fournisseur": ``,
+            // "statut": "1",
             "s": 1,
             "pass": `12345`,
-            "creerPar": `${requete.creerPar}`,
-            "creerLe": `${requete.creerLe}`,
-            "traiterPar": `${localStorage.getItem("id")}`,
-            "traiterLe": `${this._globalService.formatDate(new Date)}`
+            // "creerPar": `${requete.creerPar}`,
+            // "creerLe": `${requete.creerLe}`,
+            // "traiterPar": `${localStorage.getItem("id")}`,
+            // "traiterLe": `2020-8-19`
           };
+          console.log(data_request);
 
           // on active la barre de progression de la requete
           this.isProgressHidden = false;
