@@ -8,9 +8,12 @@ import { catchError, throwError } from 'rxjs';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { RequeteEmissionDialogComponent } from 'src/app/Components/Modals/requete-emission-dialog/requete-emission-dialog.component';
 import { RequeteEmission } from 'src/app/modal/requete-emission';
+import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
+import { DatetimeService } from 'src/app/services-v2/datetime/datetime.service';
+import { LoaderService } from 'src/app/services-v2/loader/loader.service';
+import { RequeteEmissionService } from 'src/app/services-v2/requete-emission/requete-emission.service';
 import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
 import { MessageService } from 'src/app/services/message/message.service';
-import { RequeteEmissionService } from 'src/app/services/requete-emission/requete-emission.service';
 
 @Component({
   selector: 'app-requete-emission',
@@ -32,7 +35,10 @@ export class RequeteEmissionComponent {
     private _snackBar: MatSnackBar,
     private _requeteEmissionService: RequeteEmissionService,
     private _messageService: MessageService,
-    private _globalService: GloabalServiceService
+    private _globalService: GloabalServiceService,
+    protected _loaderService: LoaderService,
+    protected _datetimeService: DatetimeService,
+    private _userService: AdminService
   ) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -57,6 +63,7 @@ export class RequeteEmissionComponent {
   }
 
   openAlert() {
+    this.closeAlert();
     const alert = document.getElementById("alert");
     alert?.classList.remove("d-none");
   }
@@ -109,24 +116,16 @@ export class RequeteEmissionComponent {
       if (result != false) {
 
         // on definit le corps de la requete
-        let data: RequeteEmission = result;
+        let data: any = result;
         let data_request = {
-          "id": `${data.id}`,
           "reference": `${data.reference}`,
           "jour": `${data.jour}`,
           "amount": `${data.amount}`,
-          "fournisseur": ``,
-          "statut": 1,
-          "s": 1,
-          "pass": `${data.pass}`,
-          "creerPar": `${data.creerPar}`,
-          "creerLe": `${data.creerLe}`,
-          "traiterPar": ``,
-          "traiterLe": ``
+          "creerPar": `${data.creerPar}`
         };
 
         // log data
-        console.log('--- DATA ---');
+        console.log('--- REQUETE A INITIER ---');
         console.log(data_request);
 
         if (mode == 'add') {
@@ -163,10 +162,9 @@ export class RequeteEmissionComponent {
                 case 200:
                   this.alert_type = 'success'
                   this.alert_message = "La requête a été intiée avec succès.";
-                  break;
 
-                case 400:
-                  this.alert_type = 'danger'
+                  // refresh data
+                  this.getRequeteList();
                   break;
 
                 default:
@@ -199,16 +197,16 @@ export class RequeteEmissionComponent {
   }
 
   /**
-   * Valider une requete
+   * Valider une requete d'emission
    * @param requete
    */
   valider_requete(requete: any) {
     // log data
     console.log("--- requete a valider ---");
-    // console.log(requete);
+    console.log(requete);
 
     // check if request is pending (Dans le cas ou il est quand meme arriver ici hahaha)
-    if (requete.statut != "En attente") {
+    if (requete.Statut != "En attente") {
       // set alert message
       this.alert_message = " Cette requête a déjà été traité."
       this.alert_type = "info";
@@ -219,7 +217,7 @@ export class RequeteEmissionComponent {
     }
 
     // check if is same user
-    if (requete.creerPar == localStorage.getItem("id")) {
+    if (requete.creerPar == this._userService.getLocalUser().data.UserName) {
       // set alert
       this.alert_message = "Vous ne pouvez pas valider une requête que vous avez intié."
       this.alert_type = "warning";
@@ -235,7 +233,7 @@ export class RequeteEmissionComponent {
     // open confirmation dialog
     let confirmation_dialog = this._dialog.open(ConfirmationDialogComponent, {
       data: {
-        title: "Requête du " + new Date(requete.creerLe),
+        title: "Requête du " + this._datetimeService.formatDate(requete.creerLe).date,
         message: "Valider l'émission de " + amount.toLocaleString('en-US') + " XAF ?"
       }
     });
@@ -246,18 +244,11 @@ export class RequeteEmissionComponent {
 
           // set data request
           let data_request = {
-            "id": `${requete.id}`,
-            // "reference": `${requete.reference}`,
-            // "jour": `2020-8-19`,
-            // "amount": `${requete.amount}`,
-            // "fournisseur": ``,
-            // "statut": "1",
-            "s": 1,
-            "pass": `12345`,
-            // "creerPar": `${requete.creerPar}`,
-            // "creerLe": `${requete.creerLe}`,
-            // "traiterPar": `${localStorage.getItem("id")}`,
-            // "traiterLe": `2020-8-19`
+            "vId": `${requete.id}`,
+            "vPass": "12345",
+            "vAmount": amount,
+            "vWho": `${this._userService.getLocalUser().data.UserName}`,
+            "vStatus": 1
           };
           console.log(data_request);
 
@@ -292,11 +283,10 @@ export class RequeteEmissionComponent {
             switch (+res_code) {
               case 200:
                 this.alert_type = 'success'
-                this.alert_message = "La requête a été validée avec succès. Vous venez d'emettre " + amount.toLocaleString("en-US") + "Dans le système";
-                break;
+                this.alert_message = "La requête a été validée avec succès. Vous venez d'emettre " + amount.toLocaleString("en-US") + " Dans le système";
 
-              case 400:
-                this.alert_type = 'danger'
+                // refresh list
+                this.getRequeteList();
                 break;
 
               default:
@@ -352,26 +342,26 @@ export class RequeteEmissionComponent {
           this.isProgressHidden = false;
 
           // on envoi la requete d'annulation
-          this._requeteEmissionService.updateStatut(Number.parseInt(requete.id), statut).subscribe(res => {
+          // this._requeteEmissionService.updateStatut(Number.parseInt(requete.id), statut).subscribe(res => {
 
-            // au retour de la reponse, on desactive la barre de progression
-            this.isProgressHidden = true;
+          //   // au retour de la reponse, on desactive la barre de progression
+          //   this.isProgressHidden = true;
 
-            // on definit le type d'alerte  afficher en fonction du code de retour
-            // let res_code = res.code;
-            // switch (+res_code) {
-            //   case 400:
-            //     this.alert_type = 'warning'
-            //     break;
-            //   default:
-            //     this.alert_type = 'info'
-            //     break;
-            // }
-            // this.alert_message = res.data;
-            this.alert_message = "La requete d'émission a été efectuée avec succès.";
-            this.alert_type = "success";
-            this.openAlert();
-          });
+          //   // on definit le type d'alerte  afficher en fonction du code de retour
+          //   // let res_code = res.code;
+          //   // switch (+res_code) {
+          //   //   case 400:
+          //   //     this.alert_type = 'warning'
+          //   //     break;
+          //   //   default:
+          //   //     this.alert_type = 'info'
+          //   //     break;
+          //   // }
+          //   // this.alert_message = res.data;
+          //   this.alert_message = "La requete d'émission a été efectuée avec succès.";
+          //   this.alert_type = "success";
+          //   this.openAlert();
+          // });
         } else { }
       });
 

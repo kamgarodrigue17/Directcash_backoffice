@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,8 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  displayedname: any = " ";
-  ngOnInit(): void {
-    this.displayedname = localStorage.getItem("id");
+
+  constructor(
+    protected _userService: AdminService
+  ) { }
+
+  user: any;
+
+  /**
+   * Get connected user
+   */
+  getUser() {
+    this.user = this._userService.getLocalUser().data;
   }
+
+  ngOnInit() {
+    this.getUser();
+  }
+
 }

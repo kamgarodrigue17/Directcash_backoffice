@@ -111,9 +111,9 @@
                       Connexion...
                     </div>
 
-                    <!-- Message du timeout -->
-                    <div class="small pt-3 text-danger d-{{ displayTimeout }}">
-                      {{ timeoutMessage }}
+                    <!-- Message erreur -->
+                    <div class="small pt-3 text-danger d-{{ isErrorVisible }}">
+                      {{ errorMessage }}
                     </div>
                   </div>
                 </form>

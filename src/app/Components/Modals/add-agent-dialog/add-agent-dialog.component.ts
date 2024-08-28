@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Merchant } from 'src/app/modal/merchant';
+import { DatetimeService } from 'src/app/services-v2/datetime/datetime.service';
 import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 
 @Component({
@@ -12,7 +13,11 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
 export class AddAgentDialogComponent implements OnInit {
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public agentservice: AgentServiceService) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public agentservice: AgentServiceService,
+    protected _datetimeService: DatetimeService
+  ) {
     this.agent.modifiedBy = localStorage.getItem("id");
     this.agent.adminId = localStorage.getItem("id");
   }
@@ -21,9 +26,9 @@ export class AddAgentDialogComponent implements OnInit {
   agent = this.data.element;
 
   now = new Date();
+
   valid() {
     this.agent.nom = this.agent.agentName;
-
     this.agent.modifiedBy = localStorage.getItem("id");
 
     console.log(this.agent);

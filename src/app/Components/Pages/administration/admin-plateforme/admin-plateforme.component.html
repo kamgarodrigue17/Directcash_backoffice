@@ -30,11 +30,13 @@
   <!-- Loader pour les requetes -->
   <mat-progress-bar
     mode="indeterminate"
-    [hidden]="isProgressHidden"
+    [hidden]="_loaderService.isProgressHidden"
   ></mat-progress-bar>
 
   <!-- Alert section -->
-  <div
+  <app-alert />
+
+  <!-- <div
     id="alert"
     class="d-none alert alert-{{
       alert_type
@@ -57,7 +59,7 @@
     >
       <mat-icon>cancel</mat-icon>
     </button>
-  </div>
+  </div> -->
 
   <div class="mat-elevation-z2 rounded">
     <div class="container-fluid pt-3 pb-0 mb-0" style="background: white">
@@ -77,43 +79,51 @@
       </mat-form-field>
 
       <!-- Loader de chargement du contenu du tableau -->
-      <div
+      <!-- <div
         class="d-{{ display }} align-items-center justify-content-center pb-3"
       >
         <mat-spinner diameter="25" class="me-3"></mat-spinner>
         Chargement...
-      </div>
+      </div> -->
     </div>
 
     <table mat-table [dataSource]="dataSource">
       <!-- Nom Column -->
-      <ng-container matColumnDef="Nom">
+      <ng-container matColumnDef="nom">
         <th mat-header-cell *matHeaderCellDef>Nom</th>
-        <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.UserName }}</td>
       </ng-container>
 
       <!-- Habilitation Column -->
-      <ng-container matColumnDef="Habilitation">
+      <ng-container matColumnDef="habilitation">
         <th mat-header-cell *matHeaderCellDef>Habilitation</th>
         <td mat-cell *matCellDef="let element">{{ element.habilitation }}</td>
       </ng-container>
 
       <!-- Statut Column -->
-      <ng-container matColumnDef="Statut">
+      <!-- <ng-container matColumnDef="statut">
         <th mat-header-cell *matHeaderCellDef>Statut</th>
         <td mat-cell *matCellDef="let element">
           {{ element.isActive === "True" ? "connecté" : "deconecté" }}
         </td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- Dernière connexion Column -->
-      <ng-container matColumnDef="Dernière connexion">
+      <ng-container matColumnDef="last-connection">
         <th mat-header-cell *matHeaderCellDef>Dernière connexion</th>
-        <td mat-cell *matCellDef="let element">{{ element.lastConnection }}</td>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element.LastConnection != null
+              ? _datetimeService.formatDate(element.LastConnection).date +
+                " a " +
+                _datetimeService.formatDate(element.LastConnection).time
+              : ""
+          }}
+        </td>
       </ng-container>
 
       <!-- Actions Column -->
-      <ng-container matColumnDef="Actions">
+      <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef style="width: 200px">Actions</th>
         <td
           colspan="4"

@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Merchant } from 'src/app/modal/merchant';
+import { DatetimeService } from 'src/app/services-v2/datetime/datetime.service';
 import { SuperAgentService } from 'src/app/services/superAgent/super-agent.service';
 
 @Component({
@@ -15,19 +16,18 @@ export class DistributeurDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
-    private merchantService: SuperAgentService
+    private merchantService: SuperAgentService,
+    protected _datetimeService: DatetimeService
   ) {
     this.merchant = JSON.parse(JSON.stringify(this.data.element));
     this.merchant.adminId = localStorage.getItem('id');
-    this.merchant.id = data.element.merchantID
+    this.merchant.id = data.element.MerchantID
   }
 
   mode = this.data.mode;
 
   ngOnInit() {
     console.log(this.merchant);
-    
-
   }
 
 }

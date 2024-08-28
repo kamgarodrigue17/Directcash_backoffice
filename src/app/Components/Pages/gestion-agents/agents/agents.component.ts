@@ -10,6 +10,7 @@ import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-acc
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Agent } from 'src/app/modal/agent';
+import { AgentService } from 'src/app/services-v2/agent/agent.service';
 import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 
 @Component({
@@ -18,19 +19,25 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
   styleUrls: ['./agents.component.css']
 })
 export class AgentsComponent implements OnInit {
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = ['Nom', 'Téléphone', 'Type', 'solde', 'Actions'];
   ELEMENT_DATA: Agent[] = [
   ];
   dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, private router: Router, public AgentService: AgentServiceService, private _snackBar: MatSnackBar) {
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    public AgentService: AgentServiceService,
+    private _snackBar: MatSnackBar,
+    private _agentService: AgentService
+  ) {
 
   }
   selected_value: string = "";
   add_agent_form!: NgForm;
 
   // variable pour le loader du chargement des elements du tableau
-  display = 'flex';
+  display = 'none';
 
   // loader pour l'execution des requetes
   isProgressHidden = true;
@@ -165,18 +172,62 @@ export class AgentsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.AgentService.Agents("Agents").subscribe(agents => {
-      this.ELEMENT_DATA = agents.data;
-      console.log(this.ELEMENT_DATA);
+  /**
+   * Recuperer la liste des agents
+   */
+  getAgents() {
+    // start loading
+    this.isProgressHidden = false;
+
+    this._agentService.getAll().subscribe(res => {
+
+      // log response
+      console.log('--- get agent response ---');
+      console.log(res);
+
+      // set data
+      this.ELEMENT_DATA = res.data;
       this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+
+      // set paginator
       this.dataSource.paginator = this.paginator;
-      this.display = 'none'
-    });
+
+      // stop loading
+      this.isProgressHidden = true;
+
+    }, (error) => {
+
+      // stop loading
+      this.isProgressHidden = true;
+
+      // show alert
+      this.closeAlert();
+      this.alert_message = "Une erreur est survenue.";
+      this.alert_type = 'danger';
+      this.openAlert();
+
+      // log error
+      console.log('--- ERREUR GET AGENTS ---');
+      console.log(error);
+
+
+    })
+  }
+
+  ngOnInit(): void {
+    // this.AgentService.Agents("Agents").subscribe(agents => {
+    //   this.ELEMENT_DATA = agents.data;
+    //   console.log(this.ELEMENT_DATA);
+    //   this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+    //   this.dataSource.paginator = this.paginator;
+    //   this.display = 'none'
+    // });
 
     // this.displayedColumns = ['Nom', 'Type', 'Solde (XAF)',  "Banque", 'Merchant', 'N° IMEI', "Date",'Actions'];
-    this.displayedColumns = ['Nom', 'Téléphone', 'Type', 'solde', "Collecte de fonds", 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
-    this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+    // this.displayedColumns = ['Nom', 'Téléphone', 'Type', 'solde', "Collecte de fonds", 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
+    // this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+
+    this.getAgents();
   }
 }
 

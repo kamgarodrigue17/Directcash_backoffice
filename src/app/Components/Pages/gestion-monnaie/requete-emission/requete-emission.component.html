@@ -97,14 +97,14 @@
           mat-cell
           *matCellDef="let element"
           class="text-{{
-            element.statut == 'Valider'
+            element.Statut == 'Valider'
               ? 'success'
-              : element.statut == 'En attente'
+              : element.Statut == 'En attente'
               ? 'primary'
               : 'danger'
           }} fw-semibold"
         >
-          {{ element.statut }}
+          {{ element.Statut }}
         </td>
       </ng-container>
 
@@ -117,7 +117,9 @@
       <!-- Crée le Column -->
       <ng-container matColumnDef="created_at">
         <th mat-header-cell *matHeaderCellDef>Crée le</th>
-        <td mat-cell *matCellDef="let element">{{ element.creerLe }}</td>
+        <td mat-cell *matCellDef="let element">
+          {{ _datetimeService.formatDate(element.creerLe).date }}
+        </td>
       </ng-container>
 
       <!-- Traité par Column -->
@@ -129,7 +131,13 @@
       <!-- Traité le Column -->
       <ng-container matColumnDef="treated_at">
         <th mat-header-cell *matHeaderCellDef>Traité le</th>
-        <td mat-cell *matCellDef="let element">{{ element.traiterLe }}</td>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element.traiterLe != null
+              ? _datetimeService.formatDate(element.traiterLe).date
+              : ""
+          }}
+        </td>
       </ng-container>
 
       <!-- action Column -->
@@ -147,7 +155,7 @@
               <button
                 (click)="valider_requete(element)"
                 type="button"
-                [disabled]="element.statut != 'En attente'"
+                [disabled]="element.Statut != 'En attente'"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #02c29c36"
               >
@@ -158,7 +166,7 @@
               <button
                 (click)="rejeter_requete(element)"
                 type="button"
-                [disabled]="element.statut != 'En attente'"
+                [disabled]="element.Statut != 'En attente'"
                 class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
                 style="background: #f60d2b4d"
               >

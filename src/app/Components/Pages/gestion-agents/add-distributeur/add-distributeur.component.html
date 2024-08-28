@@ -78,6 +78,19 @@
 
           <p class="mb-0">
             <mat-form-field appearance="outline" class="col-md-5">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                inputmode="email"
+                placeholder="Email"
+                formControlName="email"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>N° IMEI</mat-label>
               <input
                 matInput
@@ -87,7 +100,7 @@
               />
             </mat-form-field>
           </p>
-          <p>
+          <!-- <p>
             <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>Region</mat-label>
               <input
@@ -97,11 +110,11 @@
                 required
               />
             </mat-form-field>
-          </p>
+          </p> -->
 
           <div>
             <button mat-button matStepperNext class="primary-light-button">
-              Next
+              Suivant
             </button>
           </div>
         </form>
@@ -110,7 +123,7 @@
       <!-- step 2 -->
       <mat-step [stepControl]="myForm1" label="INFORMATIONS SOCIALES">
         <form [formGroup]="myForm1" class="mt-4 text-center">
-          <p class="mb-0">
+          <!-- <p class="mb-0">
             <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>Opérateur marketing</mat-label>
               <input
@@ -120,7 +133,7 @@
                 required
               />
             </mat-form-field>
-          </p>
+          </p> -->
 
           <p class="mb-0">
             <mat-form-field appearance="outline" class="col-md-5">
@@ -133,22 +146,10 @@
               >
                 <mat-option
                   *ngFor="let merchant of merchants"
-                  [value]="merchant.merchantID"
-                  >{{ merchant.merchantName }}</mat-option
+                  [value]="merchant.MerchantID"
+                  >{{ merchant.MerchantName }}</mat-option
                 >
               </mat-select>
-            </mat-form-field>
-          </p>
-
-          <p class="mb-0">
-            <mat-form-field appearance="outline" class="col-md-5">
-              <mat-label>Email</mat-label>
-              <input
-                matInput
-                placeholder="Email"
-                formControlName="email"
-                required
-              />
             </mat-form-field>
           </p>
 

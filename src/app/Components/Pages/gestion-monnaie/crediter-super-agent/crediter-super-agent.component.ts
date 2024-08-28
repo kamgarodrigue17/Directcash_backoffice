@@ -11,6 +11,10 @@ import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmat
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Plafond } from 'src/app/modal/plafond';
 import { Transaction } from 'src/app/modal/transaction';
+import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
+import { DatetimeService } from 'src/app/services-v2/datetime/datetime.service';
+import { DistributeurService } from 'src/app/services-v2/distributeur/distributeur.service';
+import { RequeteApprovisionnementService } from 'src/app/services-v2/requete-approvisionnement/requete-approvisionnement.service';
 import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 import { MessageService } from 'src/app/services/message/message.service';
 import { PlafondService } from 'src/app/services/plafond/plafond.service';
@@ -33,7 +37,11 @@ export class CrediterSuperAgentComponent implements OnInit {
     public plafond: PlafondService,
     public valideservice: ValidationService,
     private _matSnackBar: MatSnackBar,
-    private _messageService: MessageService
+    private _messageService: MessageService,
+    private _requeteApproService: RequeteApprovisionnementService,
+    protected _datetimeService: DatetimeService,
+    private _userService: AdminService,
+    private _distributeurService: DistributeurService
   ) {
 
   }
@@ -95,15 +103,15 @@ export class CrediterSuperAgentComponent implements OnInit {
           console.log(result);
 
           // check if password correct
-          if (result.password != '12345') {
-            this._matSnackBar.open("Mot ed passe incorrect !.")._dismissAfter(3000);
+          if (result.vPass != '12345') {
+            this._matSnackBar.open("Mot de passe incorrect !.")._dismissAfter(3000);
             return;
           }
 
           // start loading
           this.isProgressHidden = false;
 
-          this.valideservice.initdemandeAprovisionenm(result).pipe(
+          this._requeteApproService.create(result).pipe(
             catchError((error: HttpErrorResponse) => {
               this.isProgressHidden = true;
               if (error.status !== 200) {
@@ -134,6 +142,7 @@ export class CrediterSuperAgentComponent implements OnInit {
                 // refresh data
                 this.getRequeteApproList();
                 break;
+
               default:
                 this.alert_type = 'danger';
                 this.alert_message = "Une erreur est survenue lors de l'envoi de la requête.";
@@ -174,12 +183,35 @@ export class CrediterSuperAgentComponent implements OnInit {
   valider_requete(requete: any) {
 
     console.log(requete);
+    
+
+    // check if request is pending (Dans le cas ou il est quand meme arriver ici hahaha)
+    if (requete.Statut != "En attente") {
+      // set alert message
+      this.alert_message = " Cette requête a déjà été traité."
+      this.alert_type = "info";
+      this.closeAlert();
+      this.openAlert();
+
+      return;
+    }
+
+    // check if is same user
+    if (requete.creerPar == this._userService.getLocalUser().data.UserName) {
+      // set alert
+      this.alert_message = "Vous ne pouvez pas valider une requête que vous avez intié."
+      this.alert_type = "warning";
+      this.closeAlert();
+      this.openAlert();
+
+      return;
+    }
 
     // on affiche le dialogue de confirmation
     const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         title: "Validation",
-        message: "Requête du " + requete.creerLe + ".\n Valider l'approvisionnement de " + requete.merchantName + " d'un montant de " + requete.amount + " XFA ?",
+        message: "Requête du " + this._datetimeService.formatDate(requete.creerLe).date + ".\n Valider l'approvisionnement de " + requete.MerchantName + " d'un montant de " + requete.amount + " XFA ?",
       }
     });
 
@@ -189,20 +221,22 @@ export class CrediterSuperAgentComponent implements OnInit {
 
           // on deefinit corps de la requete
           let data = {
-            "merchantId": `${requete.merchant}`,
-            "amount": `${requete.amount}`,
-            "createBy": `${localStorage.getItem("id")}`,
-            "password": "12345",
-            "status": 1,
-            "cautionId": `${requete.id}`
+            "vMerchant": `${requete.Merchant}`,
+            "vAmount": `${requete.amount}`,
+            "vCreatedBy": `${this._userService.getLocalUser().data.UserName}`,//principe a 4 yeux
+            "vCautionId": `${requete.Id}`,
+            "vPass": "12345",
+            "vStatus": 1
           }
+
+          console.log('--- requete a valider ---');
           console.log(data)
 
           // on active la barre de progression de la requete
           this.isProgressHidden = false;
 
           // on envoi la requete de validation
-          this.valideservice.suplyvalidate(data).pipe(
+          this._requeteApproService.validate(data).pipe(
             catchError((error: HttpErrorResponse) => {
               this.isProgressHidden = true;
               if (error.status !== 200) {
@@ -225,12 +259,8 @@ export class CrediterSuperAgentComponent implements OnInit {
 
             // on definit le type d'alerte  afficher en fonction du code de retour
             let res_code = res.code;
-            switch (+res_code) {
-              case 400:
-                this.alert_type = 'warning'
-                break;
-
-              case 200:
+            switch (res_code) {
+              case "200":
                 this.alert_type = 'success';
                 this.alert_message = "Requête validée avec succès.";
 
@@ -239,10 +269,10 @@ export class CrediterSuperAgentComponent implements OnInit {
                 break;
 
               default:
-                this.alert_type = 'info';
-                this.alert_message = res.data;
+                this.alert_type = 'danger';
                 break;
             }
+            this.alert_message = "Une erreur est survenue.";
             this.openAlert();
           });
         } catch (error) {
@@ -270,9 +300,13 @@ export class CrediterSuperAgentComponent implements OnInit {
    */
   getRequeteApproList() {
     try {
-      this.plafond.getDemandeAprov().subscribe(res => {
+      this._requeteApproService.index().subscribe(res => {
+        console.log('--- DEAMDES APPRO LIST ---');
+        console.log(res);
+
+
         // get data
-        this.ELEMENT_DATA = res.data.objects;
+        this.ELEMENT_DATA = res.data;
 
         // set data
         this.dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
@@ -293,8 +327,11 @@ export class CrediterSuperAgentComponent implements OnInit {
    */
   getDistrbuteurList() {
     try {
-      this.AgentService.Agents("Distributors").subscribe(data => {
-        this.merchants = data.data;
+      this._distributeurService.getAll().subscribe(res => {
+        // log 
+        console.log(res);
+        
+        this.merchants = res.data;
       });
     } catch (error) {
       // log error

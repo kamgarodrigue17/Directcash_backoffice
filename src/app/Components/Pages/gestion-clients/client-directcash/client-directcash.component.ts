@@ -9,6 +9,7 @@ import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-acc
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Agent } from 'src/app/modal/agent';
+import { CLientMyDirectcashService } from 'src/app/services-v2/client-mydirectcash/client-mydirectcash.service';
 import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 
 @Component({
@@ -17,12 +18,16 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
   styleUrls: ['./client-directcash.component.css']
 })
 export class ClientDirectcashComponent {
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = ['Noms', 'Matricule', 'Téléphone', 'Solde (XAF)', 'Statut', 'Adresse', 'Actions'];
   ELEMENT_DATA: Agent[] = [
   ];
   dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, public AgentService: AgentServiceService, private _snackBar: MatSnackBar) { }
+  constructor(
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private _clientService: CLientMyDirectcashService
+  ) { }
   selected_value: string = "";
   add_agent_form!: NgForm;
   snackbar_message!: string;
@@ -31,7 +36,7 @@ export class ClientDirectcashComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   // variable pour le loader du chargement des elements du tableau
-  display = 'flex';
+  display = 'none';
 
   // loader pour l'execution des requetes
   isProgressHidden = true;
@@ -151,17 +156,45 @@ export class ClientDirectcashComponent {
     });
   }
 
-  ngOnInit(): void {
-    this.AgentService.Agents("Clients").subscribe(agents => {
-      this.ELEMENT_DATA = agents.data;
-      console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Noms', 'Matricule', 'Téléphone', 'Solde (XAF)', 'Statut', 'Adresse', 'Actions'];
+  getClients() {
+    // start loading
+    this.isProgressHidden = false;
+
+    this._clientService.getAll().subscribe(res => {
+
+      // log response
+      console.log('--- LISTE CLIENTS ---');
+      console.log(res);
+
+      // get data
+      this.ELEMENT_DATA = res.data;
+
+      // set data
       this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
-      this.display = 'none';
-    });
-    this.displayedColumns = ['Noms', 'Matricule', 'Téléphone', 'Solde (XAF)', 'Statut', 'Adresse', 'Actions'];
-    this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
 
+      // stop loading
+      this.isProgressHidden = true;
+
+
+    }, (error) => {
+      // log error
+      console.log('--- ERREUR GET CLIENTS ---');
+      console.log(error);
+
+      // stop loading
+      this.isProgressHidden = true;
+
+      // show alert
+      this.closeAlert();
+      this.alert_message = "Une erreur est survenue.";
+      this.alert_type = "danger";
+      this.openAlert();
+
+    });
+  }
+
+  ngOnInit(): void {
+    this.getClients();
   }
 }

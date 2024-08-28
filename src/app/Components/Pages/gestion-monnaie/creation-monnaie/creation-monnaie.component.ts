@@ -10,6 +10,8 @@ import { ExportComponent } from 'src/app/Components/Modals/export/export.compone
 import { NotifierRechargeDialogComponent } from 'src/app/Components/Modals/notifier-recharge-dialog/notifier-recharge-dialog.component';
 import { StockDirectcashDialogComponent } from 'src/app/Components/Modals/stock-directcash-dialog/stock-directcash-dialog.component';
 import { Plafond } from 'src/app/modal/plafond';
+import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
+import { AffecterMonnaieService } from 'src/app/services-v2/affecter-monnaie/affecter-monnaie.service';
 import { MessageService } from 'src/app/services/message/message.service';
 import { PlafondService } from 'src/app/services/plafond/plafond.service';
 import { RequeteEmissionService } from 'src/app/services/requete-emission/requete-emission.service';
@@ -31,7 +33,9 @@ export class CreationMonnaieComponent implements OnInit {
     public plafond: PlafondService,
     protected _requeteEmissionService: RequeteEmissionService,
     private matSnackBar: MatSnackBar,
-    private _messageService: MessageService
+    private _messageService: MessageService,
+    private _monnaieService: AffecterMonnaieService,
+    private _userService: AdminService
 
   ) { }
 
@@ -93,8 +97,8 @@ export class CreationMonnaieComponent implements OnInit {
         // set data request
         let data_request = {
           "amount": `${montant}`,
-          "adminId": `${localStorage.getItem("id")}`,
-          "pass": `${user_password}`
+          "admin": `${this._userService.getLocalUser().data.UserName}`,
+          "pass": `${user_password}`,
         }
 
         try {
@@ -103,7 +107,7 @@ export class CreationMonnaieComponent implements OnInit {
           this.isProgressHidden = false;
 
           // appel de l'api de mise a jour du stock directcash
-          this._requeteEmissionService.affecterMonnaie(data_request).pipe(
+          this._monnaieService.affecterMonnaie(data_request).pipe(
             catchError((error: HttpErrorResponse) => {
               this.isProgressHidden = true;
               if (error.status !== 200) {
@@ -158,6 +162,17 @@ export class CreationMonnaieComponent implements OnInit {
             }
             this.closeAlert();
             this.openAlert();
+          }, (error) => {
+            // log error
+            console.log('--- ERREUR AFFECTATION MONNAIE ---');
+            console.log(error);
+
+            // show alert
+            this.closeAlert();
+            this.alert_message = "Une erreur est survenue.";
+            this.alert_type = 'danger';
+            this.openAlert();
+
           });
 
         } catch (error) {
@@ -212,59 +227,59 @@ export class CreationMonnaieComponent implements OnInit {
   }
 
 
-  open_edit_plafond_dialog(element: any) {
-    const edit_plafond_dialog = this.dialog.open(NotifierRechargeDialogComponent, { data: element });
+  // open_edit_plafond_dialog(element: any) {
+  //   const edit_plafond_dialog = this.dialog.open(NotifierRechargeDialogComponent, { data: element });
 
-    edit_plafond_dialog.afterClosed().subscribe(result => {
-      if (result != false) {
+  //   edit_plafond_dialog.afterClosed().subscribe(result => {
+  //     if (result != false) {
 
-        // on recupere les donnees du formulaire
-        let form_data = result;
+  //       // on recupere les donnees du formulaire
+  //       let form_data = result;
 
-        // on affiche le dialogue de confirmation
-        const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
-          data: {
-            title: 'Confirmation',
-            message: 'Appliquer les modifications ?'
-          }
-        });
+  //       // on affiche le dialogue de confirmation
+  //       const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
+  //         data: {
+  //           title: 'Confirmation',
+  //           message: 'Appliquer les modifications ?'
+  //         }
+  //       });
 
-        confirmation_dialog.afterClosed().subscribe(decision => {
-          if (decision) {
+  //       confirmation_dialog.afterClosed().subscribe(decision => {
+  //         if (decision) {
 
-            // on active la barre de progression
-            this.isProgressHidden = false;
+  //           // on active la barre de progression
+  //           this.isProgressHidden = false;
 
-            // on envoi la requete de modification
-            this.plafond.changeplafond(form_data).subscribe(res => {
+  //           // on envoi la requete de modification
+  //           this.plafond.changeplafond(form_data).subscribe(res => {
 
-              // au retour de la reponse, on masque la barre de progression
-              this.isProgressHidden = true;
+  //             // au retour de la reponse, on masque la barre de progression
+  //             this.isProgressHidden = true;
 
-              // on definit le type d'alerte  afficher en fonction du code de retour
-              let res_code = res.code;
-              switch (+res_code) {
-                case 400:
-                  this.alert_type = 'warning'
-                  break;
-                default:
-                  this.alert_type = 'info'
-                  break;
-              }
-              this.alert_message = res.data;
-              this.openAlert();
+  //             // on definit le type d'alerte  afficher en fonction du code de retour
+  //             let res_code = res.code;
+  //             switch (+res_code) {
+  //               case 400:
+  //                 this.alert_type = 'warning'
+  //                 break;
+  //               default:
+  //                 this.alert_type = 'info'
+  //                 break;
+  //             }
+  //             this.alert_message = res.data;
+  //             this.openAlert();
 
-            })
-          } else {
-            // on annule toutes les modifications effectuees dans le formulaire
-          }
-        })
+  //           })
+  //         } else {
+  //           // on annule toutes les modifications effectuees dans le formulaire
+  //         }
+  //       })
 
-      } else {
+  //     } else {
 
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
 
   /**
    * Recuperer les info sur les stocks de monnaie
@@ -273,7 +288,7 @@ export class CreationMonnaieComponent implements OnInit {
     try {
       this.isProgressHidden = false;
 
-      this._requeteEmissionService.getInfo().pipe(
+      this._monnaieService.getInfo().pipe(
         catchError((error: HttpErrorResponse) => {
           this.isProgressHidden = true;
           if (error.status !== 200) {
@@ -294,33 +309,49 @@ export class CreationMonnaieComponent implements OnInit {
         this.isProgressHidden = true;
 
         // assign values
-        this.stockdirectcash = res.data.soldeDirectcash;
-        this.stockmydirectcash = res.data.soldeMd;
-        this.stockmonnaie_restant = res.data.soldeFournisseur;
+        this.stockdirectcash = res.data[0].soldeDirectcash;
+        this.stockmydirectcash = res.data[0].soldeMd;
+        this.stockmonnaie_restant = res.data[0].soldeFournisseur;
         this.stockmonnaie = this.stockmonnaie_restant;
 
         // log res
+        console.log('--- GET MONNAIE INFO ---');
         console.log(res);
+
+      }, (error) => {
+
+        // stop loader
+        this.isProgressHidden = true;
+
+        // log error
+        console.log('--- ERREUR HET MONNAIE INFO ---');
+        console.log(error);
+
+        // show alert
+        this.closeAlert();
+        this.alert_message = "Une erreur est survenue.";
+        this.alert_type = 'danger';
+        this.openAlert();
 
       })
     } catch (error) {
-      this.matSnackBar.open("Une erreur est survenue");
+
+      // stop loading
+      this.isProgressHidden = true;
+
+      // log error
+      console.log('--- ERREUR HET MONNAIE INFO ---');
+      console.log(error);
+
+      // show alert
+      this.closeAlert();
+      this.alert_message = "Une erreur est survenue.";
+      this.alert_type = 'danger';
+      this.openAlert();
     }
   }
 
   ngOnInit(): void {
-    // this.plafond.plafonds().subscribe(plafond => {
-    //   this.ELEMENT_DATA = plafond.data;
-    //   console.log(this.ELEMENT_DATA);
-    //   this.displayedColumns = ['Solde courant', 'Service', 'Plafond (XAF)', 'Limite courante (XAF)', 'Partenaire', 'Dernière recharge', 'Statut', 'Action'];
-    //   this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
-    //   this.dataSource.paginator = this.paginator;
-    //   this.display = 'none';
-    // });
-
-    // this.displayedColumns = ['Solde courant', 'Service', 'Plafond (XAF)', 'Limite courante (XAF)', 'Partenaire', 'Dernière recharge', 'Statut', 'Action'];
-    // this.dataSource = new MatTableDataSource<Plafond>(this.ELEMENT_DATA);
-
     this.handleGetInfo();
   }
 }

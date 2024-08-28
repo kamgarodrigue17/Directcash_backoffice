@@ -18,166 +18,185 @@
 
 <!-- Content -->
 <mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
-  <form #add_agent_form="ngForm">
-    <!-- Nom -->
-    <div class="row">
-      <div class="col-md-12">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Nom</mat-label>
-          <input
-            required
-            matInput
-            placeholder="Entrez votre nom"
-            name="nom"
-            ngModel
-            [(ngModel)]="admin.userName"
-            [readonly]="mode == 'show'"
-          />
-        </mat-form-field>
-      </div>
-    </div>
-
-    <!-- Adresse Email -->
-    <div class="col-md-12">
+  <!-- Identifiant -->
+  <div class="row">
+    <div class="col-md-6">
       <mat-form-field class="w-100" appearance="outline">
-        <mat-label>Adresse Email</mat-label>
+        <mat-label>Identifiant</mat-label>
         <input
           required
           matInput
-          placeholder="exemple@gmail.com"
-          name="email"
+          placeholder="Cliquer à droite pour générer"
+          [errorStateMatcher]="matcher"
+          [formControl]="idFormControl"
           ngModel
-          [(ngModel)]="admin.email"
+          [(ngModel)]="user.userID"
+          [readonly]="mode == 'show'"
+        />
+
+        <!-- generate button -->
+        <button type="button" mat-icon-button matSuffix (click)="generateID()">
+          <mat-icon>sync</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-6">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Cliquer à droite pour générer"
+          [errorStateMatcher]="matcher"
+          [formControl]="passwordControl"
+          ngModel
+          [(ngModel)]="user.defaultPassword"
+          [readonly]="mode == 'show'"
+        />
+
+        <!-- generate button -->
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="generatePassword()"
+        >
+          <mat-icon>sync</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Nom -->
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Entrez le nom de l'utilisateur"
+          [errorStateMatcher]="matcher"
+          [formControl]="nomFormControl"
+          ngModel
+          [(ngModel)]="user.userName"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Adresse Email -->
+  <!-- <div class="col-md-12">
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Adresse Email</mat-label>
+      <input
+        required
+        matInput
+        placeholder="exemple@gmail.com"
+        [errorStateMatcher]="matcher"
+        [formControl]="emailFormControl"
+        inputmode="email"
+        ngModel
+        [(ngModel)]="user.email"
+        [readonly]="mode == 'show'"
+      />
+    </mat-form-field>
+  </div> -->
+
+  <div class="row">
+    <!-- Habilitation -->
+    <div class="col-md-12">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Habilitation</mat-label>
+        <mat-select
+          name="habilitation"
+          placeholder="Selectionner une habilitation"
+          ngModel
+          [(ngModel)]="user.habilitation"
+          [errorStateMatcher]="matcher"
+          [formControl]="habilitationControl"
+          [disabled]="mode == 'show'"
+        >
+          <mat-option
+            *ngFor="let habilitation of habilitations"
+            [value]="habilitation.idhabilitation"
+            >{{ habilitation.label }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- <div class="row"> -->
+  <!-- Sexe -->
+  <!-- <div class="col-md-6">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Sexe</mat-label>
+        <mat-select
+          name="sexe"
+          ngModel
+          [(ngModel)]="user.sexe"
+          [disabled]="mode == 'show'"
+        >
+          <mat-option value="Masculin">Masculin</mat-option>
+          <mat-option value="Féminin">Féminin</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div> -->
+  <!-- </div> -->
+
+  <!-- <div class="row">
+    <div class="col-md-6">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Téléphone</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Téléphone"
+          name="tel"
+          ngModel
+          [(ngModel)]="user.tel"
           [readonly]="mode == 'show'"
         />
       </mat-form-field>
     </div>
 
-    <div class="row">
-      <!-- Habilitation -->
-      <div class="col-md-12">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Habilitation</mat-label>
-          <mat-select
-            name="habilitation"
-            placeholder="Selectionner une habilitation"
-            ngModel
-            [(ngModel)]="admin.habilitation"
-            [disabled]="mode == 'show'"
-          >
-            <mat-option
-              *ngFor="let habilitation of habilitations"
-              [value]="habilitation.idhabilitation"
-              >{{ habilitation.label }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-      </div>
+    <div class="col-md-6">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Adresse</mat-label>
+        <input
+          required
+          type="text"
+          matInput
+          placeholder="Pays (ville, quartier)"
+          name="adresse"
+          ngModel
+          [(ngModel)]="user.adresse"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
     </div>
+  </div> -->
 
-    <div class="row">
-      <!-- Statut -->
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Statut</mat-label>
-          <mat-select
-            value="1"
-            placeholder="Selectionner un statut"
-            name="isActive"
-            ngModel
-            [(ngModel)]="admin.isActive"
-            [disabled]="mode == 'show'"
-          >
-            <mat-option value="1">Actif</mat-option>
-            <mat-option value="0">Inactif</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <!-- Sexe -->
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Sexe</mat-label>
-          <mat-select
-            name="sexe"
-            ngModel
-            [(ngModel)]="admin.sexe"
-            [disabled]="mode == 'show'"
-          >
-            <mat-option value="Masculin">Masculin</mat-option>
-            <mat-option value="Féminin">Féminin</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+  <div class="row d-none">
+    <!-- Nom d'utilisateur -->
+    <div class="col-md-12">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Nom d'utilisateur</mat-label>
+        <input
+          required
+          matInput
+          placeholder="Nom d'utilisateur"
+          name="fullName"
+          ngModel
+          [(ngModel)]="user.fullName"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
     </div>
-
-    <div class="row">
-      <!-- Telephone -->
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Téléphone</mat-label>
-          <input
-            required
-            matInput
-            placeholder="Téléphone"
-            name="tel"
-            ngModel
-            [(ngModel)]="admin.tel"
-            [readonly]="mode == 'show'"
-          />
-        </mat-form-field>
-      </div>
-
-      <!-- Adresse -->
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Adresse</mat-label>
-          <input
-            required
-            type="text"
-            matInput
-            placeholder="Pays (ville, quartier)"
-            name="adresse"
-            ngModel
-            [(ngModel)]="admin.adresse"
-            [readonly]="mode == 'show'"
-          />
-        </mat-form-field>
-      </div>
-    </div>
-
-    <div class="row">
-      <!-- Nom d'utilisateur -->
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Nom d'utilisateur</mat-label>
-          <input
-            required
-            matInput
-            placeholder="Nom d'utilisateur"
-            name="fullName"
-            ngModel
-            [(ngModel)]="admin.fullName"
-            [readonly]="mode == 'show'"
-          />
-        </mat-form-field>
-      </div>
-      <div class="col-md-6">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Mot de passe</mat-label>
-          <input
-            required
-            matInput
-            placeholder="Mot de passe"
-            name="defaultPassword"
-            ngModel
-            [(ngModel)]="admin.defaultPassword"
-            [readonly]="mode == 'show'"
-          />
-        </mat-form-field>
-      </div>
-    </div>
-  </form>
+  </div>
 </mat-dialog-content>
 
 <!-- Button action -->
@@ -188,7 +207,7 @@
     [mat-dialog-close]="validate()"
     [hidden]="mode == 'show'"
   >
-    Sauvegarder
+    Enregistrer
   </button>
 
   <button class="primary-dark-button" mat-button [mat-dialog-close]="false">

@@ -110,6 +110,8 @@ import { IsFirstimeDialogComponent } from './Components/Modals/is-firstime-dialo
 import { DistributeurDialogComponent } from './Components/Modals/distributeur-dialog/distributeur-dialog.component';
 import { NumberFormatterPipe } from './number-formatter.pipe';
 import { CustomBadgeComponent } from './Components/custom-badge/custom-badge.component';
+import { AlertComponent } from './Components/alert/alert.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -194,7 +196,8 @@ import { CustomBadgeComponent } from './Components/custom-badge/custom-badge.com
     IsFirstimeDialogComponent,
     DistributeurDialogComponent,
     NumberFormatterPipe,
-    CustomBadgeComponent
+    CustomBadgeComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -227,7 +230,8 @@ import { CustomBadgeComponent } from './Components/custom-badge/custom-badge.com
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptore,
       multi: true
-    }
+    },
+    { provide: DatePipe },
   ],
   bootstrap: [AppComponent]
 })

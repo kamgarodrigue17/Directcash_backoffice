@@ -11,6 +11,7 @@ import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmat
 import { DistributeurDialogComponent } from 'src/app/Components/Modals/distributeur-dialog/distributeur-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { Agent } from 'src/app/modal/agent';
+import { DistributeurService } from 'src/app/services-v2/distributeur/distributeur.service';
 import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 import { MessageService } from 'src/app/services/message/message.service';
 
@@ -21,7 +22,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 })
 export class DistributeurComponent implements OnInit {
 
-  displayedColumns: string[] = ['Nom', 'Téléphone', 'Compte principal', 'Collecte de fonds', 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
+  displayedColumns: string[] = ['Nom', 'Téléphone', 'Compte principal', 'Merchant', 'Actions'];
   ELEMENT_DATA: Agent[] = [
   ];
   dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>
@@ -31,7 +32,8 @@ export class DistributeurComponent implements OnInit {
     private router: Router,
     public AgentService: AgentServiceService,
     private _snackBar: MatSnackBar,
-    private _messageService: MessageService
+    private _messageService: MessageService,
+    private _distributeurService: DistributeurService
   ) {
 
   }
@@ -124,7 +126,8 @@ export class DistributeurComponent implements OnInit {
     const distributeur_dialog = this.dialog.open(DistributeurDialogComponent, {
       data: {
         mode: mode,
-        element: element
+        element: element,
+        merchantList: this.ELEMENT_DATA
       }
     });
 
@@ -174,7 +177,7 @@ export class DistributeurComponent implements OnInit {
       this.isProgressHidden = false;
 
       // send request
-      this.AgentService.Agents("Distributors").pipe(
+      this._distributeurService.getAll().pipe(
         catchError((error: HttpErrorResponse) => {
           this.isProgressHidden = true;
           if (error.status !== 200) {

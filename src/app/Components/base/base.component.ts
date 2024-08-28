@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
@@ -11,10 +12,20 @@ export class BaseComponent {
 
   constructor(
     private _router: Router,
-    private _authService: AuthServiceService
+    private _authService: AuthServiceService,
+    private _userService: AdminService
+
   ) { }
 
   currentYear = new Date().getFullYear();
+  user: any;
+
+  /**
+   * Get connected user
+   */
+  getUser() {
+    this.user = this._userService.getLocalUser().data;
+  }
 
   toggle_side_bar() {
     const body = document.getElementsByTagName("body");
@@ -28,8 +39,7 @@ export class BaseComponent {
     this._authService.logout();
   }
 
-  displayedname: any = " ";
   ngOnInit(): void {
-    this.displayedname = localStorage.getItem("id");
+    this.getUser();
   }
 }
