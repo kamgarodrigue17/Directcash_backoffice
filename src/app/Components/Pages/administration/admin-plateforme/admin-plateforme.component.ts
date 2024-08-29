@@ -85,68 +85,48 @@ export class AdminPlateformeComponent implements OnInit {
     const admin_dialog = this.dialog.open(AdminDialogComponent, {
       data: {
         mode: mode,
-        data: element,
+        element: element,
         habilitations: this.habilitations,
         users: this.ELEMENT_DATA
-      }
+      }, disableClose: true
     });
 
     admin_dialog.afterClosed().subscribe(result => {
       if (result != false) {
-        // on recupere le contenu du formulaire
-        let form_data = result;
 
         // on affiche les donnees du formulaire
-        console.log(form_data);
+        console.log(result);
 
         try {
           // on active la barre de progression
           this._loaderService.isProgressHidden = false;
 
           // on envoi la requete
-          let request = this.userService1.Edit(result).subscribe(res => {
+          this._userService.create(result).subscribe(res => {
 
-            // au retour de la reponse, on masque la barre de progression
+            // // au retour de la reponse, on masque la barre de progression
             this._loaderService.isProgressHidden = true;
 
             // et on definit le type d'alerte a afficher en fonction du code de retour
             let res_code = res.code;
             switch (+res_code) {
-              case 400:
-                this._alertService.type = 'danger'
+              case 200:
+                this._alertService.type = 'success'
+                this._alertService.message = "Utilisateur ajouté avec succès.";
+
+                // refresh data 
+                this.getUsers();
                 break;
               default:
-                this._alertService.type = 'info'
+                this._alertService.type = 'danger'
+                this._alertService.message = "Une erreur est survenue.";
                 break;
             }
-            this.getUsers();
-            this._alertService.message = res.data;
 
             this._alertService.closeAlert();
             this._alertService.openAlert();
 
             console.log(res);
-
-            // lorsque le temps de reponse est au dessus du timeout (10s)
-            setTimeout(() => {
-
-              // on masque la barre de progression
-              this._loaderService.isProgressHidden = true;
-
-              // on annule la requete si elle n'est pas encore terminer
-              if (!request.closed) {
-
-                // on annule la requete
-                request.unsubscribe();
-
-                this._alertService.message = 'Le serveur a mis trop de temps à répondre. Réessayer ultérieurement.';
-                this._alertService.type = 'warning';
-
-                this._alertService.closeAlert();
-                this._alertService.openAlert();
-              }
-
-            }, this._globalService.timeout_time);
 
           }, error => {
 
@@ -313,6 +293,12 @@ export class AdminPlateformeComponent implements OnInit {
       this._habilitationService.getAll().subscribe(res => {
         // get data
         this.habilitations = res.data;
+
+        // log
+        console.log('--- liste habilitation ---');
+        console.log(this.habilitations);
+
+
       })
 
     } catch (error) {

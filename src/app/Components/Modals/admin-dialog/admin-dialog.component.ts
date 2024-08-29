@@ -2,7 +2,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
 import { ValidationService } from 'src/app/services/validation/validation.service';
 
@@ -16,28 +16,8 @@ export class AdminDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _userService: AdminService,
-    private _ref: DialogRef<AdminDialogComponent>
-  ) {
-    // this.user = data.data;
-    // this.user.adminId = localStorage.getItem("id");
-    // // this.user.user = localStorage.getItem("id")?.toString();
-    // this.user.defaultPassword = "";
-    // this.user.adminPassword = "";
-    // this.habilitations = data.habilitations;
-    // console.log(this.habilitations);
-    // this.user.company = JSON.parse(`${localStorage.getItem("user")}`).fullName;
-  }
-
-  user: any = {
-    "userID": "",           // ID de l'utilisateur que vous souhaitez créer
-    "fullName": "",        // Nom complet de l'utilisateur
-    "defaultPassword": "",  // Mot de passe pour le nouvel utilisateur
-    "isActive": 1,                 // Statut d'activité (1 pour actif, 0 pour inactif)
-    "Role": "",                // Rôle de l'utilisateur (par exemple, "Administrator", "User", etc.)
-    "adminId": "",        // ID de l'administrateur qui crée cet utilisateur -
-    "modifierPar": "",             // Laissez vide ou mettez "NULL" pour indiquer une création
-    "habilitation": -1
-  };
+    private _ref: MatDialogRef<AdminDialogComponent>,
+  ) { }
 
   mode = this.data.mode;
   now = new Date();
@@ -48,15 +28,24 @@ export class AdminDialogComponent {
   // liste des users
   users: any[] = this.data.users;
 
+  element = this.data.element;
+
+  user: any = {
+    "userID": this.element.UserName,           // ID de l'utilisateur que vous souhaitez créer -ok
+    "fullName": this.element.FullName,        // Nom complet de l'utilisateur - ok
+    "defaultPassword": this.element.defaultPassword,  // Mot de passe pour le nouvel utilisateur -ok
+    "isActive": 1,                 // Statut d'activité (1 pour actif, 0 pour inactif) -ok
+    "Role": this.element.Role,                // Rôle de l'utilisateur (par exemple, "Administrator", "User", etc.)
+    "adminId": this.element.adminId != undefined ? this.element.adminId : `${this._userService.getLocalUser().data.UserName}`,        // ID de l'administrateur qui crée cet utilisateur -ok
+    "modifierPar": this.element.userID != undefined ? `${this._userService.getLocalUser().data.UserName}` : "",             // Laissez vide ou mettez "NULL" pour indiquer une création -ok
+    "habilitation": this.element.UserName != undefined ? this.habilitations.find((h) => { return h.label == this.element.habilitation; }).idhabilitation : -1 // -ok
+  };
+
 
   // Matcher
   matcher = new ErrorStateMatcher();
 
-  // Form control
-  // amountControl = new FormControl('', [Validators.required, Validators.min(500)]);
-
   idFormControl = new FormControl('', [Validators.required]);
-  // emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   nomFormControl = new FormControl('', [Validators.required]);
   passwordControl = new FormControl('', [Validators.required]);
   habilitationControl = new FormControl('', [Validators.required]);
@@ -97,16 +86,16 @@ export class AdminDialogComponent {
    * @returns
    */
   validate() {
-    // this.user.company = localStorage.getItem("company");
-    // this.user.adminPassword = `${this.user.defaultPassword}`;
-    // console.log(this.user);
-    // this.user.modifierPar = this.data.mode != "add" ? localStorage.getItem("id") : "";
-    // this.user.isActive = Number.parseInt(this.user.isActive);
-    // if (this.user.habilitation != null) {
-    //   this.user.role = this.habilitations[this.user.habilitation].label;
-    //   console.log(this.user.role)
-    // }
-    // return this.user;
+    if (this.idFormControl.valid && this.nomFormControl.valid && this.passwordControl.valid && this.habilitationControl.valid) {
+      this._ref.close(this.user);
+    }
+  }
+
+  ngOnInit() {
+    console.log('--- admin a modifier ---');
+    console.log(this.user);
+
+    // this.user = this.element;
   }
 
 }

@@ -91,7 +91,7 @@
       <!-- Nom Column -->
       <ng-container matColumnDef="nom">
         <th mat-header-cell *matHeaderCellDef>Nom</th>
-        <td mat-cell *matCellDef="let element">{{ element.UserName }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.FullName }}</td>
       </ng-container>
 
       <!-- Habilitation Column -->
@@ -143,7 +143,7 @@
                 <mat-icon style="color: #02c29c">edit</mat-icon>
               </button>
             </li>
-            <li class="list-group-item border-0 pe-2 ps-0">
+            <!-- <li class="list-group-item border-0 pe-2 ps-0">
               <button
                 (click)="open_del_admin_dialog()"
                 type="button"
@@ -152,7 +152,7 @@
               >
                 <mat-icon style="color: #f60d2b">delete</mat-icon>
               </button>
-            </li>
+            </li> -->
             <li class="list-group-item border-0 pe-2 ps-0">
               <button
                 (click)="open_admin_dialog('show', element)"

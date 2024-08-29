@@ -22,21 +22,8 @@ export class AffecterMonnaieService {
     let url = this.globalService.baseUrl2 + "/getmonnaieinfo?vWho=" + this._userService.getLocalUser().data.UserName;
     return this.http.get<any>(url);
   }
-  /**
-   *  http://localhost:5000/affecterMonnaie  en post {
-  "amount": 400,
-  "pass": "12345",
-  "admin": "tabetsing"
-}
-   */
 
   affecterMonnaie(data: any): Observable<any> {
-    // let data = {
-    //   "amount": 400,
-    //   "pass": "12345",
-    //   "admin": "tabetsing"
-    // }
-
     let url = this.globalService.baseUrl2 + "/affecterMonnaie";
     return this.http.post<any>(url, data);
   }

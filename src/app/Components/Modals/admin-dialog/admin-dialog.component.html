@@ -9,7 +9,7 @@
     >Editer un utilisateur</span
   >
   <span class="me-4" [hidden]="mode == 'add' || mode == 'edit'"
-    ><strong>ID: </strong>46456454</span
+    ><strong>Consulter les informations </strong></span
   >
   <button mat-button [mat-dialog-close]="false" class="text-center">
     <mat-icon class="me-0">close</mat-icon>
@@ -24,14 +24,12 @@
       <mat-form-field class="w-100" appearance="outline">
         <mat-label>Identifiant</mat-label>
         <input
-          required
           matInput
           placeholder="Cliquer à droite pour générer"
           [errorStateMatcher]="matcher"
           [formControl]="idFormControl"
-          ngModel
           [(ngModel)]="user.userID"
-          [readonly]="mode == 'show'"
+          [readonly]="true"
         />
 
         <!-- generate button -->
@@ -45,14 +43,12 @@
       <mat-form-field class="w-100" appearance="outline">
         <mat-label>Mot de passe</mat-label>
         <input
-          required
           matInput
           placeholder="Cliquer à droite pour générer"
           [errorStateMatcher]="matcher"
           [formControl]="passwordControl"
-          ngModel
           [(ngModel)]="user.defaultPassword"
-          [readonly]="mode == 'show'"
+          [readonly]="true"
         />
 
         <!-- generate button -->
@@ -74,13 +70,11 @@
       <mat-form-field class="w-100" appearance="outline">
         <mat-label>Nom</mat-label>
         <input
-          required
           matInput
           placeholder="Entrez le nom de l'utilisateur"
           [errorStateMatcher]="matcher"
           [formControl]="nomFormControl"
-          ngModel
-          [(ngModel)]="user.userName"
+          [(ngModel)]="user.fullName"
           [readonly]="mode == 'show'"
         />
       </mat-form-field>
@@ -113,11 +107,9 @@
         <mat-select
           name="habilitation"
           placeholder="Selectionner une habilitation"
-          ngModel
           [(ngModel)]="user.habilitation"
           [errorStateMatcher]="matcher"
           [formControl]="habilitationControl"
-          [disabled]="mode == 'show'"
         >
           <mat-option
             *ngFor="let habilitation of habilitations"
@@ -189,8 +181,6 @@
           required
           matInput
           placeholder="Nom d'utilisateur"
-          name="fullName"
-          ngModel
           [(ngModel)]="user.fullName"
           [readonly]="mode == 'show'"
         />
@@ -204,7 +194,7 @@
   <button
     class="primary-light-button"
     mat-button
-    [mat-dialog-close]="validate()"
+    (click)="validate()"
     [hidden]="mode == 'show'"
   >
     Enregistrer

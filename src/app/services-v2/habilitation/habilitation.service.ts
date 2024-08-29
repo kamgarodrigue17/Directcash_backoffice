@@ -17,7 +17,7 @@ export class HabilitationService {
    * @returns 
    */
   getAll(): Observable<any> {
-    let url = this.globalService.baseUrl2 + "/Habilitations/get";
+    let url = this.globalService.baseUrl2 + "/Habilitations/getAll";
     return this.http.get<any>(url);
   }
 
