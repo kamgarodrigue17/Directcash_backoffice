@@ -6,9 +6,11 @@ import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/materi
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { HabilitationDialogComponent } from 'src/app/Components/Modals/habilitation-dialog/habilitation-dialog.component';
 import { Habilitation } from 'src/app/modal/habilitation';
-import { HabilitationService } from '../../../../services/habilitation/habilitation.service';
+// import { HabilitationService } from '../../../../services/habilitation/habilitation.service';
 import { Router } from '@angular/router';
 import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctionalites.service';
+import { HabilitationService } from 'src/app/services-v2/habilitation/habilitation.service';
+import { DatetimeService } from 'src/app/services-v2/datetime/datetime.service';
 
 @Component({
   selector: 'app-gestion-habilitation',
@@ -16,16 +18,17 @@ import { FonctionalitesService } from 'src/app/services/fonctionalites/fonctiona
   styleUrls: ['./gestion-habilitation.component.css']
 })
 export class GestionHabilitationComponent implements OnInit {
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];;
   ELEMENT_DATA: Habilitation[] = [];
   Fonctionnalites: FonctionnaliteModel[] = [];
   dataSource!: MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
   constructor(
     public dialog: MatDialog,
-    public habilition: HabilitationService,
     public fonctionaliteService: FonctionalitesService,
+    private _habilitationService: HabilitationService,
     private _snackBar: MatSnackBar,
+    protected _datetimeService: DatetimeService,
     private _router: Router) { }
 
   snackbar_message = "";
@@ -37,7 +40,7 @@ export class GestionHabilitationComponent implements OnInit {
   }
 
   // variable pour le loader du chargement des elements du tableau
-  display = 'flex';
+  display = 'none';
 
   // loader pour l'execution des requetes
   isProgressHidden = true;
@@ -81,86 +84,86 @@ export class GestionHabilitationComponent implements OnInit {
       }
     });
 
-    habilitation_dialog.afterClosed().subscribe(result => {
+    // habilitation_dialog.afterClosed().subscribe(result => {
 
-      // Apres la fermeture du dialog, si le resultat est diff de false
-      if (result != false) {
+    //   // Apres la fermeture du dialog, si le resultat est diff de false
+    //   if (result != false) {
 
-        // on recupere le formulaire
-        let data = result;
+    //     // on recupere le formulaire
+    //     let data = result;
 
-        if (data != undefined) {
+    //     if (data != undefined) {
 
-          // on affiche dans la console
-          console.log('====================================');
-          console.log(data);
-          console.log('====================================');
+    //       // on affiche dans la console
+    //       console.log('====================================');
+    //       console.log(data);
+    //       console.log('====================================');
 
-          // on verifie si les champs ont ete bien renseigner
-          if (data.label.trim() == '' || data.description.trim() == '' || data.pass.trim() == '') {
-            this.closeAlert()
-            this.alert_message = "Tous les champs sont obligatoires."
-            this.alert_type = "warning";
-            this.openAlert();
-          } else {
-            // on verifie si le mot de passe est correct
-            let myPassword = "12345";
-            if (data.pass != myPassword) {
-              this.closeAlert();
-              this.alert_message = "Votre mot de passe est incorrect."
-              this.alert_type = "warning";
-              this.openAlert();
-            } else {
-              // Si tout est bon, on active la barre de progression
-              this.isProgressHidden = false;
+    //       // on verifie si les champs ont ete bien renseigner
+    //       if (data.label.trim() == '' || data.description.trim() == '' || data.pass.trim() == '') {
+    //         this.closeAlert()
+    //         this.alert_message = "Tous les champs sont obligatoires."
+    //         this.alert_type = "warning";
+    //         this.openAlert();
+    //       } else {
+    //         // on verifie si le mot de passe est correct
+    //         let myPassword = "12345";
+    //         if (data.pass != myPassword) {
+    //           this.closeAlert();
+    //           this.alert_message = "Votre mot de passe est incorrect."
+    //           this.alert_type = "warning";
+    //           this.openAlert();
+    //         } else {
+    //           // Si tout est bon, on active la barre de progression
+    //           this.isProgressHidden = false;
 
-              try {
-                // envoi de la requete et au retour
-                let request = this.habilition.newEditHabilitation(data).subscribe(res => {
+    //           try {
+    //             // envoi de la requete et au retour
+    //             let request = this.habilition.newEditHabilitation(data).subscribe(res => {
 
-                  // on masque la barre de progression
-                  this.isProgressHidden = true;
+    //               // on masque la barre de progression
+    //               this.isProgressHidden = true;
 
-                  // on affiche le retour
-                  console.log(res);
+    //               // on affiche le retour
+    //               console.log(res);
 
-                  // fermer l'alert si celui ci etait ouvert
-                  this.closeAlert();
+    //               // fermer l'alert si celui ci etait ouvert
+    //               this.closeAlert();
 
-                  // si le code de retour est 200, on met a jour la liste des habilitation
-                  if (res.code == 200) {
-                    // mise ajour des habilitations
-                    this.getHabilitationList();
+    //               // si le code de retour est 200, on met a jour la liste des habilitation
+    //               if (res.code == 200) {
+    //                 // mise ajour des habilitations
+    //                 this.getHabilitationList();
 
-                    // on notifie sur la vue
-                    this.alert_type = "success";
-                    this.alert_message = "Mise à jour effectuée avec succès";
+    //                 // on notifie sur la vue
+    //                 this.alert_type = "success";
+    //                 this.alert_message = "Mise à jour effectuée avec succès";
 
-                  } else {
-                    // set error message
-                    this.alert_type = "danger";
-                    this.alert_message = res.data;
+    //               } else {
+    //                 // set error message
+    //                 this.alert_type = "danger";
+    //                 this.alert_message = res.data;
 
-                  }
+    //               }
 
-                  // on notifie sur la vue
-                  this.openAlert();
+    //               // on notifie sur la vue
+    //               this.openAlert();
 
-                });
+    //             });
 
-              } catch (error) {
-                this.closeAlert();
-                this.alert_message = `${error}`
-                this.alert_type = "danger";
-                this.openAlert();
-              }
+    //           } catch (error) {
+    //             this.closeAlert();
+    //             this.alert_message = `${error}`
+    //             this.alert_type = "danger";
+    //             this.openAlert();
+    //           }
 
 
-            }
-          }
-        }
-      }
-    });
+    //         }
+    //       }
+    //     }
+    //   }
+    // });
 
   }
 
@@ -194,13 +197,40 @@ export class GestionHabilitationComponent implements OnInit {
    * Recuperer la liste des habilitations
    */
   getHabilitationList() {
-    this.habilition.habilitations().subscribe(habi => {
-      this.ELEMENT_DATA = habi.data;
-      console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
+    // start loading
+    this.isProgressHidden = false;
+    // send request
+    this._habilitationService.getAll().subscribe(res => {
+
+      // log response
+      console.log('--- Liste des habilitations ---');
+      console.log(res);
+
+      // get data
+      this.ELEMENT_DATA = res.data;
+
+      // populate list
       this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+
+      // set up paginatot
       this.dataSource.paginator = this.paginator;
-      this.display = 'none';
+
+      // stop loading
+      this.isProgressHidden = true;
+    }, (error) => {
+      // log error
+      console.log('--- ERREUR GET HABILITATION LIST ---');
+      console.log((error));
+
+      // stop loading
+      this.isProgressHidden = true;
+
+      // show alert
+      this.closeAlert();
+      this.alert_message = "Une erreur est survenue.";
+      this.alert_type = "danger";
+      this.openAlert();      
+      
     });
   }
 
