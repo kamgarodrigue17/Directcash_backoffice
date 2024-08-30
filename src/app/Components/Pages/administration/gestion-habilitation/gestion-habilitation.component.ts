@@ -81,89 +81,100 @@ export class GestionHabilitationComponent implements OnInit {
       data: {
         mode: mode,
         element: data
-      }
+      }, disableClose: true, maxWidth: 600
     });
 
-    // habilitation_dialog.afterClosed().subscribe(result => {
+    habilitation_dialog.afterClosed().subscribe(result => {
 
-    //   // Apres la fermeture du dialog, si le resultat est diff de false
-    //   if (result != false) {
+      // Apres la fermeture du dialog, si le resultat est diff de false
+      if (result != false) {
 
-    //     // on recupere le formulaire
-    //     let data = result;
+        // on recupere le formulaire
+        let data = result;
 
-    //     if (data != undefined) {
+        if (data != undefined) {
 
-    //       // on affiche dans la console
-    //       console.log('====================================');
-    //       console.log(data);
-    //       console.log('====================================');
+          // on affiche dans la console
+          console.log('====================================');
+          console.log(data);
+          console.log('====================================');
 
-    //       // on verifie si les champs ont ete bien renseigner
-    //       if (data.label.trim() == '' || data.description.trim() == '' || data.pass.trim() == '') {
-    //         this.closeAlert()
-    //         this.alert_message = "Tous les champs sont obligatoires."
-    //         this.alert_type = "warning";
-    //         this.openAlert();
-    //       } else {
-    //         // on verifie si le mot de passe est correct
-    //         let myPassword = "12345";
-    //         if (data.pass != myPassword) {
-    //           this.closeAlert();
-    //           this.alert_message = "Votre mot de passe est incorrect."
-    //           this.alert_type = "warning";
-    //           this.openAlert();
-    //         } else {
-    //           // Si tout est bon, on active la barre de progression
-    //           this.isProgressHidden = false;
+          // on verifie si les champs ont ete bien renseigner
+          if (data.label.trim() == '' || data.description.trim() == '' || data.pass.trim() == '') {
+            this.closeAlert()
+            this.alert_message = "Tous les champs sont obligatoires."
+            this.alert_type = "warning";
+            this.openAlert();
+          } else {
+            // on verifie si le mot de passe est correct
+            let myPassword = "12345";
+            if (data.pass != myPassword) {
+              this.closeAlert();
+              this.alert_message = "Votre mot de passe est incorrect."
+              this.alert_type = "warning";
+              this.openAlert();
+            } else {
+              // Si tout est bon, on active la barre de progression
+              this.isProgressHidden = false;
 
-    //           try {
-    //             // envoi de la requete et au retour
-    //             let request = this.habilition.newEditHabilitation(data).subscribe(res => {
+              try {
+                // envoi de la requete et au retour
+                this._habilitationService.edit(data).subscribe(res => {
 
-    //               // on masque la barre de progression
-    //               this.isProgressHidden = true;
+                  // on masque la barre de progression
+                  this.isProgressHidden = true;
 
-    //               // on affiche le retour
-    //               console.log(res);
+                  // on affiche le retour
+                  console.log(res);
 
-    //               // fermer l'alert si celui ci etait ouvert
-    //               this.closeAlert();
+                  // fermer l'alert si celui ci etait ouvert
+                  this.closeAlert();
 
-    //               // si le code de retour est 200, on met a jour la liste des habilitation
-    //               if (res.code == 200) {
-    //                 // mise ajour des habilitations
-    //                 this.getHabilitationList();
+                  // si le code de retour est 200, on met a jour la liste des habilitation
+                  if (res.code == 200) {
+                    // mise ajour des habilitations
+                    this.getHabilitationList();
 
-    //                 // on notifie sur la vue
-    //                 this.alert_type = "success";
-    //                 this.alert_message = "Mise à jour effectuée avec succès";
+                    // on notifie sur la vue
+                    this.alert_type = "success";
+                    this.alert_message = "Mise à jour effectuée avec succès";
 
-    //               } else {
-    //                 // set error message
-    //                 this.alert_type = "danger";
-    //                 this.alert_message = res.data;
+                  } else {
+                    // set error message
+                    this.alert_type = "danger";
+                    this.alert_message = res.data;
 
-    //               }
+                  }
 
-    //               // on notifie sur la vue
-    //               this.openAlert();
+                  // on notifie sur la vue
+                  this.openAlert();
 
-    //             });
+                }, (error) => {
+                  // log error
+                  console.log('--- ERREUR EDIT HABILITATION ---');
+                  console.log(error);
 
-    //           } catch (error) {
-    //             this.closeAlert();
-    //             this.alert_message = `${error}`
-    //             this.alert_type = "danger";
-    //             this.openAlert();
-    //           }
+                  // show alert
+                  this.closeAlert();
+                  this.alert_message = "Une erreur est survenue.";
+                  this.alert_type = 'danger';
+                  this.openAlert();
+
+                });
+
+              } catch (error) {
+                this.closeAlert();
+                this.alert_message = `${error}`
+                this.alert_type = "danger";
+                this.openAlert();
+              }
 
 
-    //         }
-    //       }
-    //     }
-    //   }
-    // });
+            }
+          }
+        }
+      }
+    });
 
   }
 
@@ -175,8 +186,8 @@ export class GestionHabilitationComponent implements OnInit {
     const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         title: "Habilitation : " + intitule,
-        message: "Voulez - vous vraiment supprimer cette habilitation ? \nLes comptes conernés n'auront plus d'habilitation"
-      }
+        message: "Voulez - vous vraiment supprimer cette habilitation ? \nLes comptes conernés se veront attribués l'habilitation par defaut."
+      }, disableClose: true, maxWidth: 600
     });
 
     confirmation_dialog.afterClosed().subscribe(result => {
@@ -229,8 +240,8 @@ export class GestionHabilitationComponent implements OnInit {
       this.closeAlert();
       this.alert_message = "Une erreur est survenue.";
       this.alert_type = "danger";
-      this.openAlert();      
-      
+      this.openAlert();
+
     });
   }
 
@@ -247,8 +258,6 @@ export class GestionHabilitationComponent implements OnInit {
   ngOnInit(): void {
     this.getHabilitationList();
     this.getFonctionnalite()
-    this.displayedColumns = ['Intitulé', 'Description', 'Crée par', 'Crée le', 'Actions'];
-    this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
   }
 
 }

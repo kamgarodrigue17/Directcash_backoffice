@@ -16,7 +16,13 @@ export class HabilitationDialogComponent {
     "description": "",
     "creerPar": localStorage.getItem('id'),
     "creerLe": "",
-    "pass": ""
+    "pass": "",
+
+    // "label": "Admin Habilitation", 
+    // "description": "This habilitation grants administrative privileges.", 
+    // "createdBy": "adminUser", 
+    // "pass": "admin123", 
+    // "habilitationFrom": "Basic Habilitation"
   }
   @ViewChild("form") form!: NgForm;
   constructor(@Inject(MAT_DIALOG_DATA) public datas: any, public habilitationService: HabilitationService) {
