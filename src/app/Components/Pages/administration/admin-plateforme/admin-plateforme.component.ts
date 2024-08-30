@@ -257,7 +257,7 @@ export class AdminPlateformeComponent implements OnInit {
       this.dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
       this.display = 'none';
-    });
+    })
   }
 
   ngOnInit(): void {

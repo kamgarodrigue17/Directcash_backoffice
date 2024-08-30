@@ -24,11 +24,11 @@ export class ValidationService {
   
     return this.http.post<any>(this.globalService.baseUrl+"/api/Administration/Users/newEdit", data);
   }
- 
   suplyvalidate(data:any): Observable<any> {
   
     return this.http.post<any>(this.globalService.baseUrl+"/api/Monnetique/Merchant/Supply/Validate", data);
   }
+  
   initdemandeAprovisionenm(data:any): Observable<any> {
   
     return this.http.post<any>(this.globalService.baseUrl+"/api/Monnetique/Merchant/Supply", data);
