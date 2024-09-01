@@ -2,8 +2,8 @@ import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 
 export class DateTime {
-    date!: string
-    time!: string
+  date!: string
+  time!: string
 }
 
 @Injectable({
@@ -36,5 +36,13 @@ export class DatetimeService {
     datetime.time = time + ``;
 
     return datetime;
+  }
+
+  getFormatedDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
   }
 }

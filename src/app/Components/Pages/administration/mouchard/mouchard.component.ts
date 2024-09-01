@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Habilitation } from 'src/app/modal/habilitation';
+import { AlertService } from 'src/app/services-v2/alert/alert.service';
+import { LoaderService } from 'src/app/services-v2/loader/loader.service';
+import { MouchardService } from 'src/app/services-v2/mouchard/mouchard.service';
 import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
 import { RoleService } from 'src/app/services/role/role.service';
 
@@ -12,12 +16,21 @@ import { RoleService } from 'src/app/services/role/role.service';
   styleUrls: ['./mouchard.component.css']
 })
 export class MouchardComponent implements OnInit {
-  displayedColumns: string[] = [];
-  ELEMENT_DATA: Habilitation[] = [];
-dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
-  constructor(public dialog: MatDialog, public mouchardService:RoleService,public globalService:GloabalServiceService) { }
+  displayedColumns: string[] = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date et heure', 'Actions'];
+  ELEMENT_DATA: any[] = [];
+  dataSource!: MatTableDataSource<any, MatTableDataSourcePaginator>
+  constructor(
+    public dialog: MatDialog,
+    public mouchardService: RoleService,
+    public globalService: GloabalServiceService,
+    private _mouchardService: MouchardService,
+    private _matSnackbar: MatSnackBar,
+    protected _loaderService: LoaderService,
+    private _alertService: AlertService,
+  ) { }
 
-  snackbar_message = "";
+  dateTo!: Date;
+  dateFrom!: Date;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -26,11 +39,7 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
   }
 
   // variable pour le loader du chargement des elements du tableau
-  display = 'flex';
-
-  // message et type de l'alerte de la page
-  alert_message = "";
-  alert_type = "";
+  display = 'none';
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -73,22 +82,63 @@ dataSource!:MatTableDataSource<Habilitation, MatTableDataSourcePaginator>
 
     // });
   }
-  ngOnInit(): void {
 
-    this.mouchardService.getMouchard(this.globalService.getTomorrowDate()).subscribe(habi=>{
+  /**
+   * Execute la requete de recuperation des donnees
+   */
+  getActivities() {
+    // start loading
+    this._loaderService.isProgressHidden = false;
 
-      this.ELEMENT_DATA=habi.data;
+    // send request
+    this._mouchardService.getAll("", "").subscribe(response => {
 
-      console.log(this.ELEMENT_DATA);
-      this.displayedColumns = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date et heure', 'Actions'];
-      this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+      // log response
+      console.log('--- LISTE DES ACTIONS ---');
+      console.log(response);
+
+      // get data
+      this.ELEMENT_DATA = response.data;
+
+      // set data
+      this.dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
-      this.display = 'none';
+
+      // stop loading
+      this._loaderService.isProgressHidden = true;
+
+    }, (error) => {
+
+      // stop loader
+      this._loaderService.isProgressHidden = true;
+
+      // log error
+      console.log('--- ERREUR GET LISTE ACTIONS ---');
+      console.log(error);
+
+      // show snack bar
+      this._alertService.type = 'danger'
+      this._alertService.message = "Une erreur est survenue.";
+      this._alertService.closeAlert();
+      this._alertService.openAlert();
     });
+  }
 
-    this.displayedColumns = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date et heure', 'Actions'];
-    this.dataSource = new MatTableDataSource<Habilitation>(this.ELEMENT_DATA);
+  /**
+   * Initier les dates
+   */
+  initDates() {
+    this.dateTo = new Date();
 
+    // Créer une copie de dateTo et soustraire un mois pour obtenir dateFrom
+    this.dateFrom = new Date(this.dateTo);
+    this.dateFrom.setMonth(this.dateFrom.getMonth() - 1);
+  }
+
+
+  ngOnInit(): void {
+    this.initDates();
+    this.getActivities();
   }
 
 }

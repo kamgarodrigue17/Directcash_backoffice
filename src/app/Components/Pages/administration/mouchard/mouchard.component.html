@@ -16,6 +16,15 @@
   </div>
   <!-- End Page Title -->
 
+  <!-- Loader pour les requetes -->
+  <mat-progress-bar
+    mode="indeterminate"
+    [hidden]="_loaderService.isProgressHidden"
+  ></mat-progress-bar>
+
+  <!-- Alert section -->
+  <app-alert />
+
   <div class="mat-elevation-z2 rounded">
     <div class="container-fluid pt-3 pb-0 mb-0" style="background: white">
       <mat-form-field appearance="outline">
