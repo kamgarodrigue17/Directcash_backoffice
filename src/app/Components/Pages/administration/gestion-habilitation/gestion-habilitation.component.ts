@@ -169,7 +169,6 @@ export class GestionHabilitationComponent implements OnInit {
                 this.openAlert();
               }
 
-
             }
           }
         }

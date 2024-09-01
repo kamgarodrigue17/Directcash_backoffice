@@ -186,40 +186,50 @@ export class AdminPlateformeComponent implements OnInit {
     const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         title: "Rénitialisation du mot de passe",
-        message: "Le mot de passe de " + user.userName + " sera rénitialiser à 12345. Continuer ?",
+        message: "Le mot de passe de " + user.UserName + " sera rénitialiser. Confirmer ?",
       }
     });
 
     confirmation_dialog.afterClosed().subscribe(result => {
       if (result) {
-        try {
-          // on affiche la barre de progression
-          // consommation de l'api
+
+        // on affiche la barre de progression
+        this._loaderService.isProgressHidden = false;
+
+        // set body
+        let data = {
+          "userID": `${user.UserName}`,      // L'ID de l'utilisateur dont vous souhaitez réinitialiser le mot de passe
+          "fullName": `${user.FullName}`,   // Le nom complet de l'utilisateur (inchangé)
+          "defaultPassword": "Reset",    // Indique que le mot de passe doit être réinitialisé
+          "isActive": 1,                 // Statut d'activité (1 pour actif, 0 pour inactif)
+          "Role": `${user.Role}`,                // Le rôle de l'utilisateur (inchangé)
+          "adminId": `${this._userService.getLocalUser().data.UserName}`,        // L'ID de l'administrateur qui effectue cette modification
+          "modifierPar": `${this._userService.getLocalUser().data.UserName}}`,    // L'administrateur ou la personne qui modifie les informations
+          "habilitation": `${user.idhabilitation}`              // Le niveau d'habilitation (inchangé)
+        }
+
+        // consommation de l'api
+        this._userService.resetPassword(data).subscribe(response => {
+
           // au retour de la reponse, on masque la barre de progression
+          this._loaderService.isProgressHidden = true;
+
           // et on definit le type d'alerte a afficher en fonction du code de retour
-          // let res_code = res.code;
-          // switch (+res_code) {
-          //   case 400:
-          //     this.alert_type = 'warning'
-          //     break;
-          //   default:
-          //     this.alert_type = 'info'
-          //     break;
-          // }
-          // this.alert_message = res.data;
           this._alertService.type = 'info';
-          this._alertService.message = 'Le mot de passe de ' + user.userName + 'a été rénitialiser à 12345.';
+          this._alertService.message = response.data[0].message;
           this._alertService.closeAlert();
           this._alertService.openAlert();
+        }, (error) => {
+          // stop loading
+          this._loaderService.isProgressHidden = true;
 
-        } catch (error) {
-
-          this._alertService.type = 'warning';
+          // show alert
+          this._alertService.type = 'danger';
           this._alertService.message = error + '';
 
           this._alertService.closeAlert();
           this._alertService.openAlert();
-        }
+        });
       }
     });
 
