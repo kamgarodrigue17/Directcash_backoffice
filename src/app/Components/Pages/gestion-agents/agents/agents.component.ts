@@ -19,10 +19,10 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
   styleUrls: ['./agents.component.css']
 })
 export class AgentsComponent implements OnInit {
-  displayedColumns: string[] = ['Nom', 'Téléphone', 'Type', 'solde', 'Actions'];
+  displayedColumns: string[] = ['Nom', 'Téléphone', 'iban', 'Type', 'solde', 'Actions'];
   ELEMENT_DATA: Agent[] = [
   ];
-  dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>
+  dataSource!: MatTableDataSource<any, MatTableDataSourcePaginator>
 
   constructor(
     public dialog: MatDialog,
@@ -97,14 +97,12 @@ export class AgentsComponent implements OnInit {
   }
 
   open_add_agent_dialog(mode: string, element: any) {
-
     const add_agent_dialog = this.dialog.open(AddAgentDialogComponent, {
       data: {
         element: element,
         mode: mode
       }
     });
-
 
     add_agent_dialog.afterClosed().subscribe(result => {
       this.add_agent_form = result;
@@ -187,7 +185,7 @@ export class AgentsComponent implements OnInit {
 
       // set data
       this.ELEMENT_DATA = res.data;
-      this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
+      this.dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
 
       // set paginator
       this.dataSource.paginator = this.paginator;
@@ -215,18 +213,6 @@ export class AgentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.AgentService.Agents("Agents").subscribe(agents => {
-    //   this.ELEMENT_DATA = agents.data;
-    //   console.log(this.ELEMENT_DATA);
-    //   this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
-    //   this.dataSource.paginator = this.paginator;
-    //   this.display = 'none'
-    // });
-
-    // this.displayedColumns = ['Nom', 'Type', 'Solde (XAF)',  "Banque", 'Merchant', 'N° IMEI', "Date",'Actions'];
-    // this.displayedColumns = ['Nom', 'Téléphone', 'Type', 'solde', "Collecte de fonds", 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
-    // this.dataSource = new MatTableDataSource<Agent>(this.ELEMENT_DATA);
-
     this.getAgents();
   }
 }

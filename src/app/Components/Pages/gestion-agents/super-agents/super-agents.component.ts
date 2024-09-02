@@ -8,6 +8,7 @@ import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmat
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
 import { ShowSuperAgengDialogComponent } from 'src/app/Components/Modals/show-super-ageng-dialog/show-super-ageng-dialog.component';
 import { Merchant } from 'src/app/modal/merchant';
+import { AgentService } from 'src/app/services-v2/agent/agent.service';
 import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
 import { SuperAgentService } from 'src/app/services/superAgent/super-agent.service';
 
@@ -17,15 +18,20 @@ import { SuperAgentService } from 'src/app/services/superAgent/super-agent.servi
   styleUrls: ['./super-agents.component.css']
 })
 export class SuperAgentsComponent implements OnInit {
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = ['Nom', 'Téléphone', 'iban', 'Compte principal', 'MerchantName', 'Actions'];
   ELEMENT_DATA: Merchant[] = [
   ];
-  dataSource!: MatTableDataSource<Merchant, MatTableDataSourcePaginator>
+  dataSource!: MatTableDataSource<any, MatTableDataSourcePaginator>
 
-  constructor(public dialog: MatDialog, public AgentService: AgentServiceService, public merchantService: SuperAgentService) { }
+  constructor(
+    public dialog: MatDialog,
+    public AgentService: AgentServiceService,
+    public merchantService: SuperAgentService,
+    private _agentService: AgentService
+  ) { }
 
   // variable pour le loader du chargement des elements du tableau
-  display = 'flex';
+  display = 'none';
 
   // loader pour le chargement du tableau
   isLoaderHidden = true;
@@ -201,6 +207,50 @@ export class SuperAgentsComponent implements OnInit {
 
       }
     });
+  }
+
+  /**
+   * Recuperer la liste des agents
+   */
+  getAgents() {
+    // start loading
+    this.isProgressHidden = false;
+
+    this._agentService.getAll().subscribe(res => {
+
+      // log response
+      console.log('--- get agent response ---');
+      console.log(res);
+
+      // set data
+      let agentList: any[] = [];
+      agentList = res.data;
+      this.ELEMENT_DATA = agentList.filter((agent, index) => { return agent.Type == "SA" });
+      this.dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
+
+      // set paginator
+      this.dataSource.paginator = this.paginator;
+
+      // stop loading
+      this.isProgressHidden = true;
+
+    }, (error) => {
+
+      // stop loading
+      this.isProgressHidden = true;
+
+      // show alert
+      this.closeAlert();
+      this.alert_message = "Une erreur est survenue.";
+      this.alert_type = 'danger';
+      this.openAlert();
+
+      // log error
+      console.log('--- ERREUR GET SUPERS AGENTS ---');
+      console.log(error);
+
+
+    })
   }
 
 

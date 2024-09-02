@@ -101,6 +101,12 @@
         <td mat-cell *matCellDef="let element">{{ element.Phone }}</td>
       </ng-container>
 
+      <!-- Iban Column -->
+      <ng-container matColumnDef="iban">
+        <th mat-header-cell *matHeaderCellDef>IBAN</th>
+        <td mat-cell *matCellDef="let element">{{ element.iban }}</td>
+      </ng-container>
+
       <!-- Solde / Compte principal Column -->
       <ng-container matColumnDef="Compte principal">
         <th mat-header-cell *matHeaderCellDef>Compte principal (XAF)</th>

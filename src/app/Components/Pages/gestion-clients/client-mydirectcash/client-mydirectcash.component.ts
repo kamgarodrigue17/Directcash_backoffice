@@ -18,7 +18,7 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
   styleUrls: ['./client-mydirectcash.component.css']
 })
 export class ClientMydirectcashComponent implements OnInit {
-  displayedColumns: string[] = ['Noms', 'Matricule', 'Téléphone', 'Solde (XAF)', 'Adresse','profession', 'Actions'];
+  displayedColumns: string[] = ['Noms', 'Matricule', 'iban', 'Téléphone', 'Solde (XAF)', 'Adresse','profession', 'Actions'];
   ELEMENT_DATA: Agent[] = [
   ];
   dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>

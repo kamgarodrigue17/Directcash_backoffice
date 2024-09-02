@@ -103,6 +103,12 @@
         <td mat-cell *matCellDef="let element">{{ element.tel }}</td>
       </ng-container>
 
+      <!-- Iban Column -->
+      <ng-container matColumnDef="iban">
+        <th mat-header-cell *matHeaderCellDef>IBAN</th>
+        <td mat-cell *matCellDef="let element">{{ element.iban }}</td>
+      </ng-container>
+
       <!-- Solde / Compte principal Column -->
       <ng-container matColumnDef="Compte principal">
         <th mat-header-cell *matHeaderCellDef>Compte principal (XAF)</th>
@@ -110,22 +116,22 @@
       </ng-container>
 
       <!-- Collecte de fonds Column -->
-      <ng-container matColumnDef="Collecte de fonds">
+      <!-- <ng-container matColumnDef="Collecte de fonds">
         <th mat-header-cell *matHeaderCellDef>Collecte de fonds (XAF)</th>
         <td mat-cell *matCellDef="let element">0</td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- Paiement marchand Column -->
-      <ng-container matColumnDef="Paiement marchand">
+      <!-- <ng-container matColumnDef="Paiement marchand">
         <th mat-header-cell *matHeaderCellDef>Paiement marchand (XAF)</th>
         <td mat-cell *matCellDef="let element">0</td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- Commissions Column -->
-      <ng-container matColumnDef="Commissions">
+      <!-- <ng-container matColumnDef="Commissions">
         <th mat-header-cell *matHeaderCellDef>Commissions (XAF)</th>
         <td mat-cell *matCellDef="let element">0</td>
-      </ng-container>
+      </ng-container> -->
 
       <!-- MerchantName Column -->
       <ng-container matColumnDef="MerchantName">
