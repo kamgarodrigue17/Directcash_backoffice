@@ -94,13 +94,13 @@
       <!-- Nom Column -->
       <ng-container matColumnDef="Nom">
         <th mat-header-cell *matHeaderCellDef>Noms</th>
-        <td mat-cell *matCellDef="let element">{{ element.merchantName }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.AgentName }}</td>
       </ng-container>
 
       <!-- Téléphone Column -->
       <ng-container matColumnDef="Téléphone">
         <th mat-header-cell *matHeaderCellDef>Téléphone</th>
-        <td mat-cell *matCellDef="let element">{{ element.tel }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.phoneContact }}</td>
       </ng-container>
 
       <!-- Iban Column -->
@@ -112,7 +112,7 @@
       <!-- Solde / Compte principal Column -->
       <ng-container matColumnDef="Compte principal">
         <th mat-header-cell *matHeaderCellDef>Compte principal (XAF)</th>
-        <td mat-cell *matCellDef="let element">{{ element.balance }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.Balance }}</td>
       </ng-container>
 
       <!-- Collecte de fonds Column -->
@@ -136,7 +136,7 @@
       <!-- MerchantName Column -->
       <ng-container matColumnDef="MerchantName">
         <th mat-header-cell *matHeaderCellDef>Merchant</th>
-        <td mat-cell *matCellDef="let element">{{ element.creerPar }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.CreerPar }}</td>
       </ng-container>
 
       <!-- Actions Column -->

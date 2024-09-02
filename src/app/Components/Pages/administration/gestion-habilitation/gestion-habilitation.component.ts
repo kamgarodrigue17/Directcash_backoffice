@@ -131,20 +131,13 @@ export class GestionHabilitationComponent implements OnInit {
                   this.closeAlert();
 
                   // si le code de retour est 200, on met a jour la liste des habilitation
-                  if (res.code == 200) {
-                    // mise ajour des habilitations
-                    this.getHabilitationList();
 
-                    // on notifie sur la vue
-                    this.alert_type = "success";
-                    this.alert_message = "Mise à jour effectuée avec succès";
+                  // mise ajour des habilitations
+                  this.getHabilitationList();
 
-                  } else {
-                    // set error message
-                    this.alert_type = "danger";
-                    this.alert_message = res.data;
-
-                  }
+                  // on notifie sur la vue
+                  this.alert_type = "info";
+                  this.alert_message = res.message;
 
                   // on notifie sur la vue
                   this.openAlert();
@@ -237,7 +230,7 @@ export class GestionHabilitationComponent implements OnInit {
 
       // show alert
       this.closeAlert();
-      this.alert_message = "Une erreur est survenue.";
+      this.alert_message = error.error.message;
       this.alert_type = "danger";
       this.openAlert();
 

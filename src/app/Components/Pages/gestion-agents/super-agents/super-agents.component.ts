@@ -253,18 +253,8 @@ export class SuperAgentsComponent implements OnInit {
     })
   }
 
-
   ngOnInit(): void {
-    this.AgentService.Agents("Merchants").subscribe(agents => {
-      this.ELEMENT_DATA = agents.data;
-      console.log(this.ELEMENT_DATA);
-      this.dataSource = new MatTableDataSource<Merchant>(this.ELEMENT_DATA);
-      this.dataSource.paginator = this.paginator;
-      this.display = 'none'
-    });
-
-    this.displayedColumns = ['Nom', 'Téléphone', 'Compte principal', 'Collecte de fonds', 'Paiement marchand', 'Commissions', 'MerchantName', 'Actions'];
-    this.dataSource = new MatTableDataSource<Merchant>(this.ELEMENT_DATA);
+    this.getAgents();
   }
 
 }

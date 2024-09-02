@@ -14,7 +14,7 @@ export class FonctionalitesService {
   
   fonctionalites(habilitation:String): Observable<any> {
   
-    return this.http.get<any>(this.globalService.baseUrl+"/api/Administration/Habilitations/Functionnalities?habilitation="+habilitation);
+    return this.http.get<any>(this.globalService.baseUrl2+"/Habilitations/functionnalities/"+habilitation);
   }
   HabilitationAddOption(data:any): Observable<any> {
     /*{
@@ -22,6 +22,6 @@ export class FonctionalitesService {
       "option":"",
       "habilitation":""
   }*/
-    return this.http.post<any>(this.globalService.baseUrl+"/api/Administration/Habilitation/AddOption", data);
+    return this.http.post<any>(this.globalService.baseUrl2+"/api/Administration/Habilitation/AddOption", data);
   }
 }
