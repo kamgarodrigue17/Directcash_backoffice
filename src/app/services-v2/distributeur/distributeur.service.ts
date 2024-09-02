@@ -29,7 +29,7 @@ export class DistributeurService {
 
   /**
    * 
-   * @param data Ajouter un distributeur
+   * @param data Ajouter / modifier un distributeur
    * @returns 
    */
   create(data: any): Observable<any> {

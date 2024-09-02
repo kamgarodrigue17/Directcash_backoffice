@@ -57,7 +57,7 @@
             placeholder="0.00"
             name="balance"
             ngModel
-            [(ngModel)]="distributeur.balance"
+            [(ngModel)]="element.Balance"
             [readonly]="true"
           />
         </mat-form-field>
@@ -88,7 +88,7 @@
             placeholder="Téléphone"
             name="phone"
             ngModel
-            [(ngModel)]="distributeur.Phone"
+            [(ngModel)]="distributeur.vPhone"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -126,7 +126,7 @@
             placeholder="exemple@gmail.con"
             name="email"
             ngModel
-            [(ngModel)]="distributeur.email"
+            [(ngModel)]="distributeur.vEmail"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -140,7 +140,7 @@
           placeholder="Region"
           name="region"
           ngModel
-          [(ngModel)]="distributeur.Region"
+          [(ngModel)]="element.Region"
           [readonly]="mode == 'show'"
         />
       </mat-form-field>
@@ -182,7 +182,7 @@
             placeholder="N° CNI"
             name="cni"
             ngModel
-            [(ngModel)]="distributeur.cni"
+            [(ngModel)]="distributeur.vCNI"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -194,7 +194,7 @@
             required
             matInput
             [(ngModel)]="
-              _datetimeService.formatDate(distributeur.CreatedOn).date
+              _datetimeService.formatDate(element.CreerLe).date
             "
             placeholder="Date de création"
             name="createdOn"
@@ -215,7 +215,7 @@
             placeholder="N° contribuable"
             name="contribuable"
             ngModel
-            [(ngModel)]="distributeur.Contribuable"
+            [(ngModel)]="distributeur.vContribuable"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -295,7 +295,7 @@
             placeholder="N° de téléphone du contact"
             name="phoneContact"
             ngModel
-            [(ngModel)]="distributeur.EmergencyContact"
+            [(ngModel)]="distributeur.vEmergencyContact"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -309,7 +309,7 @@
             placeholder="N° CNI / NIU"
             name="cniContact"
             ngModel
-            [(ngModel)]="distributeur.EmergencyCni"
+            [(ngModel)]="distributeur.vEmergencyCni"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -323,8 +323,8 @@
   <button
     class="primary-light-button"
     mat-button
-    [mat-dialog-close]="merchant"
     [hidden]="mode == 'show'"
+    (click)="validate()"
   >
     Sauvegarder
   </button>

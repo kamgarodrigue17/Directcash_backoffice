@@ -22,7 +22,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 })
 export class DistributeurComponent implements OnInit {
 
-  displayedColumns: string[] = ['Nom', 'Téléphone', 'iban', 'Compte principal','Collecte de fonds','Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
+  displayedColumns: string[] = ['Nom', 'Téléphone', 'iban', 'Compte principal', 'Collecte de fonds', 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
   ELEMENT_DATA: Agent[] = [
   ];
   dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>
@@ -128,11 +128,46 @@ export class DistributeurComponent implements OnInit {
         mode: mode,
         element: element,
         merchantList: this.ELEMENT_DATA
-      }
+      }, disableClose: true
     });
 
     distributeur_dialog.afterClosed().subscribe(result => {
 
+      if (result != false) {
+        // start loading
+        this.isProgressHidden = false;
+
+        // send request
+        this._distributeurService.create(result).subscribe(response => {
+
+          // stop loading
+          this.isProgressHidden = true;
+
+          // show alert info
+          this.alert_type = 'info';
+          this.alert_message = response.data[0].message;
+          this.closeAlert();
+          this.openAlert();
+
+          // log response
+          console.log('--- REPONSE EDIT DISTRIBUTEUR ---');
+          console.log(response);
+
+        }, (error) => {
+          // stop loading
+          this.isProgressHidden = true;
+
+          // log error
+          console.log('--- ERREUR EDIT DISTRIBUTEUR ---');
+          console.log(error);
+
+          // show alert
+          this.closeAlert();
+          this.alert_message = error.error.message;
+          this.alert_type = 'danger';
+          this.openAlert();
+        })
+      }
     });
   }
 
