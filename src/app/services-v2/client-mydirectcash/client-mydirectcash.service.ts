@@ -15,7 +15,7 @@ export class CLientMyDirectcashService {
     private _userService: AdminService
   ) { }
   /**
-   * Recuperer la liste des habilitations
+   * Recuperer la liste des clients
    * @returns 
    */
   getAll(): Observable<any> {

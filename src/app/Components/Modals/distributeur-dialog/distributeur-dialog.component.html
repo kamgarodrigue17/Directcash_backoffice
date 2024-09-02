@@ -4,7 +4,7 @@
 >
   <span class="me-4" [hidden]="mode == 'show'">Editer un Distributeur</span>
   <span class="me-4" [hidden]="mode == 'edit'"
-    ><strong>ID: </strong>{{ merchant.MerchantID }}</span
+    ><strong>ID: </strong>{{ distributeur.MerchantID }}</span
   >
   <button mat-button [mat-dialog-close]="false" class="text-center">
     <mat-icon class="me-0">close</mat-icon>
@@ -24,7 +24,7 @@
             placeholder="Nom"
             name="nom"
             ngModel
-            [(ngModel)]="merchant.MerchantName"
+            [(ngModel)]="distributeur.vMerchantName"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -57,8 +57,8 @@
             placeholder="0.00"
             name="balance"
             ngModel
-            [(ngModel)]="merchant.balance"
-            [readonly]="mode == 'show'"
+            [(ngModel)]="distributeur.balance"
+            [readonly]="true"
           />
         </mat-form-field>
       </div>
@@ -73,7 +73,7 @@
             placeholder="N° IMEI"
             name="imei"
             ngModel
-            [(ngModel)]="merchant.imei"
+            [(ngModel)]="distributeur.vImei"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -88,7 +88,7 @@
             placeholder="Téléphone"
             name="phone"
             ngModel
-            [(ngModel)]="merchant.Phone"
+            [(ngModel)]="distributeur.Phone"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -126,7 +126,7 @@
             placeholder="exemple@gmail.con"
             name="email"
             ngModel
-            [(ngModel)]="merchant.Email"
+            [(ngModel)]="distributeur.email"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -140,7 +140,7 @@
           placeholder="Region"
           name="region"
           ngModel
-          [(ngModel)]="merchant.Region"
+          [(ngModel)]="distributeur.Region"
           [readonly]="mode == 'show'"
         />
       </mat-form-field>
@@ -182,8 +182,7 @@
             placeholder="N° CNI"
             name="cni"
             ngModel
-            [(ngModel)]="merchant.CNI"
-            [value]="merchant.CNI"
+            [(ngModel)]="distributeur.cni"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -194,7 +193,9 @@
           <input
             required
             matInput
-            [(ngModel)]="_datetimeService.formatDate(merchant.CreatedOn).date"
+            [(ngModel)]="
+              _datetimeService.formatDate(distributeur.CreatedOn).date
+            "
             placeholder="Date de création"
             name="createdOn"
             ngModel
@@ -214,7 +215,7 @@
             placeholder="N° contribuable"
             name="contribuable"
             ngModel
-            [(ngModel)]="merchant.Contribuable"
+            [(ngModel)]="distributeur.Contribuable"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -280,7 +281,7 @@
             placeholder="Nom du contact"
             name="nomContact"
             ngModel
-            [(ngModel)]="merchant.ContactName"
+            [(ngModel)]="distributeur.vContactName"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -294,7 +295,7 @@
             placeholder="N° de téléphone du contact"
             name="phoneContact"
             ngModel
-            [(ngModel)]="merchant.EmergencyContact"
+            [(ngModel)]="distributeur.EmergencyContact"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>
@@ -308,7 +309,7 @@
             placeholder="N° CNI / NIU"
             name="cniContact"
             ngModel
-            [(ngModel)]="merchant.EmergencyCni"
+            [(ngModel)]="distributeur.EmergencyCni"
             [readonly]="mode == 'show'"
           />
         </mat-form-field>

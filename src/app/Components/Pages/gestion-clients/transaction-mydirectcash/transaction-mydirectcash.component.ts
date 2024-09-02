@@ -5,7 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { catchError, throwError } from 'rxjs';
 import { ShowTransMydirectcashDialogComponent } from 'src/app/Components/Modals/show-trans-mydirectcash-dialog/show-trans-mydirectcash-dialog.component';
-import { TransactionService } from 'src/app/service/transaction.service';
+import { DatetimeService } from 'src/app/services-v2/datetime/datetime.service';
+import { TransactionService } from 'src/app/services-v2/transactions/transaction.service';
 import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
 import { MessageService } from 'src/app/services/message/message.service';
 
@@ -20,7 +21,8 @@ export class TransactionMydirectcashComponent {
     public dialog: MatDialog,
     private _transactionService: TransactionService,
     private _globalService: GloabalServiceService,
-    private _messageService: MessageService
+    private _messageService: MessageService,
+    private _datetimeService: DatetimeService
   ) { }
 
   displayedColumns: string[] = ['nom', "telephone", 'Montant (XAF)', 'Service', 'tva', 'tta', 'commission', 'destinataire', 'Date', 'statut', 'Action'];
@@ -44,10 +46,8 @@ export class TransactionMydirectcashComponent {
   alert_type = "";
 
   isLoading = false;
-
-  day = new Date();
-  startDate = new Date('1/6/2003');
-  endDate = new Date();
+  dateFrom!: Date
+  dateTo!: Date
 
 
   /**
@@ -82,13 +82,13 @@ export class TransactionMydirectcashComponent {
   /**
    * Recuperer les transaction my directcash
    */
-  getTransactionAirtime() {
+  getTransactionAirtime(dateFrom: string, dateTo: string) {
     try {
       // start loading
       this.isProgressHidden = false;
 
       // code ...
-      this._transactionService.getTransaction(localStorage.getItem('id')!, "airtime", "2021-6-1", "", this._globalService.formatDate(this.day)).pipe(
+      this._transactionService.getAll(dateTo, dateFrom, "airtime").pipe(
         catchError((error: HttpErrorResponse) => {
           this.isProgressHidden = true;
           if (error.status !== 200) {
@@ -143,8 +143,21 @@ export class TransactionMydirectcashComponent {
     // this.dataSource = new MatTableDataSource<Transaction>(this.ELEMENT_DATA);
   }
 
+
+  /**
+   * Initier les dates
+   */
+  initDates() {
+    this.dateTo = new Date();
+
+    // Créer une copie de dateTo et soustraire un mois pour obtenir dateFrom
+    this.dateFrom = new Date(this.dateTo);
+    this.dateFrom.setMonth(this.dateFrom.getMonth() - 1);
+  }
+
   ngOnInit() {
-    this.getTransactionAirtime();
+    this.initDates();
+    this.getTransactionAirtime(this._datetimeService.getFormatedDate(this.dateFrom), this._datetimeService.getFormatedDate(this.dateTo));
   }
 
 }

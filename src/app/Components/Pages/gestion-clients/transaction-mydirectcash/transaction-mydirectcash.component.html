@@ -20,10 +20,10 @@
         <mat-date-range-input [rangePicker]="picker">
           <input
             matStartDate
-            [(ngModel)]="startDate"
+            [(ngModel)]="dateFrom"
             placeholder="Start date"
           />
-          <input matEndDate [(ngModel)]="endDate" placeholder="End date" />
+          <input matEndDate [(ngModel)]="dateTo" placeholder="End date" />
         </mat-date-range-input>
         <mat-datepicker-toggle
           matIconSuffix

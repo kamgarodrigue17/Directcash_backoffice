@@ -112,7 +112,7 @@ export class AdminPlateformeComponent implements OnInit {
             switch (+res_code) {
               case 200:
                 this._alertService.type = 'success'
-                this._alertService.message = "Utilisateur ajouté avec succès.";
+                this._alertService.message = "Utilisateur enregistré avec succès.";
 
                 // refresh data 
                 this.getUsers();

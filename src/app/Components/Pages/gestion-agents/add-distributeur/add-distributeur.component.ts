@@ -65,26 +65,6 @@ export class AddDistributeurComponent implements OnInit {
 
       //
       let data: any = {
-        // "nom": this.myForm.value.nom,
-        // "email": this.myForm.value.email,
-        // "contactName": this.myForm1.value.contactName,
-        // "phone": this.myForm.value.phone,
-        // "cni": this.myForm.value.cni,
-        // "isDistributor": 1,
-        // "superMerchant": `${this.myForm1.value.superMerchant}`,
-        // // "imei": this.myForm.value.imei,
-        // "id": "",
-        // "adminId": localStorage.getItem('id'),
-        // // "contribuable": this.myForm1.value.contribuable,
-        // "OperateurMarketing": this.myForm1.value.OperateurMarketing,
-        // "region": this.myForm.value.region,
-        // "phoneContact": this.myForm1.value.phoneContact,
-        // "EmergencyContact": this.myForm1.value.phoneContact,
-        // "EmergencyCni": this.myForm1.value.cniContact,
-        // "cniContact": this.myForm1.value.cniContact,
-        // // "creerPar": localStorage.getItem('id'),
-        // "creerLe": "",
-
         "vMerchantName": this.myForm.value.nom,
         "vEmail": this.myForm.value.email,
         "vContactName": this.myForm1.value.contactName,
