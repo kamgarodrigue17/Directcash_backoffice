@@ -57,7 +57,7 @@ export class RapportPaiementFactureEneoComponent {
 export interface PeriodicElement {
   agent: string;
   id_transaction: string;
-  ptn: string;
+  pin: string;
   montant: number;
   frais: number;
   type_operation: string;
@@ -65,5 +65,5 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { agent: '46FT64', id_transaction: 'THFS465', ptn: '....', montant: 40, frais: 40, type_operation: 'type operation', created_at: '14/10/2010 15:30' }
+  { agent: '46FT64', id_transaction: 'THFS465', pin: '....', montant: 40, frais: 40, type_operation: 'type operation', created_at: '14/10/2010 15:30' }
 ];

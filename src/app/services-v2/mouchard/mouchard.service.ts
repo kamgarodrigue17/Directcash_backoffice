@@ -22,7 +22,10 @@ export class MouchardService {
    * @returns 
    */
   getAll(dateFrom: string, dateTo: string): Observable<any> {
-    let url = this.globalService.baseUrl2 + `/Mouchard/read?forWho=${this._userService.getLocalUser().data.UserName}&dateFrom=${dateFrom}&dateTo=${dateTo}`;
+    let url = this.globalService.baseUrl2 + `/Mouchard/read?forWho=${localStorage.getItem('id')}&dateFrom=${dateFrom}&dateTo=${dateTo}`;
+    console.log(`/Mouchard/read?forWho=${localStorage.getItem('id')}&dateFrom=${dateFrom}&dateTo=${dateTo}`)
+
+   
     return this.http.get<any>(url);
   }
 

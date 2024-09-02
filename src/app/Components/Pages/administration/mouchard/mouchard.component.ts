@@ -16,6 +16,7 @@ import { RoleService } from 'src/app/services/role/role.service';
   styleUrls: ['./mouchard.component.css']
 })
 export class MouchardComponent implements OnInit {
+  
   displayedColumns: string[] = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date et heure', 'Actions'];
   ELEMENT_DATA: any[] = [];
   dataSource!: MatTableDataSource<any, MatTableDataSourcePaginator>
@@ -27,6 +28,7 @@ export class MouchardComponent implements OnInit {
     private _matSnackbar: MatSnackBar,
     protected _loaderService: LoaderService,
     private _alertService: AlertService,
+    public global: GloabalServiceService,
   ) { }
 
   dateTo!: Date;
@@ -91,7 +93,7 @@ export class MouchardComponent implements OnInit {
     this._loaderService.isProgressHidden = false;
 
     // send request
-    this._mouchardService.getAll("", "").subscribe(response => {
+    this._mouchardService.getAll(this.global.formatDate(this.dateFrom), this.global.formatDate(this.dateTo)).subscribe(response => {
 
       // log response
       console.log('--- LISTE DES ACTIONS ---');

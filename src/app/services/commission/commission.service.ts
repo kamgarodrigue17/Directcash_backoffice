@@ -13,8 +13,9 @@ export class CommissionService  {
     private http: HttpClient
   ) { }
   commissions(): Observable<any> {
+
   
-    return this.http.get<any>(this.globalService.baseUrl+"/api/Operations/GetCommissions?id="+localStorage.getItem("id"));
+    return this.http.get<any>(this.globalService.baseUrl+"/operation/GetAirtimeCommissions");
   }
   editcommissions(data:any): Observable<any> {
   

@@ -12,8 +12,13 @@ export class TransactionService {
 constructor(private http: HttpClient, private globalService:GloabalServiceService) {}
 
 getTransaction(id:string,trxType:string,startDate:string,forWho:string,endDate:string): Observable<any> {
+
+ var data={
+    "vDateFrom":"2023-05-01", "vDateTo":endDate, "vWhoAsk":localStorage.getItem('id'), "type":trxType
+  }
+  console.log(data)
   console.log(this.globalService.baseUrl+`/api/Operations/GetTransactions?id=${id}&trxType=${trxType}&forWho=${forWho}&startDate=${startDate}&endDate=${endDate}`);
-  return this.http.get<any[]>(this.globalService.baseUrl+`/api/Operations/GetTransactions?id=${id}&trxType=${trxType}&forWho=${forWho}&startDate=${startDate}&endDate=${endDate}`);
+  return this.http.post<any[]>(this.globalService.baseUrl+`/operation/GetTransactions`,data);
 }
 
 // passer l id

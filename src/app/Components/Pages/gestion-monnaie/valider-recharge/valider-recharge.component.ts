@@ -96,7 +96,7 @@ console.log(data);
               this.alert_type = 'info'
               break;
           }
-          this.alert_message = res.data;
+          this.alert_message = res.data.message;
           this.openAlert();
         });
 

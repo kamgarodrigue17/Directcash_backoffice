@@ -241,7 +241,7 @@ export class GestionHabilitationComponent implements OnInit {
    * Recuperer la liste des fonctionnalité
    */
   getFonctionnalite() {
-    this.fonctionaliteService.fonctionalites("1").subscribe(response => {
+    this.fonctionaliteService.fonctionalites("all").subscribe(response => {
       this.Fonctionnalites = response.data;
     })
   }

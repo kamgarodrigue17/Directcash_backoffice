@@ -87,6 +87,15 @@ export class ConnexionComponent implements OnInit {
         if (res.data.message && res.data.message == "Valid User") {
           // save user
           this._userService.setUser(res);
+          console.log(res.data.message)
+          localStorage.setItem("id", res.data.UserName);
+       
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("Company", res.data.company);
+  
+            localStorage.setItem("user", JSON.stringify(res.data));
+  
+            console.log(res.data);
 
           this._userService.getLocalUser();
 

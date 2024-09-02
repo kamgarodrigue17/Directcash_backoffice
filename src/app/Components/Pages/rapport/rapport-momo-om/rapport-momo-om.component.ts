@@ -61,24 +61,27 @@ export class RapportMomoOmComponent implements OnInit {
   ngOnInit(): void {
     this.trxService.getTransaction(localStorage.getItem('id')!, "ommomo", "2033-6-1", "", this.global.formatDate(this.day)).subscribe(trx => {
 
+
+      
+
       console.log(trx);
       this.ELEMENT_DATA = trx.data.map((element: any) => {
         return {
           a: element.a,
-          agentID: element.agentID,
+          agentID: element.Agent_From,
           blockingReason: element.blockingReason,
           commission: element.commission,
           de: element.de,
           directCode: element.directCode,
           expediteur: element.expediteur,
           jour: element.jour,
-          montant: element.montant,
-          payeLe: element.payeLe,
+          montant: element.Montant,
+          payeLe: element.Le,
           payeur: element.payeur,
           pin: element.pin,
-          receiver: element.receiver,
-          statut: element.statut,
-          transactionID: element.transactionID,
+          receiver: element.Receiver,
+          statut: element.Statut,
+          transactionID: element.Transaction_ID,
         };
       });//trx.data.;
       console.log(this.ELEMENT_DATA);

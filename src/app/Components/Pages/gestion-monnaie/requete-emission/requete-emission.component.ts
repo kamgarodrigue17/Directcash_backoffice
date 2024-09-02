@@ -158,14 +158,24 @@ export class RequeteEmissionComponent {
 
               // on definit le type d'alerte  afficher en fonction du code de retour
               let res_code = res.code;
-              switch (+res_code) {
+              switch (+res_code) { 
+
                 case 200:
                   this.alert_type = 'success'
-                  this.alert_message = "La requête a été intiée avec succès.";
+                  this.alert_message = res.data[0].message;
 
                   // refresh data
                   this.getRequeteList();
                   break;
+
+                  case 404:
+                  this.alert_type = 'warning'
+                  this.alert_message = res.data[0].message;
+
+                  // refresh data
+                  this.getRequeteList();
+                  break;
+
 
                 default:
                   this.alert_type = 'danger';
@@ -284,7 +294,11 @@ export class RequeteEmissionComponent {
               case 200:
                 this.alert_type = 'success'
                 this.alert_message = "La requête a été validée avec succès. Vous venez d'emettre " + amount.toLocaleString("en-US") + " Dans le système";
-
+                break;
+                case 404:
+                  this.alert_type = 'warning'
+                  this.alert_message = res.data[0].message;
+  
                 // refresh list
                 this.getRequeteList();
                 break;

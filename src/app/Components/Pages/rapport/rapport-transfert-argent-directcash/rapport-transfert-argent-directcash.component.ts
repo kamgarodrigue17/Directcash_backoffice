@@ -71,24 +71,25 @@ export class RapportTransfertArgentDirectcashComponent implements OnInit {
   ngOnInit(): void {
     this.trxService.getTransaction(localStorage.getItem('id')!, "xfert", "2033-6-1", "", this.global.formatDate(this.day)).subscribe(trx => {
 
+     
       console.log(trx);
       this.ELEMENT_DATA = trx.data.map((element: any) => {
         return {
-          a: element.a,
-          agentID: element.agentID,
-          blockingReason: element.blockingReason,
-          commission: element.commission,
-          de: element.de,
-          directCode: element.directCode,
-          expediteur: element.expediteur,
-          jour: element.jour,
-          montant: element.montant,
-          payeLe: element.payeLe,
-          payeur: element.payeur,
-          pin: element.pin,
-          receiver: element.receiver,
-          statut: element.statut,
-          transactionID: element.transactionID,
+          A: element.ToNumber,
+          agentID: element.AgentID,
+          blockingReason: element.BlockingReasons,
+          commission: element.Commission,
+          De: element.FromNumber,
+          directCode: element.DirectCode,
+          expediteur: element.FromNumber,
+          jour: element.TrxDate,
+          montant: element.Amount,
+          payeLe: element.TrxDate,
+          payeur: element.ToNumber,
+          pin: element.PIN,
+          receiver: element.ToNumber,
+          statut: element.TrxStatus,
+          transactionID: element.idTransactions,
         };
       });//trx.data.;
       console.log(this.ELEMENT_DATA);

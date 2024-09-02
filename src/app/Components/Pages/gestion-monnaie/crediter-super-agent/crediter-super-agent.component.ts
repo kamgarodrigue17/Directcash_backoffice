@@ -102,11 +102,7 @@ export class CrediterSuperAgentComponent implements OnInit {
           console.log('--- DATA ---');
           console.log(result);
 
-          // check if password correct
-          if (result.vPass != '12345') {
-            this._matSnackBar.open("Mot de passe incorrect !.")._dismissAfter(3000);
-            return;
-          }
+         
 
           // start loading
           this.isProgressHidden = false;
@@ -137,7 +133,7 @@ export class CrediterSuperAgentComponent implements OnInit {
             switch (+res_code) {
               case 200:
                 this.alert_type = 'success';
-                this.alert_message = "Requête d'approvisionnement initiée avec succès";
+                this.alert_message =res.data[0].message;
 
                 // refresh data
                 this.getRequeteApproList();
@@ -145,7 +141,7 @@ export class CrediterSuperAgentComponent implements OnInit {
 
               default:
                 this.alert_type = 'danger';
-                this.alert_message = "Une erreur est survenue lors de l'envoi de la requête.";
+                this.alert_message =res.data[0].message;
 
                 // log response
                 console.log(res);
@@ -262,7 +258,7 @@ export class CrediterSuperAgentComponent implements OnInit {
             switch (res_code) {
               case "200":
                 this.alert_type = 'success';
-                this.alert_message = "Requête validée avec succès.";
+                this.alert_message = res.data[0].message;
 
                 // refresh data list
                 this.getRequeteApproList();
@@ -272,7 +268,7 @@ export class CrediterSuperAgentComponent implements OnInit {
                 this.alert_type = 'danger';
                 break;
             }
-            this.alert_message = "Une erreur est survenue.";
+            this.alert_message = res.data[0].message;
             this.openAlert();
           });
         } catch (error) {

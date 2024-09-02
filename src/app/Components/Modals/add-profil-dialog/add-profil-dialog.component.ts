@@ -15,9 +15,9 @@ export class AddProfilDialogComponent implements OnInit {
   habilitation: any;
 
   option: any = {
-    "userId": "",
-    "option": "",
-    "habilitation": ""
+    "vWho": "",
+    "vOption": "",
+    "vHabilitation": ""
   }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public fonctionalité: FonctionalitesService) { }
@@ -26,7 +26,7 @@ export class AddProfilDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.habilitation = JSON.parse(`${localStorage.getItem("currentHabilitation")}`);
-    this.fonctionalité.fonctionalites("*").subscribe(habi => {
+    this.fonctionalité.fonctionalites("all").subscribe(habi => {
       this.fonctionnalites = habi.data;
     });
 

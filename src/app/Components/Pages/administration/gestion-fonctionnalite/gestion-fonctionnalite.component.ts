@@ -52,7 +52,7 @@ export class GestionFonctionnaliteComponent implements OnInit {
  ///   this._router.navigateByUrl("/administration/gestion-fonctionnalites/detail");
   }
   ngOnInit(): void {
-    this.fonctionalié.fonctionalites("*").subscribe(habi => {
+    this.fonctionalié.fonctionalites("all").subscribe(habi => {
 
       this.ELEMENT_DATA = habi.data;
       console.log(this.ELEMENT_DATA);
