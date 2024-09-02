@@ -22,7 +22,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 })
 export class DistributeurComponent implements OnInit {
 
-  displayedColumns: string[] = ['Nom', 'Téléphone', 'iban', 'Compte principal', 'Merchant', 'Actions'];
+  displayedColumns: string[] = ['Nom', 'Téléphone', 'iban', 'Compte principal','Collecte de fonds','Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
   ELEMENT_DATA: Agent[] = [
   ];
   dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>

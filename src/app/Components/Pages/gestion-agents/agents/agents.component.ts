@@ -19,9 +19,8 @@ import { AgentServiceService } from 'src/app/services/agent/agent-service.servic
   styleUrls: ['./agents.component.css']
 })
 export class AgentsComponent implements OnInit {
-  displayedColumns: string[] = ['Nom', 'Téléphone', 'iban', 'Type', 'solde', 'Actions'];
-  ELEMENT_DATA: Agent[] = [
-  ];
+  displayedColumns: string[] = ['Nom', 'Téléphone', 'iban', 'Type', 'solde', 'Collecte-fond','paiement-marchand','Commissions', 'Merchant', 'Actions'];
+  ELEMENT_DATA: Agent[] = [];
   dataSource!: MatTableDataSource<any, MatTableDataSourcePaginator>
 
   constructor(
