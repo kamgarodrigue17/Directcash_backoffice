@@ -134,6 +134,10 @@ export class DistributeurComponent implements OnInit {
     distributeur_dialog.afterClosed().subscribe(result => {
 
       if (result != false) {
+
+        // log data
+        console.log(result);
+
         // start loading
         this.isProgressHidden = false;
 

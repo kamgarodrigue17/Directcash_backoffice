@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { Habilitation } from 'src/app/modal/habilitation';
 import { AlertService } from 'src/app/services-v2/alert/alert.service';
+import { DatetimeService } from 'src/app/services-v2/datetime/datetime.service';
 import { LoaderService } from 'src/app/services-v2/loader/loader.service';
 import { MouchardService } from 'src/app/services-v2/mouchard/mouchard.service';
 import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
@@ -16,7 +17,7 @@ import { RoleService } from 'src/app/services/role/role.service';
   styleUrls: ['./mouchard.component.css']
 })
 export class MouchardComponent implements OnInit {
-  
+
   displayedColumns: string[] = ['Utilisateur', 'Profil de l\'utilisateur', 'Activité', 'Module', 'Date et heure', 'Actions'];
   ELEMENT_DATA: any[] = [];
   dataSource!: MatTableDataSource<any, MatTableDataSourcePaginator>
@@ -28,6 +29,7 @@ export class MouchardComponent implements OnInit {
     private _matSnackbar: MatSnackBar,
     protected _loaderService: LoaderService,
     private _alertService: AlertService,
+    protected _datetimeService: DatetimeService,
     public global: GloabalServiceService,
   ) { }
 

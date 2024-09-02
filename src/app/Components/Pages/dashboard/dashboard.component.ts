@@ -1,11 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HabilitationService } from 'reclamations/habilitation.service';
 import { catchError, throwError } from 'rxjs';
-import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
-import { RequeteEmissionService } from 'src/app/services/requete-emission/requete-emission.service';
-import { ValidationService } from 'src/app/services/validation/validation.service';
+import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
+import { AffecterMonnaieService } from 'src/app/services-v2/affecter-monnaie/affecter-monnaie.service';
+import { AgentService } from 'src/app/services-v2/agent/agent.service';
+import { CLientMyDirectcashService } from 'src/app/services-v2/client-mydirectcash/client-mydirectcash.service';
+import { HabilitationService } from 'src/app/services-v2/habilitation/habilitation.service';
+import { RequeteEmissionService } from 'src/app/services-v2/requete-emission/requete-emission.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,11 +17,13 @@ import { ValidationService } from 'src/app/services/validation/validation.servic
 export class DashboardComponent {
 
   constructor(
-    private _userService: ValidationService,
+    private _userService: AdminService,
     private _matSnackBar: MatSnackBar,
-    private _agentService: AgentServiceService,
+    private _agentService: AgentService,
+    private _clientService: CLientMyDirectcashService,
     private _habilitationService: HabilitationService,
-    private _requeteemissionService: RequeteEmissionService
+    private _requeteemissionService: RequeteEmissionService,
+    private _affecterMonnaieService: AffecterMonnaieService
   ) { }
 
   // ------------------------------------ Variables
@@ -36,6 +40,7 @@ export class DashboardComponent {
   isDirectcashUserLoading = false;
   isProfilLoading = false;
   isEncourLoading = false;
+  isTransactionLoading = false;
 
   // ------------------------------------ Fonctions
 
@@ -49,7 +54,7 @@ export class DashboardComponent {
       this.isAdminUserLoading = true;
 
       // send request
-      this._userService.getAdmin().subscribe(res => {
+      this._userService.index().subscribe(res => {
         // get list
         let admins: any[] = res.data;
 
@@ -81,7 +86,7 @@ export class DashboardComponent {
       this.isMyDirectcashUserLoading = true;
 
       // send request
-      this._agentService.Agents("Clients").subscribe(res => {
+      this._clientService.getAll().subscribe(res => {
         // get list
         let myDirectacshUser: any[] = res.data;
 
@@ -112,7 +117,7 @@ export class DashboardComponent {
       // start loading
       this.isDirectcashUserLoading = true;
 
-      this._agentService.Agents("Agents").subscribe(res => {
+      this._agentService.getAll().subscribe(res => {
 
         // stop loading
         this.isDirectcashUserLoading = false;
@@ -141,7 +146,7 @@ export class DashboardComponent {
       // start loading
       this.isProfilLoading = true;
 
-      this._habilitationService.habilitations().subscribe(res => {
+      this._habilitationService.getAll().subscribe(res => {
         // stop loading
         this.isProfilLoading = false;
 
@@ -187,7 +192,7 @@ export class DashboardComponent {
       this.isEncourLoading = true;
 
       // send request
-      this._requeteemissionService.getInfo().pipe(
+      this._affecterMonnaieService.getInfo().pipe(
         catchError((error: HttpErrorResponse) => {
           this.isEncourLoading = false;
           if (error.status !== 200) {
@@ -205,14 +210,14 @@ export class DashboardComponent {
         console.log(res);
 
         // assign values
-        if (res.data.soldeDirectcash != null)
-          this.stock_directcash = res.data.soldeDirectcash;
+        if (res.data[0].soldeDirectcash != null)
+          this.stock_directcash = res.data[0].soldeDirectcash;
 
-        if (res.data.soldeMd != null)
-          this.stock_mydirectcash = res.data.soldeMd;
+        if (res.data[0].soldeMd != null)
+          this.stock_mydirectcash = res.data[0].soldeMd;
 
-        if (res.data.soldeFournisseur != null)
-          this.stock_monnaie = res.data.soldeFournisseur;
+        if (res.data[0].soldeFournisseur != null)
+          this.stock_monnaie = res.data[0].soldeFournisseur;
       })
     } catch (error) {
       // log error

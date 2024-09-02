@@ -32,7 +32,7 @@ export class RequeteEmissionDialogComponent {
   matcher = new ErrorStateMatcher();
 
   // Form control
-  amountControl = new FormControl('', [Validators.required, Validators.min(500)]);
+  amountControl = new FormControl('', [Validators.required, Validators.min(1)]);
   passwordControl = new FormControl('', [Validators.required]);
   refControl = new FormControl('', [Validators.required]);
 

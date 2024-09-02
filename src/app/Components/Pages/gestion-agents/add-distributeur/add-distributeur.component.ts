@@ -73,7 +73,7 @@ export class AddDistributeurComponent implements OnInit {
         "vSegment": 2,
         "vPaymentMethod": "CreditCard",
         "vPaymentAc": "AccountXYZ",
-        "vMarketer": null,
+        "vMarketer": this._userService.getLocalUser().data.Company,
         "vSuperMerchant": `${this.myForm1.value.superMerchant}`,
         "vCreatedBy": this._userService.getLocalUser().data.UserName,
         "vImei": this.myForm.value.imei,
