@@ -293,7 +293,8 @@ export class RequeteEmissionComponent {
             switch (+res_code) {
               case 200:
                 this.alert_type = 'success'
-                this.alert_message = "La requête a été validée avec succès. Vous venez d'emettre " + amount.toLocaleString("en-US") + " Dans le système";
+                this.alert_message =res.data[0].message
+                // "La requête a été validée avec succès. Vous venez d'emettre " + amount.toLocaleString("en-US") + " Dans le système";
                 break;
                 case 404:
                   this.alert_type = 'warning'
