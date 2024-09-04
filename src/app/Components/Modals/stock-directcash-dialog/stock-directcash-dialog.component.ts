@@ -35,7 +35,8 @@ export class StockDirectcashDialogComponent {
       let m = this.stockmonnaie_restant - this.montant;
       let res = {
         montant: this.montant,
-        stockmonnaie_restant: m
+        stockmonnaie_restant: m,
+        password:this.password
       }
       this.dialogRef.close(res);
     }

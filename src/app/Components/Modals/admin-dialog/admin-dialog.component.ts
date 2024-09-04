@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
+import { HabilitationService } from 'src/app/services-v2/habilitation/habilitation.service';
 import { ValidationService } from 'src/app/services/validation/validation.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class AdminDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _userService: AdminService,
+    private habilitationn: HabilitationService,
     private _ref: MatDialogRef<AdminDialogComponent>,
   ) { }
 
@@ -24,6 +26,7 @@ export class AdminDialogComponent {
 
   // liste des habilitations
   habilitations: any[] = this.data.habilitations;
+  roles: any[] = []
 
   // liste des users
   users: any[] = this.data.users;
@@ -31,12 +34,13 @@ export class AdminDialogComponent {
   element = this.data.element;
 
   user: any = {
-    "userID": this.element.UserName,           // ID de l'utilisateur que vous souhaitez créer -ok
+    "vCompany":localStorage.getItem("Company"),
+    "userID": null,           // ID de l'utilisateur que vous souhaitez créer -ok
     "fullName": this.element.FullName,        // Nom complet de l'utilisateur - ok
     "defaultPassword": this.element.defaultPassword,  // Mot de passe pour le nouvel utilisateur -ok
     "isActive": 1,                 // Statut d'activité (1 pour actif, 0 pour inactif) -ok
     "Role": this.element.Role,                // Rôle de l'utilisateur (par exemple, "Administrator", "User", etc.)
-    "adminId": this.element.adminId != undefined ? this.element.adminId : `${this._userService.getLocalUser().data.UserName}`,        // ID de l'administrateur qui crée cet utilisateur -ok
+    "adminId": localStorage.getItem("id"),        // ID de l'administrateur qui crée cet utilisateur -ok
     "modifierPar": this.element.userID != undefined ? `${this._userService.getLocalUser().data.UserName}` : "",             // Laissez vide ou mettez "NULL" pour indiquer une création -ok
     "habilitation": this.element.UserName != undefined ? this.habilitations.find((h) => { return h.label == this.element.habilitation; }).idhabilitation : -1 // -ok
   };
@@ -86,7 +90,7 @@ export class AdminDialogComponent {
    * @returns
    */
   validate() {
-    if (this.idFormControl.valid && this.nomFormControl.valid && this.passwordControl.valid && this.habilitationControl.valid) {
+    if ( this.nomFormControl.valid && this.passwordControl.valid && this.habilitationControl.valid) {
       this._ref.close(this.user);
     }
   }
@@ -94,8 +98,13 @@ export class AdminDialogComponent {
   ngOnInit() {
     console.log('--- admin a modifier ---');
     console.log(this.user);
-
+    this.habilitationn.getRole().subscribe(role=>{
+this.roles=role.data;
+console.log(this.roles)
+    })
     // this.user = this.element;
   }
+
+
 
 }

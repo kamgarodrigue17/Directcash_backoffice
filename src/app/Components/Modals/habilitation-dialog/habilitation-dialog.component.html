@@ -36,7 +36,25 @@
           [(ngModel)]="data.description"
           [value]="data.description"
         />
-      </mat-form-field>
+    </mat-form-field>
+
+     <!---      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Habilitation</mat-label>
+        <mat-select
+          name="habilitationFrom"
+          [(ngModel)]="data.habilitationFrom"
+          ngModel
+          
+          
+        >
+          <mat-option
+            *ngFor="let habili of this.habilitation"
+            [value]="habili.idhabilitation"
+            >{{ habili.label }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field> -->
+    
       <mat-form-field appearance="outline">
         <mat-label>Mot de passe</mat-label>
         <input

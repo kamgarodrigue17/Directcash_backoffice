@@ -41,9 +41,9 @@ export class AddProfilDialogComponent implements OnInit {
    */
   addOption(): void {
     this.habilitation = JSON.parse(`${localStorage.getItem("currentHabilitation")}`);
-    this.option.userId = localStorage.getItem("id");
+    this.option.vWho = localStorage.getItem("id");
 
-    this.option.habilitation = `${this.habilitation.idhabilitation}`;
+    this.option.vHabilitation = `${this.habilitation.idhabilitation}`;
 
     // on retourne l'option
     return this.option;

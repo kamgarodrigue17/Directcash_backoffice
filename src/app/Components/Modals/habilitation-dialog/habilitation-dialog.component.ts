@@ -1,7 +1,7 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HabilitationService } from 'src/app/services/habilitation/habilitation.service';
+import { HabilitationService } from 'src/app/services-v2/habilitation/habilitation.service';
 
 @Component({
   selector: 'app-habilitation-dialog',
@@ -10,22 +10,22 @@ import { HabilitationService } from 'src/app/services/habilitation/habilitation.
 })
 export class HabilitationDialogComponent {
   data: any = {
-    "source": "0",
-    "idhabilitation": 0,
+   
+    
     "label": "",
     "description": "",
-    "creerPar": localStorage.getItem('id'),
-    "creerLe": "",
+    "createdBy": localStorage.getItem('id'),
     "pass": "",
 
     // "label": "Admin Habilitation", 
     // "description": "This habilitation grants administrative privileges.", 
     // "createdBy": "adminUser", 
     // "pass": "admin123", 
-    // "habilitationFrom": "Basic Habilitation"
+     "habilitationFrom": 1
   }
+   habilitation:any[]=[];
   @ViewChild("form") form!: NgForm;
-  constructor(@Inject(MAT_DIALOG_DATA) public datas: any, public habilitationService: HabilitationService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public datas: any, public habilitationService: HabilitationService,) {
     console.log(datas.mode);
     if (datas.mode === 'edit') {
       this.data = { ...datas.element }
@@ -50,5 +50,19 @@ export class HabilitationDialogComponent {
 
     return this.data;
   }
+ 
+
+ 
+ 
+
+
+  ngOnInit(): void {
+    this.habilitationService.getAll().subscribe( value=> {
+      this.habilitation=value.data;console.log(value)
+      
+    });
+    
+  }
+  
 }
 

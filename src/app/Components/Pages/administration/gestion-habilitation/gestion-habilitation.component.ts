@@ -107,15 +107,9 @@ export class GestionHabilitationComponent implements OnInit {
             this.openAlert();
           } else {
             // on verifie si le mot de passe est correct
-            let myPassword = "12345";
-            if (data.pass != myPassword) {
-              this.closeAlert();
-              this.alert_message = "Votre mot de passe est incorrect."
-              this.alert_type = "warning";
-              this.openAlert();
-            } else {
+    
               // Si tout est bon, on active la barre de progression
-              this.isProgressHidden = false;
+              console.log(data)
 
               try {
                 // envoi de la requete et au retour
@@ -137,7 +131,7 @@ export class GestionHabilitationComponent implements OnInit {
 
                   // on notifie sur la vue
                   this.alert_type = "info";
-                  this.alert_message = res.message;
+                  this.alert_message = res.data[0].message;
 
                   // on notifie sur la vue
                   this.openAlert();
@@ -162,7 +156,7 @@ export class GestionHabilitationComponent implements OnInit {
                 this.openAlert();
               }
 
-            }
+            
           }
         }
       }

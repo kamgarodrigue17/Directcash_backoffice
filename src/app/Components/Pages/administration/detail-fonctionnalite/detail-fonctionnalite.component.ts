@@ -106,13 +106,14 @@ export class DetailFonctionnaliteComponent implements OnInit {
             switch (response.code) {
               case 200:
                 this.alert_type = "success";
-
+this.alert_message=response.data[0].message
                 // on met a jour la liste des fonctionnalites
                 this.getFonctionnalite();
                 break;
 
               case 400:
                 this.alert_type = 'danger';
+                this.alert_message=response.data[0].message
                 break;
 
               default:
@@ -120,7 +121,7 @@ export class DetailFonctionnaliteComponent implements OnInit {
             }
 
             // on notifie sur la vue
-            this.alert_message = response.data;
+            this.alert_message=response.data[0].message
             this.openAlert();
 
           });

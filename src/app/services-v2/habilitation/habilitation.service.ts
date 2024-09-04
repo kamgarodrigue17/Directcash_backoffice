@@ -20,6 +20,10 @@ export class HabilitationService {
     let url = this.globalService.baseUrl2 + "/Habilitations/getAll";
     return this.http.get<any>(url);
   }
+  getRole(): Observable<any> {
+    let url = this.globalService.baseUrl2 + "/Role/getAll";
+    return this.http.get<any>(url);
+  }
 
   /**
    * Recuperer la liste des fonctionnalites d'une habilitation

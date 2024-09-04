@@ -112,14 +112,14 @@ export class AdminPlateformeComponent implements OnInit {
             switch (+res_code) {
               case 200:
                 this._alertService.type = 'success'
-                this._alertService.message = "Utilisateur enregistré avec succès.";
+                this._alertService.message = res.data[0].message
 
                 // refresh data 
                 this.getUsers();
                 break;
               default:
                 this._alertService.type = 'danger'
-                this._alertService.message = "Une erreur est survenue.";
+                this._alertService.message =  res.data[0].message;
                 break;
             }
 

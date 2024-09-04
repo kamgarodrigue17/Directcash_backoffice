@@ -92,7 +92,7 @@ export class CreationMonnaieComponent implements OnInit {
         let stockmonnaie_restant = result.stockmonnaie_restant;
 
         // get user password
-        let user_password = "12345";
+        let user_password = result.password;
 
         // set data request
         let data_request = {
@@ -146,14 +146,14 @@ export class CreationMonnaieComponent implements OnInit {
                 this.stockmonnaie_restant = (this.stockdirectcash + this.stockmydirectcash) - this.stockmonnaie;
 
                 this.alert_type = 'success';
-                this.alert_message = "Opération réussie.";
+                this.alert_message = res.data[0].message;
 
                 // refresh data
                 this.handleGetInfo();
                 break;
               default:
                 this.alert_type = 'danger';
-                this.alert_message = res.data;
+                this.alert_message = res.data[0].message;
 
                 // log response
                 console.log('--- ERREUR ---');
