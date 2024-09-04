@@ -101,52 +101,52 @@ export class ConnexionComponent implements OnInit {
 
           //navigate to dashboard page
           this.router.navigateByUrl('/home/dashboard');
-        } else {
+        } else if (res.data.message == "First Time Login") {
 
+          // si il s'agit de la 1ere connexion
+          // if (res.data.token != undefined && res.data.token == null) {
+          let isFirsttimeDialog = this._dialog.open(IsFirstimeDialogComponent, { disableClose: true, maxWidth: 400 });
+          isFirsttimeDialog.afterClosed().subscribe(res => {
+
+            if (res !== false) {
+              let oldpassword: string = res.oldpassword;
+              let newpassword: string = res.newpassword;
+              let confirmnewpassword: string = res.confirmnewpassword;
+
+              // on verifie si les champ ne sont pas vide
+              if (oldpassword != '' && newpassword != '' && confirmnewpassword != '') {
+                // on verifie si le nouveau mot de passe correspond
+                if (newpassword.toLocaleLowerCase() === confirmnewpassword.toLocaleLowerCase()) {
+                  // on envoi la requete de modification du mot de passe
+                }
+
+              } else {
+                let snackbarRef = this._snackbar.open("Tous les champs sont obligatoires.", "Ok", { duration: 2000 });
+                snackbarRef.onAction().subscribe(res => {
+                  snackbarRef.dismiss();
+                });
+
+              }
+
+            }
+
+          });
+          // } else {
+          //   localStorage.setItem("id", res.data.userName);
+          //   res.data.token.refreshToken = "null";
+          //   localStorage.setItem("token", res.data.token.token);
+          //   localStorage.setItem("company", res.data.company);
+
+          //   localStorage.setItem("user", JSON.stringify(res.data));
+
+          //   console.log(res.data);
+          //   this.router.navigateByUrl('/home/dashboard');
+          // }
+        } else {
           // show error message
           this.errorMessage = "Nom d'utilisateur ou mot de passe incorrect."
           this.isErrorVisible = "block";
         }
-
-        // si il s'agit de la 1ere connexion
-        // if (res.data.token != undefined && res.data.token == null) {
-        //   let isFirsttimeDialog = this._dialog.open(IsFirstimeDialogComponent, { disableClose: true, maxWidth: 400 });
-        //   isFirsttimeDialog.afterClosed().subscribe(res => {
-
-        //     if (res !== false) {
-        //       let oldpassword: string = res.oldpassword;
-        //       let newpassword: string = res.newpassword;
-        //       let confirmnewpassword: string = res.confirmnewpassword;
-
-        //       // on verifie si les champ ne sont pas vide
-        //       if (oldpassword != '' && newpassword != '' && confirmnewpassword != '') {
-        //         // on verifie si le nouveau mot de passe correspond
-        //         if (newpassword.toLocaleLowerCase() === confirmnewpassword.toLocaleLowerCase()) {
-        //           // on envoi la requete de modification du mot de passe
-        //         }
-
-        //       } else {
-        //         let snackbarRef = this._snackbar.open("Tous les champs sont obligatoires.", "Ok", { duration: 2000 });
-        //         snackbarRef.onAction().subscribe(res => {
-        //           snackbarRef.dismiss();
-        //         });
-
-        //       }
-
-        //     }
-
-        //   });
-        // } else {
-        //   localStorage.setItem("id", res.data.userName);
-        //   res.data.token.refreshToken = "null";
-        //   localStorage.setItem("token", res.data.token.token);
-        //   localStorage.setItem("company", res.data.company);
-
-        //   localStorage.setItem("user", JSON.stringify(res.data));
-
-        //   console.log(res.data);
-        //   this.router.navigateByUrl('/home/dashboard');
-        // }
 
       }, error => {
         this.isClose = true;
