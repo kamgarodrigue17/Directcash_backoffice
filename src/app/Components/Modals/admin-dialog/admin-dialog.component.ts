@@ -5,7 +5,6 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
 import { HabilitationService } from 'src/app/services-v2/habilitation/habilitation.service';
-import { ValidationService } from 'src/app/services/validation/validation.service';
 
 @Component({
   selector: 'app-admin-dialog',
