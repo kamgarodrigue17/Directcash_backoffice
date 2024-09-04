@@ -18,8 +18,23 @@
 
 <!-- Content -->
 <mat-dialog-content class="mat-typography pb-1 p-3 pt-1">
- 
   <!-- Nom -->
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Identifiant</mat-label>
+        <input
+          matInput
+          placeholder="Identifinant"
+          [errorStateMatcher]="matcher"
+          [formControl]="idFormControl"
+          [(ngModel)]="user.userID"
+          [readonly]="mode == 'show'"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-12">
       <mat-form-field class="w-100" appearance="outline">
@@ -75,51 +90,47 @@
       </mat-form-field>
     </div>
 
-
-      <!-- Role -->
-      <div class="col-md-12">
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Role</mat-label>
-          <mat-select
-            name="Role"
-            placeholder="Selectionner une Role"
-            [(ngModel)]="user.Role"
-           
+    <!-- Role -->
+    <div class="col-md-12">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select
+          name="Role"
+          placeholder="Selectionner une Role"
+          [(ngModel)]="user.Role"
+        >
+          <mat-option
+            *ngFor="let habilitation of roles"
+            [value]="habilitation.RoleName"
+            >{{ habilitation.RoleName }}</mat-option
           >
-            <mat-option
-              *ngFor="let habilitation of roles"
-              [value]="habilitation.RoleName"
-              >{{ habilitation.RoleName }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="w-100" appearance="outline">
-          <mat-label>Mot de passe</mat-label>
-          <input
-            matInput
-            placeholder="Cliquer à droite pour générer"
-            [errorStateMatcher]="matcher"
-            [formControl]="passwordControl"
-            [(ngModel)]="user.defaultPassword"
-            [readonly]="true"
-          />
-  
-          <!-- generate button -->
-          <button
-            type="button"
-            mat-icon-button
-            matSuffix
-            (click)="generatePassword()"
-          >
-            <mat-icon>sync</mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-     
-    
-  
+        </mat-select>
+      </mat-form-field>
+      <!-- <p>
+        Le mot de passe par défaut de cet utilisateur est
+        <strong>12345</strong>. Il devra le changer à sa première connexion
+      </p> -->
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          placeholder="Cliquer à droite pour générer"
+          [errorStateMatcher]="matcher"
+          [formControl]="passwordControl"
+          [(ngModel)]="user.defaultPassword"
+          [readonly]="true"
+        />
 
-    
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="generatePassword()"
+        >
+          <mat-icon>sync</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
   </div>
 
   <!-- <div class="row"> -->

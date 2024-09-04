@@ -24,11 +24,13 @@
           type="text"
           name="oldpassword"
           [(ngModel)]="oldpassword"
+          [errorStateMatcher]="matcher"
+          [formControl]="oldPasswordFormControl"
           placeholder="Entrez votre ancien mot de passe"
           ngModel
         />
       </mat-form-field>
-      <mat-form-field appearance="outline" color="warn">
+      <!-- <mat-form-field appearance="outline" color="warn">
         <mat-label>Nouveau mot de passe</mat-label>
         <input
           matInput
@@ -36,9 +38,32 @@
           type="text"
           name="newpassword"
           [(ngModel)]="newpassword"
+          [errorStateMatcher]="matcher"
+          [formControl]="newPasswordFormControl"
           placeholder="Entrez votre nouveau mot de passe"
           ngModel
         />
+      </mat-form-field> -->
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          placeholder="Cliquer à droite pour générer"
+          [errorStateMatcher]="matcher"
+          [formControl]="newPasswordFormControl"
+          [(ngModel)]="newpassword"
+          [readonly]="true"
+        />
+
+        <button
+          type="button"
+          mat-icon-button
+          matSuffix
+          (click)="generatePassword()"
+        >
+          <mat-icon>sync</mat-icon>
+        </button>
       </mat-form-field>
       <mat-form-field appearance="outline" color="warn">
         <mat-label>Confirmer le nouveau mot de passe </mat-label>
@@ -48,6 +73,8 @@
           type="text"
           name="confirmnewpassword"
           [(ngModel)]="confirmnewpassword"
+          [errorStateMatcher]="matcher"
+          [formControl]="confirmNewPasswordFormControl"
           placeholder="Entrez votre nouveau mot de passe"
           ngModel
         />
@@ -61,7 +88,12 @@
   <button
     class="w-100 primary-light-button"
     mat-button
-    [mat-dialog-close]="true"
+    (click)="returnData()"
+    [disabled]="
+      oldPasswordFormControl.invalid ||
+      newPasswordFormControl.invalid ||
+      confirmNewPasswordFormControl.invalid
+    "
   >
     Valider
   </button>

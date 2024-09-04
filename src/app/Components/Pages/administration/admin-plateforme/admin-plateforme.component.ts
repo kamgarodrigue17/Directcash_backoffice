@@ -26,7 +26,7 @@ import { ValidationService } from 'src/app/services/validation/validation.servic
   styleUrls: ['./admin-plateforme.component.css']
 })
 export class AdminPlateformeComponent implements OnInit {
-  displayedColumns: string[] = ['nom', 'habilitation', 'last-connection', 'action'];
+  displayedColumns: string[] = ['nom', 'username', 'habilitation', 'last-connection', 'action'];
   ELEMENT_DATA: User[] = [];
   habilitations: any[] = [];
   dataSource!: MatTableDataSource<any>
@@ -88,7 +88,7 @@ export class AdminPlateformeComponent implements OnInit {
         element: element,
         habilitations: this.habilitations,
         users: this.ELEMENT_DATA
-      }, disableClose: true
+      }, disableClose: true, maxWidth: 600
     });
 
     admin_dialog.afterClosed().subscribe(result => {
@@ -119,7 +119,7 @@ export class AdminPlateformeComponent implements OnInit {
                 break;
               default:
                 this._alertService.type = 'danger'
-                this._alertService.message =  res.data[0].message;
+                this._alertService.message = res.data[0].message;
                 break;
             }
 

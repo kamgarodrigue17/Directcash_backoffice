@@ -34,8 +34,8 @@ export class AdminDialogComponent {
   element = this.data.element;
 
   user: any = {
-    "vCompany":localStorage.getItem("Company"),
-    "userID": null,           // ID de l'utilisateur que vous souhaitez créer -ok
+    "vCompany": localStorage.getItem("Company"),
+    "userID": this.element.UserName,           // ID de l'utilisateur que vous souhaitez créer -ok
     "fullName": this.element.FullName,        // Nom complet de l'utilisateur - ok
     "defaultPassword": this.element.defaultPassword,  // Mot de passe pour le nouvel utilisateur -ok
     "isActive": 1,                 // Statut d'activité (1 pour actif, 0 pour inactif) -ok
@@ -90,7 +90,10 @@ export class AdminDialogComponent {
    * @returns
    */
   validate() {
-    if ( this.nomFormControl.valid && this.passwordControl.valid && this.habilitationControl.valid) {
+
+    if (this.mode == "add" && this.nomFormControl.valid && this.habilitationControl.valid && this.idFormControl && this.passwordControl.valid) {
+      this._ref.close(this.user);
+    } else if (this.mode == "edit" && this.nomFormControl.valid && this.habilitationControl.valid && this.idFormControl) {
       this._ref.close(this.user);
     }
   }
@@ -98,9 +101,9 @@ export class AdminDialogComponent {
   ngOnInit() {
     console.log('--- admin a modifier ---');
     console.log(this.user);
-    this.habilitationn.getRole().subscribe(role=>{
-this.roles=role.data;
-console.log(this.roles)
+    this.habilitationn.getRole().subscribe(role => {
+      this.roles = role.data;
+      console.log(this.roles)
     })
     // this.user = this.element;
   }

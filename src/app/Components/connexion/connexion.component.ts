@@ -89,13 +89,13 @@ export class ConnexionComponent implements OnInit {
           this._userService.setUser(res);
           console.log(res.data.Company)
           localStorage.setItem("id", res.data.UserName);
-       
-            localStorage.setItem("token", res.data.token);
-            localStorage.setItem("Company", res.data.Company);
-  
-            localStorage.setItem("user", JSON.stringify(res.data));
-  
-            console.log(res.data);
+
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("Company", res.data.Company);
+
+          localStorage.setItem("user", JSON.stringify(res.data));
+
+          console.log(res.data);
 
           this._userService.getLocalUser();
 
@@ -105,28 +105,47 @@ export class ConnexionComponent implements OnInit {
 
           // si il s'agit de la 1ere connexion
           // if (res.data.token != undefined && res.data.token == null) {
-          let isFirsttimeDialog = this._dialog.open(IsFirstimeDialogComponent, { disableClose: true, maxWidth: 400 });
+          let isFirsttimeDialog = this._dialog.open(IsFirstimeDialogComponent, {
+            disableClose: true, maxWidth: 400, data: {
+              password: this.myForm.value.password
+            }
+          });
           isFirsttimeDialog.afterClosed().subscribe(res => {
 
             if (res !== false) {
-              let oldpassword: string = res.oldpassword;
-              let newpassword: string = res.newpassword;
-              let confirmnewpassword: string = res.confirmnewpassword;
 
-              // on verifie si les champ ne sont pas vide
-              if (oldpassword != '' && newpassword != '' && confirmnewpassword != '') {
-                // on verifie si le nouveau mot de passe correspond
-                if (newpassword.toLocaleLowerCase() === confirmnewpassword.toLocaleLowerCase()) {
-                  // on envoi la requete de modification du mot de passe
+              // start loading
+              this.isLoading = true;
+
+              // change button appearance
+              this.connexion_class = '';
+
+              // send request
+              this._userService.changePassword(this.myForm.value.username, res.oldpassword, res.newpassword).subscribe(response => {
+
+                // stop loading
+                this.isLoading = false;
+
+                this.connexion_class = 'primary-light-button';
+
+                if (response.code == "200" && response.data.message == "Mot de passe changer avec succès. Connectez-vous avec le nouveau mot de passe") {
+                  this._snackbar.open(response.data.message)._dismissAfter(4000);
                 }
 
-              } else {
-                let snackbarRef = this._snackbar.open("Tous les champs sont obligatoires.", "Ok", { duration: 2000 });
-                snackbarRef.onAction().subscribe(res => {
-                  snackbarRef.dismiss();
-                });
+                console.log(response);
 
-              }
+              }, (error) => {
+
+                // start loading
+                this.isLoading = false;
+
+                // log error
+                console.log('--- ERREUR CHANGE PASSWORD ---');
+                console.log(error);
+
+                // show alert
+                this._snackbar.open("Une erreur est survenue: " + error)._dismissAfter(4000);
+              });
 
             }
 

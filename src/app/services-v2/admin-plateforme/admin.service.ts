@@ -104,6 +104,24 @@ export class AdminService {
   }
 
   /**
+   * Changer le mot de passe d'un utilisateur
+   * @param userID 
+   * @param oldpassword 
+   * @param newPassword 
+   * @returns 
+   */
+  changePassword(userID: string, oldpassword: string, newPassword: string) {
+    let data = {
+      "vUserID": `${userID}`,
+      "vOldPass": `${oldpassword}`,
+      "vNewPass": `${newPassword}`
+    }
+
+    let url = this.globalService.baseUrl2 + "/changePassword";
+    return this.http.post<any>(url, data);
+  }
+
+  /**
    * Modifier un admin
    * @param data 
    * @returns 

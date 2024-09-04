@@ -94,6 +94,12 @@
         <td mat-cell *matCellDef="let element">{{ element.FullName }}</td>
       </ng-container>
 
+       <!-- Nom d'utilisateur Column -->
+       <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef>Identifiant</th>
+        <td mat-cell *matCellDef="let element">{{ element.UserName }}</td>
+      </ng-container>
+
       <!-- Habilitation Column -->
       <ng-container matColumnDef="habilitation">
         <th mat-header-cell *matHeaderCellDef>Habilitation</th>
