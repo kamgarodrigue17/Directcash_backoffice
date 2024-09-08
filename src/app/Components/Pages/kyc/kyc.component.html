@@ -1,0 +1,61 @@
+<!-- Main -->
+<main id="main" class="main">
+  <div class="pagetitle d-sm-flex justify-content-between align-items-center">
+    <div>
+      <h1>Know Your Customer</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="#">Tabetsing</a></li>
+          <li class="breadcrumb-item active">Kyc</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- End Page Title -->
+
+  <!-- Loader pour les requetes -->
+  <mat-progress-bar
+    mode="indeterminate"
+    [hidden]="isProgressHidden"
+  ></mat-progress-bar>
+
+  <!-- Alert section -->
+  <app-alert />
+
+  <div
+    class="mat-elevation-z2 rounded pt-1 pb-3 bg-white d-flex justify-content-center"
+  >
+    <div class="mt-4 text-center col-md-5">
+      <p>
+        Entrez l'identifiant pour avoir les informatioms relatives au KYC de la
+        personne concernée
+      </p>
+
+      <p class="mb-0">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Identifiant</mat-label>
+          <input
+            matInput
+            placeholder="Identifiant"
+            [(ngModel)]="identifiant"
+            [errorStateMatcher]="matcher"
+            [formControl]="idControl"
+            name="id"
+            required
+          />
+        </mat-form-field>
+      </p>
+
+      <div>
+        <button
+          (click)="valider()"
+          mat-raised-button
+          class="{{ idControl.valid ? 'primary-light-button' : '' }}  w-100"
+          [disabled]="idControl.invalid"
+        >
+          Valider
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

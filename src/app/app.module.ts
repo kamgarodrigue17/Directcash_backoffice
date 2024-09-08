@@ -112,6 +112,7 @@ import { NumberFormatterPipe } from './number-formatter.pipe';
 import { CustomBadgeComponent } from './Components/custom-badge/custom-badge.component';
 import { AlertComponent } from './Components/alert/alert.component';
 import { DatePipe } from '@angular/common';
+import { KycComponent } from './Components/Pages/kyc/kyc.component';
 
 @NgModule({
   declarations: [
@@ -197,7 +198,8 @@ import { DatePipe } from '@angular/common';
     DistributeurDialogComponent,
     NumberFormatterPipe,
     CustomBadgeComponent,
-    AlertComponent
+    AlertComponent,
+    KycComponent
   ],
   imports: [
     BrowserModule,

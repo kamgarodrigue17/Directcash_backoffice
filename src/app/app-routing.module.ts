@@ -49,6 +49,7 @@ import { RequeteEmissionComponent } from './Components/Pages/gestion-monnaie/req
 import { RapportCollecteFondComponent } from './Components/Pages/rapport/rapport-collecte-fond/rapport-collecte-fond.component';
 import { BaseComponent } from './Components/base/base.component';
 import { RechargeOnlineComponent } from './Components/Pages/gestion-clients/recharge-online/recharge-online.component';
+import { KycComponent } from './Components/Pages/kyc/kyc.component';
 
 const routes: Routes = [
   { path: '', component: ConnexionComponent, },
@@ -56,6 +57,9 @@ const routes: Routes = [
     path: 'home', component: BaseComponent, children: [
       // TABLEAU DE BORD ==============================
       { path: 'dashboard', component: DashboardComponent },
+
+      // KYC ==============================
+      { path: 'kyc', component: KycComponent },
 
       // GESTION DES AGENTS ==============================
       { path: 'gestion-agents/agents', component: AgentsComponent, },

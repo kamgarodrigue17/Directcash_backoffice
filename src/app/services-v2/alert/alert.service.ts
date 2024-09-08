@@ -26,9 +26,9 @@ export class AlertService {
     const alert = document.getElementById("alert");
     alert?.classList.remove("d-none");
 
-    // Disparaître après 4 secondes
+    // Disparaître après 10 secondes
     setTimeout(() => {
       this.closeAlert();
-    }, 4000);
+    }, 10000);
   }
 }
