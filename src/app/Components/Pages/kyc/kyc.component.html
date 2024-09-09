@@ -25,12 +25,12 @@
   <div
     class="mat-elevation-z2 rounded pt-1 pb-3 bg-white d-flex justify-content-center"
   >
-    <div class="mt-4 text-center col-md-5">
+    <!-- form  -->
+    <div *ngIf="!isKycDisplay" class="mt-4 text-center col-md-5">
       <p>
         Entrez l'identifiant pour avoir les informatioms relatives au KYC de la
         personne concernée
       </p>
-
       <p class="mb-0">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Identifiant</mat-label>
@@ -45,7 +45,6 @@
           />
         </mat-form-field>
       </p>
-
       <div>
         <button
           (click)="valider()"
@@ -55,6 +54,155 @@
         >
           Valider
         </button>
+      </div>
+    </div>
+
+    <!-- kyc data -->
+    <div *ngIf="isKycDisplay" class="col-md-10 mt-3">
+      <!-- close button -->
+      <div class="d-flex justify-content-end mb-3">
+        <button
+          title="Retour a la page des habilitations"
+          mat-raised-button
+          class="primary-light-button text-center me-2"
+          (click)="hideKycData()"
+        >
+          <mat-icon class="me-0">close</mat-icon>
+        </button>
+      </div>
+
+      <!-- passport -->
+      <p class="text-center pb-3">
+        <label for="">Photo</label>
+        <app-image-viewer
+          [src]="_globalService.baseUrl2 + '/' + kycData.passport"
+        />
+      </p>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>ID Client</mat-label>
+          <input
+            matInput
+            placeholder="ID Client"
+            [value]="kycData.idClient"
+            [readonly]="true"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>Numéro d'identité</mat-label>
+          <input
+            matInput
+            placeholder="Numéro d'identité"
+            [value]="kycData.identiteNo"
+            [readonly]="true"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>Numéro unique d'identification </mat-label>
+          <input
+            matInput
+            placeholder="NUI"
+            [value]="kycData.NUI"
+            [readonly]="true"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>Date de naissance </mat-label>
+          <input
+            matInput
+            placeholder="Date de naissance"
+            [value]="kycData.Datenaissance"
+            [readonly]="true"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>Proféssion </mat-label>
+          <input
+            matInput
+            placeholder="Proféssion"
+            [value]="kycData.Profession"
+            [readonly]="true"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-4">
+          <mat-label>Régistre de commerce </mat-label>
+          <input
+            matInput
+            placeholder="Régistre de commerce"
+            [value]="kycData.RegistreCom"
+            [readonly]="true"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-12">
+          <mat-label>N° Carte nationnale d'identité </mat-label>
+          <input
+            matInput
+            placeholder="N° CNI"
+            [value]="kycData.cniNo"
+            [readonly]="true"
+          />
+        </mat-form-field>
+
+        <!-- cni recto -->
+        <p class="col-md-4 mb-3">
+          <label for="">CNI recto</label>
+          <app-image-viewer
+            [src]="_globalService.baseUrl2 + '/' + kycData.cniRecto"
+          />
+        </p>
+
+        <!-- cni verso -->
+        <p class="col-md-4 mb-3">
+          <label for="">CNI verso</label>
+          <app-image-viewer
+            [src]="_globalService.baseUrl2 + '/' + kycData.cniVerso"
+          />
+        </p>
+
+        <!-- passport -->
+        <p class="col-md-4 mb-3">
+          <label for="">Passport</label>
+          <app-image-viewer
+            [src]="_globalService.baseUrl2 + '/' + kycData.passport"
+          />
+        </p>
+
+        <div class="col-md-12 mt-4 row">
+          <mat-form-field appearance="outline" class="col-md-4">
+            <mat-label>Nom du contact (en cas d'urgence) </mat-label>
+            <input
+              matInput
+              placeholder="Nom du contact"
+              [value]="kycData.nomContact"
+              [readonly]="true"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-md-4">
+            <mat-label>Téléphone du contact (en cas d'urgence) </mat-label>
+            <input
+              matInput
+              placeholder="Téléphone du contact"
+              [value]="kycData.phoneContact"
+              [readonly]="true"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-md-4">
+            <mat-label>N° CNI du contact (en cas d'urgence) </mat-label>
+            <input
+              matInput
+              placeholder="N° CNi du contact"
+              [value]="kycData.CNIContact"
+              [readonly]="true"
+            />
+          </mat-form-field>
+        </div>
       </div>
     </div>
   </div>

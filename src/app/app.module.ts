@@ -115,6 +115,7 @@ import { DatePipe } from '@angular/common';
 import { KycComponent } from './Components/Pages/kyc/kyc.component';
 import { ImageSelectorComponent } from './Components/image-selector/image-selector.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { ImageViewerComponent } from './Components/image-viewer/image-viewer.component';
 
 
 @NgModule({
@@ -203,7 +204,8 @@ import {MatRadioModule} from '@angular/material/radio';
     CustomBadgeComponent,
     AlertComponent,
     KycComponent,
-    ImageSelectorComponent
+    ImageSelectorComponent,
+    ImageViewerComponent
   ],
   imports: [
     BrowserModule,

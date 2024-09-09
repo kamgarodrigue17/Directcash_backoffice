@@ -83,6 +83,51 @@ export class AddDistributeurComponent implements OnInit {
       // p_nomContact VARCHAR(45), ok
       // p_idClient INT ok
 
+      // const formdata = new FormData();
+      // formdata.append("vMerchantName", "test");
+      // formdata.append("vEmail", "smartdev54@gmail.com");
+      // formdata.append("vContactName", "thomi");
+      // formdata.append("vPhone", "689098756");
+      // formdata.append("vCNI", "cni234567890");
+      // formdata.append("vSegment", "2");
+      // formdata.append("vPaymentMethod", "qwee");
+      // formdata.append("vPaymentAc", "qwwerr");
+      // formdata.append("vMarketer", "Alliance");
+      // formdata.append("vSuperMerchant", "");
+      // formdata.append("vCreatedBy", "tabetsing");
+      // formdata.append("vImei", "emei123344");
+      // formdata.append("vCaution", "tesssst");
+      // formdata.append("vContribuable", "contribu345678");
+      // formdata.append("vEmergencyContact", "emercivonnst");
+      // formdata.append("vEmergencyCni", "emergencicni");
+      // formdata.append("vIsDistributor", "1");
+      // formdata.append("pass", "123456");
+      // formdata.append("isKyc", "true");
+      // formdata.append("p_identiteNo", "identsjsjdjddkdk2234444555");
+      // formdata.append("p_NUI", "9678884439329992");
+      // formdata.append("p_Profession", "genie logiciel");
+      // formdata.append("p_cniNo", "cni34556");
+      // formdata.append("p_RegistreCom", "registre");
+      // formdata.append("p_Datenaissance", "17-05-2020");
+      // formdata.append("p_CNIContact", "testcontact2233");
+      // formdata.append("p_phoneContact", "78893456");
+      // formdata.append("p_nomContact", "testcontact");
+      // formdata.append("p_cniRecto", fileInput.files[0], "Screenshot 2024-08-10 at 14.28.32.png");
+      // formdata.append("p_cniVerso", fileInput.files[0], "Screenshot 2024-08-21 at 19.03.32.png");
+      // formdata.append("p_passport", fileInput.files[0], "Screenshot 2024-08-24 at 07.41.41.png");
+      // formdata.append("p_photo", fileInput.files[0], "Screenshot 2024-08-28 at 22.20.56.png");
+
+      // const requestOptions = {
+      //   method: "POST",
+      //   body: formdata,
+      //   redirect: "follow"
+      // };
+
+      // fetch("https://apibackoffice.alliancefinancialsa.com/addMerchantWithKyc", requestOptions)
+      //   .then((response) => response.text())
+      //   .then((result) => console.log(result))
+      //   .catch((error) => console.error(error));
+
       //
       let data: any = {
         "vMerchantName": this.myForm.value.nom,

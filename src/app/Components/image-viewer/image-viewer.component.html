@@ -1,0 +1,9 @@
+<div class="image-gallery">
+    <img [src]="src" alt="Image" (click)="openImageViewer()">
+  </div>
+  
+  <!-- Modal for image viewer -->
+  <div class="modal" *ngIf="isViewerOpen" (click)="closeImageViewer()">
+    <span class="close" (click)="closeImageViewer()">&times;</span>
+    <img class="modal-content" [src]="src" alt="Image viewer">
+  </div>

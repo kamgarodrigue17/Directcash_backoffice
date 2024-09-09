@@ -24,6 +24,7 @@ export class RequeteEmissionDialogComponent {
   requete: RequeteEmission = this.data.requete;
   stock_monnaie_actuel = this.data.stock_monnaie_actuel;
   password!: string;
+  dateBordereau: Date = new Date();
   mode = this.data.mode;
   now = new Date();
 
@@ -35,13 +36,15 @@ export class RequeteEmissionDialogComponent {
   amountControl = new FormControl('', [Validators.required, Validators.min(1)]);
   passwordControl = new FormControl('', [Validators.required]);
   refControl = new FormControl('', [Validators.required]);
+  dateControl = new FormControl('', [Validators.required]);
+
 
   /**
    * Valider les donner du formulaire
    * @returns
    */
   validate() {
-    if (this.amountControl.valid && this.passwordControl.valid && this.refControl.valid) {
+    if (this.amountControl.valid && this.passwordControl.valid && this.refControl.valid && this.dateControl.valid) {
 
       let jour = new Date();
       // "2024-08-25",

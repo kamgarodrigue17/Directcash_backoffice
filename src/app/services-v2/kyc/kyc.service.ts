@@ -15,11 +15,11 @@ export class KycService {
     private _userService: AdminService
   ) { }
   /**
-   * Recuperer la liste des habilitations
+   * Recuperer les info relatifs aux kyc d'un client
    * @returns 
    */
   getKyc(id: string): Observable<any> {
-    let url = this.globalService.baseUrl2 + "/";
+    let url = this.globalService.baseUrl2 + "/searchKyc/" + id;
     return this.http.get<any>(url);
   }
 
