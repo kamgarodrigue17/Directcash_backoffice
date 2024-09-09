@@ -54,6 +54,22 @@
 
           <p class="mb-0">
             <mat-form-field appearance="outline" class="col-md-5">
+              <mat-label>Date de naissinace</mat-label>
+              <input
+                formControlName="datenaissance"
+                matInput
+                [matDatepicker]="picker"
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>N° CNI</mat-label>
               <input
                 matInput
@@ -164,6 +180,80 @@
               />
             </mat-form-field>
           </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline" class="col-md-5">
+              <mat-label>Registre de commerce</mat-label>
+              <input
+                matInput
+                placeholder="Registre de commerce"
+                formControlName="registrecommerce"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline" class="col-md-5">
+              <mat-label>Proféssion</mat-label>
+              <input
+                matInput
+                placeholder="Proféssion"
+                formControlName="profession"
+                required
+              />
+            </mat-form-field>
+          </p>
+
+          <div class="d-flex flex-row justify-content-center">
+            <div class="row col-md-5">
+              <!-- <p class="mb-0 col-md-6"> -->
+              <mat-form-field appearance="outline" class="col-md-6 ps-0">
+                <mat-label>Numéro d'identification unique</mat-label>
+                <input
+                  matInput
+                  placeholder="NIU"
+                  formControlName="niu"
+                  required
+                />
+              </mat-form-field>
+              <!-- </p>
+            <p class="mb-0 col-md-6"> -->
+              <mat-form-field appearance="outline" class="col-md-6 pe-0">
+                <mat-label>Numéro d'identité</mat-label>
+                <input
+                  matInput
+                  placeholder="numeroidentite"
+                  formControlName="numeroidentite"
+                  required
+                />
+              </mat-form-field>
+              <!-- </p> -->
+            </div>
+          </div>
+
+          <p>Piece d'identité</p>
+
+          <mat-radio-group [(ngModel)]="file" onchange="onHangeFIle($event)">
+            <mat-radio-button class="me-3" value="cni">CNI</mat-radio-button>
+            <mat-radio-button value="passport">Passport</mat-radio-button>
+          </mat-radio-group>
+
+          <div class="d-flex flex-row justify-content-center mb-3">
+            <div class="row col-md-5">
+              <!-- image selector -->
+              <app-image-selector
+                *ngIf="file == 'cni'"
+                placeholder="Selectionner la CNI (verso) "
+                (fileSelected)="onCniSelected($event)"
+              ></app-image-selector>
+              <app-image-selector
+                *ngIf="file == 'passport'"
+                placeholder="Selectionner le passport (verso)"
+                (fileSelected)="onPassportSelected($event)"
+              ></app-image-selector>
+            </div>
+          </div>
 
           <p
             class="text-primary"

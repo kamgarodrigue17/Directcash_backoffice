@@ -1,0 +1,40 @@
+<!-- <div class="image-selector">
+  <label for="" class="small p-2">Format: PNG, JPG</label>
+  <input class="form-control" type="file" (change)="onFileSelected($event)" />
+  <div *ngIf="selectedImage" class="">
+    <img
+      [src]="selectedImage"
+      alt="Selected Image"
+      class="preview-image img-fluid"
+    />
+  </div>
+</div> -->
+<label for="" class="small p-2">Format: PNG, JPG</label>
+
+<div class="dropzone w-100 image-selector">
+  <!-- <input
+    type="file"
+    #fileDropRef
+    id="fileDropRef"
+    multiple
+    (change)="fileBrowseHandler($event)"
+  /> -->
+  <input
+    #fileDropRef
+    id="fileDropRef"
+    type="file"
+    (change)="onFileSelected($event)"
+  />
+  <div *ngIf="selectedImage">
+    <img
+      [src]="selectedImage"
+      alt="Selected Image"
+      class="preview-image img-fluid"
+    />
+  </div>
+  <div *ngIf="!selectedImage" class="p-3">
+    <h5>Glisser une image ici</h5>
+    <h5>ou</h5>
+    <label for="fileDropRef" class="btn btn-secondary">{{placeholder}}</label>
+  </div>
+</div>

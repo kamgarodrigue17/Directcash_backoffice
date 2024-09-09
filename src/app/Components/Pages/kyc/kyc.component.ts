@@ -29,6 +29,8 @@ export class KycComponent {
 
 
   valider() {
+
+    this._alertService.closeAlert();
     if (this.idControl.valid) {
 
       // start loadng

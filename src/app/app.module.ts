@@ -113,6 +113,9 @@ import { CustomBadgeComponent } from './Components/custom-badge/custom-badge.com
 import { AlertComponent } from './Components/alert/alert.component';
 import { DatePipe } from '@angular/common';
 import { KycComponent } from './Components/Pages/kyc/kyc.component';
+import { ImageSelectorComponent } from './Components/image-selector/image-selector.component';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [
@@ -199,7 +202,8 @@ import { KycComponent } from './Components/Pages/kyc/kyc.component';
     NumberFormatterPipe,
     CustomBadgeComponent,
     AlertComponent,
-    KycComponent
+    KycComponent,
+    ImageSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -225,7 +229,9 @@ import { KycComponent } from './Components/Pages/kyc/kyc.component';
     MatTabsModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    MatTreeModule
+    MatTreeModule,
+    MatRadioModule
+
   ],
   providers: [
     {

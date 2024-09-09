@@ -25,6 +25,8 @@ export class AddDistributeurComponent implements OnInit {
     secondCtrl: ['', Validators.required],
   });
   isLinear = true;
+  isCniSelected = true;
+  file = "cni";
 
   // variable de requete
   request!: Subscription;
@@ -49,6 +51,11 @@ export class AddDistributeurComponent implements OnInit {
     private _distributeurService: DistributeurService
   ) { }
 
+  onHangeFIle(event: any) {
+    console.log(event);
+
+  }
+
   /**
    * Ajouter un distributeur
    */
@@ -62,6 +69,19 @@ export class AddDistributeurComponent implements OnInit {
 
       // le texte retour devient "Annuler"
       this.textRetourConnexion = "Annuler";
+
+      // p_cniVerso VARCHAR(45),
+      // p_passport VARCHAR(45),
+      // p_identiteNo VARCHAR(45), ok
+      // p_NUI VARCHAR(45), ok
+      // p_Profession VARCHAR(45), ok
+      // p_cniNo VARCHAR(45), ok
+      // p_RegistreCom VARCHAR(45), ok
+      // p_Datenaissance VARCHAR(45), ok
+      // p_CNIContact VARCHAR(45), ok
+      // p_phoneContact VARCHAR(45), ok
+      // p_nomContact VARCHAR(45), ok
+      // p_idClient INT ok
 
       //
       let data: any = {
@@ -198,6 +218,22 @@ export class AddDistributeurComponent implements OnInit {
     }
   }
 
+  onCniSelected(file: File): void {
+    console.log('Fichier sélectionné : ', file);
+    // Tu peux maintenant utiliser le fichier, par exemple pour l'ajouter à un FormData
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    // Effectuer un envoi ou une autre action
+  }
+
+  onPassportSelected(file: File): void {
+    console.log('Fichier sélectionné : ', file);
+    // Tu peux maintenant utiliser le fichier, par exemple pour l'ajouter à un FormData
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+    // Effectuer un envoi ou une autre action
+  }
+
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
@@ -206,6 +242,7 @@ export class AddDistributeurComponent implements OnInit {
 
       phone: new FormControl('', Validators.required),
       cni: new FormControl('', Validators.required),
+      datenaissance: new FormControl('', Validators.required),
 
       imei: new FormControl('', Validators.required),
       // region: new FormControl('', Validators.required),
@@ -218,6 +255,10 @@ export class AddDistributeurComponent implements OnInit {
       contactName: new FormControl('', Validators.required),
       superMerchant: new FormControl('', Validators.required),
       contribuable: new FormControl('', Validators.required),
+      registrecommerce: new FormControl('', Validators.required),
+      profession: new FormControl('', Validators.required),
+      niu: new FormControl('', Validators.required),
+      numeroidentite: new FormControl('', Validators.required),
       // OperateurMarketing: new FormControl('', Validators.required),
       phoneContact: new FormControl('', Validators.required),
       cniContact: new FormControl('', Validators.required),
