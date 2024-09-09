@@ -23,7 +23,7 @@ export class ConnexionComponent implements OnInit {
   ngOnInit(): void {
     this.myForm = new FormGroup({
 
-      password: new FormControl('', [Validators.required, Validators.min(6)]),
+      password: new FormControl('', [Validators.required]),
       username: new FormControl('', Validators.required)
     });
 
@@ -54,7 +54,7 @@ export class ConnexionComponent implements OnInit {
   connexion_class = 'primary-light-button';
 
   onSubmit() {
-
+console.log(this.myForm.valid)
     if (this.myForm.valid) {
 
       // on grise le bouton de connexion
