@@ -40,6 +40,16 @@
         <form [formGroup]="myForm" class="mt-4 text-center">
           <ng-template matStepLabel>INFORMATIONS PERSONNELLES</ng-template>
 
+          <!-- photo -->
+          <div class="d-flex justify-content-center mb-4">
+            <div class="col-md-5 text-center">
+              <app-image-selector
+                placeholder="Selectionner une photo de l'agent"
+                (fileSelected)="onPhotoSelected($event)"
+              ></app-image-selector>
+            </div>
+          </div>
+
           <p class="mb-0">
             <mat-form-field appearance="outline" class="col-md-5">
               <mat-label>Nom</mat-label>
@@ -57,6 +67,7 @@
               <mat-label>Date de naissinace</mat-label>
               <input
                 formControlName="datenaissance"
+                [max]="now"
                 matInput
                 [matDatepicker]="picker"
               />
@@ -234,21 +245,30 @@
 
           <p>Piece d'identité</p>
 
-          <mat-radio-group [(ngModel)]="file" onchange="onHangeFIle($event)">
+          <mat-radio-group formControlName="file" aria-label="Select an option">
             <mat-radio-button class="me-3" value="cni">CNI</mat-radio-button>
             <mat-radio-button value="passport">Passport</mat-radio-button>
           </mat-radio-group>
 
           <div class="d-flex flex-row justify-content-center mb-3">
             <div class="row col-md-5">
-              <!-- image selector -->
+              <!-- cni -->
               <app-image-selector
-                *ngIf="file == 'cni'"
-                placeholder="Selectionner la CNI (verso) "
+                class="col-md-6"
+                *ngIf="myForm1.value.file == 'cni'"
+                placeholder="Selectionner la CNI (recto) "
                 (fileSelected)="onCniSelected($event)"
               ></app-image-selector>
               <app-image-selector
-                *ngIf="file == 'passport'"
+                class="col-md-6"
+                *ngIf="myForm1.value.file == 'cni'"
+                placeholder="Selectionner la CNI (verso) "
+                (fileSelected)="onCniSelectedVerso($event)"
+              ></app-image-selector>
+
+              <!-- passport -->
+              <app-image-selector
+                *ngIf="myForm1.value.file == 'passport'"
                 placeholder="Selectionner le passport (verso)"
                 (fileSelected)="onPassportSelected($event)"
               ></app-image-selector>
@@ -296,6 +316,18 @@
                 matInput
                 placeholder="N° CNI / NIU"
                 formControlName="cniContact"
+              />
+            </mat-form-field>
+          </p>
+
+          <p class="mb-0">
+            <mat-form-field appearance="outline" class="col-md-5">
+              <mat-label>Votre mot de passe</mat-label>
+              <input
+                matInput
+                placeholder="Mot de passe"
+                formControlName="pass"
+                required
               />
             </mat-form-field>
           </p>

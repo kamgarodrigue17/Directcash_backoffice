@@ -33,7 +33,7 @@ export class DistributeurService {
    * @returns 
    */
   create(data: any): Observable<any> {
-    let url = this.globalService.baseUrl2 + "/AddEditMerchant";
+    let url = this.globalService.baseUrl2 + "/addMerchantWithKyc";
     return this.http.post<any>(url, data);
   }
 

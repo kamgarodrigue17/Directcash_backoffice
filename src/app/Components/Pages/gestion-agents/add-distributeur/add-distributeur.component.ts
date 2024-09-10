@@ -28,6 +28,12 @@ export class AddDistributeurComponent implements OnInit {
   isCniSelected = true;
   file = "cni";
 
+  cnirecto: any = null;
+  cniverso: any = null;
+  passport: any = null;
+  photo: any = null;
+  now: Date = new Date();
+
   // variable de requete
   request!: Subscription;
 
@@ -56,6 +62,14 @@ export class AddDistributeurComponent implements OnInit {
 
   }
 
+  formatDate(date: Date): string {
+    const day = ("0" + date.getDate()).slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2); 
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
+
   /**
    * Ajouter un distributeur
    */
@@ -70,96 +84,49 @@ export class AddDistributeurComponent implements OnInit {
       // le texte retour devient "Annuler"
       this.textRetourConnexion = "Annuler";
 
-      // p_cniVerso VARCHAR(45),
-      // p_passport VARCHAR(45),
-      // p_identiteNo VARCHAR(45), ok
-      // p_NUI VARCHAR(45), ok
-      // p_Profession VARCHAR(45), ok
-      // p_cniNo VARCHAR(45), ok
-      // p_RegistreCom VARCHAR(45), ok
-      // p_Datenaissance VARCHAR(45), ok
-      // p_CNIContact VARCHAR(45), ok
-      // p_phoneContact VARCHAR(45), ok
-      // p_nomContact VARCHAR(45), ok
-      // p_idClient INT ok
+      const formdata = new FormData();
+      formdata.append("vMerchantName", this.myForm.value.nom);
+      formdata.append("vEmail", this.myForm.value.email);
+      formdata.append("vContactName", this.myForm1.value.contactName);
+      formdata.append("vPhone", this.myForm.value.phone);
+      formdata.append("vCNI", this.myForm.value.cni);
+      formdata.append("vSegment", "2");
+      formdata.append("vPaymentMethod", "CreditCard");
+      formdata.append("vPaymentAc", "AccountXYZ");
+      formdata.append("vMarketer", this._userService.getLocalUser().data.Company);
+      formdata.append("vSuperMerchant", `${this.myForm1.value.superMerchant}`);
+      formdata.append("vCreatedBy", this._userService.getLocalUser().data.UserName);
+      formdata.append("vImei", this.myForm.value.imei);
+      formdata.append("vCaution", "10");
+      formdata.append("vContribuable", this.myForm1.value.contribuable);
+      formdata.append("vEmergencyContact", this.myForm1.value.phoneContact);
+      formdata.append("vEmergencyCni", this.myForm1.value.cniContact);
+      formdata.append("vIsDistributor", "1");
+      formdata.append("pass", this.myForm1.value.pass);
+      formdata.append("isKyc", "true");
+      formdata.append("p_identiteNo", this.myForm1.value.numeroidentite);
+      formdata.append("p_NUI", this.myForm1.value.niu);
+      formdata.append("p_Profession", this.myForm1.value.profession);
+      formdata.append("p_cniNo", this.myForm.value.cni);
+      formdata.append("p_RegistreCom", this.myForm.value.registrecommerce);
+      formdata.append("p_Datenaissance", this.formatDate(this.myForm.value.datenaissance));
+      formdata.append("p_CNIContact", this.myForm1.value.cniContact);
+      formdata.append("p_phoneContact", this.myForm1.value.phoneContact);
+      formdata.append("p_nomContact", this.myForm1.value.contactName);
+      formdata.append("p_cniRecto", this.cnirecto.files[0], this.cnirecto.name);
+      formdata.append("p_cniVerso", this.cniverso.files[0], this.cnirecto.name);
+      formdata.append("p_passport", this.passport.files[0], this.cnirecto.name);
+      formdata.append("p_photo", this.photo.files[0], this.photo.name);
 
-      // const formdata = new FormData();
-      // formdata.append("vMerchantName", "test");
-      // formdata.append("vEmail", "smartdev54@gmail.com");
-      // formdata.append("vContactName", "thomi");
-      // formdata.append("vPhone", "689098756");
-      // formdata.append("vCNI", "cni234567890");
-      // formdata.append("vSegment", "2");
-      // formdata.append("vPaymentMethod", "qwee");
-      // formdata.append("vPaymentAc", "qwwerr");
-      // formdata.append("vMarketer", "Alliance");
-      // formdata.append("vSuperMerchant", "");
-      // formdata.append("vCreatedBy", "tabetsing");
-      // formdata.append("vImei", "emei123344");
-      // formdata.append("vCaution", "tesssst");
-      // formdata.append("vContribuable", "contribu345678");
-      // formdata.append("vEmergencyContact", "emercivonnst");
-      // formdata.append("vEmergencyCni", "emergencicni");
-      // formdata.append("vIsDistributor", "1");
-      // formdata.append("pass", "123456");
-      // formdata.append("isKyc", "true");
-      // formdata.append("p_identiteNo", "identsjsjdjddkdk2234444555");
-      // formdata.append("p_NUI", "9678884439329992");
-      // formdata.append("p_Profession", "genie logiciel");
-      // formdata.append("p_cniNo", "cni34556");
-      // formdata.append("p_RegistreCom", "registre");
-      // formdata.append("p_Datenaissance", "17-05-2020");
-      // formdata.append("p_CNIContact", "testcontact2233");
-      // formdata.append("p_phoneContact", "78893456");
-      // formdata.append("p_nomContact", "testcontact");
-      // formdata.append("p_cniRecto", fileInput.files[0], "Screenshot 2024-08-10 at 14.28.32.png");
-      // formdata.append("p_cniVerso", fileInput.files[0], "Screenshot 2024-08-21 at 19.03.32.png");
-      // formdata.append("p_passport", fileInput.files[0], "Screenshot 2024-08-24 at 07.41.41.png");
-      // formdata.append("p_photo", fileInput.files[0], "Screenshot 2024-08-28 at 22.20.56.png");
-
-      // const requestOptions = {
-      //   method: "POST",
-      //   body: formdata,
-      //   redirect: "follow"
-      // };
-
-      // fetch("https://apibackoffice.alliancefinancialsa.com/addMerchantWithKyc", requestOptions)
-      //   .then((response) => response.text())
-      //   .then((result) => console.log(result))
-      //   .catch((error) => console.error(error));
-
-      //
-      let data: any = {
-        "vMerchantName": this.myForm.value.nom,
-        "vEmail": this.myForm.value.email,
-        "vContactName": this.myForm1.value.contactName,
-        "vPhone": this.myForm.value.phone,
-        "vCNI": this.myForm.value.cni,
-        "vSegment": 2,
-        "vPaymentMethod": "CreditCard",
-        "vPaymentAc": "AccountXYZ",
-        "vMarketer": this._userService.getLocalUser().data.Company,
-        "vSuperMerchant": `${this.myForm1.value.superMerchant}`,
-        "vCreatedBy": this._userService.getLocalUser().data.UserName,
-        "vImei": this.myForm.value.imei,
-        "vCaution": "10",
-        "vContribuable": this.myForm1.value.contribuable,
-        "vEmergencyContact": this.myForm1.value.phoneContact,
-        "vEmergencyCni": this.myForm1.value.cniContact,
-        "vIsDistributor": 1,
-        "vModifiedBy": null,
-        "MerchantID": null,
-      };
-
-      // on recupere les donnee du formulaire
-      console.log(data);
+      // // on recupere les donnee du formulaire
+      console.log(formdata);
 
       // on active la barre de progression
       this.isProgressHidden = false;
 
       try {
         // on envoi la requete
-        this.request = this._distributeurService.create(data).subscribe(res => {
+        this.request = this._distributeurService.create(formdata).subscribe(res => {
 
           // le texte retour devient "Valider"
           this.textRetourConnexion = "Valider";
@@ -262,21 +229,20 @@ export class AddDistributeurComponent implements OnInit {
       console.log(error);
     }
   }
+  onPhotoSelected(file: File): void {
+    this.photo = file;
+  }
 
   onCniSelected(file: File): void {
-    console.log('Fichier sélectionné : ', file);
-    // Tu peux maintenant utiliser le fichier, par exemple pour l'ajouter à un FormData
-    const formData = new FormData();
-    formData.append('file', file, file.name);
-    // Effectuer un envoi ou une autre action
+    this.cnirecto = file;
+  }
+
+  onCniSelectedVerso(file: File): void {
+    this.cniverso = file;
   }
 
   onPassportSelected(file: File): void {
-    console.log('Fichier sélectionné : ', file);
-    // Tu peux maintenant utiliser le fichier, par exemple pour l'ajouter à un FormData
-    const formData = new FormData();
-    formData.append('file', file, file.name);
-    // Effectuer un envoi ou une autre action
+    this.passport = file;
   }
 
 
@@ -307,6 +273,8 @@ export class AddDistributeurComponent implements OnInit {
       // OperateurMarketing: new FormControl('', Validators.required),
       phoneContact: new FormControl('', Validators.required),
       cniContact: new FormControl('', Validators.required),
+      pass: new FormControl('', Validators.required),
+      file: new FormControl('cni', [Validators.required])
     });
 
     this.getDistributeur();
