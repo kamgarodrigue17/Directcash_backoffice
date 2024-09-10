@@ -16,7 +16,8 @@ export class ImageSelectorComponent {
   @Input() placeholder!: string;
 
   // Émetteur pour retourner le FormData mis à jour
-  @Output() fileSelected: EventEmitter<File> = new EventEmitter<File>();
+  // @Output() fileSelected: EventEmitter<File> = new EventEmitter<File>();
+  @Output() fileDom: EventEmitter<HTMLInputElement> = new EventEmitter<HTMLInputElement>();
 
   onFileSelected(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
@@ -33,7 +34,8 @@ export class ImageSelectorComponent {
 
       // save image to variables
       if (this.selectedFile) {
-        this.fileSelected.emit(this.selectedFile);
+        this.fileDom.emit(fileInput);
+        // this.fileSelected.emit(this.selectedFile);
       }
     }
   }

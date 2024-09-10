@@ -45,7 +45,7 @@
             <div class="col-md-5 text-center">
               <app-image-selector
                 placeholder="Selectionner une photo de l'agent"
-                (fileSelected)="onPhotoSelected($event)"
+                (fileDom)="onPhotoSelected($event)"
               ></app-image-selector>
             </div>
           </div>
@@ -257,20 +257,20 @@
                 class="col-md-6"
                 *ngIf="myForm1.value.file == 'cni'"
                 placeholder="Selectionner la CNI (recto) "
-                (fileSelected)="onCniSelected($event)"
+                (fileDom)="onCniSelected($event)"
               ></app-image-selector>
               <app-image-selector
                 class="col-md-6"
                 *ngIf="myForm1.value.file == 'cni'"
                 placeholder="Selectionner la CNI (verso) "
-                (fileSelected)="onCniSelectedVerso($event)"
+                (fileDom)="onCniSelectedVerso($event)"
               ></app-image-selector>
 
               <!-- passport -->
               <app-image-selector
                 *ngIf="myForm1.value.file == 'passport'"
                 placeholder="Selectionner le passport (verso)"
-                (fileSelected)="onPassportSelected($event)"
+                (fileDom)="onPassportSelected($event)"
               ></app-image-selector>
             </div>
           </div>

@@ -32,6 +32,7 @@ export class AddDistributeurComponent implements OnInit {
   cniverso: any = null;
   passport: any = null;
   photo: any = null;
+  filetest: any = null;
   now: Date = new Date();
 
   // variable de requete
@@ -64,11 +65,69 @@ export class AddDistributeurComponent implements OnInit {
 
   formatDate(date: Date): string {
     const day = ("0" + date.getDate()).slice(-2);
-    const month = ("0" + (date.getMonth() + 1)).slice(-2); 
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
     const year = date.getFullYear();
 
     return `${day}-${month}-${year}`;
   }
+
+  /**
+   * Annuler la requete d'ajout
+   */
+  cancel_request() {
+    if (this.isLoading) {
+      this.request.unsubscribe();
+      this.isLoading = false;
+      this.connexion_class = 'primary-light-button';
+
+      // le texte retour devient "Valider"
+      this.textRetourConnexion = "Valider";
+
+      // on masque la barre de progression
+      this.isProgressHidden = true;
+    }
+  }
+
+  /**
+   * recuperer la liste des distributeurs
+   */
+  getDistributeur() {
+    try {
+      this._distributeurService.getAll().subscribe(res => {
+        this.merchants = res.data;
+      }, (error) => {
+        // log error
+        console.log('--- ERREUR GET DISTRIBUTEURS ---');
+        console.log(error);
+      });
+
+    } catch (error) {
+      // log error
+      console.log('--- ERREUR GET DISTRIBUTEURS ---');
+      console.log(error);
+    }
+  }
+  onPhotoSelected(file: any): void {
+    console.log('--- photo changed ---');
+
+    this.photo = file;
+  }
+
+  onCniSelected(file: any): void {
+    console.log('--- cni recto changed ---');
+    this.cnirecto = file;
+  }
+
+  onCniSelectedVerso(file: any): void {
+    console.log('--- cni verso changed ---');
+    this.cniverso = file;
+  }
+
+  onPassportSelected(file: any): void {
+    console.log('--- passport changed ---');
+    this.passport = file;
+  }
+
 
   /**
    * Ajouter un distributeur
@@ -85,7 +144,7 @@ export class AddDistributeurComponent implements OnInit {
       this.textRetourConnexion = "Annuler";
 
       const formdata = new FormData();
-      formdata.append("vMerchantName", this.myForm.value.nom);
+      formdata.append("vMerchantName", this.myForm.value.nom + "");
       formdata.append("vEmail", this.myForm.value.email);
       formdata.append("vContactName", this.myForm1.value.contactName);
       formdata.append("vPhone", this.myForm.value.phone);
@@ -113,13 +172,25 @@ export class AddDistributeurComponent implements OnInit {
       formdata.append("p_CNIContact", this.myForm1.value.cniContact);
       formdata.append("p_phoneContact", this.myForm1.value.phoneContact);
       formdata.append("p_nomContact", this.myForm1.value.contactName);
-      formdata.append("p_cniRecto", this.cnirecto.files[0], this.cnirecto.name);
-      formdata.append("p_cniVerso", this.cniverso.files[0], this.cnirecto.name);
-      formdata.append("p_passport", this.passport.files[0], this.cnirecto.name);
-      formdata.append("p_photo", this.photo.files[0], this.photo.name);
+
+      if (this.cnirecto != null && this.cniverso != null) {
+        formdata.append("p_cniRecto", this.cnirecto.files[0], this.cnirecto.name);
+        formdata.append("p_cniVerso", this.cniverso.files[0], this.cniverso.name);
+      }
+
+      if (this.passport != null) {
+        formdata.append("p_passport", this.passport.files[0], this.passport.name);
+      }
+
+      if (this.photo != null) {
+        formdata.append("p_photo", this.photo.files[0], this.photo.name);
+      }
 
       // // on recupere les donnee du formulaire
-      console.log(formdata);
+      // Log pour vérifier les valeurs
+      formdata.forEach((value, key) => {
+        console.log(key + ':', value);
+      });
 
       // on active la barre de progression
       this.isProgressHidden = false;
@@ -193,57 +264,6 @@ export class AddDistributeurComponent implements OnInit {
     }
   }
 
-  /**
-   * Annuler la requete d'ajout
-   */
-  cancel_request() {
-    if (this.isLoading) {
-      this.request.unsubscribe();
-      this.isLoading = false;
-      this.connexion_class = 'primary-light-button';
-
-      // le texte retour devient "Valider"
-      this.textRetourConnexion = "Valider";
-
-      // on masque la barre de progression
-      this.isProgressHidden = true;
-    }
-  }
-
-  /**
-   * recuperer la liste des distributeurs
-   */
-  getDistributeur() {
-    try {
-      this._distributeurService.getAll().subscribe(res => {
-        this.merchants = res.data;
-      }, (error) => {
-        // log error
-        console.log('--- ERREUR GET DISTRIBUTEURS ---');
-        console.log(error);
-      });
-
-    } catch (error) {
-      // log error
-      console.log('--- ERREUR GET DISTRIBUTEURS ---');
-      console.log(error);
-    }
-  }
-  onPhotoSelected(file: File): void {
-    this.photo = file;
-  }
-
-  onCniSelected(file: File): void {
-    this.cnirecto = file;
-  }
-
-  onCniSelectedVerso(file: File): void {
-    this.cniverso = file;
-  }
-
-  onPassportSelected(file: File): void {
-    this.passport = file;
-  }
 
 
   ngOnInit(): void {
