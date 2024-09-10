@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { catchError, throwError } from 'rxjs';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
+import { PasswordDialogComponent } from 'src/app/Components/Modals/password-dialog/password-dialog.component';
 import { RequeteEmissionDialogComponent } from 'src/app/Components/Modals/requete-emission-dialog/requete-emission-dialog.component';
 import { RequeteEmission } from 'src/app/modal/requete-emission';
 import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
@@ -122,26 +123,31 @@ export class RequeteEmissionComponent {
           "jour": `${data.jour}`,
           "amount": `${data.amount}`,
           "creerPar": `${data.creerPar}`,
-          "vDocuments":data.documents
-          
+          "vDocuments": data.documents
+
 
         };
         const formdata = new FormData();
-        formdata.append("reference",`${data.reference}` );
-        formdata.append("jour",`${data.jour}` );
-        formdata.append("amount",`${data.amount}` );
-        formdata.append("creerPar",`${data.creerPar}` );
-   
-    // Ajouter les documents à FormData (si des fichiers sont fournis)
-    if (data.documents && data.documents.length > 0) {
-      for (let i = 0; i < data.documents.length; i++) {
-          formdata.append('vDocuments', data.documents[i]); // 'vDocuments' doit correspondre au champ utilisé dans Multer
-      }
-  }
+        formdata.append("reference", `${data.reference}`);
+        formdata.append("jour", `${data.jour}`);
+        formdata.append("amount", `${data.amount}`);
+        formdata.append("creerPar", `${data.creerPar}`);
+
+        // Ajouter les documents à FormData (si des fichiers sont fournis)
+        if (data.documents && data.documents.length > 0) {
+          console.log('il ya des fichiers selectionner');
+
+          for (let i = 0; i < data.documents.length; i++) {
+            formdata.append('vDocuments', data.documents[i]); // 'vDocuments' doit correspondre au champ utilisé dans Multer
+          }
+        }
 
         // log data
         console.log('--- REQUETE A INITIER ---');
-        console.log(data_request);
+        formdata.forEach((f) => {
+          console.log(f);
+
+        })
 
         if (mode == 'add') {
 
@@ -150,7 +156,7 @@ export class RequeteEmissionComponent {
             this.isProgressHidden = false;
 
             // on envoi la requete d'ajout de la requete d'emission
-            this._requeteEmissionService.create(data_request).pipe(
+            this._requeteEmissionService.create(formdata).pipe(
               catchError((error: HttpErrorResponse) => {
                 this.isProgressHidden = true;
                 if (error.status !== 200) {
@@ -173,7 +179,7 @@ export class RequeteEmissionComponent {
 
               // on definit le type d'alerte  afficher en fonction du code de retour
               let res_code = res.code;
-              switch (+res_code) { 
+              switch (+res_code) {
 
                 case 200:
                   this.alert_type = 'success'
@@ -183,21 +189,21 @@ export class RequeteEmissionComponent {
                   this.getRequeteList();
                   break;
 
-                  case 404:
+                case 404:
                   this.alert_type = 'warning'
                   this.alert_message = res.message;
                   break;
-                  case 400:
+                case 400:
                   this.alert_type = 'warning'
                   this.alert_message = res.message;
                   break;
-                  case 500:
+                case 500:
                   this.alert_type = 'danger'
                   this.alert_message = res.message;
                   break;
                   // refresh data
                   this.getRequeteList();
-                  
+
 
 
                 default:
@@ -273,82 +279,93 @@ export class RequeteEmissionComponent {
 
     confirmation_dialog.afterClosed().subscribe(confirm => {
       if (confirm) {
-        try {
 
-          // set data request
-          let data_request = {
-            "vId": `${requete.id}`,
-            "vPass": "12345",
-            "vAmount": amount,
-            "vWho": `${this._userService.getLocalUser().data.UserName}`,
-            "vStatus": 1
-          };
-          console.log(data_request);
+        // show password dialog
+        let password_dialog = this._dialog.open(PasswordDialogComponent, { disableClose: true });
 
-          // on active la barre de progression de la requete
-          this.isProgressHidden = false;
+        password_dialog.afterClosed().subscribe(password => {
 
-          // on envoi la requete d'ajout de la requete d'emission
-          this._requeteEmissionService.validate(data_request).pipe(
-            catchError((error: HttpErrorResponse) => {
-              this.isProgressHidden = true;
-              if (error.status !== 200) {
-                this.alert_type = 'danger';
+          if (password != false) {
+            try {
 
-                this.alert_message = this._messageService.getHttpMessage(error.status);
+              // set data request
+              let data_request = {
+                "vId": `${requete.id}`,
+                "vPass": `${password}`,
+                "vAmount": amount,
+                "vWho": `${this._userService.getLocalUser().data.UserName}`,
+                "vStatus": 1
+              };
+              console.log(data_request);
+
+              // on active la barre de progression de la requete
+              this.isProgressHidden = false;
+
+              // on envoi la requete d'ajout de la requete d'emission
+              this._requeteEmissionService.validate(data_request).pipe(
+                catchError((error: HttpErrorResponse) => {
+                  this.isProgressHidden = true;
+                  if (error.status !== 200) {
+                    this.alert_type = 'danger';
+
+                    this.alert_message = this._messageService.getHttpMessage(error.status);
+
+                    this.closeAlert();
+                    this.openAlert();
+
+                    // log response
+                    console.log('--- ERREUR ---');
+                    console.log(error.message);
+                  }
+                  return throwError(error);
+                })
+              ).subscribe(res => {
+                console.log(res);
+                // au retour de la reponse, on desactive la barre de progression
+                this.isProgressHidden = true;
+
+                // on definit le type d'alerte  afficher en fonction du code de retour
+                let res_code = res.code;
+                switch (+res_code) {
+                  case 200:
+                    this.alert_type = 'success'
+                    this.alert_message = res.data[0].message
+                    // "La requête a été validée avec succès. Vous venez d'emettre " + amount.toLocaleString("en-US") + " Dans le système";
+                    break;
+                  case 404:
+                    this.alert_type = 'warning'
+                    this.alert_message = res.data[0].message;
+
+                    // refresh list
+                    this.getRequeteList();
+                    break;
+
+                  default:
+                    this.alert_type = 'danger';
+                    this.alert_message = "Une erreur est survenue.";
+                    break;
+                }
 
                 this.closeAlert();
                 this.openAlert();
+              });
 
-                // log response
-                console.log('--- ERREUR ---');
-                console.log(error.message);
-              }
-              return throwError(error);
-            })
-          ).subscribe(res => {
-            console.log(res);
-            // au retour de la reponse, on desactive la barre de progression
-            this.isProgressHidden = true;
+            } catch (error) {
 
-            // on definit le type d'alerte  afficher en fonction du code de retour
-            let res_code = res.code;
-            switch (+res_code) {
-              case 200:
-                this.alert_type = 'success'
-                this.alert_message =res.data[0].message
-                // "La requête a été validée avec succès. Vous venez d'emettre " + amount.toLocaleString("en-US") + " Dans le système";
-                break;
-                case 404:
-                  this.alert_type = 'warning'
-                  this.alert_message = res.data[0].message;
-  
-                // refresh list
-                this.getRequeteList();
-                break;
+              // log error
+              console.log('--- ERREUR ---');
+              console.log(error);
 
-              default:
-                this.alert_type = 'danger';
-                this.alert_message = "Une erreur est survenue.";
-                break;
+              // show alert
+              this.alert_message = "Une erreur est survenue. Veuillez réessayer ulterieurement."
+              this.alert_type = "danger";
+              this.closeAlert();
+              this.openAlert();
             }
 
-            this.closeAlert();
-            this.openAlert();
-          });
+          }
+        });
 
-        } catch (error) {
-
-          // log error
-          console.log('--- ERREUR ---');
-          console.log(error);
-
-          // show alert
-          this.alert_message = "Une erreur est survenue. Veuillez réessayer ulterieurement."
-          this.alert_type = "danger";
-          this.closeAlert();
-          this.openAlert();
-        }
 
       }
     });

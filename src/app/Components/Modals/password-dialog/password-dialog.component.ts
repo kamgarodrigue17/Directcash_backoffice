@@ -1,6 +1,7 @@
-import { Component, Inject, ViewChild } from '@angular/core';
-import { FormControl, NgForm } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-password-dialog',
@@ -8,10 +9,20 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./password-dialog.component.css']
 })
 export class PasswordDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any){}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private _ref: MatDialogRef<PasswordDialogComponent>
+  ) { }
 
-  @ViewChild("form") form!: NgForm;
+  // matcher
+  matcher = new ErrorStateMatcher()
 
   hide = true;
+  password = "";
   passwordFormControl: FormControl = new FormControl;
+
+  valid() {
+    if (this.passwordFormControl.valid)
+      this._ref.close(this.password);
+  }
 }
