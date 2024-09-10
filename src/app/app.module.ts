@@ -42,7 +42,7 @@ import { SuperAgentsComponent } from './Components/Pages/gestion-agents/super-ag
 import { AddSuperAgentStepOneComponent } from './Components/Pages/gestion-agents/add-super-agent/add-super-agent-step-one/add-super-agent-step-one.component';
 import { ClientMydirectcashComponent } from './Components/Pages/gestion-clients/client-mydirectcash/client-mydirectcash.component';
 import { AddClientDialogComponent } from './Components/Modals/add-client-dialog/add-client-dialog.component';
-import { ShowSuperAgengDialogComponent } from './Components/Modals/show-super-ageng-dialog/show-super-ageng-dialog.component';
+import { ShowSuperAgengDialogComponent } from './Components/Pages/show-super-ageng-dialog/show-super-ageng-dialog.component';
 import { BlockAccountDialogComponent } from './Components/Modals/block-account-dialog/block-account-dialog.component';
 import { TransactionMydirectcashComponent } from './Components/Pages/gestion-clients/transaction-mydirectcash/transaction-mydirectcash.component';
 import { ShowTransMydirectcashDialogComponent } from './Components/Modals/show-trans-mydirectcash-dialog/show-trans-mydirectcash-dialog.component';

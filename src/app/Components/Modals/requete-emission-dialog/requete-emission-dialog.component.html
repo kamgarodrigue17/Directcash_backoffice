@@ -88,7 +88,15 @@
       />
     </mat-form-field>
   </div>
-
+<!-- photo -->
+<div class="d-flex justify-content-center mb-4">
+  <div class="col-md-5 text-center">
+    <app-image-selector
+      placeholder="Selectionner des Document justificatifs"
+      (fileDom)="onPhotoSelected($event)"
+    ></app-image-selector>
+  </div>
+</div>
   <!-- Mot de passe -->
   <div class="col-md-12">
     <mat-form-field class="w-100" appearance="outline">

@@ -28,7 +28,7 @@ export class RequeteEmissionDialogComponent {
   mode = this.data.mode;
   now = new Date();
 
-
+  document:any=null;
   // Matcher
   matcher = new ErrorStateMatcher();
 
@@ -38,13 +38,17 @@ export class RequeteEmissionDialogComponent {
   refControl = new FormControl('', [Validators.required]);
   dateControl = new FormControl('', [Validators.required]);
 
+  onPhotoSelected(file: any): void {
+    console.log('--- photo changed ---');
 
+    this.document = file;
+  }
   /**
    * Valider les donner du formulaire
    * @returns
    */
   validate() {
-    if (this.amountControl.valid && this.passwordControl.valid && this.refControl.valid && this.dateControl.valid) {
+    if (this.amountControl.valid && this.passwordControl.valid && this.refControl.valid ) {
 
       let jour = new Date();
       // "2024-08-25",
@@ -52,7 +56,7 @@ export class RequeteEmissionDialogComponent {
       this.requete.pass = this.password;
       this.requete.creerPar = this._userService.getLocalUser().data.UserName;
       this.requete.amount = `${this.requete.amount}`;
-
+    this.requete.documents=this.document;
       // exit dialog
       this._dialogRef.close(this.requete);
     }
@@ -66,6 +70,7 @@ export class RequeteEmissionDialogComponent {
         amount: "",
         creerLe: "",
         creerPar: "",
+        documents: "",
         fournusseur: " ",
         jour: "",
         pass: "",

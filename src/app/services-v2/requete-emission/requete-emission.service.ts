@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequeteEmission } from 'src/app/modal/requete-emission';
@@ -40,6 +40,14 @@ export class RequeteEmissionService {
    */
   create(requete: any) {
     let url = this._globalService.baseUrl2 + "/initieremission";
+
+    const headers = new HttpHeaders({
+      // Vous pouvez ajouter ici vos en-têtes personnalisés
+      Authorization: `Bearer ${this._userService.getLocalUser()?.token || ""}`,
+     
+      'Content-Type': 'multipart/form-data',
+  });
+
     return this._http.post<any>(url, requete);
   }
 

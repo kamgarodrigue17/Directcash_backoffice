@@ -3,6 +3,7 @@ export interface RequeteEmission {
     reference: string;
     jour: string;
     amount: string;
+    documents?:any,
     fournusseur: string;
     statut: string;
     s: string;

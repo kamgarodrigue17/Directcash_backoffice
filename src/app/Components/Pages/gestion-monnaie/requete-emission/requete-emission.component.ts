@@ -121,8 +121,23 @@ export class RequeteEmissionComponent {
           "reference": `${data.reference}`,
           "jour": `${data.jour}`,
           "amount": `${data.amount}`,
-          "creerPar": `${data.creerPar}`
+          "creerPar": `${data.creerPar}`,
+          "vDocuments":data.documents
+          
+
         };
+        const formdata = new FormData();
+        formdata.append("reference",`${data.reference}` );
+        formdata.append("jour",`${data.jour}` );
+        formdata.append("amount",`${data.amount}` );
+        formdata.append("creerPar",`${data.creerPar}` );
+   
+    // Ajouter les documents à FormData (si des fichiers sont fournis)
+    if (data.documents && data.documents.length > 0) {
+      for (let i = 0; i < data.documents.length; i++) {
+          formdata.append('vDocuments', data.documents[i]); // 'vDocuments' doit correspondre au champ utilisé dans Multer
+      }
+  }
 
         // log data
         console.log('--- REQUETE A INITIER ---');
@@ -170,11 +185,19 @@ export class RequeteEmissionComponent {
 
                   case 404:
                   this.alert_type = 'warning'
-                  this.alert_message = res.data[0].message;
-
+                  this.alert_message = res.message;
+                  break;
+                  case 400:
+                  this.alert_type = 'warning'
+                  this.alert_message = res.message;
+                  break;
+                  case 500:
+                  this.alert_type = 'danger'
+                  this.alert_message = res.message;
+                  break;
                   // refresh data
                   this.getRequeteList();
-                  break;
+                  
 
 
                 default:

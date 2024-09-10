@@ -6,7 +6,7 @@ import { AddAgentDialogComponent } from 'src/app/Components/Modals/add-agent-dia
 import { BlockAccountDialogComponent } from 'src/app/Components/Modals/block-account-dialog/block-account-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
-import { ShowSuperAgengDialogComponent } from 'src/app/Components/Modals/show-super-ageng-dialog/show-super-ageng-dialog.component';
+import { ShowSuperAgengDialogComponent } from 'src/app/Components/Pages/show-super-ageng-dialog/show-super-ageng-dialog.component';
 import { Merchant } from 'src/app/modal/merchant';
 import { AgentService } from 'src/app/services-v2/agent/agent.service';
 import { AgentServiceService } from 'src/app/services/agent/agent-service.service';
