@@ -175,6 +175,10 @@ export class DistributeurComponent implements OnInit {
     });
   }
 
+  validDistributeur(element: any){
+
+  }
+
   /**
    * Fonction pour renitialiser le mot de passe d'un agent
    * @param agent

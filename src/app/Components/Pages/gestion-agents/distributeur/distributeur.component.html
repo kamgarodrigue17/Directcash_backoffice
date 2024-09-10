@@ -148,8 +148,43 @@
           style="width: 180px"
         >
           <ul class="list-group list-group-horizontal" style="max-width: 180px">
-            <!-- edit btn -->
-            <li class="list-group-item border-0 pe-2 ps-0">
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item    (click)="validDistributeur(element)">
+                <mat-icon>check_circle</mat-icon>
+                <span>Valider</span>
+              </button>
+              <button
+                mat-menu-item
+                (click)="open_distributeur_dialog('edit', element)"
+              >
+                <mat-icon>edit</mat-icon>
+                <span>Modifier</span>
+              </button>
+              <button
+                mat-menu-item
+                (click)="open_distributeur_dialog('show', element)"
+              >
+                <mat-icon>visibility</mat-icon>
+                <span>Consulter</span>
+              </button>
+              <button
+                mat-menu-item
+                (click)="bloquer_agent('distributeur', element)"
+              >
+                <mat-icon>person_remove</mat-icon>
+                <span>Bloquer</span>
+              </button>
+            </mat-menu>
+
+            <!-- valider btn -->
+            <!-- <li class="list-group-item border-0 pe-2 ps-0">
               <button
                 (click)="open_distributeur_dialog('edit', element)"
                 type="button"
@@ -158,10 +193,22 @@
               >
                 <mat-icon style="color: #02c29c">edit</mat-icon>
               </button>
-            </li>
+            </li> -->
+
+            <!-- edit btn -->
+            <!-- <li class="list-group-item border-0 pe-2 ps-0">
+              <button
+                (click)="open_distributeur_dialog('edit', element)"
+                type="button"
+                class="shadow-sm btn action-btn p-1 d-flex align-items-center justify-content-center"
+                style="background: #02c29c36"
+              >
+                <mat-icon style="color: #02c29c">edit</mat-icon>
+              </button>
+            </li> -->
 
             <!-- show btn -->
-            <li class="list-group-item border-0 pe-2 ps-0">
+            <!-- <li class="list-group-item border-0 pe-2 ps-0">
               <button
                 (click)="open_distributeur_dialog('show', element)"
                 type="button"
@@ -170,10 +217,10 @@
               >
                 <mat-icon style="color: #5e5e5e">visibility</mat-icon>
               </button>
-            </li>
+            </li> -->
 
             <!-- block btn -->
-            <li class="list-group-item border-0 pe-2 ps-0">
+            <!-- <li class="list-group-item border-0 pe-2 ps-0">
               <button
                 (click)="bloquer_agent('distributeur', element)"
                 type="button"
@@ -182,10 +229,10 @@
               >
                 <mat-icon style="color: #f60d2b">person_remove</mat-icon>
               </button>
-            </li>
+            </li> -->
 
             <!-- reset btn -->
-            <li class="list-group-item border-0 pe-0 ps-0">
+            <!-- <li class="list-group-item border-0 pe-0 ps-0">
               <button
                 (click)="reset_password(element)"
                 type="button"
@@ -194,7 +241,7 @@
               >
                 <mat-icon style="color: #fff">refresh</mat-icon>
               </button>
-            </li>
+            </li> -->
           </ul>
         </td>
       </ng-container>

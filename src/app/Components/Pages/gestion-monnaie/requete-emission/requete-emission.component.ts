@@ -11,6 +11,7 @@ import { RequeteEmissionDialogComponent } from 'src/app/Components/Modals/requet
 import { RequeteEmission } from 'src/app/modal/requete-emission';
 import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
 import { DatetimeService } from 'src/app/services-v2/datetime/datetime.service';
+import { DownloadService } from 'src/app/services-v2/download/download.service';
 import { LoaderService } from 'src/app/services-v2/loader/loader.service';
 import { RequeteEmissionService } from 'src/app/services-v2/requete-emission/requete-emission.service';
 import { GloabalServiceService } from 'src/app/services/gloabal-service.service';
@@ -39,7 +40,8 @@ export class RequeteEmissionComponent {
     private _globalService: GloabalServiceService,
     protected _loaderService: LoaderService,
     protected _datetimeService: DatetimeService,
-    private _userService: AdminService
+    private _userService: AdminService,
+    private _downloadService: DownloadService
   ) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -369,6 +371,38 @@ export class RequeteEmissionComponent {
 
       }
     });
+  }
+
+  downloadDocs(requete: any) {
+    let docs_str: string = requete.documents;
+    let docs: string[] = docs_str.split(',');
+
+    docs.map((doc, index) => {
+
+      let url = this._globalService.baseUrl2 + "/" + doc;
+      this._downloadService.downloadFile(url).subscribe(response => {
+        console.log('--- response ---', response);
+
+        const a = document.createElement('a');
+        // @ts-ignore
+        const objectUrl = URL.createObjectURL(response);
+        a.href = objectUrl;
+        a.download = 'document-' + index;
+        a.click();
+        URL.revokeObjectURL(objectUrl);
+      }, (error) => {
+        // log error
+        console.log('--- ERREUR DOWNLOAD FILES ---');
+        console.log(error);
+
+        // show alert
+        this.alert_message = "Une erreur est survenue lors du téléchargement des documents";
+        this.alert_type = "danger";
+        this.closeAlert();
+        this.openAlert();
+      });
+    })
+
   }
 
   /**

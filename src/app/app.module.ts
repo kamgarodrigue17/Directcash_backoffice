@@ -116,6 +116,8 @@ import { KycComponent } from './Components/Pages/kyc/kyc.component';
 import { ImageSelectorComponent } from './Components/image-selector/image-selector.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { ImageViewerComponent } from './Components/image-viewer/image-viewer.component';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 
 @NgModule({
@@ -233,7 +235,7 @@ import { ImageViewerComponent } from './Components/image-viewer/image-viewer.com
     MatProgressBarModule,
     MatTreeModule,
     MatRadioModule,
-
+    MatMenuModule
   ],
   providers: [
     {
