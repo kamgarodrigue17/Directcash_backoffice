@@ -28,7 +28,7 @@ export class RequeteEmissionDialogComponent {
   mode = this.data.mode;
   now = new Date();
 
-  document:any=null;
+  document: any = null;
   // Matcher
   matcher = new ErrorStateMatcher();
 
@@ -43,12 +43,32 @@ export class RequeteEmissionDialogComponent {
 
     this.document = file;
   }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files) {
+
+      this.document = input.files;
+      // // Réinitialiser le FormData à chaque fois pour éviter d'ajouter les mêmes fichiers plusieurs fois
+      // this.formData = new FormData();
+
+      // Array.from(input.files).forEach((file: File) => {
+      //   // Ajouter chaque fichier dans le FormData avec un nom de champ unique
+      //   this.formData.append('files[]', file, file.name);
+      // });
+
+      // console.log(this.formData);
+      // À partir de là, vous pouvez envoyer formData à un service backend si nécessaire
+    }
+  }
+
   /**
    * Valider les donner du formulaire
    * @returns
    */
   validate() {
-    if (this.amountControl.valid && this.passwordControl.valid && this.refControl.valid ) {
+    if (this.amountControl.valid && this.passwordControl.valid && this.refControl.valid) {
 
       let jour = new Date();
       // "2024-08-25",
@@ -56,7 +76,7 @@ export class RequeteEmissionDialogComponent {
       this.requete.pass = this.password;
       this.requete.creerPar = this._userService.getLocalUser().data.UserName;
       this.requete.amount = `${this.requete.amount}`;
-    this.requete.documents=this.document;
+      this.requete.documents = this.document;
       // exit dialog
       this._dialogRef.close(this.requete);
     }

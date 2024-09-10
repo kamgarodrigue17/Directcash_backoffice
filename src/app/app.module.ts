@@ -232,7 +232,7 @@ import { ImageViewerComponent } from './Components/image-viewer/image-viewer.com
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatTreeModule,
-    MatRadioModule
+    MatRadioModule,
 
   ],
   providers: [

@@ -14,7 +14,6 @@ export class ImageSelectorComponent {
   selectedImage: string | ArrayBuffer | null | undefined = undefined;
 
   @Input() placeholder!: string;
-
   // Émetteur pour retourner le FormData mis à jour
   // @Output() fileSelected: EventEmitter<File> = new EventEmitter<File>();
   @Output() fileDom: EventEmitter<HTMLInputElement> = new EventEmitter<HTMLInputElement>();
