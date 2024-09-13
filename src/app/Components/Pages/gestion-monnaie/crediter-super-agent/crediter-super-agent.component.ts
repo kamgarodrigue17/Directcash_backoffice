@@ -9,6 +9,7 @@ import { catchError, throwError } from 'rxjs';
 import { ApprovisionnerAgenceDialogComponent } from 'src/app/Components/Modals/approvisionner-agence-dialog/approvisionner-agence-dialog.component';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { ExportComponent } from 'src/app/Components/Modals/export/export.component';
+import { PasswordDialogComponent } from 'src/app/Components/Modals/password-dialog/password-dialog.component';
 import { Plafond } from 'src/app/modal/plafond';
 import { Transaction } from 'src/app/modal/transaction';
 import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
@@ -213,6 +214,11 @@ export class CrediterSuperAgentComponent implements OnInit {
 
     confirmation_dialog.afterClosed().subscribe(result => {
       if (result == true) {
+        let password_dialog = this.dialog.open(PasswordDialogComponent, { disableClose: true });
+
+password_dialog.afterClosed().subscribe(password => {
+
+  if (password != false) {
         try {
 
           // on deefinit corps de la requete
@@ -221,7 +227,7 @@ export class CrediterSuperAgentComponent implements OnInit {
             "vAmount": `${requete.amount}`,
             "vCreatedBy": `${this._userService.getLocalUser().data.UserName}`,//principe a 4 yeux
             "vCautionId": `${requete.Id}`,
-            "vPass": "12345",
+            "vPass": password,
             "vStatus": 1
           }
 
@@ -287,6 +293,9 @@ export class CrediterSuperAgentComponent implements OnInit {
           this.openAlert();
 
         }
+      }});
+
+
       }
     });
   }

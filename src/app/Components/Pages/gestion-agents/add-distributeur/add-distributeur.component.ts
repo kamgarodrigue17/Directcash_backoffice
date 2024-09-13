@@ -109,23 +109,24 @@ export class AddDistributeurComponent implements OnInit {
   }
   onPhotoSelected(file: any): void {
     console.log('--- photo changed ---');
-
-    this.photo = file;
+console.log(file.files[0].name)
+    this.photo = file.files[0];
   }
 
   onCniSelected(file: any): void {
     console.log('--- cni recto changed ---');
-    this.cnirecto = file;
+    this.cnirecto = file.files[0];
   }
 
   onCniSelectedVerso(file: any): void {
     console.log('--- cni verso changed ---');
-    this.cniverso = file;
+    this.cniverso = file.files[0];
+    
   }
 
   onPassportSelected(file: any): void {
     console.log('--- passport changed ---');
-    this.passport = file;
+    this.passport = file.files[0];
   }
 
 
@@ -174,16 +175,16 @@ export class AddDistributeurComponent implements OnInit {
       formdata.append("p_nomContact", this.myForm1.value.contactName);
 
       if (this.cnirecto != null && this.cniverso != null) {
-        formdata.append("p_cniRecto", this.cnirecto.files[0], this.cnirecto.name);
-        formdata.append("p_cniVerso", this.cniverso.files[0], this.cniverso.name);
+        formdata.append("p_cniRecto", this.cnirecto , this.cnirecto.name);
+        formdata.append("p_cniVerso", this.cniverso, this.cniverso.name);
       }
 
       if (this.passport != null) {
-        formdata.append("p_passport", this.passport.files[0], this.passport.name);
+        formdata.append("p_passport", this.passport, this.passport.name);
       }
 
       if (this.photo != null) {
-        formdata.append("p_photo", this.photo.files[0], this.photo.name);
+        formdata.append("p_photo", this.photo, this.photo.name);
       }
 
       // // on recupere les donnee du formulaire

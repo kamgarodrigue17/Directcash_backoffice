@@ -26,6 +26,12 @@ export class DistributeurService {
     let url = this.globalService.baseUrl2 + "/Users/getDistributeur";
     return this.http.post<any>(url, data);
   }
+  Validate(data: any): Observable<any> {
+    
+    let url = this.globalService.baseUrl2 + "/merchant/validate";
+    return this.http.post<any>(url, data);
+  }
+
 
   /**
    * 
@@ -33,6 +39,13 @@ export class DistributeurService {
    * @returns 
    */
   create(data: any): Observable<any> {
+
+
+
+
+
+
+    
     let url = this.globalService.baseUrl2 + "/addMerchantWithKyc";
     return this.http.post<any>(url, data);
   }

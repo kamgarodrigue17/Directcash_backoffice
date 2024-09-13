@@ -22,7 +22,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 })
 export class DistributeurComponent implements OnInit {
 
-  displayedColumns: string[] = ['Nom', 'Téléphone', 'iban', 'Compte principal', 'Collecte de fonds', 'Paiement marchand', 'Commissions', 'Merchant', 'Actions'];
+  displayedColumns: string[] = ['Nom', 'Téléphone', 'iban', 'Compte principal', 'Collecte de fonds', 'Paiement marchand', 'Commissions', 'Merchant','status', 'Actions'];
   ELEMENT_DATA: Agent[] = [
   ];
   dataSource!: MatTableDataSource<Agent, MatTableDataSourcePaginator>
@@ -176,6 +176,94 @@ export class DistributeurComponent implements OnInit {
   }
 
   validDistributeur(element: any){
+    const confirmation_dialog = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: "Validation",
+        message: "Voulez vous valider  le distributeur"+element.MerchantName ,
+      }
+    });
+
+     
+
+    confirmation_dialog.afterClosed().subscribe(result => {
+      if (result == true) {
+       
+        try {
+
+          // on deefinit corps de la requete
+          let data = {
+            "v_who": localStorage.getItem("id"),
+            "v_idMerchant": element.MerchantID
+          }
+
+          console.log('--- requete a valider ---');
+          console.log(data)
+
+          // on active la barre de progression de la requete
+          this.isProgressHidden = false;
+
+          // on envoi la requete de validation
+          this._distributeurService.Validate(data).pipe(
+            catchError((error: HttpErrorResponse) => {
+              this.isProgressHidden = true;
+              if (error.status !== 200) {
+                this.alert_type = 'danger';
+
+                this.alert_message = this._messageService.getHttpMessage(error.status);
+
+                this.closeAlert();
+                this.openAlert();
+
+                // log response
+                console.log(error.message);
+              }
+              return throwError(error);
+            })
+          ).subscribe(res => {
+            console.log(res)
+            // au retour de la reponse, on desactive la barre de progression
+            this.isProgressHidden = true;
+
+            // on definit le type d'alerte  afficher en fonction du code de retour
+            let res_code = res.code;
+            switch (res_code) {
+              case "200":
+                this.alert_type = 'success';
+                this.alert_message = res.message;
+
+                // refresh data list
+                this.getDistributeurs();
+                break;
+
+              default:
+                this.alert_type = 'danger';
+                break;
+            }
+            this.alert_message =res.message;
+            this.openAlert();
+          });
+        } catch (error) {
+
+          // stop laoding
+          this.isProgressHidden = true;
+
+          // log error
+          console.log('--- ERREUR ---');
+          console.log(error);
+
+          // show alert
+          this.alert_message = "Une erreur est survenue";
+          this.alert_type = 'danger';
+          this.closeAlert();
+          this.openAlert();
+
+        }
+      }});
+
+
+      
+    
+
 
   }
 

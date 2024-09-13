@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
 import { ConfirmationDialogComponent } from 'src/app/Components/Modals/confirmation-dialog/confirmation-dialog.component';
 import { GestionMonnaieShowInformationDialogComponent } from 'src/app/Components/Modals/gestion-monnaie-show-information-dialog/gestion-monnaie-show-information-dialog.component';
+import { PasswordDialogComponent } from 'src/app/Components/Modals/password-dialog/password-dialog.component';
 import { Plafond } from 'src/app/modal/plafond';
 import { PlafondService } from 'src/app/services/plafond/plafond.service';
 import { ValidationService } from 'src/app/services/validation/validation.service';
@@ -69,13 +70,18 @@ export class ValiderRechargeComponent implements OnInit {
 
         // on active la barre de progression de la requete
         this.isProgressHidden = false;
+// show password dialog
+let password_dialog = this.dialog.open(PasswordDialogComponent, { disableClose: true });
 
+password_dialog.afterClosed().subscribe(password => {
+
+  if (password != false) {
         // on deefinit corps de la requete
         let data: any = {
           "merchantId": `${valid.merchant}`,
           "amount": `${valid.amount}`,
           "createBy": `${valid.creerPar}`,
-          "password": "12345",
+          "password": password,
           "status": valid.statut != "En attente" ? "0" : "1",
           "cautionId": `${valid.id}`
         }
@@ -99,7 +105,13 @@ console.log(data);
           this.alert_message = res.data.message;
           this.openAlert();
         });
+      
 
+
+    }});
+
+
+  
 
       } else {
 

@@ -24,7 +24,7 @@ export class RequeteApprovisionnementService {
     let data = {
       "vWho": `${this._userService.getLocalUser().data.UserName}`,
       "vFilterStatus": "",
-      "vFilterFournisseur": "",
+      "vFilterMerchant": "",
       "vFilterTraiterPar": "",
       "vFilterCreerPar": ""
     }
