@@ -114,10 +114,10 @@ import { AlertComponent } from './Components/alert/alert.component';
 import { DatePipe } from '@angular/common';
 import { KycComponent } from './Components/Pages/kyc/kyc.component';
 import { ImageSelectorComponent } from './Components/image-selector/image-selector.component';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { ImageViewerComponent } from './Components/image-viewer/image-viewer.component';
-import {MatMenuModule} from '@angular/material/menu';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 
 @NgModule({
@@ -235,7 +235,9 @@ import {MatMenuModule} from '@angular/material/menu';
     MatProgressBarModule,
     MatTreeModule,
     MatRadioModule,
-    MatMenuModule
+    MatMenuModule,
+    NgOtpInputModule,
+
   ],
   providers: [
     {

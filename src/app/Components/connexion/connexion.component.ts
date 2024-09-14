@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { IsFirstimeDialogComponent } from '../Modals/is-firstime-dialog/is-firstime-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminService } from 'src/app/services-v2/admin-plateforme/admin.service';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-connexion',
@@ -19,6 +20,8 @@ export class ConnexionComponent implements OnInit {
   passwordFormControl: FormControl = new FormControl;
   myForm!: FormGroup;
   isClose = true;
+
+  isOtpFormVisible = false;
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
@@ -53,8 +56,14 @@ export class ConnexionComponent implements OnInit {
   isLoading = false;
   connexion_class = 'primary-light-button';
 
+
+  // coundown area ==========================================================
+  protected counter: number = 60;
+  protected subscription!: Subscription;
+  otpCode!: string;
+
   onSubmit() {
-console.log(this.myForm.valid)
+    console.log(this.myForm.valid)
     if (this.myForm.valid) {
 
       // on grise le bouton de connexion
@@ -99,8 +108,11 @@ console.log(this.myForm.valid)
 
           this._userService.getLocalUser();
 
-          //navigate to dashboard page
-          this.router.navigateByUrl('/home/dashboard');
+          // afficher le formulaire de vérification
+          this.isOtpFormVisible = true;
+
+          // start countdown
+          this.sendOtpCodeToEmail();
         } else if (res.data.message == "First Time Login") {
 
           // si il s'agit de la 1ere connexion
@@ -196,4 +208,43 @@ console.log(this.myForm.valid)
     }
 
   }
+
+  /**
+   * Valider le code otp
+   */
+  onSubmitOpt() {
+    // code ...
+    //navigate to dashboard page
+    // this.router.navigateByUrl('/home/dashboard');
+
+  }
+
+  sendOtpCodeToEmail() {
+    // code
+    this.counter = 60;
+    this.startCountdown();
+  }
+
+  onOtpChange(event: any) {
+    console.log('--- OTP VALUE: ', event);
+  }
+
+  /**
+   * Countdown function
+   */
+  startCountdown() {
+    // reset counter
+    this.counter = 60;
+    const countdown$ = interval(1000);
+
+    this.subscription = countdown$.subscribe(() => {
+      if (this.counter > 0) {
+        this.counter--;
+      } else {
+        this.subscription.unsubscribe();
+      }
+    });
+  }
+
+
 }

@@ -30,8 +30,9 @@
               </div>
             </div>
             <hr />
+
             <!-- Section 2 -->
-            <div class="col-md-6">
+            <div *ngIf="!isOtpFormVisible" class="col-md-6">
               <div class="card-body pt-5 pb-4">
                 <h4 class="text-dark fw-bold fs-5 text-center mb-4">
                   Se connecter
@@ -109,6 +110,76 @@
                     >
                       <mat-spinner diameter="25" class="me-3"></mat-spinner>
                       Connexion...
+                    </div>
+
+                    <!-- Message erreur -->
+                    <div class="small pt-3 text-danger d-{{ isErrorVisible }}">
+                      {{ errorMessage }}
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- otp form 2 -->
+            <div *ngIf="isOtpFormVisible" class="col-md-6">
+              <div class="card-body pt-5 pb-4">
+                <h4 class="text-dark fw-bold fs-5 text-center mb-4">
+                  Vérification OTP
+                </h4>
+                <p class="small text-gray text-center">
+                  Un code a été envoyé à votre a votre adresse email. Entrez ce
+                  code pour continuer
+                </p>
+                <form
+                  (ngSubmit)="onSubmitOpt()"
+                  [formGroup]="myForm"
+                  novalidate
+                  class="needs-validation fs-6 mt-4 mb-3 ps-3 pe-3"
+                  action="/"
+                  method="post"
+                >
+                  <p class="mt-1 pb-2 text-center">
+                    <ng-otp-input
+                      class="w-100"
+                      (onInputChange)="onOtpChange($event)"
+                      [config]="{ length: 6 }"
+                    ></ng-otp-input>
+                  </p>
+
+                  <!-- resend button -->
+                  <div class="text-center mb-3">
+                    <button
+                      mat-button
+                      (click)="sendOtpCodeToEmail()"
+                      [disabled]="counter != 0"
+                      color="primary"
+                    >
+                      {{
+                        counter == 0
+                          ? "Renvoyer"
+                          : "Renvoyer dans " + counter + "s"
+                      }}
+                    </button>
+                  </div>
+
+                  <div class="col-md-12 text-center mt-3">
+                    <button
+                      mat-raised-button
+                      class="w-100 {{ connexion_class }}"
+                      [disabled]="isLoading"
+                    >
+                      Valider
+                    </button>
+
+                    <!-- Loader de connexion -->
+                    <div
+                      class="d-{{
+                        display
+                      }} align-items-center justify-content-center pt-4"
+                    >
+                      <mat-spinner diameter="25" class="me-3"></mat-spinner>
+                      Vérification...
                     </div>
 
                     <!-- Message erreur -->
