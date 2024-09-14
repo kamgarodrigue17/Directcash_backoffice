@@ -110,6 +110,8 @@
           />
         </mat-form-field>
 
+        
+
         <mat-form-field appearance="outline" class="col-md-4">
           <mat-label>Date de naissance </mat-label>
           <input
@@ -149,6 +151,16 @@
             [readonly]="true"
           />
         </mat-form-field>
+        <mat-form-field appearance="outline" class="col-md-12">
+          <mat-label>Date d'experation Carte nationnale d'identité </mat-label>
+          <input
+            matInput
+            placeholder="Date d'experation"
+            [value]="kycData.dateValidationCNI"
+            [readonly]="true"
+          />
+        </mat-form-field>
+        
 
         <!-- cni recto -->
         <p class="col-md-4 mb-3">

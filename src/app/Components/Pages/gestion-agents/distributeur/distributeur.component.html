@@ -132,9 +132,19 @@
       </ng-container>
 
       <!-- Merchant Column -->
-      <ng-container matColumnDef="Merchant">
-        <th mat-header-cell *matHeaderCellDef>Merchant</th>
+      <ng-container matColumnDef="SuperMerchant">
+        <th mat-header-cell *matHeaderCellDef>SuperMerchant</th>
+        <td mat-cell *matCellDef="let element">{{ element.SuperMerchant }}</td>
+      </ng-container>
+      <!-- Merchant Column -->
+      <ng-container matColumnDef="CreerPar">
+        <th mat-header-cell *matHeaderCellDef>CreerPar</th>
         <td mat-cell *matCellDef="let element">{{ element.CreerPar }}</td>
+      </ng-container>
+      <!-- Merchant Column -->
+      <ng-container matColumnDef="ModifierPar">
+        <th mat-header-cell *matHeaderCellDef>Traiter par</th>
+        <td mat-cell *matCellDef="let element">{{ element.ModifiedBy }}</td>
       </ng-container>
 
       <!-- Statut Column -->

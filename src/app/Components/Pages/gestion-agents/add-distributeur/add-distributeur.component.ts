@@ -109,7 +109,7 @@ export class AddDistributeurComponent implements OnInit {
   }
   onPhotoSelected(file: any): void {
     console.log('--- photo changed ---');
-console.log(file.files[0].name)
+console.log(file.files[0])
     this.photo = file.files[0];
   }
 
@@ -173,6 +173,7 @@ console.log(file.files[0].name)
       formdata.append("p_CNIContact", this.myForm1.value.cniContact);
       formdata.append("p_phoneContact", this.myForm1.value.phoneContact);
       formdata.append("p_nomContact", this.myForm1.value.contactName);
+      formdata.append("p_dateValidationCNI", this.myForm1.value.cniValidity);
 
       if (this.cnirecto != null && this.cniverso != null) {
         formdata.append("p_cniRecto", this.cnirecto , this.cnirecto.name);
@@ -295,8 +296,10 @@ console.log(file.files[0].name)
       phoneContact: new FormControl('', Validators.required),
       cniContact: new FormControl('', Validators.required),
       pass: new FormControl('', Validators.required),
-      file: new FormControl('cni', [Validators.required])
+      file: new FormControl('cni', [Validators.required]),
+      cniValidity: new FormControl('', Validators.required),
     });
+
 
     this.getDistributeur();
 
